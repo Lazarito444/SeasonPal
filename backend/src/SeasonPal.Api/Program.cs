@@ -3,20 +3,33 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 using Scalar.AspNetCore;
 using SeasonPal.Api.Common;
 using SeasonPal.Api.Endpoints;
 using SeasonPal.Domain.Entities;
 using SeasonPal.Infrastructure.Persistence;
+using Serilog;
+using Serilog.Events;
 using static SeasonPal.Api.SeasonPalApiConstants;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.AddJsonConsole(o =>
+builder.Host.UseSerilog((context, services, configuration) =>
 {
-    o.TimestampFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK";
+    configuration.ReadFrom.Configuration(context.Configuration) // "Serilog" section in appsettings (levels/overrides)
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext()
+        .WriteTo.Console();
+
+    // Dev keeps console-only output; production additionally persists daily rolling files
+    // under the app's base directory (retained for two weeks).
+    if (context.HostingEnvironment.IsProduction())
+    {
+        configuration.WriteTo.File(
+            Path.Combine(AppContext.BaseDirectory, "logs", "seasonpal-.log"),
+            rollingInterval: RollingInterval.Day,
+            retainedFileCountLimit: 14);
+    }
 });
 
 builder.Services.AddDbContext<SeasonPalDbContext>(options =>
@@ -48,6 +61,18 @@ builder.Services.AddProblemDetails();
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.UseSerilogRequestLogging(options =>
+{
+    // One concise line per request; 5xx/traces as Error, health probes sink to Verbose
+    // so they stay quiet at the configured minimum level.
+    options.GetLevel = (httpContext, _, ex) => ex is not null
+        ? LogEventLevel.Error
+        : httpContext.Response.StatusCode >= StatusCodes.Status500InternalServerError
+            ? LogEventLevel.Error
+            : httpContext.Request.Path.StartsWithSegments("/health")
+                ? LogEventLevel.Verbose
+                : LogEventLevel.Information;
+});
 app.UseStatusCodePages();
 app.UseCors(CorsPolicyName);
 
