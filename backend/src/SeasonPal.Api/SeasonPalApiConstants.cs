@@ -6,4 +6,6 @@ public static class SeasonPalApiConstants
     public const string DefaultConnectionName = "DefaultConnection";
 
     public const string CorsPolicyName = "SeasonPalCorsPolicy";
+
+    public const string AuthRateLimitPolicy = "auth";
 }

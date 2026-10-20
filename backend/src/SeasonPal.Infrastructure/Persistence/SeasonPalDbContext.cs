@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SeasonPal.Application.Common;
 using SeasonPal.Domain.Entities;
 
 namespace SeasonPal.Infrastructure.Persistence;
 
 /// <summary>Aggregate root context; entity shaping lives in the IEntityTypeConfiguration classes.</summary>
 public class SeasonPalDbContext(DbContextOptions<SeasonPalDbContext> options)
-    : IdentityDbContext<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole<Guid>, Guid>(options)
+    : IdentityDbContext<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole<Guid>, Guid>(options), IUnitOfWork
 {
     public DbSet<UserPreference> UserPreferences => Set<UserPreference>();
+
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public DbSet<Recipe> Recipes => Set<Recipe>();
 
