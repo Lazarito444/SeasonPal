@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\SeasonPal.Application\SeasonPal.Application.csproj" />
+    <ProjectReference Include="..\..\src\SeasonPal.Domain\SeasonPal.Domain.csproj" />
   </ItemGroup>
 
 </Project>

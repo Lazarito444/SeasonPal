@@ -1,19 +1,37 @@
 namespace SeasonPal.Domain.Entities;
 
-/// <summary>Ordered preparation step. <see cref="TimerSeconds"/> drives cooking-mode timers when present.</summary>
+/// <summary>Ordered preparation step within the Recipe aggregate; constructed only through the root.</summary>
 public class RecipeStep
 {
-    public Guid Id { get; set; }
+    /// <summary>EF materializer.</summary>
+    private RecipeStep() { }
 
-    public Guid RecipeId { get; set; }
+    public Guid Id { get; private set; }
 
-    public Recipe Recipe { get; set; } = null!;
+    public Guid RecipeId { get; private set; }
 
-    public int Order { get; set; }
+    public Recipe Recipe { get; private set; } = null!;
 
-    public string Instruction { get; set; } = string.Empty;
+    public int Order { get; private set; }
 
-    public string? Tip { get; set; }
+    public string Instruction { get; private set; } = null!;
 
-    public int? TimerSeconds { get; set; }
+    public string? Tip { get; private set; }
+
+    /// <summary>Drives cooking-mode timers when present.</summary>
+    public int? TimerSeconds { get; private set; }
+
+    internal static RecipeStep Assemble(
+        Guid recipeId,
+        int order,
+        string instruction,
+        string? tip,
+        int? timerSeconds) => new()
+    {
+        RecipeId = recipeId,
+        Order = order,
+        Instruction = instruction,
+        Tip = tip,
+        TimerSeconds = timerSeconds,
+    };
 }

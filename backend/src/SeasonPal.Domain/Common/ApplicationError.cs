@@ -1,9 +1,9 @@
-namespace SeasonPal.Application.Common;
+namespace SeasonPal.Domain.Common;
 
 /// <summary>
 /// Typed, localizable business error. <see cref="FallbackMessage"/> is English-only text for
 /// logs and unspecified-locale defaults; UIs localize through <see cref="Code"/> + <see cref="Args"/>
-/// so wording lives outside Application services.
+/// so wording lives outside the domain.
 /// </summary>
 public sealed record ApplicationError(string Code, string FallbackMessage, IReadOnlyDictionary<string, string?> Args)
 {

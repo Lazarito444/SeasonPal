@@ -1,19 +1,35 @@
 namespace SeasonPal.Domain.Entities;
 
-/// <summary>One turn in an AI conversation. <see cref="ContextJson"/> holds rolled-up pantry/save context refs.</summary>
+/// <summary>One turn in an AI conversation, appended only via the aggregate root.</summary>
 public class AiMessage
 {
-    public Guid Id { get; set; }
+    /// <summary>EF materializer.</summary>
+    private AiMessage() { }
 
-    public Guid ConversationId { get; set; }
+    public Guid Id { get; private set; }
 
-    public AiConversation Conversation { get; set; } = null!;
+    public Guid ConversationId { get; private set; }
 
-    public AiMessageRole Role { get; set; }
+    public AiConversation Conversation { get; private set; } = null!;
 
-    public string Content { get; set; } = string.Empty;
+    public AiMessageRole Role { get; private set; }
 
-    public string? ContextJson { get; set; }
+    public string Content { get; private set; } = null!;
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    public string? ContextJson { get; private set; }
+
+    public DateTimeOffset CreatedAt { get; private set; }
+
+    internal static AiMessage Assemble(
+        Guid conversationId,
+        AiMessageRole role,
+        string content,
+        string? contextJson) => new()
+    {
+        ConversationId = conversationId,
+        Role = role,
+        Content = content,
+        ContextJson = contextJson,
+        CreatedAt = DateTimeOffset.UtcNow,
+    };
 }

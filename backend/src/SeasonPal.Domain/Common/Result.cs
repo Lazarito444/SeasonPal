@@ -1,9 +1,9 @@
-namespace SeasonPal.Application.Common;
+namespace SeasonPal.Domain.Common;
 
 /// <summary>
-/// Outcome of an operation without payload. Expected business failures travel as
-/// <see cref="ApplicationError"/> — throwing is reserved for the truly exceptional,
-/// which the Api's exception handler converts to ProblemDetails.
+/// Outcome of an operation without payload, produced by aggregates, factories and repositories.
+/// Expected business failures travel as <see cref="ApplicationError"/>; throwing is reserved
+/// for the truly exceptional, which the Api's exception handler converts to ProblemDetails.
 /// </summary>
 public sealed class Result
 {
@@ -30,7 +30,8 @@ public sealed class Result
     public Result Bind(Func<Result> next) => IsSuccess ? next() : this;
 }
 
-/// <summary>Outcome of an operation producing <typeparamref name="T"/>.</summary>
+/// <summary>Outcome of an operation producing <typeparamref name="T"/> — the shape every
+/// <c>Create</c> factory on aggregates speaks.</summary>
 public sealed class Result<T>
 {
     public bool IsSuccess { get; }

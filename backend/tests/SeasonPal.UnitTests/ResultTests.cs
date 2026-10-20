@@ -1,4 +1,4 @@
-using SeasonPal.Application.Common;
+using SeasonPal.Domain.Common;
 
 namespace SeasonPal.UnitTests;
 
