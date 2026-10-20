@@ -5,8 +5,8 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 
 ## Steps checklist
 
-- [ ] Stage 0 — Repo, solution & Flutter shell
-- [ ] Stage 1 — Data model & migrations
+- [ ] Stage 0 — Repo, solution & Flutter shell *(backend complete; Flutter shell pending)*
+- [x] Stage 1 — Data model & migrations
 - [ ] Stage 2 — Auth, onboarding & preferences
 - [ ] Stage 3 — Recipes API: CRUD, saving & collections
 - [ ] Stage 4 — Flutter library: auth, collection & recipe editor screens
@@ -35,7 +35,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - `git init`, `.gitignore` (dotnet + Flutter + secrets), first commit.
 - `backend/SeasonPal.slnx` with Domain / Application / Infrastructure / Api projects wired by DI in `Program.cs`; empty-solution builds clean. xUnit test projects reference the right layers.
 - `docker-compose.dev.yml` (postgres:16, healthcheck, named volume). Scalar UI enabled at `/scalar` in dev only.
-- Flutter app `mobile/` created, Riverpod + go_router + Dio + freezed wired; ` Asphaltbase` → app opens to a temporary "connectivity check" screen that calls `GET /health` and shows the backend status (proves the DevOps path end-to-end).
+- Flutter app `mobile/` created, Riverpod + go_router + Dio + freezed wired; app opens to a temporary "connectivity check" screen that calls `GET /health` and shows the backend status (proves the DevOps path end-to-end).
 - `--dart-define-from-file` per-environment JSON (`config/api_dev.json`) handling in one config file.
 
 **Acceptance:** `dotnet test` green with health-endpoint integration test; `flutter run` boots and shows live backend status; single commit of everything above.
@@ -94,12 +94,12 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - A seeded "demo cook" account documented in README so reviewers can log in and see a populated app.
 - Every seeded item flagged in an `origin` column so it's never mistaken for real user content.
 
-**Acceptance:** fresh DB →Restart → running app shows populated Home/Discover/detail flows without hand-massaging data.
+**Acceptance:** fresh DB → restart → running app shows populated Home/Discover/detail flows without hand-massaging data.
 
 ## Stage 7 — AI cooking companion v1
 
 - `IAiChatService` (OpenAI-compatible client), config-driven provider + model + secret name.
-- `AiEndpoints.cs`: `POST /ai/chat` (free-form cooking companion with conversation persistence), `POST /ai/recipes/from-pantry` (uses Stage 5 ingredient matcher + preferences context), `POST /ai/recipes/adapt` (食谱 + instruction → proposed recipe draft). Recipes coming from AI are stored with `isAiGenerated=true` and surfaced that way in every UI position.
+- `AiEndpoints.cs`: `POST /ai/chat` (free-form cooking companion with conversation persistence), `POST /ai/recipes/from-pantry` (uses Stage 5 ingredient matcher + preferences context), `POST /ai/recipes/adapt` (a recipe + instruction → proposed recipe draft). Recipes coming from AI are stored with `isAiGenerated=true` and surfaced that way in every UI position.
 - System prompts encode brand voice (warm, practical, non-intimidating) and personalization context (saved recipes, diet, skill level).
 - Mobile: AI Cook screen (chat + pantry picker + suggestion cards with "save to My Recipes" that calls the recipe-create API).
 - Guardrails: rate-limit per user, token/size caps, key access in Infrastructure only.
@@ -128,7 +128,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - Discover expands to people; profile shows published recipes + followers.
 - Notifications: in-app inbox for like/comment/follow/adapted-your-recipe events (push deferred, noted limitation).
 
-**Acceptance:** end-to-end three-user flow: A publishes → B follows A → B saves/likeys/comments → B adapts with credit → notifications appear for all parties.
+**Acceptance:** end-to-end three-user flow: A publishes → B follows A → B saves/likes/comments → B adapts with credit → notifications appear for all parties.
 
 ## Stage 11 — Polish & release prep
 

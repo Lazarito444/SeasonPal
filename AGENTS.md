@@ -69,4 +69,4 @@ Flutter API base URL comes from `--dart-define-from-file` pointing at a per-envi
 
 ## Status
 
-Stage 0 not started. Nothing scaffolded yet — repo contains AGENTS.md, PRODUCT.md, ROADMAP.md only.
+Stage 0 (backend) and Stage 1 complete: `backend/` solution (Domain / Application / Infrastructure / Api + both test projects), `docker-compose.dev.yml`, InitialCreate migration, health endpoints verified live against the dev DB, 12 tests green (8 unit, 4 integration via Testcontainers Postgres). Flutter shell still pending. Next: Stage 2 — auth, onboarding & preferences. Local dev DB publishes on **port 5433** (host 5432 is occupied by the machine's own Postgres service).

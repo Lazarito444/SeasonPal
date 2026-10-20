@@ -1,0 +1,12 @@
+@host = http://localhost:5209
+
+### Liveness — always answers unless the process is dead
+GET {{host}}/health/live
+
+### Readiness — healthy only when Postgres answers
+GET {{host}}/health/ready
+
+### OpenAPI document (dev)
+GET {{host}}/openapi/v1.json
+
+### Scalar UI (dev): {{host}}/scalar

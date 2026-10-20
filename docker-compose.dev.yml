@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: seasonpal-db
+    environment:
+      POSTGRES_DB: seasonpal
+      POSTGRES_USER: seasonpal
+      POSTGRES_PASSWORD: seasonpal_dev
+    ports:
+      - "5433:5432"
+    volumes:
+      - seasonpal-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U seasonpal -d seasonpal"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  seasonpal-pgdata:

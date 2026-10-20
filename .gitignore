@@ -1,0 +1,40 @@
+# --- .NET ---
+*[Bb]in/
+*[Oo]bj/
+out/
+artifacts/
+*.user
+*.suo
+.vs/
+TestResults/
+*.trx
+logs/
+*.log
+
+# NuGet
+packages/
+*.nuget.*.props
+project.assets.json
+
+# --- Flutter ---
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*/coverage/
+
+# --- Secrets / env ---
+secrets.json
+*.env
+.env.*
+!.env.example
+
+# --- IDE ---
+.idea/
+*.iml
+*.swp
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+Desktop.ini

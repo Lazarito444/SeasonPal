@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SeasonPal.Api/SeasonPal.Api.csproj" />
+    <Project Path="src/SeasonPal.Application/SeasonPal.Application.csproj" />
+    <Project Path="src/SeasonPal.Domain/SeasonPal.Domain.csproj" />
+    <Project Path="src/SeasonPal.Infrastructure/SeasonPal.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SeasonPal.IntegrationTests/SeasonPal.IntegrationTests.csproj" />
+    <Project Path="tests/SeasonPal.UnitTests/SeasonPal.UnitTests.csproj" />
+  </Folder>
+</Solution>
