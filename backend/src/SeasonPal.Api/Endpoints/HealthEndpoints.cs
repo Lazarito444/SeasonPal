@@ -9,12 +9,15 @@ namespace SeasonPal.Api.Endpoints;
 /// </summary>
 public static class HealthEndpoints
 {
-    public static void MapHealthEndpoints(this IEndpointRouteBuilder app)
+    extension(IEndpointRouteBuilder app)
     {
-        app.MapHealthChecks("/health/live", new HealthCheckOptions { Predicate = _ => false })
-            .WithTags("Health");
+        public void MapHealthEndpoints()
+        {
+            app.MapHealthChecks("/health/live", new HealthCheckOptions { Predicate = _ => false })
+                .WithTags("Health");
 
-        app.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = _ => true })
-            .WithTags("Health");
+            app.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = _ => true })
+                .WithTags("Health");
+        }
     }
 }
