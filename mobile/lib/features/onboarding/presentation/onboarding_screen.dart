@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/app_backdrop.dart';
-import '../../../core/widgets/app_choice_chip.dart';
-import '../../../core/widgets/brand_mark.dart';
-import '../../../core/widgets/error_banner.dart';
-import '../../../i18n/strings.g.dart';
-import '../domain/onboarding_options.dart';
-import '../domain/user_preferences.dart';
-import 'onboarding_controller.dart';
-import 'onboarding_state.dart';
-import 'preference_labels.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
+import 'package:seasonpal/core/widgets/app_backdrop.dart';
+import 'package:seasonpal/core/widgets/app_choice_chip.dart';
+import 'package:seasonpal/core/widgets/brand_mark.dart';
+import 'package:seasonpal/core/widgets/error_banner.dart';
+import 'package:seasonpal/features/onboarding/domain/onboarding_options.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
+import 'package:seasonpal/features/onboarding/presentation/onboarding_controller.dart';
+import 'package:seasonpal/features/onboarding/presentation/onboarding_state.dart';
+import 'package:seasonpal/features/onboarding/presentation/preference_labels.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Five quiet steps: welcome, cuisines, diet (plus interests), rhythm, done.
 /// Answers stay local until the final step saves them.
@@ -97,11 +96,7 @@ class _WizardHeader extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              for (
-                var index = 0;
-                index < OnboardingState.stepCount;
-                index++
-              ) ...[
+              for (var index = 0; index < OnboardingState.stepCount; index++) ...[
                 if (index > 0) const SizedBox(width: 6),
                 Expanded(
                   child: AnimatedContainer(
@@ -537,17 +532,9 @@ class _DoneStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-    final cuisines = state.cuisines.isEmpty
-        ? t.onboarding.done.openToAnything
-        : state.cuisines.map((value) => cuisineLabel(t, value)).join(', ');
-    final diet = state.dietaryRestrictions.isEmpty
-        ? t.onboarding.done.noRestrictions
-        : state.dietaryRestrictions
-              .map((value) => dietLabel(t, value))
-              .join(', ');
-    final time = state.cookTimeMinutes == null
-        ? t.onboarding.done.noTime
-        : cookTimeLabel(t, state.cookTimeMinutes!);
+    final cuisines = state.cuisines.isEmpty ? t.onboarding.done.openToAnything : state.cuisines.map((value) => cuisineLabel(t, value)).join(', ');
+    final diet = state.dietaryRestrictions.isEmpty ? t.onboarding.done.noRestrictions : state.dietaryRestrictions.map((value) => dietLabel(t, value)).join(', ');
+    final time = state.cookTimeMinutes == null ? t.onboarding.done.noTime : cookTimeLabel(t, state.cookTimeMinutes!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -657,9 +644,7 @@ class _SummaryRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        border: isLast
-            ? null
-            : const Border(bottom: BorderSide(color: AppColors.line)),
+        border: isLast ? null : const Border(bottom: BorderSide(color: AppColors.line)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

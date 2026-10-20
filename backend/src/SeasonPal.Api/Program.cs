@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
@@ -17,10 +19,12 @@ using SeasonPal.Api.Endpoints;
 using SeasonPal.Application.Auth;
 using SeasonPal.Application.Collections;
 using SeasonPal.Application.Common;
+using SeasonPal.Application.Media;
 using SeasonPal.Application.Preferences;
 using SeasonPal.Application.Recipes;
 using SeasonPal.Domain.Entities;
 using SeasonPal.Infrastructure.Auth;
+using SeasonPal.Infrastructure.Media;
 using SeasonPal.Infrastructure.Persistence;
 using SeasonPal.Infrastructure.Persistence.Repositories;
 using Serilog;
@@ -95,6 +99,21 @@ builder.Services.AddScoped<ISpecificationExecutor, SpecificationExecutor>();
 builder.Services.AddScoped<IUnitOfWork>(services => services.GetRequiredService<SeasonPalDbContext>());
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<RecipeLibraryService>();
+
+builder.Services
+    .AddOptions<MediaStorageOptions>()
+    .Bind(builder.Configuration.GetSection(MediaStorageOptions.SectionName))
+    .PostConfigure(options =>
+    {
+        // A relative path stays inside the API content root; production can point at a mounted
+        // volume instead. Creating the folder here keeps local development zero-config.
+        options.RootPath = string.IsNullOrWhiteSpace(options.RootPath)
+            ? Path.Combine(builder.Environment.ContentRootPath, "media")
+            : Path.IsPathRooted(options.RootPath)
+                ? Path.GetFullPath(options.RootPath)
+                : Path.Combine(builder.Environment.ContentRootPath, options.RootPath);
+    });
+builder.Services.AddSingleton<IMediaStorage, LocalMediaStorage>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
 builder.Services.AddScoped(typeof(ValidationFilter<>));
@@ -213,6 +232,22 @@ app.UseSerilogRequestLogging(options =>
                 ? LogEventLevel.Verbose
                 : LogEventLevel.Information;
 });
+
+var mediaStorageOptions = app.Services
+    .GetRequiredService<IOptions<MediaStorageOptions>>()
+    .Value;
+Directory.CreateDirectory(mediaStorageOptions.RootPath);
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(mediaStorageOptions.RootPath),
+    RequestPath = "/media",
+    OnPrepareResponse = context =>
+    {
+        // Uploaded files are immutable (random name per upload), so clients can cache them.
+        context.Context.Response.Headers.CacheControl = "public,max-age=2592000,immutable";
+    },
+});
+
 app.UseStatusCodePages();
 app.UseCors(CorsPolicyName);
 app.UseRateLimiter();
@@ -230,6 +265,7 @@ app.MapAuthEndpoints();
 app.MapOnboardingEndpoints();
 app.MapRecipeEndpoints();
 app.MapCollectionEndpoints();
+app.MapMediaEndpoints();
 app.Run();
 
 /// <summary>Marker for MVC.Testing + EF tooling; keep public partial.</summary>

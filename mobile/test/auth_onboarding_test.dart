@@ -171,8 +171,8 @@ void main() {
       restored: _session(onboardingCompleted: true),
     );
     final preferences = _FakePreferences(
-      current: UserPreferences(
-        favoriteCuisines: const ['Italian'],
+      current: const UserPreferences(
+        favoriteCuisines: ['Italian'],
         onboardingCompleted: true,
       ),
     );
@@ -247,9 +247,9 @@ void main() {
       restored: _session(onboardingCompleted: true),
     );
     final preferences = _FakePreferences(
-      current: UserPreferences(
-        favoriteCuisines: const ['Italian', 'Levantine'],
-        dietaryRestrictions: const ['Vegetarian'],
+      current: const UserPreferences(
+        favoriteCuisines: ['Italian', 'Levantine'],
+        dietaryRestrictions: ['Vegetarian'],
         skillLevel: SkillLevel.intermediate,
         usualCookTimeMinutes: 30,
         onboardingCompleted: true,
@@ -280,9 +280,9 @@ void main() {
       restored: _session(onboardingCompleted: true),
     );
     final preferences = _FakePreferences(
-      current: UserPreferences(
-        favoriteCuisines: const ['Italian', 'Mediterranean'],
-        dietaryRestrictions: const ['Vegetarian'],
+      current: const UserPreferences(
+        favoriteCuisines: ['Italian', 'Mediterranean'],
+        dietaryRestrictions: ['Vegetarian'],
         skillLevel: SkillLevel.intermediate,
         usualCookTimeMinutes: 30,
         onboardingCompleted: true,
@@ -382,8 +382,7 @@ final class _FakeAuthRepository implements AuthRepository {
     restoreCalls += 1;
     if (restoreCalls <= restoreFailures) {
       throw const ApiException(
-        message:
-            'Could not reach SeasonPal. Check your connection and try again.',
+        message: 'Could not reach SeasonPal. Check your connection and try again.',
       );
     }
 
@@ -421,8 +420,7 @@ final class _FakeAuthRepository implements AuthRepository {
 }
 
 final class _FakePreferences implements PreferencesRepository {
-  _FakePreferences({UserPreferences? current})
-    : current = current ?? UserPreferences();
+  _FakePreferences({UserPreferences? current}) : current = current ?? const UserPreferences();
 
   UserPreferences current;
   UserPreferences? lastSaved;

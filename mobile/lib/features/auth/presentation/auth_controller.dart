@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/network/api_exception.dart';
-import '../data/auth_repository.dart';
-import '../domain/auth_session.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/features/auth/data/auth_repository.dart';
+import 'package:seasonpal/features/auth/domain/auth_session.dart';
 
 /// The single source of truth for the signed-in session.
 final authControllerProvider = AsyncNotifierProvider<AuthController, AuthSession?>(
@@ -17,9 +17,7 @@ final class AuthController extends AsyncNotifier<AuthSession?> {
   Future<AuthSession?> build() => ref.watch(authRepositoryProvider).restore();
 
   Future<void> login({required String email, required String password}) async {
-    final session = await ref
-        .read(authRepositoryProvider)
-        .login(email: email, password: password);
+    final session = await ref.read(authRepositoryProvider).login(email: email, password: password);
     state = AsyncData(session);
   }
 
@@ -28,9 +26,7 @@ final class AuthController extends AsyncNotifier<AuthSession?> {
     required String password,
     String? displayName,
   }) async {
-    final session = await ref
-        .read(authRepositoryProvider)
-        .register(email: email, password: password, displayName: displayName);
+    final session = await ref.read(authRepositoryProvider).register(email: email, password: password, displayName: displayName);
     state = AsyncData(session);
   }
 

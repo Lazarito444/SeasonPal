@@ -1,5 +1,5 @@
-import '../../../i18n/strings.g.dart';
-import '../domain/user_preferences.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Localized display names for the canonical English values stored by the API.
 /// Unknown values pass through so a newer backend vocabulary still renders.
@@ -71,6 +71,4 @@ extension SkillLevelLabels on SkillLevel {
   };
 }
 
-String cookTimeLabel(Translations t, int minutes) => minutes == 60
-    ? t.onboarding.time.hour
-    : '$minutes ${t.onboarding.time.minSuffix}';
+String cookTimeLabel(Translations t, int minutes) => minutes == 60 ? t.onboarding.time.hour : '$minutes ${t.onboarding.time.minSuffix}';

@@ -17,6 +17,10 @@ namespace SeasonPal.IntegrationTests;
 public class SeasonPalApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly IReadOnlyDictionary<string, string?> _settings;
+    private readonly string _mediaRoot = Path.Combine(
+        Path.GetTempPath(),
+        "seasonpal-media-tests",
+        Guid.NewGuid().ToString("N"));
     private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder("postgres:16-alpine")
         .WithDatabase("seasonpal_test")
         .WithUsername("seasonpal")
@@ -53,6 +57,7 @@ public class SeasonPalApiFactory : WebApplicationFactory<Program>, IAsyncLifetim
             var settings = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase)
             {
                 ["RateLimiting:AuthPermitLimit"] = "1000",
+                ["MediaStorage:RootPath"] = _mediaRoot,
             };
 
             foreach (var (key, value) in _settings)
@@ -75,5 +80,10 @@ public class SeasonPalApiFactory : WebApplicationFactory<Program>, IAsyncLifetim
     {
         await base.DisposeAsync();
         await _dbContainer.DisposeAsync();
+
+        if (Directory.Exists(_mediaRoot))
+        {
+            Directory.Delete(_mediaRoot, recursive: true);
+        }
     }
 }

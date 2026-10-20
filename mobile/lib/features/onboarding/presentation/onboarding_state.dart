@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../domain/user_preferences.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
 
 /// Local, unsaved wizard answers. The API only sees them on the final step.
 @immutable
@@ -48,9 +48,7 @@ final class OnboardingState {
       cuisines: cuisines ?? this.cuisines,
       dietaryRestrictions: dietaryRestrictions ?? this.dietaryRestrictions,
       skillLevel: skillLevel ?? this.skillLevel,
-      cookTimeMinutes: clearCookTime
-          ? null
-          : (cookTimeMinutes ?? this.cookTimeMinutes),
+      cookTimeMinutes: clearCookTime ? null : (cookTimeMinutes ?? this.cookTimeMinutes),
       interests: interests ?? this.interests,
       isSaving: isSaving ?? this.isSaving,
       error: clearError ? null : (error ?? this.error),

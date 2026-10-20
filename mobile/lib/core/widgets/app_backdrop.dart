@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
 
 /// Soft, out-of-focus colour fields behind the cream page; quiet enough to keep
 /// food and type in front.
@@ -9,7 +9,7 @@ class AppBackdrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
+    return const IgnorePointer(
       child: Stack(
         children: [
           Positioned(

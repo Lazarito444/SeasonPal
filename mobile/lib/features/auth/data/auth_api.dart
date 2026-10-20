@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/config/app_config.dart';
-import '../../../core/network/api_exception.dart';
-import '../../../core/network/dio_factory.dart';
-import '../domain/auth_session.dart';
+import 'package:seasonpal/core/config/app_config.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/core/network/dio_factory.dart';
+import 'package:seasonpal/features/auth/domain/auth_session.dart';
 
 /// Wire-level auth calls. Uses a raw Dio without the auth interceptor so a 401
 /// on refresh cannot recursively trigger another refresh.
@@ -35,8 +35,7 @@ final class DioAuthApi implements AuthApi {
   }) => _postSession('/auth/register', {
     'email': email,
     'password': password,
-    if (displayName != null && displayName.trim().isNotEmpty)
-      'displayName': displayName.trim(),
+    if (displayName != null && displayName.trim().isNotEmpty) 'displayName': displayName.trim(),
   });
 
   @override
@@ -46,8 +45,7 @@ final class DioAuthApi implements AuthApi {
   }) => _postSession('/auth/login', {'email': email, 'password': password});
 
   @override
-  Future<AuthSession> refresh(String refreshToken) =>
-      _postSession('/auth/refresh', {'refreshToken': refreshToken});
+  Future<AuthSession> refresh(String refreshToken) => _postSession('/auth/refresh', {'refreshToken': refreshToken});
 
   @override
   Future<void> logout(String refreshToken) async {

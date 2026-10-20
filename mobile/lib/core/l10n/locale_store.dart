@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../i18n/strings.g.dart';
 
 /// Reads and writes the persisted app-language override.
 ///
@@ -44,6 +43,5 @@ final class PreferencesLocaleStore implements LocaleStore {
   }
 
   @override
-  Future<void> write(AppLocale locale) =>
-      _preferences.setString(_key, locale.languageCode);
+  Future<void> write(AppLocale locale) => _preferences.setString(_key, locale.languageCode);
 }

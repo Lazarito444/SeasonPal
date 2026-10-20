@@ -1,9 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/network/api_exception.dart';
-import '../domain/auth_session.dart';
-import 'auth_api.dart';
-import 'token_storage.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/features/auth/data/auth_api.dart';
+import 'package:seasonpal/features/auth/data/token_storage.dart';
+import 'package:seasonpal/features/auth/domain/auth_session.dart';
 
 /// Session lifecycle used by the auth controller.
 abstract interface class AuthRepository {
@@ -68,8 +67,7 @@ final class ApiAuthRepository implements AuthRepository {
   }) async => _remember(await _api.login(email: email, password: password));
 
   @override
-  Future<AuthSession> refresh(AuthSession session) async =>
-      _remember(await _api.refresh(session.refreshToken));
+  Future<AuthSession> refresh(AuthSession session) async => _remember(await _api.refresh(session.refreshToken));
 
   @override
   Future<void> logout(AuthSession session) async {

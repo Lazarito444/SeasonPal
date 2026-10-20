@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/l10n/api_error_messages.dart';
-import '../../../core/network/api_exception.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/app_backdrop.dart';
-import '../../../core/widgets/brand_mark.dart';
-import '../../../core/widgets/error_banner.dart';
-import '../../../i18n/strings.g.dart';
-import 'auth_controller.dart';
-import 'auth_gate.dart';
+import 'package:seasonpal/core/l10n/api_error_messages.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
+import 'package:seasonpal/core/widgets/app_backdrop.dart';
+import 'package:seasonpal/core/widgets/brand_mark.dart';
+import 'package:seasonpal/core/widgets/error_banner.dart';
+import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
+import 'package:seasonpal/features/auth/presentation/auth_gate.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Shown while restoring a stored session, and when that restore failed (for
 /// example, the API is not running).
@@ -52,14 +51,11 @@ class SplashScreen extends ConsumerWidget {
                       const SizedBox(height: 40),
                       if (gate == AuthGate.error) ...[
                         ErrorBanner(
-                          message: error is ApiException
-                              ? localizeApiError(t, error)
-                              : t.auth.splash.restoreFailed,
+                          message: error is ApiException ? localizeApiError(t, error) : t.auth.splash.restoreFailed,
                         ),
                         const SizedBox(height: 18),
                         FilledButton(
-                          onPressed: () =>
-                              ref.invalidate(authControllerProvider),
+                          onPressed: () => ref.invalidate(authControllerProvider),
                           child: Text(t.common.tryAgain),
                         ),
                       ] else ...[
@@ -70,8 +66,7 @@ class SplashScreen extends ConsumerWidget {
                         const SizedBox(height: 14),
                         Text(
                           t.auth.splash.loading,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(color: AppColors.charcoalMuted),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.charcoalMuted),
                         ),
                       ],
                     ],

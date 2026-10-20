@@ -22,8 +22,7 @@ final class SecureTokenStorage implements TokenStorage {
   Future<String?> readRefreshToken() => _storage.read(key: _refreshTokenKey);
 
   @override
-  Future<void> writeRefreshToken(String token) =>
-      _storage.write(key: _refreshTokenKey, value: token);
+  Future<void> writeRefreshToken(String token) => _storage.write(key: _refreshTokenKey, value: token);
 
   @override
   Future<void> clear() => _storage.delete(key: _refreshTokenKey);

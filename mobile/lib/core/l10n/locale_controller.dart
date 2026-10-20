@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../i18n/strings.g.dart';
-import 'locale_store.dart';
+import 'package:seasonpal/core/l10n/locale_store.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// The active app language. Slang already exposes the generated catalog, so the
 /// provider only mirrors it for widgets that need to show the current choice.

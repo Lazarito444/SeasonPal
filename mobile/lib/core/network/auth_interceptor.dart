@@ -32,16 +32,14 @@ final class AuthInterceptor extends QueuedInterceptor {
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
-    if (err.response?.statusCode != 401 ||
-        err.requestOptions.extra['authRetried'] == true) {
+    if (err.response?.statusCode != 401 || err.requestOptions.extra['authRetried'] == true) {
       handler.next(err);
       return;
     }
 
     final attempted = err.requestOptions.headers['Authorization'];
     final current = accessToken();
-    final needsRefresh =
-        current == null || attempted == null || attempted != 'Bearer $current';
+    final needsRefresh = current == null || attempted == null || attempted != 'Bearer $current';
 
     if (needsRefresh && !await refreshSession()) {
       handler.next(err);

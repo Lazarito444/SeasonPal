@@ -1,19 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/l10n/api_error_messages.dart';
-import '../../../core/network/api_exception.dart';
-import '../../../i18n/strings.g.dart';
-import '../../auth/presentation/auth_controller.dart';
-import '../data/preferences_repository.dart';
-import '../domain/user_preferences.dart';
-import 'onboarding_state.dart';
+import 'package:seasonpal/core/l10n/api_error_messages.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
+import 'package:seasonpal/features/onboarding/data/preferences_repository.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
+import 'package:seasonpal/features/onboarding/presentation/onboarding_state.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Auto-disposed with the wizard so a different account never inherits the
 /// previous user's half-finished answers.
-final onboardingControllerProvider =
-    NotifierProvider.autoDispose<OnboardingController, OnboardingState>(
-      OnboardingController.new,
-    );
+final onboardingControllerProvider = NotifierProvider.autoDispose<OnboardingController, OnboardingState>(
+  OnboardingController.new,
+);
 
 final class OnboardingController extends Notifier<OnboardingState> {
   @override
@@ -61,9 +59,7 @@ final class OnboardingController extends Notifier<OnboardingState> {
   }
 
   void toggleCookTime(int minutes) {
-    state = state.cookTimeMinutes == minutes
-        ? state.copyWith(clearCookTime: true, clearError: true)
-        : state.copyWith(cookTimeMinutes: minutes, clearError: true);
+    state = state.cookTimeMinutes == minutes ? state.copyWith(clearCookTime: true, clearError: true) : state.copyWith(cookTimeMinutes: minutes, clearError: true);
   }
 
   /// Persists the answers and flips the session flag; the router then lands on

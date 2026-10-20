@@ -20,6 +20,10 @@ internal static class ResultHttpExtensions
                     StatusCodes.Status401Unauthorized,
                 "auth.email-taken" or "collection.name-taken" or "collection.favorites-protected" =>
                     StatusCodes.Status409Conflict,
+                "media.file-too-large" =>
+                    StatusCodes.Status413PayloadTooLarge,
+                "media.unsupported-type" or "media.content-invalid" =>
+                    StatusCodes.Status415UnsupportedMediaType,
                 _ when error.Code.EndsWith(".not-found", StringComparison.Ordinal) =>
                     StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status400BadRequest,

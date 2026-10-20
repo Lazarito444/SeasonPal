@@ -49,7 +49,6 @@ dart format lib test
 flutter analyze
 flutter test
 flutter build apk --debug     # Android compile check
-dart run build_runner build   # regenerate freezed models
 ```
 
 ### Android build note

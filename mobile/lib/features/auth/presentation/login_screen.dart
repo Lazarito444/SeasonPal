@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../core/l10n/api_error_messages.dart';
-import '../../../core/network/api_exception.dart';
-import '../../../core/router/app_router.dart';
-import '../../../core/widgets/error_banner.dart';
-import '../../../i18n/strings.g.dart';
-import 'auth_controller.dart';
-import 'widgets/auth_scaffold.dart';
+import 'package:seasonpal/core/l10n/api_error_messages.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/core/router/app_router.dart';
+import 'package:seasonpal/core/widgets/error_banner.dart';
+import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
+import 'package:seasonpal/features/auth/presentation/widgets/auth_scaffold.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -46,9 +45,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _submitting = true);
 
     try {
-      await ref
-          .read(authControllerProvider.notifier)
-          .login(email: _email.text.trim(), password: _password.text);
+      await ref.read(authControllerProvider.notifier).login(email: _email.text.trim(), password: _password.text);
     } on ApiException catch (error) {
       if (!mounted) {
         return;
@@ -88,9 +85,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
           ),
           TextButton(
-            onPressed: _submitting
-                ? null
-                : () => context.goNamed(AppRoutes.registerName),
+            onPressed: _submitting ? null : () => context.goNamed(AppRoutes.registerName),
             child: Text(t.auth.login.createAccount),
           ),
         ],
@@ -124,22 +119,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 decoration: InputDecoration(
                   labelText: t.auth.login.password,
                   suffixIcon: IconButton(
-                    tooltip: _obscurePassword
-                        ? t.common.showPassword
-                        : t.common.hidePassword,
-                    onPressed: () =>
-                        setState(() => _obscurePassword = !_obscurePassword),
+                    tooltip: _obscurePassword ? t.common.showPassword : t.common.hidePassword,
+                    onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                     icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
+                      _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                       size: 20,
                     ),
                   ),
                 ),
-                validator: (value) => (value == null || value.isEmpty)
-                    ? t.auth.login.passwordRequired
-                    : null,
+                validator: (value) => (value == null || value.isEmpty) ? t.auth.login.passwordRequired : null,
               ),
               if (_error != null) ...[
                 const SizedBox(height: 18),

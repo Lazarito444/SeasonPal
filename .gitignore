@@ -16,6 +16,9 @@ packages/
 *.nuget.*.props
 project.assets.json
 
+# Uploaded recipe media (local dev)
+backend/src/SeasonPal.Api/media/
+
 # --- Flutter ---
 .dart_tool/
 .flutter-plugins

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../config/app_config.dart';
-import 'auth_interceptor.dart';
-import 'dio_factory.dart';
-import 'session_access.dart';
+import 'package:seasonpal/core/config/app_config.dart';
+import 'package:seasonpal/core/network/auth_interceptor.dart';
+import 'package:seasonpal/core/network/dio_factory.dart';
+import 'package:seasonpal/core/network/session_access.dart';
 
 /// The app's only authenticated HTTP client. Features depend on this; auth
 /// endpoints use the raw client in the auth feature to avoid a refresh loop.

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/widgets/app_backdrop.dart';
-import '../../../../core/widgets/brand_mark.dart';
-import '../../../../i18n/strings.g.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
+import 'package:seasonpal/core/widgets/app_backdrop.dart';
+import 'package:seasonpal/core/widgets/brand_mark.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Shared frame for login and registration: cream page, soft colour fields,
 /// brand lockup, editorial headline, and a single readable column.

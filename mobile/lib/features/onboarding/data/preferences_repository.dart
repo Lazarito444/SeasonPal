@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/network/api_client.dart';
-import '../../../core/network/api_exception.dart';
-import '../domain/user_preferences.dart';
+import 'package:seasonpal/core/network/api_client.dart';
+import 'package:seasonpal/core/network/api_exception.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
 
 abstract interface class PreferencesRepository {
   Future<UserPreferences> fetch();

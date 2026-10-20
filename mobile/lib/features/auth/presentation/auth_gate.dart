@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'auth_controller.dart';
+import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
 
 /// Routing state derived from the session. A token refresh produces the same
 /// gate value (and the same user), so GoRouter is not rebuilt for it.
@@ -22,7 +22,5 @@ final authGateProvider = Provider<AuthGate>((ref) {
     return AuthGate.signedOut;
   }
 
-  return session.user.onboardingCompleted
-      ? AuthGate.ready
-      : AuthGate.onboarding;
+  return session.user.onboardingCompleted ? AuthGate.ready : AuthGate.onboarding;
 });

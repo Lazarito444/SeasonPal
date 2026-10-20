@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
 
 /// App-wide theme. Stage 0 keeps this intentionally small — type scale, color
 /// scheme, and button shape — and Stage 4 extends it into the full design

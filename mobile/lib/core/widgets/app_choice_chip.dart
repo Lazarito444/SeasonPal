@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
 
 /// Pill used for onboarding preferences and later for profile editing.
 class AppChoiceChip extends StatelessWidget {
@@ -54,9 +54,7 @@ class AppChoiceChip extends StatelessWidget {
                     fontSize: 14,
                     height: 1.2,
                     fontWeight: FontWeight.w500,
-                    color: selected
-                        ? AppColors.creamRaised
-                        : AppColors.charcoal,
+                    color: selected ? AppColors.creamRaised : AppColors.charcoal,
                   ),
                 ),
               ],

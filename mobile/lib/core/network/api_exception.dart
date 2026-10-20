@@ -37,8 +37,7 @@ final class ApiException implements Exception {
       final errors = data['errors'];
       if (errors is Map) {
         fieldErrors = {
-          for (final entry in errors.entries)
-            entry.key.toString(): _messages(entry.value),
+          for (final entry in errors.entries) entry.key.toString(): _messages(entry.value),
         };
       }
     }
@@ -46,10 +45,7 @@ final class ApiException implements Exception {
     final kind = response != null
         ? ApiFailureKind.response
         : switch (error.type) {
-            DioExceptionType.connectionTimeout ||
-            DioExceptionType.sendTimeout ||
-            DioExceptionType.receiveTimeout ||
-            DioExceptionType.transformTimeout => ApiFailureKind.timeout,
+            DioExceptionType.connectionTimeout || DioExceptionType.sendTimeout || DioExceptionType.receiveTimeout || DioExceptionType.transformTimeout => ApiFailureKind.timeout,
             DioExceptionType.connectionError => ApiFailureKind.connection,
             _ => ApiFailureKind.unknown,
           };
@@ -75,8 +71,7 @@ final class ApiException implements Exception {
   String toString() => message;
 
   static List<String> _messages(Object? value) => switch (value) {
-    final List<dynamic> values =>
-      values.map((item) => item.toString()).toList(growable: false),
+    final List<dynamic> values => values.map((item) => item.toString()).toList(growable: false),
     final Object item => [item.toString()],
     _ => const [],
   };
@@ -96,10 +91,8 @@ final class ApiException implements Exception {
       DioExceptionType.connectionTimeout ||
       DioExceptionType.sendTimeout ||
       DioExceptionType.receiveTimeout ||
-      DioExceptionType.transformTimeout =>
-        'The kitchen is taking too long to answer. Try again.',
-      DioExceptionType.connectionError =>
-        'Could not reach SeasonPal. Check your connection and try again.',
+      DioExceptionType.transformTimeout => 'The kitchen is taking too long to answer. Try again.',
+      DioExceptionType.connectionError => 'Could not reach SeasonPal. Check your connection and try again.',
       _ => 'Something went wrong. Try again.',
     };
   }

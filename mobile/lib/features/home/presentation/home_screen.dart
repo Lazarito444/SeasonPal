@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/l10n/locale_controller.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/app_backdrop.dart';
-import '../../../core/widgets/brand_mark.dart';
-import '../../../i18n/strings.g.dart';
-import '../../auth/presentation/auth_controller.dart';
-import '../../onboarding/data/preferences_repository.dart';
-import '../../onboarding/domain/user_preferences.dart';
-import '../../onboarding/presentation/preference_labels.dart';
+import 'package:seasonpal/core/l10n/locale_controller.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
+import 'package:seasonpal/core/widgets/app_backdrop.dart';
+import 'package:seasonpal/core/widgets/brand_mark.dart';
+import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
+import 'package:seasonpal/features/onboarding/data/preferences_repository.dart';
+import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
+import 'package:seasonpal/features/onboarding/presentation/preference_labels.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Stage 2 landing place: a real greeting from the saved session and taste
 /// profile, with the recipe library clearly marked as forthcoming.
@@ -45,12 +44,11 @@ class HomeScreen extends ConsumerWidget {
                             child: Text(
                               'SeasonPal',
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.titleLarge
-                                  ?.copyWith(
-                                    fontSize: 20,
-                                    letterSpacing: -0.4,
-                                    color: AppColors.forest,
-                                  ),
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                fontSize: 20,
+                                letterSpacing: -0.4,
+                                color: AppColors.forest,
+                              ),
                             ),
                           ),
                           const Spacer(),
@@ -58,9 +56,7 @@ class HomeScreen extends ConsumerWidget {
                             key: const Key('home-language'),
                             tooltip: t.home.language.tooltip,
                             icon: const Icon(Icons.language_rounded, size: 20),
-                            onSelected: (selected) => ref
-                                .read(localeControllerProvider.notifier)
-                                .setLocale(selected),
+                            onSelected: (selected) => ref.read(localeControllerProvider.notifier).setLocale(selected),
                             itemBuilder: (context) => [
                               CheckedPopupMenuItem(
                                 key: const Key('language-en'),
@@ -78,9 +74,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           IconButton(
                             key: const Key('home-sign-out'),
-                            onPressed: () async => ref
-                                .read(authControllerProvider.notifier)
-                                .logout(),
+                            onPressed: () async => ref.read(authControllerProvider.notifier).logout(),
                             tooltip: t.home.signOut,
                             icon: const Icon(Icons.logout_rounded, size: 20),
                           ),
@@ -188,9 +182,7 @@ class _TasteDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-    final time = preferences.usualCookTimeMinutes == null
-        ? t.home.taste.noTime
-        : cookTimeLabel(t, preferences.usualCookTimeMinutes!);
+    final time = preferences.usualCookTimeMinutes == null ? t.home.taste.noTime : cookTimeLabel(t, preferences.usualCookTimeMinutes!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,8 +205,7 @@ class _TasteDetails extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final cuisine in preferences.favoriteCuisines.take(4))
-              _TastePill(label: cuisineLabel(t, cuisine)),
+            for (final cuisine in preferences.favoriteCuisines.take(4)) _TastePill(label: cuisineLabel(t, cuisine)),
             _TastePill(label: preferences.skillLevel.label(t)),
             _TastePill(label: time),
           ],
@@ -376,9 +367,6 @@ String _dietLine(Translations t, UserPreferences preferences) {
   }
 
   final last = dietLabel(t, restrictions.last).toLowerCase();
-  final leading = restrictions
-      .take(restrictions.length - 1)
-      .map((item) => dietLabel(t, item).toLowerCase())
-      .join(', ');
+  final leading = restrictions.take(restrictions.length - 1).map((item) => dietLabel(t, item).toLowerCase()).join(', ');
   return t.home.taste.dietMany(leading: leading, last: last);
 }

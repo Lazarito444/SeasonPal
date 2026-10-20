@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:seasonpal/app.dart';
+import 'package:seasonpal/core/l10n/locale_store.dart';
+import 'package:seasonpal/core/network/api_client.dart';
+import 'package:seasonpal/features/auth/presentation/auth_session_access.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'app.dart';
-import 'core/l10n/locale_store.dart';
-import 'core/network/api_client.dart';
-import 'features/auth/presentation/auth_session_access.dart';
-import 'i18n/strings.g.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

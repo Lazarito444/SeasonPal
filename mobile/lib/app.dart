@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'core/l10n/locale_controller.dart';
-import 'core/router/app_router.dart';
-import 'core/theme/app_theme.dart';
-import 'i18n/strings.g.dart';
+import 'package:seasonpal/core/l10n/locale_controller.dart';
+import 'package:seasonpal/core/router/app_router.dart';
+import 'package:seasonpal/core/theme/app_theme.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
 
 /// Root widget; reads the router from Riverpod so auth redirects (Stage 2)
 /// can be driven by session state without rebuilding the app shell.

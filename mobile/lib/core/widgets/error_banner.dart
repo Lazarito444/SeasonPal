@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
+import 'package:seasonpal/core/theme/app_colors.dart';
 
 /// Inline, non-modal failure message with a calm tone — used by forms and the
 /// onboarding save step.

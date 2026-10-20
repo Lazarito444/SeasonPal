@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/presentation/auth_gate.dart';
-import '../../features/auth/presentation/login_screen.dart';
-import '../../features/auth/presentation/register_screen.dart';
-import '../../features/auth/presentation/splash_screen.dart';
-import '../../features/home/presentation/home_screen.dart';
-import '../../features/onboarding/presentation/onboarding_screen.dart';
+import 'package:seasonpal/features/auth/presentation/auth_gate.dart';
+import 'package:seasonpal/features/auth/presentation/login_screen.dart';
+import 'package:seasonpal/features/auth/presentation/register_screen.dart';
+import 'package:seasonpal/features/auth/presentation/splash_screen.dart';
+import 'package:seasonpal/features/home/presentation/home_screen.dart';
+import 'package:seasonpal/features/onboarding/presentation/onboarding_screen.dart';
 
 /// Route paths and names in one place so redirects and widgets never carry
 /// string literals.
@@ -38,18 +38,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         case AuthGate.error:
           return location == AppRoutes.splash ? null : AppRoutes.splash;
         case AuthGate.signedOut:
-          return location == AppRoutes.login || location == AppRoutes.register
-              ? null
-              : AppRoutes.login;
+          return location == AppRoutes.login || location == AppRoutes.register ? null : AppRoutes.login;
         case AuthGate.onboarding:
           return location == AppRoutes.onboarding ? null : AppRoutes.onboarding;
         case AuthGate.ready:
           // Any auth or splash route after sign-in lands home; future app
           // routes (recipes, discover) stay reachable once added.
-          if (location == AppRoutes.splash ||
-              location == AppRoutes.login ||
-              location == AppRoutes.register ||
-              location == AppRoutes.onboarding) {
+          if (location == AppRoutes.splash || location == AppRoutes.login || location == AppRoutes.register || location == AppRoutes.onboarding) {
             return AppRoutes.home;
           }
 

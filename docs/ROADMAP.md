@@ -36,7 +36,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - `git init`, `.gitignore` (dotnet + Flutter + secrets), first commit.
 - `backend/SeasonPal.slnx` with Domain / Application / Infrastructure / Api projects wired by DI in `Program.cs`; empty-solution builds clean. xUnit test projects reference the right layers.
 - `docker-compose.dev.yml` (postgres:16, healthcheck, named volume). Scalar UI enabled at `/scalar` in dev only.
-- Flutter app `mobile/` created, Riverpod + go_router + Dio + freezed wired; app opens to a temporary "connectivity check" screen that calls `GET /health` and shows the backend status (proves the DevOps path end-to-end).
+- Flutter app `mobile/` created, Riverpod + go_router + Dio wired; app opens to a temporary "connectivity check" screen that calls `GET /health` and shows the backend status (proves the DevOps path end-to-end).
 - `--dart-define-from-file` per-environment JSON (`config/api_dev.json`) handling in one config file.
 
 **Acceptance:** `dotnet test` green with health-endpoint integration test; `flutter run` boots and shows live backend status; single commit of everything above.
