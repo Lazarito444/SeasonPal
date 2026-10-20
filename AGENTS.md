@@ -4,7 +4,7 @@ SeasonPal is a cooking companion app: personal recipe library, AI cooking assist
 
 ## Stack
 
-- **Backend:** ASP.NET Core (.NET 10, minimal APIs), EF Core 10, FluentValidation; tests with xUnit. OpenAPI via `AddOpenApi` + Scalar (dev only).
+- **Backend:** ASP.NET Core (.NET 10, minimal APIs), EF Core 10, FluentValidation; tests with xUnit. OpenAPI via `AddOpenApi` + Scalar (dev only). Central package management: versions live only in `backend/Directory.Packages.props` — csproj `PackageReference` entries never carry a `Version`.
 - **Database:** PostgreSQL 16 through Npgsql/EF Core (Docker Compose for local dev). EF Core abstracts the provider — no provider-specific SQL in Application/Domain layers.
 - **Mobile:** Flutter 3.4x (current stable channel), Riverpod (hand-written providers, no riverpod_annotation/codegen), go_router, Dio, freezed.
 - **v2 (planned):** Angular web client consuming the same API. Keep the API client-agnostic; no mobile-only response shapes.
