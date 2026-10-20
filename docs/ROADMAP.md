@@ -5,7 +5,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 
 ## Steps checklist
 
-- [ ] Stage 0 — Repo, solution & Flutter shell *(backend complete; Flutter shell pending)*
+- [x] Stage 0 — Repo, solution & Flutter shell
 - [x] Stage 1 — Data model & migrations
 - [ ] Stage 2 — Auth, onboarding & preferences
 - [ ] Stage 3 — Recipes API: CRUD, saving & collections
@@ -24,7 +24,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 1. **Database:** PostgreSQL 16 via Docker Compose locally. EF Core abstracts it; switching to SQL Server later is a provider + migration change, not a redesign.
 2. **AI provider:** any OpenAI-compatible endpoint (OpenAI, Azure OpenAI, OpenRouter, local Ollama) configured by key/URL in server config. Key lives server-side only, never bundled in the app.
-3. **Target platforms for Flutter:** Android + iOS from a single codebase. One flavor (`dev`) initially; `prod` flavor added at Stage 11.
+3. **Target platforms for Flutter:** Android + iOS from a single codebase. Environments are selected with `--dart-define-from-file` (`config/api_dev.json`); native flavors (`dev`/`prod`) arrive together at Stage 11.
 4. **Media:** images (and videos — user content per spec §3A) go through an `IMediaStorage` abstraction (local disk folder in dev). Swappable for S3/Blob later; client always loads URLs, never binary payloads through DTOs. Video uploads enforce a per-file size cap.
 5. **Email:** no SMTP in dev → password reset and email confirmation are deferred (noted limitation in Stage 2, built when SMTP config exists or at Stage 11).
 6. **Push notifications:** deferred to Stage 10+; the Notification entity exists from Stage 1 so no retrofit.
