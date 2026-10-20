@@ -35,6 +35,20 @@ ThemeData buildAppTheme() {
         letterSpacing: -1.4,
         color: AppColors.forest,
       ),
+      headlineLarge: base.headlineLarge?.copyWith(
+        fontSize: 36,
+        height: 1.08,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -1.1,
+        color: AppColors.forest,
+      ),
+      headlineMedium: base.headlineMedium?.copyWith(
+        fontSize: 28,
+        height: 1.15,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.6,
+        color: AppColors.forest,
+      ),
       titleLarge: base.titleLarge?.copyWith(
         fontSize: 22,
         height: 1.2,
@@ -70,6 +84,48 @@ ThemeData buildAppTheme() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.forest,
+        textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.creamRaised,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+      labelStyle: const TextStyle(fontSize: 15, color: AppColors.charcoalMuted),
+      floatingLabelStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: AppColors.forest,
+      ),
+      hintStyle: TextStyle(
+        fontSize: 15,
+        color: AppColors.charcoalMuted.withValues(alpha: 0.75),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: AppColors.line),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: AppColors.line),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: AppColors.forest, width: 1.6),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: AppColors.offline),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: AppColors.offline, width: 1.6),
+      ),
+      errorStyle: const TextStyle(fontSize: 12.5, color: AppColors.offline),
     ),
   );
 }

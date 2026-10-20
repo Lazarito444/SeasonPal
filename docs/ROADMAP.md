@@ -7,7 +7,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 
 - [x] Stage 0 — Repo, solution & Flutter shell
 - [x] Stage 1 — Data model & migrations
-- [ ] Stage 2 — Auth, onboarding & preferences
+- [x] Stage 2 — Auth, onboarding & preferences
 - [ ] Stage 3 — Recipes API: CRUD, saving & collections
 - [ ] Stage 4 — Flutter library: auth, collection & recipe editor screens
 - [ ] Stage 5 — Discovery: browse, search, filters, home feed

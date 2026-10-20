@@ -2,29 +2,44 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../config/app_config.dart';
+import 'auth_interceptor.dart';
+import 'dio_factory.dart';
+import 'session_access.dart';
 
-/// The app's only HTTP client.
-///
-/// Auth (access token plus rotating refresh) attaches here as an interceptor
-/// in Stage 2, so features never build their own Dio instances and never see
-/// token handling. Timeouts are short on purpose: a cooking app should fail
-/// visibly rather than leave the cook staring at a spinner.
+/// The app's only authenticated HTTP client. Features depend on this; auth
+/// endpoints use the raw client in the auth feature to avoid a refresh loop.
 final class ApiClient {
-  ApiClient({required String baseUrl})
-    : dio = Dio(
-        BaseOptions(
-          baseUrl: baseUrl,
-          connectTimeout: const Duration(seconds: 5),
-          receiveTimeout: const Duration(seconds: 15),
-          sendTimeout: const Duration(seconds: 15),
-          headers: const {'Accept': 'application/json'},
-        ),
-      );
+  ApiClient({
+    required String baseUrl,
+    required String? Function() accessToken,
+    required Future<bool> Function() refreshSession,
+  }) : dio = createBaseDio(baseUrl) {
+    dio.interceptors.add(
+      AuthInterceptor(
+        dio: dio,
+        accessToken: accessToken,
+        refreshSession: refreshSession,
+      ),
+    );
+  }
 
   final Dio dio;
 }
 
+/// Wired in main.dart to the auth controller.
+final sessionAccessProvider = Provider<SessionAccess>(
+  (ref) => throw StateError(
+    'sessionAccessProvider must be overridden at the ProviderScope root.',
+  ),
+);
+
 final apiClientProvider = Provider<ApiClient>((ref) {
   final config = ref.watch(appConfigProvider);
-  return ApiClient(baseUrl: config.apiBaseUrl);
+  final session = ref.watch(sessionAccessProvider);
+
+  return ApiClient(
+    baseUrl: config.apiBaseUrl,
+    accessToken: () => session.accessToken,
+    refreshSession: session.refreshSession,
+  );
 });
