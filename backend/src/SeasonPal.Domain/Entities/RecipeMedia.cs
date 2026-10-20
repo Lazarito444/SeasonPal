@@ -28,13 +28,14 @@ public class RecipeMedia
         int order,
         string url,
         MediaKind kind,
+        string? altText,
         DateTimeOffset createdAt) => new()
     {
         RecipeId = recipeId,
         Order = order,
         Url = url,
         Kind = kind,
-        AltText = null,
+        AltText = altText,
         CreatedAt = createdAt,
     };
 }

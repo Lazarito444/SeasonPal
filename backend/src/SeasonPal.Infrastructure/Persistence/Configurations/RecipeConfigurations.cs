@@ -13,6 +13,9 @@ internal sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         builder.Property(r => r.Cuisine).HasMaxLength(100);
         builder.Property(r => r.CoverImageUrl).HasMaxLength(2048);
         builder.Property(r => r.Tags).HasColumnType("text[]");
+        builder.Property(r => r.DietaryTags)
+            .HasColumnType("text[]")
+            .HasDefaultValueSql("'{}'::text[]");
 
         builder.HasOne(r => r.Author)
             .WithMany()

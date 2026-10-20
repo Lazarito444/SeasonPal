@@ -25,7 +25,7 @@ public sealed class AuthenticationService(
     ILogger<AuthenticationService> logger)
 {
     private const int MaxDisplayNameLength = 80;
-    private const string DefaultFavoritesCollectionName = "Favorites";
+    private const string DefaultFavoritesCollectionName = Collection.DefaultFavoritesName;
 
     public async Task<Result<AuthSessionDto>> RegisterAsync(
         RegisterRequest request,

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SeasonPal.Application.Collections;
 using SeasonPal.Application.Preferences;
 using SeasonPal.Domain.Entities;
 
@@ -13,9 +12,4 @@ public sealed class UserPreferenceRepository(SeasonPalDbContext context) : IUser
         context.UserPreferences.SingleOrDefaultAsync(p => p.UserId == userId, cancellationToken);
 
     public void Add(UserPreference preference) => context.UserPreferences.Add(preference);
-}
-
-public sealed class CollectionRepository(SeasonPalDbContext context) : ICollectionRepository
-{
-    public void Add(Collection collection) => context.Collections.Add(collection);
 }

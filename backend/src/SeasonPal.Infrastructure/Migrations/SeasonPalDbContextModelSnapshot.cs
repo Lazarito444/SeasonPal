@@ -333,9 +333,14 @@ namespace SeasonPal.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("AddedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
+
                     b.HasKey("CollectionId", "RecipeId");
 
                     b.HasIndex("RecipeId");
+
+                    b.HasIndex("CollectionId", "Order");
 
                     b.ToTable("CollectionRecipes");
                 });
@@ -509,6 +514,12 @@ namespace SeasonPal.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
                         .HasColumnType("character varying(2000)");
+
+                    b.PrimitiveCollection<List<string>>("DietaryTags")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text[]")
+                        .HasDefaultValueSql("'{}'::text[]");
 
                     b.Property<int>("Difficulty")
                         .HasColumnType("integer");

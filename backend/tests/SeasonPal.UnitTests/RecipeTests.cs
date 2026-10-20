@@ -161,4 +161,140 @@ public class RecipeTests
         Assert.False(result.IsSuccess);
         Assert.Equal("recipe.step-timer-out-of-range", result.Error!.Code);
     }
+
+    [Fact]
+    public void UpdateDetails_replaces_scalars_and_deduplicates_labels()
+    {
+        var recipe = Recipe.Create(AuthorId, "Lemon orzo").Value;
+
+        var result = recipe.UpdateDetails(
+            new RecipeDetails(
+                "  One-pan lemon orzo  ",
+                "  Bright and quick.  ",
+                "  Italian  ",
+                "https://cdn.seasonpal.test/orzo.jpg",
+                ["Weeknight", "weeknight", "Quick"],
+                ["Vegetarian", "Gluten-free"],
+                MealType.Dinner,
+                4,
+                10,
+                20,
+                RecipeDifficulty.Medium));
+
+        Assert.True(result.IsSuccess);
+        Assert.Equal("One-pan lemon orzo", recipe.Title);
+        Assert.Equal("Bright and quick.", recipe.Description);
+        Assert.Equal("Italian", recipe.Cuisine);
+        Assert.Equal("https://cdn.seasonpal.test/orzo.jpg", recipe.CoverImageUrl);
+        Assert.Equal(["Weeknight", "Quick"], recipe.Tags);
+        Assert.Equal(["Vegetarian", "Gluten-free"], recipe.DietaryTags);
+        Assert.Equal(MealType.Dinner, recipe.MealType);
+        Assert.Equal(4, recipe.Servings);
+        Assert.Equal(30, recipe.TotalTimeMinutes);
+        Assert.Equal(RecipeDifficulty.Medium, recipe.Difficulty);
+    }
+
+    [Fact]
+    public void UpdateDetails_rejects_too_many_tags_without_mutating()
+    {
+        var recipe = Recipe.Create(AuthorId, "Lemon orzo").Value;
+        var tags = Enumerable.Range(1, Recipe.MaxTags + 1).Select(i => $"tag-{i}").ToList();
+
+        var result = recipe.UpdateDetails(
+            new RecipeDetails(
+                "Renamed",
+                null,
+                null,
+                null,
+                tags,
+                null,
+                MealType.Unspecified,
+                2,
+                null,
+                null,
+                RecipeDifficulty.Easy));
+
+        Assert.False(result.IsSuccess);
+        Assert.Equal("recipe.tags-too-many", result.Error!.Code);
+        Assert.Equal("Lemon orzo", recipe.Title);
+        Assert.Empty(recipe.Tags);
+    }
+
+    [Fact]
+    public void ReplaceIngredients_is_atomic_and_normalizes_units()
+    {
+        var recipe = Recipe.Create(AuthorId, "Lemon orzo").Value;
+        recipe.AddIngredient(1, "tsp", "salt");
+
+        var invalid = recipe.ReplaceIngredients(
+            [
+                new IngredientDraft(2, "Tablespoons", "olive oil", null),
+                new IngredientDraft(1, "g", "  ", null),
+            ]);
+
+        Assert.False(invalid.IsSuccess);
+        Assert.Equal("recipe.ingredient-name-invalid", invalid.Error!.Code);
+        Assert.Single(recipe.Ingredients);
+        Assert.Equal("salt", recipe.Ingredients[0].Name);
+
+        var valid = recipe.ReplaceIngredients(
+            [
+                new IngredientDraft(2, "Tablespoons", "olive oil", " extra virgin "),
+                new IngredientDraft(250, "Grams", "orzo", null),
+            ]);
+
+        Assert.True(valid.IsSuccess);
+        Assert.Equal(2, recipe.Ingredients.Count);
+        Assert.Equal(1, recipe.Ingredients[0].Order);
+        Assert.Equal("tbsp", recipe.Ingredients[0].Unit);
+        Assert.Equal("extra virgin", recipe.Ingredients[0].Note);
+        Assert.Equal("g", recipe.Ingredients[1].Unit);
+        Assert.Equal(2, recipe.Ingredients[1].Order);
+    }
+
+    [Fact]
+    public void ReplaceSteps_and_media_assign_orders_and_keep_alt_text()
+    {
+        var recipe = Recipe.Create(AuthorId, "Lemon orzo").Value;
+
+        var steps = recipe.ReplaceSteps(
+            [
+                new StepDraft("Boil the orzo.", "Salt the water.", 600),
+                new StepDraft("Toss with lemon.", null, null),
+            ]);
+
+        var media = recipe.ReplaceMedia(
+            [
+                new MediaDraft("https://cdn.seasonpal.test/orzo.jpg", MediaKind.Image, "Lemon orzo in a bowl"),
+            ]);
+
+        Assert.True(steps.IsSuccess);
+        Assert.True(media.IsSuccess);
+        Assert.Equal([1, 2], recipe.Steps.Select(step => step.Order));
+        Assert.Single(recipe.Media);
+        Assert.Equal("Lemon orzo in a bowl", recipe.Media[0].AltText);
+        Assert.Equal(1, recipe.Media[0].Order);
+    }
+
+    [Fact]
+    public void Publish_requires_content_and_toggles_publication_as_a_pair()
+    {
+        var recipe = Recipe.Create(AuthorId, "Lemon orzo").Value;
+
+        var empty = recipe.Publish();
+        Assert.False(empty.IsSuccess);
+        Assert.Equal("recipe.publish-incomplete", empty.Error!.Code);
+
+        recipe.AddIngredient(250, "g", "orzo");
+        recipe.AddStep("Boil the orzo.");
+
+        var published = recipe.Publish();
+        Assert.True(published.IsSuccess);
+        Assert.Equal(RecipeVisibility.Public, recipe.Visibility);
+        Assert.Equal(RecipeStatus.Published, recipe.Status);
+
+        recipe.Unpublish();
+        Assert.Equal(RecipeVisibility.Private, recipe.Visibility);
+        Assert.Equal(RecipeStatus.Draft, recipe.Status);
+    }
 }

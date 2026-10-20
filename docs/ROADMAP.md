@@ -8,7 +8,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 - [x] Stage 0 — Repo, solution & Flutter shell
 - [x] Stage 1 — Data model & migrations
 - [x] Stage 2 — Auth, onboarding & preferences
-- [ ] Stage 3 — Recipes API: CRUD, saving & collections
+- [x] Stage 3 — Recipes API: CRUD, saving & collections
 - [ ] Stage 4 — Flutter library: auth, collection & recipe editor screens
 - [ ] Stage 5 — Discovery: browse, search, filters, home feed
 - [ ] Stage 6 — Seed content & demo data
@@ -62,7 +62,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 ## Stage 3 — Recipes API: CRUD, saving & collections
 
-- `RecipeEndpoints.cs`: create (draft), read (own + any public-or-friends-visible), update, delete, publish/unpublish (enabled at Stage 10 but implemented now), list own by page with filters (cuisine, time, difficulty, diet, tag).
+- `RecipeEndpoints.cs`: create (draft), read (own + any published public recipe; friends-only visibility waits for the follow model at Stage 10), update, delete, publish/unpublish (enabled at Stage 10 but implemented now), list own by page with filters (cuisine, time, difficulty, diet, tag).
 - `CollectionEndpoints.cs`: CRUD collections, add/remove/save recipes, reorder.
 - Saving semantics: save-to-favorites in one call; save-to-collection optional second parameter.
 - Ownership/authorization enforced at the application boundary (handler guards + aggregate invariants — user can only mutate own recipes/collections); no `XService` classes for plain CRUD: repositories plus aggregate behavior carry the DDD conventions in AGENTS.md.

@@ -18,6 +18,7 @@ using SeasonPal.Application.Auth;
 using SeasonPal.Application.Collections;
 using SeasonPal.Application.Common;
 using SeasonPal.Application.Preferences;
+using SeasonPal.Application.Recipes;
 using SeasonPal.Domain.Entities;
 using SeasonPal.Infrastructure.Auth;
 using SeasonPal.Infrastructure.Persistence;
@@ -88,8 +89,12 @@ builder.Services.AddScoped<IAccessTokenIssuer, JwtTokenIssuer>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IUserPreferenceRepository, UserPreferenceRepository>();
 builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
+builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+builder.Services.AddScoped<ISavedRecipeRepository, SavedRecipeRepository>();
+builder.Services.AddScoped<ISpecificationExecutor, SpecificationExecutor>();
 builder.Services.AddScoped<IUnitOfWork>(services => services.GetRequiredService<SeasonPalDbContext>());
 builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<RecipeLibraryService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
 builder.Services.AddScoped(typeof(ValidationFilter<>));
@@ -223,6 +228,8 @@ if (app.Environment.IsDevelopment())
 app.MapHealthEndpoints();
 app.MapAuthEndpoints();
 app.MapOnboardingEndpoints();
+app.MapRecipeEndpoints();
+app.MapCollectionEndpoints();
 app.Run();
 
 /// <summary>Marker for MVC.Testing + EF tooling; keep public partial.</summary>

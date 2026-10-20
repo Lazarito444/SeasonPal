@@ -32,10 +32,14 @@ internal sealed class CollectionRecipeConfiguration : IEntityTypeConfiguration<C
     {
         builder.HasKey(ci => new { ci.CollectionId, ci.RecipeId });
 
+        builder.Property(ci => ci.Order).IsRequired();
+
         builder.HasOne(ci => ci.Recipe)
             .WithMany()
             .HasForeignKey(ci => ci.RecipeId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasIndex(ci => new { ci.CollectionId, ci.Order });
     }
 }
 
