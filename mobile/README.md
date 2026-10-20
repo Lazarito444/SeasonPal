@@ -1,7 +1,6 @@
 # SeasonPal mobile
 
-Flutter client for SeasonPal (Android and iOS; the web target is kept for
-quick local checks in a browser).
+Flutter client for SeasonPal (Android and iOS).
 
 ## Run locally
 
@@ -25,13 +24,6 @@ for example the Android emulator's host loopback:
 
 ```bash
 flutter run --dart-define=API_BASE_URL=http://10.0.2.2:5209
-```
-
-A browser check (the dev API allows `http://localhost:8095`):
-
-```bash
-flutter run -d web-server --web-port 8095 \
-  --dart-define-from-file=config/api_dev.json
 ```
 
 ## Checks
