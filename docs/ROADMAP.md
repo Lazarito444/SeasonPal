@@ -65,7 +65,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - `RecipeEndpoints.cs`: create (draft), read (own + any public-or-friends-visible), update, delete, publish/unpublish (enabled at Stage 10 but implemented now), list own by page with filters (cuisine, time, difficulty, diet, tag).
 - `CollectionEndpoints.cs`: CRUD collections, add/remove/save recipes, reorder.
 - Saving semantics: save-to-favorites in one call; save-to-collection optional second parameter.
-- Ownership/authorization enforced in Application services (user can only mutate own recipes/collections).
+- Ownership/authorization enforced at the application boundary (handler guards + aggregate invariants — user can only mutate own recipes/collections); no `XService` classes for plain CRUD: repositories plus aggregate behavior carry the DDD conventions in AGENTS.md.
 - Ingredient quantities: double with unit normalization helper in Domain (no unit math here — that's Stage 8).
 
 **Acceptance:** full CRUD integration tests incl. authorization failures (other user's recipe → 403/404); list endpoint pagination + filter tests.
