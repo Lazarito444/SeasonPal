@@ -6,7 +6,7 @@ SeasonPal is a cooking companion app: personal recipe library, AI cooking assist
 
 - **Backend:** ASP.NET Core (.NET 10, minimal APIs), EF Core 10, FluentValidation; tests with xUnit. OpenAPI via `AddOpenApi` + Scalar (dev only). Central package management: versions live only in `backend/Directory.Packages.props` — csproj `PackageReference` entries never carry a `Version`. `TreatWarningsAsErrors` is on — new warnings fail the build.
 - **Database:** PostgreSQL 16 through Npgsql/EF Core (Docker Compose for local dev). EF Core abstracts the provider — no provider-specific SQL in Application/Domain layers.
-- **Mobile:** Flutter 3.4x (current stable channel), Riverpod (hand-written providers, no riverpod_annotation/codegen), go_router, Dio, freezed.
+- **Mobile:** Flutter 3.4x (current stable channel), Riverpod (hand-written providers, no riverpod_annotation/codegen), go_router, Dio, freezed, slang (English and Spanish).
 - **v2 (planned):** Angular web client consuming the same API. Keep the API client-agnostic; no mobile-only response shapes.
 - **AI:** provider-agnostic `IAiChatService` in Infrastructure, configured via appsettings (OpenAI-compatible by default). Keys only server-side, never in Flutter.
 
@@ -38,6 +38,7 @@ dotnet ef migrations add <Name> -p backend/src/SeasonPal.Infrastructure -s backe
 dotnet test backend/SeasonPal.slnx
 flutter pub get && flutter run --flavor dev           # mobile/
 flutter test (mobile/); dart format mobile/lib
+dart run slang                                       # mobile/; regenerate translations
 ```
 
 Flutter API base URL comes from `--dart-define-from-file` pointing at a per-environment JSON (e.g. `config/api_dev.json`), default targeting the dev backend.
@@ -60,6 +61,7 @@ Flutter API base URL comes from `--dart-define-from-file` pointing at a per-envi
 ## Flutter rules
 
 - Features-first structure under `lib/features/`. Widgets stay presentational; state through Riverpod providers; routing via go_router with route names/paths centralized.
+- All user-facing copy goes through slang (`lib/i18n/<locale>.i18n.json`, generated `strings.g.dart`); no hardcoded UI strings. Persisted and API values stay canonical English and are localized only for display.
 - One `ApiClient` (Dio) with auth interceptor handling access-token refresh. DTOs via freezed, mirroring API contracts. No API/business logic in widgets.
 - Design: deep forest green + warm cream + sage + charcoal + restrained spice accent. Food-first, quiet decoration, real loading/empty/error states for every screen — use the `frontend-design` skill when starting UI work.
 - Clearly label AI-generated recipes and any demo/seed content if ever shown as data.
@@ -72,4 +74,4 @@ Flutter API base URL comes from `--dart-define-from-file` pointing at a per-envi
 
 ## Status
 
-Stage 0–3 complete: `backend/` solution (Domain / Application / Infrastructure / Api + both test projects), `docker-compose.dev.yml`, migrations, live health endpoints; auth with register/login/refresh/logout, per-IP rate limiting, `GET/PUT /me/preferences`; the Flutter shell with login/register, the five-step onboarding wizard, and a home greeting driven by saved preferences; and the Recipes/Collections API with recipe CRUD, draft→published transitions, unit normalization, paginated filtered lists, `Specification<T>` queries, save/unsave cascading into favorites and custom collections, and protected favorites. 93 backend tests green (74 unit, 19 integration via Testcontainers Postgres) and 7 Flutter widget tests green. Next: Stage 4 — Flutter library: collection & recipe editor screens. Stage 2 limitations: password reset returns 202 without sending mail until SMTP exists; auth rate limiting is per client IP; refresh rotation has no optimistic concurrency. Stage 3 limitations: friends-only recipe visibility is deferred until follows exist at Stage 10, so non-owners only read published public recipes (others return 404 to avoid existence leaks); list pages default to 20 and cap at 50; reordering a collection requires the complete recipe-id list; unit normalization stores canonical spellings but performs no unit math until Stage 8. The Flutter client targets Android and iOS only; its web target was removed. Local dev DB publishes on **port 5433** (host 5432 is occupied by the machine's own Postgres service).
+Stage 0–3 complete: `backend/` solution (Domain / Application / Infrastructure / Api + both test projects), `docker-compose.dev.yml`, migrations, live health endpoints; auth with register/login/refresh/logout, per-IP rate limiting, `GET/PUT /me/preferences`; the Flutter shell with login/register, the five-step onboarding wizard, and a home greeting driven by saved preferences; and the Recipes/Collections API with recipe CRUD, draft→published transitions, unit normalization, paginated filtered lists, `Specification<T>` queries, save/unsave cascading into favorites and custom collections, and protected favorites. 93 backend tests green (74 unit, 19 integration via Testcontainers Postgres) and 9 Flutter widget tests green, with English/Spanish localization through slang. Next: Stage 4 — Flutter library: collection & recipe editor screens. Stage 2 limitations: password reset returns 202 without sending mail until SMTP exists; auth rate limiting is per client IP; refresh rotation has no optimistic concurrency. Stage 3 limitations: friends-only recipe visibility is deferred until follows exist at Stage 10, so non-owners only read published public recipes (others return 404 to avoid existence leaks); list pages default to 20 and cap at 50; reordering a collection requires the complete recipe-id list; unit normalization stores canonical spellings but performs no unit math until Stage 8. Localization limitation: English/Spanish UI and coded API errors are translated client-side, but uncoded validation messages from the API remain English. The Flutter client targets Android and iOS only; its web target was removed. Local dev DB publishes on **port 5433** (host 5432 is occupied by the machine's own Postgres service).

@@ -1,0 +1,213 @@
+{
+  "app": {
+    "tagline": "Cocina con la temporada, guarda lo que amas.",
+    "privacyNote": "Tus recetas siguen siendo tuyas."
+  },
+  "common": {
+    "back": "Atrás",
+    "tryAgain": "Intentar de nuevo",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña"
+  },
+  "errors": {
+    "generic": "Algo salió mal. Inténtalo de nuevo.",
+    "connection": "No pudimos conectar con SeasonPal. Revisa tu conexión e inténtalo de nuevo.",
+    "timeout": "La cocina está tardando demasiado en responder. Inténtalo de nuevo.",
+    "sessionExpired": "Tu sesión ha caducado. Inicia sesión de nuevo.",
+    "conflict": "Esa acción entra en conflicto con los datos existentes.",
+    "rateLimited": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+    "server": "Algo falló de nuestro lado. Inténtalo de nuevo.",
+    "invalidCredentials": "El correo o la contraseña no son correctos.",
+    "emailTaken": "Ya existe una cuenta con ese correo."
+  },
+  "auth": {
+    "login": {
+      "title": "Qué bueno verte.",
+      "subtitle": "Inicia sesión y retoma la cocina donde la dejaste.",
+      "newHere": "¿Es tu primera vez en SeasonPal?",
+      "createAccount": "Crear una cuenta",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "emailRequired": "Escribe tu correo.",
+      "emailInvalid": "Escribe un correo válido.",
+      "passwordRequired": "Escribe tu contraseña."
+    },
+    "register": {
+      "title": "Toma asiento.",
+      "subtitle": "Crea tu cuenta y cuéntanos cómo te gusta cocinar para que las sugerencias encajen contigo.",
+      "alreadyHere": "¿Ya cocinas con nosotros?",
+      "signIn": "Iniciar sesión",
+      "name": "Nombre",
+      "nameHelper": "Opcional: ¿cómo quieres que te llamemos?",
+      "nameTooLong": "Mantén tu nombre en 80 caracteres.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "passwordHelper": "Al menos 8 caracteres.",
+      "submit": "Crear cuenta",
+      "emailRequired": "Escribe tu correo.",
+      "emailInvalid": "Escribe un correo válido.",
+      "passwordRequired": "Elige una contraseña.",
+      "passwordTooShort": "Usa al menos 8 caracteres."
+    },
+    "splash": {
+      "restoreFailed": "No pudimos restaurar tu sesión.",
+      "loading": "Poniendo la mesa…"
+    }
+  },
+  "onboarding": {
+    "stepIndicator": "PASO {current} DE {total}",
+    "welcome": {
+      "eyebrow": "UN POCO DE TI",
+      "title": "Vamos a poner la mesa.",
+      "body": "Unas preguntas para que SeasonPal sugiera platos que encajen con tu cocina, no con la de otra persona.",
+      "cuisineTitle": "Cocinas que te gustan",
+      "cuisineBody": "Los sabores que buscas en una semana normal.",
+      "dietTitle": "Lo que evitas",
+      "dietBody": "Alergias y dietas que siempre respetaremos.",
+      "timeTitle": "El tiempo que tienes",
+      "timeBody": "Una cena de martes no es lo mismo que un proyecto de domingo.",
+      "duration": "Alrededor de un minuto, de principio a fin."
+    },
+    "cuisines": {
+      "eyebrow": "Tu paladar",
+      "title": "¿Qué te apetece?",
+      "body": "Elige las cocinas que más te llaman. Puedes escoger todas las que quieras."
+    },
+    "diet": {
+      "eyebrow": "Tu mesa",
+      "title": "¿Algo fuera del menú?",
+      "body": "Alergias, dietas o ingredientes que prefieres evitar. Elige todo lo que aplique.",
+      "interestsTitle": "¿Qué te interesa?",
+      "interestsBody": "Opcional: nos ayuda a afinar las sugerencias."
+    },
+    "rhythm": {
+      "eyebrow": "Tu ritmo",
+      "title": "¿Cómo te gusta cocinar?",
+      "body": "Lo usamos para elegir técnicas y recetas que encajen contigo.",
+      "timeTitle": "Tiempo en una noche normal",
+      "timeBody": "Déjalo sin elegir si cambia de un día a otro."
+    },
+    "done": {
+      "title": "Tu cocina está lista.",
+      "body": "Esto es lo que usaremos para cocinar. Puedes cambiarlo más adelante.",
+      "openToAnything": "Abierto a todo",
+      "noRestrictions": "Sin restricciones",
+      "noTime": "Sin tiempo fijo",
+      "summaryCuisines": "Cocinas",
+      "summaryDiet": "Dieta",
+      "summarySkill": "Nivel",
+      "summaryTime": "Tiempo habitual",
+      "alsoInto": "También te gusta"
+    },
+    "footer": {
+      "begin": "Empezar",
+      "next": "Continuar",
+      "finish": "Terminar",
+      "saving": "Guardando…"
+    },
+    "saveError": "No pudimos guardar tus preferencias. Inténtalo de nuevo.",
+    "time": {
+      "hour": "1 hora",
+      "minSuffix": "min"
+    },
+    "skill": {
+      "beginner": {
+        "label": "Principiante",
+        "description": "Recetas sencillas y técnicas conocidas."
+      },
+      "intermediate": {
+        "label": "Intermedio",
+        "description": "Con ganas de probar métodos nuevos."
+      },
+      "advanced": {
+        "label": "Avanzado",
+        "description": "Un buen desafío por delante."
+      }
+    },
+    "options": {
+      "cuisines": {
+        "italian": "italiana",
+        "mediterranean": "mediterránea",
+        "middleEastern": "medioriental",
+        "mexican": "mexicana",
+        "indian": "india",
+        "japanese": "japonesa",
+        "korean": "coreana",
+        "thai": "tailandesa",
+        "chinese": "china",
+        "french": "francesa",
+        "spanish": "española",
+        "greek": "griega",
+        "turkish": "turca",
+        "vietnamese": "vietnamita",
+        "american": "estadounidense",
+        "northAfrican": "norteafricana",
+        "latinAmerican": "latinoamericana",
+        "nordic": "nórdica",
+        "caribbean": "caribeña",
+        "african": "africana"
+      },
+      "diets": {
+        "vegetarian": "vegetariana",
+        "vegan": "vegana",
+        "glutenFree": "sin gluten",
+        "dairyFree": "sin lactosa",
+        "nutFree": "sin frutos secos",
+        "halal": "halal",
+        "kosher": "kosher",
+        "pescatarian": "pescetariana",
+        "lowCarb": "baja en carbohidratos",
+        "lowSodium": "baja en sodio"
+      },
+      "interests": {
+        "weeknightDinners": "Cenas entre semana",
+        "mealPrep": "Preparar comidas",
+        "baking": "Repostería",
+        "grilling": "A la parrilla",
+        "slowCooking": "Cocción lenta",
+        "fermentation": "Fermentación",
+        "plantForward": "Cocina vegetal",
+        "comfortFood": "Comida reconfortante",
+        "entertaining": "Recibir invitados",
+        "budgetCooking": "Cocina económica",
+        "cookingWithKids": "Cocinar con niños",
+        "spicesAndHeat": "Especias y picante"
+      }
+    }
+  },
+  "home": {
+    "signOut": "Cerrar sesión",
+    "language": {
+      "tooltip": "Idioma",
+      "english": "English",
+      "spanish": "Español"
+    },
+    "greetings": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches",
+      "line": "{greeting}, {name}.",
+      "friend": "chef"
+    },
+    "whatCooking": "¿Qué cocinamos hoy?",
+    "taste": {
+      "eyebrow": "TU PALADAR",
+      "loading": "Leyendo tu perfil de sabor…",
+      "loadError": "No pudimos cargar tu perfil de sabor.",
+      "noTime": "Sin tiempo fijo",
+      "empty": "Tu cocina está abierta a todo.",
+      "one": "Tu cocina se inclina por la {cuisine}.",
+      "two": "Tu cocina se inclina por la {first} y la {second}.",
+      "many": "Tu cocina se inclina por la {first}, la {second} y más.",
+      "noRestrictions": "No hay restricciones dietéticas guardadas.",
+      "dietOne": "Cocinando con una dieta {restriction}.",
+      "dietMany": "Cocinando con una dieta {leading} y {last}."
+    },
+    "comingNext": {
+      "eyebrow": "LO QUE VIENE",
+      "title": "Tu biblioteca de recetas.",
+      "body": "Las recetas guardadas, las colecciones y el modo cocina están en camino."
+    }
+  }
+}

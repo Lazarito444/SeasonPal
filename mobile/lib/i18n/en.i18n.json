@@ -1,0 +1,213 @@
+{
+  "app": {
+    "tagline": "Cook with the season, keep what you love.",
+    "privacyNote": "Your recipes stay yours."
+  },
+  "common": {
+    "back": "Back",
+    "tryAgain": "Try again",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again.",
+    "connection": "Could not reach SeasonPal. Check your connection and try again.",
+    "timeout": "The kitchen is taking too long to answer. Try again.",
+    "sessionExpired": "Your session has expired. Sign in again.",
+    "conflict": "That action conflicts with existing data.",
+    "rateLimited": "Too many attempts. Wait a moment and try again.",
+    "server": "Something went wrong on our side. Try again.",
+    "invalidCredentials": "Email or password is incorrect.",
+    "emailTaken": "That account already exists."
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back.",
+      "subtitle": "Sign in and pick up where you left off in the kitchen.",
+      "newHere": "New to SeasonPal?",
+      "createAccount": "Create an account",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordRequired": "Enter your password."
+    },
+    "register": {
+      "title": "Pull up a chair.",
+      "subtitle": "Create your account, then tell us how you like to cook so the suggestions fit.",
+      "alreadyHere": "Already cooking with us?",
+      "signIn": "Sign in",
+      "name": "Name",
+      "nameHelper": "Optional — what should we call you?",
+      "nameTooLong": "Keep your name to 80 characters.",
+      "email": "Email",
+      "password": "Password",
+      "passwordHelper": "At least 8 characters.",
+      "submit": "Create account",
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordRequired": "Choose a password.",
+      "passwordTooShort": "Use at least 8 characters."
+    },
+    "splash": {
+      "restoreFailed": "Could not restore your session.",
+      "loading": "Setting the table…"
+    }
+  },
+  "onboarding": {
+    "stepIndicator": "STEP {current} OF {total}",
+    "welcome": {
+      "eyebrow": "A QUICK TASTE OF YOU",
+      "title": "Let's set the table.",
+      "body": "A few questions so SeasonPal can suggest dishes that fit your kitchen — not someone else's.",
+      "cuisineTitle": "Cuisines you love",
+      "cuisineBody": "The flavours you reach for on a normal week.",
+      "dietTitle": "Anything you avoid",
+      "dietBody": "Allergies and diets we should always respect.",
+      "timeTitle": "The time you have",
+      "timeBody": "Tuesday dinner looks different from a Sunday project.",
+      "duration": "About a minute, start to finish."
+    },
+    "cuisines": {
+      "eyebrow": "Your taste",
+      "title": "What do you crave?",
+      "body": "Pick the cuisines you reach for most. Choose as many as you like."
+    },
+    "diet": {
+      "eyebrow": "Your table",
+      "title": "Anything off the menu?",
+      "body": "Allergies, diets, or ingredients you'd rather skip. Pick everything that applies.",
+      "interestsTitle": "What are you into?",
+      "interestsBody": "Optional — it helps us tune the suggestions."
+    },
+    "rhythm": {
+      "eyebrow": "Your rhythm",
+      "title": "How do you like to cook?",
+      "body": "We use this to choose techniques and recipes that feel right for you.",
+      "timeTitle": "Time on a usual night",
+      "timeBody": "Leave it unset if it changes day to day."
+    },
+    "done": {
+      "title": "Your kitchen is ready.",
+      "body": "Here's what we'll cook with. You can change any of it later.",
+      "openToAnything": "Open to anything",
+      "noRestrictions": "No restrictions",
+      "noTime": "No set time",
+      "summaryCuisines": "Cuisines",
+      "summaryDiet": "Diet",
+      "summarySkill": "Skill",
+      "summaryTime": "Usual time",
+      "alsoInto": "Also into"
+    },
+    "footer": {
+      "begin": "Begin",
+      "next": "Continue",
+      "finish": "Finish setup",
+      "saving": "Saving…"
+    },
+    "saveError": "Could not save your preferences. Try again.",
+    "time": {
+      "hour": "1 hour",
+      "minSuffix": "min"
+    },
+    "skill": {
+      "beginner": {
+        "label": "Beginner",
+        "description": "Simple recipes and familiar techniques."
+      },
+      "intermediate": {
+        "label": "Intermediate",
+        "description": "Comfortable trying new methods."
+      },
+      "advanced": {
+        "label": "Advanced",
+        "description": "Ready for a proper challenge."
+      }
+    },
+    "options": {
+      "cuisines": {
+        "italian": "Italian",
+        "mediterranean": "Mediterranean",
+        "middleEastern": "Middle Eastern",
+        "mexican": "Mexican",
+        "indian": "Indian",
+        "japanese": "Japanese",
+        "korean": "Korean",
+        "thai": "Thai",
+        "chinese": "Chinese",
+        "french": "French",
+        "spanish": "Spanish",
+        "greek": "Greek",
+        "turkish": "Turkish",
+        "vietnamese": "Vietnamese",
+        "american": "American",
+        "northAfrican": "North African",
+        "latinAmerican": "Latin American",
+        "nordic": "Nordic",
+        "caribbean": "Caribbean",
+        "african": "African"
+      },
+      "diets": {
+        "vegetarian": "Vegetarian",
+        "vegan": "Vegan",
+        "glutenFree": "Gluten-free",
+        "dairyFree": "Dairy-free",
+        "nutFree": "Nut-free",
+        "halal": "Halal",
+        "kosher": "Kosher",
+        "pescatarian": "Pescatarian",
+        "lowCarb": "Low-carb",
+        "lowSodium": "Low-sodium"
+      },
+      "interests": {
+        "weeknightDinners": "Weeknight dinners",
+        "mealPrep": "Meal prep",
+        "baking": "Baking",
+        "grilling": "Grilling",
+        "slowCooking": "Slow cooking",
+        "fermentation": "Fermentation",
+        "plantForward": "Plant-forward",
+        "comfortFood": "Comfort food",
+        "entertaining": "Entertaining",
+        "budgetCooking": "Budget cooking",
+        "cookingWithKids": "Cooking with kids",
+        "spicesAndHeat": "Spices & heat"
+      }
+    }
+  },
+  "home": {
+    "signOut": "Sign out",
+    "language": {
+      "tooltip": "Language",
+      "english": "English",
+      "spanish": "Español"
+    },
+    "greetings": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "line": "{greeting}, {name}.",
+      "friend": "friend"
+    },
+    "whatCooking": "What are we cooking today?",
+    "taste": {
+      "eyebrow": "YOUR TASTE",
+      "loading": "Reading your taste profile…",
+      "loadError": "We couldn't load your taste profile.",
+      "noTime": "No set time",
+      "empty": "Your kitchen is open to anything.",
+      "one": "Your kitchen leans {cuisine}.",
+      "two": "Your kitchen leans {first} and {second}.",
+      "many": "Your kitchen leans {first}, {second}, and more.",
+      "noRestrictions": "No dietary restrictions saved.",
+      "dietOne": "Cooking around {restriction}.",
+      "dietMany": "Cooking around {leading} and {last}."
+    },
+    "comingNext": {
+      "eyebrow": "COMING NEXT",
+      "title": "Your recipe library.",
+      "body": "Saved recipes, collections, and a cooking view are on the way."
+    }
+  }
+}

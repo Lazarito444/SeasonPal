@@ -1,15 +1,19 @@
 import 'package:dio/dio.dart';
 
+/// Why an API call failed, used to pick a localized message.
+enum ApiFailureKind { response, timeout, connection, unknown }
+
 /// A user-presentable API failure.
 ///
-/// Parses ProblemDetails from the backend so screens show the API's English
-/// fallback while keeping the machine-readable `code` for future localization.
+/// Parses ProblemDetails from the backend so screens can localize known error
+/// codes while retaining the English fallback for uncoded failures.
 final class ApiException implements Exception {
   const ApiException({
     required this.message,
     this.statusCode,
     this.code,
     this.fieldErrors = const {},
+    this.kind = ApiFailureKind.unknown,
   });
 
   factory ApiException.fromDio(DioException error) {
@@ -39,11 +43,23 @@ final class ApiException implements Exception {
       }
     }
 
+    final kind = response != null
+        ? ApiFailureKind.response
+        : switch (error.type) {
+            DioExceptionType.connectionTimeout ||
+            DioExceptionType.sendTimeout ||
+            DioExceptionType.receiveTimeout ||
+            DioExceptionType.transformTimeout => ApiFailureKind.timeout,
+            DioExceptionType.connectionError => ApiFailureKind.connection,
+            _ => ApiFailureKind.unknown,
+          };
+
     return ApiException(
       message: message,
       statusCode: response?.statusCode,
       code: code,
       fieldErrors: fieldErrors,
+      kind: kind,
     );
   }
 
@@ -51,6 +67,7 @@ final class ApiException implements Exception {
   final int? statusCode;
   final String? code;
   final Map<String, List<String>> fieldErrors;
+  final ApiFailureKind kind;
 
   bool get isUnauthorized => statusCode == 401;
 

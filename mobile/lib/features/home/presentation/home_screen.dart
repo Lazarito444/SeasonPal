@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/l10n/locale_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_backdrop.dart';
 import '../../../core/widgets/brand_mark.dart';
+import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../onboarding/data/preferences_repository.dart';
-import '../../onboarding/domain/onboarding_options.dart';
 import '../../onboarding/domain/user_preferences.dart';
+import '../../onboarding/presentation/preference_labels.dart';
 
 /// Stage 2 landing place: a real greeting from the saved session and taste
 /// profile, with the recipe library clearly marked as forthcoming.
@@ -16,8 +18,10 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = Translations.of(context);
+    final locale = ref.watch(localeControllerProvider);
     final session = ref.watch(authControllerProvider).value;
-    final firstName = _firstName(session?.user.displayName ?? '');
+    final firstName = _firstName(t, session?.user.displayName ?? '');
     final preferences = ref.watch(myPreferencesProvider);
 
     return Scaffold(
@@ -50,25 +54,50 @@ class HomeScreen extends ConsumerWidget {
                             ),
                           ),
                           const Spacer(),
+                          PopupMenuButton<AppLocale>(
+                            key: const Key('home-language'),
+                            tooltip: t.home.language.tooltip,
+                            icon: const Icon(Icons.language_rounded, size: 20),
+                            onSelected: (selected) => ref
+                                .read(localeControllerProvider.notifier)
+                                .setLocale(selected),
+                            itemBuilder: (context) => [
+                              CheckedPopupMenuItem(
+                                key: const Key('language-en'),
+                                value: AppLocale.en,
+                                checked: locale == AppLocale.en,
+                                child: Text(t.home.language.english),
+                              ),
+                              CheckedPopupMenuItem(
+                                key: const Key('language-es'),
+                                value: AppLocale.es,
+                                checked: locale == AppLocale.es,
+                                child: Text(t.home.language.spanish),
+                              ),
+                            ],
+                          ),
                           IconButton(
                             key: const Key('home-sign-out'),
                             onPressed: () async => ref
                                 .read(authControllerProvider.notifier)
                                 .logout(),
-                            tooltip: 'Sign out',
+                            tooltip: t.home.signOut,
                             icon: const Icon(Icons.logout_rounded, size: 20),
                           ),
                         ],
                       ),
                       const SizedBox(height: 40),
                       Text(
-                        '${_greeting()}, $firstName.',
+                        t.home.greetings.line(
+                          greeting: _greeting(t),
+                          name: firstName,
+                        ),
                         key: const Key('home-greeting'),
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        'What are we cooking today?',
+                        t.home.whatCooking,
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 32),
@@ -94,6 +123,8 @@ class _TasteCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = Translations.of(context);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
@@ -108,7 +139,7 @@ class _TasteCard extends ConsumerWidget {
           Row(
             children: [
               Text(
-                'YOUR TASTE',
+                t.home.taste.eyebrow,
                 style: Theme.of(
                   context,
                 ).textTheme.labelSmall?.copyWith(color: AppColors.spice),
@@ -136,7 +167,7 @@ class _TasteCard extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Reading your taste profile…',
+                    t.home.taste.loading,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
@@ -156,15 +187,16 @@ class _TasteDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     final time = preferences.usualCookTimeMinutes == null
-        ? 'No set time'
-        : OnboardingOptions.cookTimeLabel(preferences.usualCookTimeMinutes!);
+        ? t.home.taste.noTime
+        : cookTimeLabel(t, preferences.usualCookTimeMinutes!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _tasteLine(preferences),
+          _tasteLine(t, preferences),
           key: const Key('home-taste'),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontSize: 24,
@@ -173,7 +205,7 @@ class _TasteDetails extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          _dietLine(preferences),
+          _dietLine(t, preferences),
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 18),
@@ -182,8 +214,8 @@ class _TasteDetails extends StatelessWidget {
           runSpacing: 8,
           children: [
             for (final cuisine in preferences.favoriteCuisines.take(4))
-              _TastePill(label: cuisine),
-            _TastePill(label: preferences.skillLevel.label),
+              _TastePill(label: cuisineLabel(t, cuisine)),
+            _TastePill(label: preferences.skillLevel.label(t)),
             _TastePill(label: time),
           ],
         ),
@@ -224,15 +256,17 @@ class _TasteError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Row(
       children: [
         Expanded(
           child: Text(
-            "We couldn't load your taste profile.",
+            t.home.taste.loadError,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
-        TextButton(onPressed: onRetry, child: const Text('Try again')),
+        TextButton(onPressed: onRetry, child: Text(t.common.tryAgain)),
       ],
     );
   }
@@ -243,6 +277,8 @@ class _ComingNextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -256,7 +292,7 @@ class _ComingNextCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                'COMING NEXT',
+                t.home.comingNext.eyebrow,
                 style: Theme.of(
                   context,
                 ).textTheme.labelSmall?.copyWith(color: AppColors.forest),
@@ -271,14 +307,14 @@ class _ComingNextCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Your recipe library.',
+            t.home.comingNext.title,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(color: AppColors.forest),
           ),
           const SizedBox(height: 6),
           Text(
-            'Saved recipes, collections, and a cooking view are on the way.',
+            t.home.comingNext.body,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.forest.withValues(alpha: 0.8),
             ),
@@ -289,52 +325,60 @@ class _ComingNextCard extends StatelessWidget {
   }
 }
 
-String _greeting() {
+String _greeting(Translations t) {
   final hour = DateTime.now().hour;
   if (hour < 12) {
-    return 'Good morning';
+    return t.home.greetings.morning;
   }
 
   if (hour < 18) {
-    return 'Good afternoon';
+    return t.home.greetings.afternoon;
   }
 
-  return 'Good evening';
+  return t.home.greetings.evening;
 }
 
-String _firstName(String displayName) {
+String _firstName(Translations t, String displayName) {
   final trimmed = displayName.trim();
   if (trimmed.isEmpty) {
-    return 'friend';
+    return t.home.greetings.friend;
   }
 
   return trimmed.split(RegExp(r'\s+')).first;
 }
 
-String _tasteLine(UserPreferences preferences) {
+String _tasteLine(Translations t, UserPreferences preferences) {
   final cuisines = preferences.favoriteCuisines;
   return switch (cuisines.length) {
-    0 => 'Your kitchen is open to anything.',
-    1 => 'Your kitchen leans ${cuisines.first}.',
-    2 => 'Your kitchen leans ${cuisines[0]} and ${cuisines[1]}.',
-    _ => 'Your kitchen leans ${cuisines[0]}, ${cuisines[1]}, and more.',
+    0 => t.home.taste.empty,
+    1 => t.home.taste.one(cuisine: cuisineLabel(t, cuisines.first)),
+    2 => t.home.taste.two(
+      first: cuisineLabel(t, cuisines[0]),
+      second: cuisineLabel(t, cuisines[1]),
+    ),
+    _ => t.home.taste.many(
+      first: cuisineLabel(t, cuisines[0]),
+      second: cuisineLabel(t, cuisines[1]),
+    ),
   };
 }
 
-String _dietLine(UserPreferences preferences) {
+String _dietLine(Translations t, UserPreferences preferences) {
   final restrictions = preferences.dietaryRestrictions;
   if (restrictions.isEmpty) {
-    return 'No dietary restrictions saved.';
+    return t.home.taste.noRestrictions;
   }
 
   if (restrictions.length == 1) {
-    return 'Cooking around ${restrictions.first.toLowerCase()}.';
+    return t.home.taste.dietOne(
+      restriction: dietLabel(t, restrictions.first).toLowerCase(),
+    );
   }
 
-  final last = restrictions.last.toLowerCase();
+  final last = dietLabel(t, restrictions.last).toLowerCase();
   final leading = restrictions
       .take(restrictions.length - 1)
-      .map((item) => item.toLowerCase())
+      .map((item) => dietLabel(t, item).toLowerCase())
       .join(', ');
-  return 'Cooking around $leading and $last.';
+  return t.home.taste.dietMany(leading: leading, last: last);
 }

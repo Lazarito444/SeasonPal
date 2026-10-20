@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/l10n/api_error_messages.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/widgets/error_banner.dart';
+import '../../../i18n/strings.g.dart';
 import 'auth_controller.dart';
 import 'widgets/auth_scaffold.dart';
 
@@ -58,8 +60,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         return;
       }
 
+      final message = localizeApiError(Translations.of(context), error);
       setState(() {
-        _error = error.message;
+        _error = message;
         _submitting = false;
       });
     } on Object {
@@ -68,7 +71,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       }
 
       setState(() {
-        _error = 'Something went wrong. Try again.';
+        _error = Translations.of(context).errors.generic;
         _submitting = false;
       });
     }
@@ -76,17 +79,17 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return AuthScaffold(
-      title: 'Pull up a chair.',
-      subtitle:
-          'Create your account, then tell us how you like to cook so the '
-          'suggestions fit.',
+      title: t.auth.register.title,
+      subtitle: t.auth.register.subtitle,
       footer: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
             child: Text(
-              'Already cooking with us?',
+              t.auth.register.alreadyHere,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
@@ -94,7 +97,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             onPressed: _submitting
                 ? null
                 : () => context.goNamed(AppRoutes.loginName),
-            child: const Text('Sign in'),
+            child: Text(t.auth.register.signIn),
           ),
         ],
       ),
@@ -111,13 +114,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 textCapitalization: TextCapitalization.words,
                 textInputAction: TextInputAction.next,
                 autofillHints: const [AutofillHints.name],
-                decoration: const InputDecoration(
-                  labelText: 'Name',
-                  helperText: 'Optional — what should we call you?',
+                decoration: InputDecoration(
+                  labelText: t.auth.register.name,
+                  helperText: t.auth.register.nameHelper,
                 ),
                 validator: (value) =>
                     (value != null && value.trim().length > 80)
-                    ? 'Keep your name to 80 characters.'
+                    ? t.auth.register.nameTooLong
                     : null,
               ),
               const SizedBox(height: 14),
@@ -129,8 +132,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 textInputAction: TextInputAction.next,
                 autofillHints: const [AutofillHints.email],
                 autocorrect: false,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: _validateEmail,
+                decoration: InputDecoration(labelText: t.auth.register.email),
+                validator: (value) => _validateEmail(t, value),
               ),
               const SizedBox(height: 14),
               TextFormField(
@@ -142,12 +145,12 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 autofillHints: const [AutofillHints.newPassword],
                 onFieldSubmitted: (_) => _submit(),
                 decoration: InputDecoration(
-                  labelText: 'Password',
-                  helperText: 'At least 8 characters.',
+                  labelText: t.auth.register.password,
+                  helperText: t.auth.register.passwordHelper,
                   suffixIcon: IconButton(
                     tooltip: _obscurePassword
-                        ? 'Show password'
-                        : 'Hide password',
+                        ? t.common.showPassword
+                        : t.common.hidePassword,
                     onPressed: () =>
                         setState(() => _obscurePassword = !_obscurePassword),
                     icon: Icon(
@@ -160,11 +163,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Choose a password.';
+                    return t.auth.register.passwordRequired;
                   }
 
                   if (value.length < 8) {
-                    return 'Use at least 8 characters.';
+                    return t.auth.register.passwordTooShort;
                   }
 
                   return null;
@@ -183,7 +186,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         dimension: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Create account'),
+                    : Text(t.auth.register.submit),
               ),
             ],
           ),
@@ -193,14 +196,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   }
 }
 
-String? _validateEmail(String? value) {
+String? _validateEmail(Translations t, String? value) {
   final email = value?.trim() ?? '';
   if (email.isEmpty) {
-    return 'Enter your email.';
+    return t.auth.register.emailRequired;
   }
 
   if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
-    return 'Enter a valid email address.';
+    return t.auth.register.emailInvalid;
   }
 
   return null;

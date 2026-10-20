@@ -74,6 +74,7 @@ final class DioAuthApi implements AuthApi {
       if (data is! Map<String, dynamic>) {
         throw const ApiException(
           message: 'The server returned an unexpected response.',
+          code: 'client.unexpected-response',
         );
       }
 

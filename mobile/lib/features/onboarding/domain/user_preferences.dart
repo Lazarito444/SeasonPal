@@ -13,18 +13,6 @@ enum SkillLevel {
   @JsonValue(2)
   advanced;
 
-  String get label => switch (this) {
-    SkillLevel.beginner => 'Beginner',
-    SkillLevel.intermediate => 'Intermediate',
-    SkillLevel.advanced => 'Advanced',
-  };
-
-  String get description => switch (this) {
-    SkillLevel.beginner => 'Simple recipes and familiar techniques.',
-    SkillLevel.intermediate => 'Comfortable trying new methods.',
-    SkillLevel.advanced => 'Ready for a proper challenge.',
-  };
-
   int get wireValue => switch (this) {
     SkillLevel.beginner => 0,
     SkillLevel.intermediate => 1,

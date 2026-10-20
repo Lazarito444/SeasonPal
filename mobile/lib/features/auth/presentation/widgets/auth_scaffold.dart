@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_backdrop.dart';
 import '../../../../core/widgets/brand_mark.dart';
+import '../../../../i18n/strings.g.dart';
 
 /// Shared frame for login and registration: cream page, soft colour fields,
 /// brand lockup, editorial headline, and a single readable column.
@@ -22,6 +23,8 @@ class AuthScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -57,7 +60,7 @@ class AuthScaffold extends StatelessWidget {
                       ],
                       const SizedBox(height: 12),
                       Text(
-                        'Your recipes stay yours.',
+                        t.app.privacyNote,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: AppColors.charcoalMuted.withValues(alpha: 0.7),
                           letterSpacing: 1.2,

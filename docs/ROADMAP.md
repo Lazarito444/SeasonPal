@@ -28,6 +28,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 4. **Media:** images (and videos — user content per spec §3A) go through an `IMediaStorage` abstraction (local disk folder in dev). Swappable for S3/Blob later; client always loads URLs, never binary payloads through DTOs. Video uploads enforce a per-file size cap.
 5. **Email:** no SMTP in dev → password reset and email confirmation are deferred (noted limitation in Stage 2, built when SMTP config exists or at Stage 11).
 6. **Push notifications:** deferred to Stage 10+; the Notification entity exists from Stage 1 so no retrofit.
+7. **Localization:** UI copy ships in English and Spanish through slang, with device-locale detection and a persisted in-app switch. Canonical API values (cuisines, diets, interests, recipe data) stay English and are localized only for display.
 
 ## Stage 0 — Repo, solution & Flutter shell
 

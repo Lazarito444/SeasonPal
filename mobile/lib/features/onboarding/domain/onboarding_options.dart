@@ -53,7 +53,4 @@ abstract final class OnboardingOptions {
   ];
 
   static const cookTimes = <int>[15, 30, 45, 60, 90];
-
-  static String cookTimeLabel(int minutes) =>
-      minutes == 60 ? '1 hour' : '$minutes min';
 }

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/l10n/api_error_messages.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/widgets/error_banner.dart';
+import '../../../i18n/strings.g.dart';
 import 'auth_controller.dart';
 import 'widgets/auth_scaffold.dart';
 
@@ -52,8 +54,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         return;
       }
 
+      final message = localizeApiError(Translations.of(context), error);
       setState(() {
-        _error = error.message;
+        _error = message;
         _submitting = false;
       });
     } on Object {
@@ -62,7 +65,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
 
       setState(() {
-        _error = 'Something went wrong. Try again.';
+        _error = Translations.of(context).errors.generic;
         _submitting = false;
       });
     }
@@ -70,15 +73,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return AuthScaffold(
-      title: 'Welcome back.',
-      subtitle: 'Sign in and pick up where you left off in the kitchen.',
+      title: t.auth.login.title,
+      subtitle: t.auth.login.subtitle,
       footer: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
             child: Text(
-              'New to SeasonPal?',
+              t.auth.login.newHere,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
@@ -86,7 +91,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             onPressed: _submitting
                 ? null
                 : () => context.goNamed(AppRoutes.registerName),
-            child: const Text('Create an account'),
+            child: Text(t.auth.login.createAccount),
           ),
         ],
       ),
@@ -104,8 +109,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 textInputAction: TextInputAction.next,
                 autofillHints: const [AutofillHints.email],
                 autocorrect: false,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: _validateEmail,
+                decoration: InputDecoration(labelText: t.auth.login.email),
+                validator: (value) => _validateEmail(t, value),
               ),
               const SizedBox(height: 14),
               TextFormField(
@@ -117,11 +122,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 autofillHints: const [AutofillHints.password],
                 onFieldSubmitted: (_) => _submit(),
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: t.auth.login.password,
                   suffixIcon: IconButton(
                     tooltip: _obscurePassword
-                        ? 'Show password'
-                        : 'Hide password',
+                        ? t.common.showPassword
+                        : t.common.hidePassword,
                     onPressed: () =>
                         setState(() => _obscurePassword = !_obscurePassword),
                     icon: Icon(
@@ -133,7 +138,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ),
                 validator: (value) => (value == null || value.isEmpty)
-                    ? 'Enter your password.'
+                    ? t.auth.login.passwordRequired
                     : null,
               ),
               if (_error != null) ...[
@@ -149,7 +154,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         dimension: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Sign in'),
+                    : Text(t.auth.login.submit),
               ),
             ],
           ),
@@ -159,14 +164,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 }
 
-String? _validateEmail(String? value) {
+String? _validateEmail(Translations t, String? value) {
   final email = value?.trim() ?? '';
   if (email.isEmpty) {
-    return 'Enter your email.';
+    return t.auth.login.emailRequired;
   }
 
   if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
-    return 'Enter a valid email address.';
+    return t.auth.login.emailInvalid;
   }
 
   return null;

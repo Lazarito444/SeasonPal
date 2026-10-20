@@ -173,6 +173,7 @@ Prioritize:
 - Appropriate authorization and privacy controls.
 - Accessible interface components.
 - Clear loading, empty, success, and error states.
+- English and Spanish from the first release, with all UI copy localized. Persisted recipe and preference values stay canonical English so they remain stable across languages.
 - Input validation and protection against common security vulnerabilities.
 - A maintainable codebase with reusable components.
 

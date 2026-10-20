@@ -2,13 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seasonpal/app.dart';
+import 'package:seasonpal/core/l10n/locale_store.dart';
 import 'package:seasonpal/core/network/api_exception.dart';
 import 'package:seasonpal/features/auth/data/auth_repository.dart';
 import 'package:seasonpal/features/auth/domain/auth_session.dart';
 import 'package:seasonpal/features/onboarding/data/preferences_repository.dart';
 import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
+import 'package:seasonpal/i18n/strings.g.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  setUp(() {
+    LocaleSettings.setLocaleSync(AppLocale.en);
+  });
+
+  testWidgets('the language choice persists in shared preferences', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    final preferences = await SharedPreferences.getInstance();
+    final store = PreferencesLocaleStore(preferences);
+
+    expect(store.read(), isNull);
+
+    await store.write(AppLocale.es);
+
+    expect(store.read(), AppLocale.es);
+  });
+
   testWidgets('login validates empty fields before calling the API', (
     tester,
   ) async {
@@ -250,6 +271,51 @@ void main() {
 
     expect(find.text('Welcome back.'), findsOneWidget);
     expect(auth.logoutCalls, 1);
+  });
+
+  testWidgets('the language menu switches the app to Spanish and back', (
+    tester,
+  ) async {
+    final auth = _FakeAuthRepository(
+      restored: _session(onboardingCompleted: true),
+    );
+    final preferences = _FakePreferences(
+      current: UserPreferences(
+        favoriteCuisines: const ['Italian', 'Mediterranean'],
+        dietaryRestrictions: const ['Vegetarian'],
+        skillLevel: SkillLevel.intermediate,
+        usualCookTimeMinutes: 30,
+        onboardingCompleted: true,
+      ),
+    );
+
+    await tester.pumpWidget(_app(auth: auth, preferences: preferences));
+    await tester.pumpAndSettle();
+
+    expect(find.text('What are we cooking today?'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('home-language')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('language-es')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('¿Qué cocinamos hoy?'), findsOneWidget);
+    expect(
+      find.text('Tu cocina se inclina por la italiana y la mediterránea.'),
+      findsOneWidget,
+    );
+    expect(find.text('Cocinando con una dieta vegetariana.'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('home-language')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('language-en')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('What are we cooking today?'), findsOneWidget);
+    expect(
+      find.text('Your kitchen leans Italian and Mediterranean.'),
+      findsOneWidget,
+    );
   });
 }
 

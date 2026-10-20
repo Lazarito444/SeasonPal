@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/l10n/api_error_messages.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/preferences_repository.dart';
 import '../domain/user_preferences.dart';
@@ -87,12 +89,12 @@ final class OnboardingController extends Notifier<OnboardingState> {
       ref.read(authControllerProvider.notifier).markOnboardingCompleted();
       state = state.copyWith(isSaving: false);
     } on ApiException catch (error) {
-      state = state.copyWith(isSaving: false, error: error.message);
-    } on Object {
       state = state.copyWith(
         isSaving: false,
-        error: 'Could not save your preferences. Try again.',
+        error: localizeApiError(t, error),
       );
+    } on Object {
+      state = state.copyWith(isSaving: false, error: t.onboarding.saveError);
     }
   }
 

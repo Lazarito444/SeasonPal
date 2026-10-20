@@ -6,10 +6,12 @@ import '../../../core/widgets/app_backdrop.dart';
 import '../../../core/widgets/app_choice_chip.dart';
 import '../../../core/widgets/brand_mark.dart';
 import '../../../core/widgets/error_banner.dart';
+import '../../../i18n/strings.g.dart';
 import '../domain/onboarding_options.dart';
 import '../domain/user_preferences.dart';
 import 'onboarding_controller.dart';
 import 'onboarding_state.dart';
+import 'preference_labels.dart';
 
 /// Five quiet steps: welcome, cuisines, diet (plus interests), rhythm, done.
 /// Answers stay local until the final step saves them.
@@ -62,6 +64,8 @@ class _WizardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 24, 0),
       child: Column(
@@ -77,12 +81,15 @@ class _WizardHeader extends StatelessWidget {
                 IconButton(
                   key: const Key('onboarding-back-top'),
                   onPressed: onBack,
-                  tooltip: 'Back',
+                  tooltip: t.common.back,
                   icon: const Icon(Icons.arrow_back_rounded, size: 21),
                 ),
               const Spacer(),
               Text(
-                'STEP ${step + 1} OF ${OnboardingState.stepCount}',
+                t.onboarding.stepIndicator(
+                  current: step + 1,
+                  total: OnboardingState.stepCount,
+                ),
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
@@ -170,42 +177,43 @@ class _WelcomeStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
         Text(
-          'A QUICK TASTE OF YOU',
+          t.onboarding.welcome.eyebrow,
           style: Theme.of(
             context,
           ).textTheme.labelSmall?.copyWith(color: AppColors.spice),
         ),
         const SizedBox(height: 12),
         Text(
-          "Let's set the table.",
+          t.onboarding.welcome.title,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         const SizedBox(height: 14),
         Text(
-          "A few questions so SeasonPal can suggest dishes that fit your "
-          "kitchen — not someone else's.",
+          t.onboarding.welcome.body,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 34),
-        const _Note(
+        _Note(
           icon: Icons.public_rounded,
-          title: 'Cuisines you love',
-          body: 'The flavours you reach for on a normal week.',
+          title: t.onboarding.welcome.cuisineTitle,
+          body: t.onboarding.welcome.cuisineBody,
         ),
-        const _Note(
+        _Note(
           icon: Icons.no_food_outlined,
-          title: 'Anything you avoid',
-          body: 'Allergies and diets we should always respect.',
+          title: t.onboarding.welcome.dietTitle,
+          body: t.onboarding.welcome.dietBody,
         ),
-        const _Note(
+        _Note(
           icon: Icons.schedule_rounded,
-          title: 'The time you have',
-          body: 'Tuesday dinner looks different from a Sunday project.',
+          title: t.onboarding.welcome.timeTitle,
+          body: t.onboarding.welcome.timeBody,
         ),
         const SizedBox(height: 28),
         Container(
@@ -225,7 +233,7 @@ class _WelcomeStep extends StatelessWidget {
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
-                  'About a minute, start to finish.',
+                  t.onboarding.welcome.duration,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.forest,
                     fontWeight: FontWeight.w500,
@@ -289,15 +297,15 @@ class _CuisinesStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _StepHeading(
-          eyebrow: 'Your taste',
-          title: 'What do you crave?',
-          body:
-              'Pick the cuisines you reach for most. Choose as many as '
-              'you like.',
+        _StepHeading(
+          eyebrow: t.onboarding.cuisines.eyebrow,
+          title: t.onboarding.cuisines.title,
+          body: t.onboarding.cuisines.body,
         ),
         const SizedBox(height: 26),
         Wrap(
@@ -307,7 +315,7 @@ class _CuisinesStep extends StatelessWidget {
             for (final cuisine in OnboardingOptions.cuisines)
               AppChoiceChip(
                 key: Key('cuisine-$cuisine'),
-                label: cuisine,
+                label: cuisineLabel(t, cuisine),
                 selected: state.cuisines.contains(cuisine),
                 onTap: () => controller.toggleCuisine(cuisine),
               ),
@@ -326,15 +334,15 @@ class _DietStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _StepHeading(
-          eyebrow: 'Your table',
-          title: 'Anything off the menu?',
-          body:
-              "Allergies, diets, or ingredients you'd rather skip. Pick "
-              'everything that applies.',
+        _StepHeading(
+          eyebrow: t.onboarding.diet.eyebrow,
+          title: t.onboarding.diet.title,
+          body: t.onboarding.diet.body,
         ),
         const SizedBox(height: 26),
         Wrap(
@@ -344,7 +352,7 @@ class _DietStep extends StatelessWidget {
             for (final restriction in OnboardingOptions.dietaryRestrictions)
               AppChoiceChip(
                 key: Key('diet-$restriction'),
-                label: restriction,
+                label: dietLabel(t, restriction),
                 selected: state.dietaryRestrictions.contains(restriction),
                 onTap: () => controller.toggleDietaryRestriction(restriction),
               ),
@@ -354,12 +362,12 @@ class _DietStep extends StatelessWidget {
         Container(height: 1, color: AppColors.line),
         const SizedBox(height: 26),
         Text(
-          'What are you into?',
+          t.onboarding.diet.interestsTitle,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: 6),
         Text(
-          'Optional — it helps us tune the suggestions.',
+          t.onboarding.diet.interestsBody,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 16),
@@ -370,7 +378,7 @@ class _DietStep extends StatelessWidget {
             for (final interest in OnboardingOptions.interests)
               AppChoiceChip(
                 key: Key('interest-$interest'),
-                label: interest,
+                label: interestLabel(t, interest),
                 selected: state.interests.contains(interest),
                 onTap: () => controller.toggleInterest(interest),
               ),
@@ -389,15 +397,15 @@ class _RhythmStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _StepHeading(
-          eyebrow: 'Your rhythm',
-          title: 'How do you like to cook?',
-          body:
-              'We use this to choose techniques and recipes that feel '
-              'right for you.',
+        _StepHeading(
+          eyebrow: t.onboarding.rhythm.eyebrow,
+          title: t.onboarding.rhythm.title,
+          body: t.onboarding.rhythm.body,
         ),
         const SizedBox(height: 22),
         for (final level in SkillLevel.values) ...[
@@ -411,12 +419,12 @@ class _RhythmStep extends StatelessWidget {
         ],
         const SizedBox(height: 22),
         Text(
-          'Time on a usual night',
+          t.onboarding.rhythm.timeTitle,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: 6),
         Text(
-          'Leave it unset if it changes day to day.',
+          t.onboarding.rhythm.timeBody,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 14),
@@ -427,7 +435,7 @@ class _RhythmStep extends StatelessWidget {
             for (final minutes in OnboardingOptions.cookTimes)
               AppChoiceChip(
                 key: Key('time-$minutes'),
-                label: OnboardingOptions.cookTimeLabel(minutes),
+                label: cookTimeLabel(t, minutes),
                 selected: state.cookTimeMinutes == minutes,
                 onTap: () => controller.toggleCookTime(minutes),
               ),
@@ -452,10 +460,12 @@ class _SkillOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Semantics(
       button: true,
       selected: selected,
-      label: '${level.label}. ${level.description}',
+      label: '${level.label(t)}. ${level.description(t)}',
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -499,12 +509,12 @@ class _SkillOption extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        level.label,
+                        level.label(t),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        level.description,
+                        level.description(t),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -526,15 +536,18 @@ class _DoneStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     final cuisines = state.cuisines.isEmpty
-        ? 'Open to anything'
-        : state.cuisines.join(', ');
+        ? t.onboarding.done.openToAnything
+        : state.cuisines.map((value) => cuisineLabel(t, value)).join(', ');
     final diet = state.dietaryRestrictions.isEmpty
-        ? 'No restrictions'
-        : state.dietaryRestrictions.join(', ');
+        ? t.onboarding.done.noRestrictions
+        : state.dietaryRestrictions
+              .map((value) => dietLabel(t, value))
+              .join(', ');
     final time = state.cookTimeMinutes == null
-        ? 'No set time'
-        : OnboardingOptions.cookTimeLabel(state.cookTimeMinutes!);
+        ? t.onboarding.done.noTime
+        : cookTimeLabel(t, state.cookTimeMinutes!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -555,12 +568,12 @@ class _DoneStep extends StatelessWidget {
         ),
         const SizedBox(height: 22),
         Text(
-          'Your kitchen is ready.',
+          t.onboarding.done.title,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         const SizedBox(height: 12),
         Text(
-          "Here's what we'll cook with. You can change any of it later.",
+          t.onboarding.done.body,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 28),
@@ -573,17 +586,27 @@ class _DoneStep extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _SummaryRow(label: 'Cuisines', value: cuisines),
-              _SummaryRow(label: 'Diet', value: diet),
-              _SummaryRow(label: 'Skill', value: state.skillLevel.label),
-              _SummaryRow(label: 'Usual time', value: time, isLast: true),
+              _SummaryRow(
+                label: t.onboarding.done.summaryCuisines,
+                value: cuisines,
+              ),
+              _SummaryRow(label: t.onboarding.done.summaryDiet, value: diet),
+              _SummaryRow(
+                label: t.onboarding.done.summarySkill,
+                value: state.skillLevel.label(t),
+              ),
+              _SummaryRow(
+                label: t.onboarding.done.summaryTime,
+                value: time,
+                isLast: true,
+              ),
             ],
           ),
         ),
         if (state.interests.isNotEmpty) ...[
           const SizedBox(height: 20),
           Text(
-            'Also into',
+            t.onboarding.done.alsoInto,
             style: Theme.of(
               context,
             ).textTheme.labelSmall?.copyWith(color: AppColors.spice),
@@ -604,7 +627,7 @@ class _DoneStep extends StatelessWidget {
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
-                    interest,
+                    interestLabel(t, interest),
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: AppColors.forest),
@@ -674,12 +697,13 @@ class _WizardFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     final isLast = state.isLastStep;
     final label = state.isFirstStep
-        ? 'Begin'
+        ? t.onboarding.footer.begin
         : isLast
-        ? 'Finish setup'
-        : 'Continue';
+        ? t.onboarding.footer.finish
+        : t.onboarding.footer.next;
 
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
@@ -700,7 +724,7 @@ class _WizardFooter extends StatelessWidget {
                 TextButton(
                   key: const Key('onboarding-back'),
                   onPressed: state.isSaving ? null : controller.back,
-                  child: const Text('Back'),
+                  child: Text(t.common.back),
                 ),
                 const SizedBox(width: 10),
               ],
@@ -717,16 +741,16 @@ class _WizardFooter extends StatelessWidget {
                           }
                         },
                   child: state.isSaving
-                      ? const Row(
+                      ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox.square(
+                            const SizedBox.square(
                               dimension: 18,
                               child: CircularProgressIndicator(strokeWidth: 2),
                             ),
-                            SizedBox(width: 10),
-                            Text('Saving…'),
+                            const SizedBox(width: 10),
+                            Text(t.onboarding.footer.saving),
                           ],
                         )
                       : Text(label),
