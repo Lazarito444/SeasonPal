@@ -1,4 +1,4 @@
-package com.seasonpal.seasonpal
+package dev.lazarito.seasonpal
 
 import io.flutter.embedding.android.FlutterActivity
 
