@@ -9,7 +9,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 - [x] Stage 1 — Data model & migrations
 - [x] Stage 2 — Auth, onboarding & preferences
 - [x] Stage 3 — Recipes API: CRUD, saving & collections
-- [ ] Stage 4 — Flutter library: auth, collection & recipe editor screens
+- [x] Stage 4 — Flutter library: auth, collection & recipe editor screens
 - [ ] Stage 5 — Discovery: browse, search, filters, home feed
 - [ ] Stage 6 — Seed content & demo data
 - [ ] Stage 7 — AI cooking companion v1
@@ -80,6 +80,10 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 - Design system starts here: define color tokens (forest green palette per PRODUCT.md), typography scale, recipe card component. Use the `frontend-design` skill for this screen set.
 
 **Acceptance:** user can create → photo → save → close → reopen → edit a recipe through real API; offline-ish states show loading/empty/error patterns per screen.
+
+**Delivered:** five-tab shell; Mine/Saved library with paginated cards and loading/empty/error states; seven-section create/edit form with ingredient and step reordering, photo/video uploads, title-only drafts, and publish-on-save; recipe detail with owner edit, publish/unpublish, delete, and save-to-collection; collections list/detail with creation and removal; forest/cream/sage tokens and a shared recipe card. The acceptance flow was exercised end to end on a Pixel 9a emulator against the live API: create → cover upload → publish → close → reopen → edit. 23 Flutter tests (18 widget, 5 model parsing) green.
+
+**Known gaps:** Discover, AI Cook, and Profile remain explicit "coming next" placeholders until Stages 5, 7, and 10; collection rename exists in the API but has no UI yet; HEIC photos are rejected (JPEG/PNG/WebP/GIF and MP4/MOV only); iOS was not exercised (no macOS host).
 
 ## Stage 5 — Discovery: browse, search, filters
 

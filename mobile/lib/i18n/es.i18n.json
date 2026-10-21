@@ -5,6 +5,9 @@
   },
   "common": {
     "back": "Atrás",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "dismiss": "Cerrar",
     "tryAgain": "Intentar de nuevo",
     "showPassword": "Mostrar contraseña",
     "hidePassword": "Ocultar contraseña"
@@ -18,7 +21,9 @@
     "rateLimited": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
     "server": "Algo falló de nuestro lado. Inténtalo de nuevo.",
     "invalidCredentials": "El correo o la contraseña no son correctos.",
-    "emailTaken": "Ya existe una cuenta con ese correo."
+    "emailTaken": "Ya existe una cuenta con ese correo.",
+    "publishIncomplete": "Añade al menos un ingrediente y un paso antes de publicar.",
+    "collectionNameTaken": "Ya tienes una colección con ese nombre."
   },
   "auth": {
     "login": {
@@ -43,12 +48,13 @@
       "nameTooLong": "Mantén tu nombre en 80 caracteres.",
       "email": "Correo electrónico",
       "password": "Contraseña",
-      "passwordHelper": "Al menos 8 caracteres.",
+      "passwordHelper": "8+ caracteres con mayúsculas, minúsculas, un número y un símbolo.",
       "submit": "Crear cuenta",
       "emailRequired": "Escribe tu correo.",
       "emailInvalid": "Escribe un correo válido.",
       "passwordRequired": "Elige una contraseña.",
-      "passwordTooShort": "Usa al menos 8 caracteres."
+      "passwordTooShort": "Usa al menos 8 caracteres.",
+      "passwordTooWeak": "Añade mayúsculas, minúsculas, un número y un símbolo."
     },
     "splash": {
       "restoreFailed": "No pudimos restaurar tu sesión.",
@@ -204,10 +210,237 @@
       "dietOne": "Cocinando con una dieta {restriction}.",
       "dietMany": "Cocinando con una dieta {leading} y {last}."
     },
-    "comingNext": {
-      "eyebrow": "LO QUE VIENE",
-      "title": "Tu biblioteca de recetas.",
-      "body": "Las recetas guardadas, las colecciones y el modo cocina están en camino."
+    "library": {
+      "eyebrow": "TUS RECETAS",
+      "title": "Tu recetario.",
+      "body": "Tus platos guardados, tus colecciones y tus propias recetas, listos cuando tú lo estés.",
+      "action": "Abrir mis recetas"
+    }
+  },
+  "navigation": {
+    "home": "Inicio",
+    "discover": "Descubrir",
+    "aiCook": "Cocina IA",
+    "myRecipes": "Mis recetas",
+    "profile": "Perfil"
+  },
+  "comingSoon": {
+    "badge": "PRÓXIMAMENTE",
+    "discover": {
+      "eyebrow": "DESCUBRIR",
+      "title": "Una mesa más amplia.",
+      "body": "La búsqueda, los filtros por cocina y las recetas de otras personas llegan en la próxima etapa. Tu recetario ya está listo."
+    },
+    "aiCook": {
+      "eyebrow": "COCINA IA",
+      "title": "Un sous-chef, pronto.",
+      "body": "Pregunta por sustituciones, planifica con lo que hay en la despensa y adapta recetas. Las claves se quedan en el servidor, nunca en la app."
+    },
+    "profile": {
+      "eyebrow": "PERFIL",
+      "title": "Tu rincón.",
+      "body": "Tus preferencias, recetas publicadas y ajustes de cuenta vivirán aquí. Por ahora, cerrar sesión y el idioma siguen en Inicio."
+    }
+  },
+  "recipes": {
+    "mealTypes": {
+      "unspecified": "Cualquier momento",
+      "breakfast": "Desayuno",
+      "lunch": "Almuerzo",
+      "dinner": "Cena",
+      "snack": "Tentempié",
+      "dessert": "Postre",
+      "drink": "Bebida"
+    },
+    "difficulty": {
+      "easy": "Fácil",
+      "medium": "Media",
+      "hard": "Difícil"
+    },
+    "library": {
+      "eyebrow": "TU COCINA",
+      "title": "Mis recetas",
+      "subtitle": "Lo que has escrito y lo que has guardado, en un mismo sitio.",
+      "newRecipe": "Nueva receta",
+      "collections": "Colecciones",
+      "mine": "Mías",
+      "saved": "Guardadas",
+      "loading": "Abriendo tu recetario…",
+      "loadError": "No pudimos cargar tus recetas.",
+      "loadMoreError": "No pudimos cargar más recetas.",
+      "emptyOwnTitle": "Tu primera receta empieza aquí.",
+      "emptyOwnBody": "Apunta un plato que ya cocinas. Las fotos y los pasos pueden llegar después.",
+      "emptySavedTitle": "Aún no has guardado nada.",
+      "emptySavedBody": "Pulsa Guardar en cualquier receta y aparecerá aquí para otra noche.",
+      "draft": "BORRADOR",
+      "ai": "IA",
+      "minutes": "{count} min",
+      "seconds": "{count} s",
+      "servings": "Para {count}",
+      "servingsOne": "Para 1"
+    },
+    "detail": {
+      "by": "Por {name}",
+      "ingredients": "Ingredientes",
+      "method": "Elaboración",
+      "media": "Fotos y vídeo",
+      "tags": "Etiquetas",
+      "save": "Guardar receta",
+      "saved": "Guardada",
+      "savedMessage": "Guardada en tu biblioteca.",
+      "unsavedMessage": "Quitada de tu biblioteca.",
+      "noIngredients": "Todavía no hay ingredientes.",
+      "noSteps": "Todavía no hay pasos escritos.",
+      "aiNote": "Hecha con IA: léela antes de cocinar.",
+      "video": "Vídeo",
+      "publishedBadge": "PÚBLICA",
+      "edit": "Editar receta",
+      "publish": "Publicar receta",
+      "unpublish": "Hacer privada",
+      "delete": "Eliminar receta",
+      "more": "Acciones de la receta",
+      "deleteTitle": "¿Eliminar esta receta?",
+      "deleteBody": "Saldrá de tu biblioteca y de todas tus colecciones. No se puede deshacer.",
+      "loadError": "No pudimos cargar esta receta.",
+      "notFoundTitle": "Esta receta no está aquí.",
+      "notFoundBody": "Puede que se haya eliminado o se haya hecho privada.",
+      "actionError": "No funcionó. Inténtalo de nuevo.",
+      "published": "Receta publicada.",
+      "unpublished": "La receta vuelve a ser privada."
+    },
+    "saveSheet": {
+      "title": "Guardar en una colección",
+      "favoritesBody": "Al guardar, la receta siempre entra en Favoritos.",
+      "favorites": "Guardar en favoritos",
+      "savedStatus": "Guardada en tu biblioteca.",
+      "unsave": "Quitar",
+      "collections": "AÑADIR A UNA COLECCIÓN",
+      "collectionsError": "No pudimos cargar tus colecciones.",
+      "noCollections": "Aún no hay colecciones. Crea una abajo.",
+      "newCollection": "Nueva colección",
+      "createTitle": "Ponle nombre a la colección",
+      "nameLabel": "Nombre de la colección",
+      "nameHint": "Cenas de entre semana, domingo de horno…",
+      "nameRequired": "Ponle nombre a la colección.",
+      "create": "Crear",
+      "createError": "No pudimos crear la colección. Inténtalo de nuevo.",
+      "saveError": "No pudimos guardar la receta. Inténtalo de nuevo."
+    },
+    "collections": {
+      "eyebrow": "TU COCINA",
+      "title": "Colecciones",
+      "subtitle": "Agrupa recetas para una noche, una temporada o una mesa.",
+      "newCollection": "Nueva colección",
+      "loadError": "No pudimos cargar tus colecciones.",
+      "count": "{count} recetas",
+      "countOne": "1 receta",
+      "favorites": "Favoritos",
+      "emptyTitle": "Aún no hay colecciones.",
+      "emptyBody": "Agrupa recetas para una noche, una temporada o una cena con gente.",
+      "emptyCollection": "Esta colección está vacía.",
+      "emptyCollectionBody": "Guarda una receta en ella desde su página.",
+      "remove": "Quitar",
+      "removeTitle": "¿Quitar esta receta?",
+      "removeBody": "Sigue en tu biblioteca guardada.",
+      "removeError": "No pudimos quitar la receta. Inténtalo de nuevo.",
+      "delete": "Eliminar colección",
+      "deleteTitle": "¿Eliminar esta colección?",
+      "deleteBody": "Las recetas siguen en tu biblioteca; solo desaparece la colección.",
+      "deleteError": "No pudimos eliminar la colección. Inténtalo de nuevo."
+    },
+    "editor": {
+      "newEyebrow": "UN PLATO NUEVO",
+      "newTitle": "Ponlo por escrito.",
+      "newBody": "Siete secciones cortas. Puedes guardar un borrador en cualquier momento: solo hace falta el nombre.",
+      "editEyebrow": "EDITANDO",
+      "editTitle": "Afina el plato.",
+      "editBody": "Cambia lo que quieras. La publicación se queda como estaba salvo que publiques al guardar.",
+      "save": "Guardar receta",
+      "saving": "Guardando…",
+      "saveAndPublish": "Guardar y publicar",
+      "saveError": "No pudimos guardar la receta. Inténtalo de nuevo.",
+      "loadError": "No pudimos cargar esta receta para editarla.",
+      "basics": {
+        "eyebrow": "LO BÁSICO",
+        "title": "Lo básico",
+        "name": "Nombre de la receta",
+        "nameHint": "Pollo asado con limón y tomillo",
+        "nameRequired": "Ponle nombre a la receta.",
+        "description": "Descripción",
+        "descriptionHint": "Qué es y por qué lo cocinas."
+      },
+      "plate": {
+        "eyebrow": "EL PLATO",
+        "title": "Cómo se come",
+        "cuisine": "Cocina",
+        "cuisineHint": "Italiana, tailandesa, levantina…",
+        "meal": "Comida"
+      },
+      "time": {
+        "eyebrow": "TIEMPO",
+        "title": "Tiempo al fuego",
+        "prep": "Preparación (min)",
+        "cook": "Cocción (min)",
+        "servings": "Raciones",
+        "difficulty": "Dificultad",
+        "invalid": "Usa minutos enteros entre 0 y 1440."
+      },
+      "photos": {
+        "eyebrow": "FOTOS",
+        "title": "Muestra el plato",
+        "chooseCover": "Elegir portada",
+        "changeCover": "Cambiar portada",
+        "removeCover": "Quitar portada",
+        "more": "Más fotos y vídeo",
+        "addPhoto": "Añadir foto",
+        "addVideo": "Añadir vídeo",
+        "uploading": "Subiendo…",
+        "uploadError": "No se pudo subir. Inténtalo de nuevo.",
+        "tooLarge": "El archivo es demasiado grande. Las fotos admiten 10 MB y el vídeo 24 MB.",
+        "tooMany": "Una receta puede tener hasta 20 fotos y vídeos.",
+        "unsupported": "Elige un archivo JPEG, PNG, WebP, GIF, MP4 o MOV."
+      },
+      "ingredients": {
+        "eyebrow": "INGREDIENTES",
+        "title": "Qué lleva",
+        "quantity": "Cant.",
+        "unit": "Unidad",
+        "name": "Ingrediente",
+        "note": "Nota (opcional)",
+        "add": "Añadir ingrediente",
+        "remove": "Quitar ingrediente",
+        "moveUp": "Subir",
+        "moveDown": "Bajar",
+        "nameRequired": "Pon nombre a cada ingrediente que rellenes.",
+        "quantityInvalid": "Las cantidades deben ser cero o más."
+      },
+      "steps": {
+        "eyebrow": "ELABORACIÓN",
+        "title": "Cómo se cocina",
+        "instruction": "Paso",
+        "tip": "Consejo (opcional)",
+        "timer": "Temporizador (min, opcional)",
+        "add": "Añadir paso",
+        "remove": "Quitar paso",
+        "instructionRequired": "Escribe cada paso que rellenes.",
+        "timerInvalid": "El temporizador necesita minutos enteros entre 1 y 1440."
+      },
+      "tags": {
+        "eyebrow": "DETALLES",
+        "title": "Un poco más",
+        "body": "Las etiquetas te ayudan a encontrar la receta después. Las dietéticas las ve cualquiera que pueda verla.",
+        "tags": "Etiquetas",
+        "tagsHint": "Entre semana, una sartén…",
+        "dietaryTags": "Etiquetas dietéticas",
+        "dietaryHint": "Vegetariano, sin gluten…",
+        "add": "Añadir etiqueta"
+      },
+      "publish": {
+        "label": "Publicar al guardar",
+        "body": "Las recetas publicadas pueden aparecer en Descubrir. Puedes hacerla privada cuando quieras.",
+        "incomplete": "Añade al menos un ingrediente y un paso antes de publicar.",
+        "failed": "La receta se guardó, pero no se pudo publicar. Inténtalo desde la página de la receta."
+      }
     }
   }
 }

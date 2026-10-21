@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:seasonpal/core/l10n/locale_controller.dart';
+import 'package:seasonpal/core/router/app_router.dart';
 import 'package:seasonpal/core/theme/app_colors.dart';
 import 'package:seasonpal/core/widgets/app_backdrop.dart';
 import 'package:seasonpal/core/widgets/brand_mark.dart';
@@ -97,7 +99,7 @@ class HomeScreen extends ConsumerWidget {
                       const SizedBox(height: 32),
                       _TasteCard(preferences: preferences),
                       const SizedBox(height: 20),
-                      const _ComingNextCard(),
+                      const _LibraryCard(),
                     ],
                   ),
                 ),
@@ -263,8 +265,8 @@ class _TasteError extends StatelessWidget {
   }
 }
 
-class _ComingNextCard extends StatelessWidget {
-  const _ComingNextCard();
+class _LibraryCard extends StatelessWidget {
+  const _LibraryCard();
 
   @override
   Widget build(BuildContext context) {
@@ -283,7 +285,7 @@ class _ComingNextCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                t.home.comingNext.eyebrow,
+                t.home.library.eyebrow,
                 style: Theme.of(
                   context,
                 ).textTheme.labelSmall?.copyWith(color: AppColors.forest),
@@ -298,17 +300,24 @@ class _ComingNextCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            t.home.comingNext.title,
+            t.home.library.title,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(color: AppColors.forest),
           ),
           const SizedBox(height: 6),
           Text(
-            t.home.comingNext.body,
+            t.home.library.body,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.forest.withValues(alpha: 0.8),
             ),
+          ),
+          const SizedBox(height: 14),
+          FilledButton.tonalIcon(
+            key: const Key('home-open-library'),
+            onPressed: () => context.goNamed(AppRoutes.libraryName),
+            icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+            label: Text(t.home.library.action),
           ),
         ],
       ),

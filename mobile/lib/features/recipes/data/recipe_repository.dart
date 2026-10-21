@@ -39,6 +39,10 @@ abstract interface class RecipeRepository {
 
   Future<void> unsave(String id);
 
+  Future<void> publish(String id);
+
+  Future<void> unpublish(String id);
+
   Future<MediaUpload> upload(UploadCandidate candidate);
 
   Future<Paged<CollectionSummary>> listCollections({
@@ -50,6 +54,14 @@ abstract interface class RecipeRepository {
     required String name,
     String? description,
   });
+
+  Future<CollectionSummary> updateCollection(
+    String id, {
+    required String name,
+    String? description,
+  });
+
+  Future<void> deleteCollection(String id);
 
   Future<CollectionDetail> getCollection(
     String id, {
@@ -116,6 +128,16 @@ final class ApiRecipeRepository implements RecipeRepository {
   }
 
   @override
+  Future<void> publish(String id) async {
+    await _send(() => _dio.post<void>('/recipes/$id/publish'));
+  }
+
+  @override
+  Future<void> unpublish(String id) async {
+    await _send(() => _dio.post<void>('/recipes/$id/unpublish'));
+  }
+
+  @override
   Future<MediaUpload> upload(UploadCandidate candidate) async {
     final form = FormData.fromMap({
       'file': await MultipartFile.fromFile(
@@ -149,6 +171,26 @@ final class ApiRecipeRepository implements RecipeRepository {
       ),
     );
     return CollectionSummary.fromJson(_map(response.data));
+  }
+
+  @override
+  Future<CollectionSummary> updateCollection(
+    String id, {
+    required String name,
+    String? description,
+  }) async {
+    final response = await _send(
+      () => _dio.put<Object?>(
+        '/collections/$id',
+        data: {'name': name, 'description': description},
+      ),
+    );
+    return CollectionSummary.fromJson(_map(response.data));
+  }
+
+  @override
+  Future<void> deleteCollection(String id) async {
+    await _send(() => _dio.delete<void>('/collections/$id'));
   }
 
   @override

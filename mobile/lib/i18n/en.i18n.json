@@ -5,6 +5,9 @@
   },
   "common": {
     "back": "Back",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "dismiss": "Dismiss",
     "tryAgain": "Try again",
     "showPassword": "Show password",
     "hidePassword": "Hide password"
@@ -18,7 +21,9 @@
     "rateLimited": "Too many attempts. Wait a moment and try again.",
     "server": "Something went wrong on our side. Try again.",
     "invalidCredentials": "Email or password is incorrect.",
-    "emailTaken": "That account already exists."
+    "emailTaken": "That account already exists.",
+    "publishIncomplete": "Add at least one ingredient and one step before publishing.",
+    "collectionNameTaken": "You already have a collection with that name."
   },
   "auth": {
     "login": {
@@ -43,12 +48,13 @@
       "nameTooLong": "Keep your name to 80 characters.",
       "email": "Email",
       "password": "Password",
-      "passwordHelper": "At least 8 characters.",
+      "passwordHelper": "8+ characters with upper and lower case, a number, and a symbol.",
       "submit": "Create account",
       "emailRequired": "Enter your email.",
       "emailInvalid": "Enter a valid email address.",
       "passwordRequired": "Choose a password.",
-      "passwordTooShort": "Use at least 8 characters."
+      "passwordTooShort": "Use at least 8 characters.",
+      "passwordTooWeak": "Add upper and lower case, a number, and a symbol."
     },
     "splash": {
       "restoreFailed": "Could not restore your session.",
@@ -204,10 +210,237 @@
       "dietOne": "Cooking around {restriction}.",
       "dietMany": "Cooking around {leading} and {last}."
     },
-    "comingNext": {
-      "eyebrow": "COMING NEXT",
+    "library": {
+      "eyebrow": "YOUR RECIPES",
       "title": "Your recipe library.",
-      "body": "Saved recipes, collections, and a cooking view are on the way."
+      "body": "Saved dishes, collections, and your own recipes are ready when you are.",
+      "action": "Open my recipes"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "discover": "Discover",
+    "aiCook": "AI Cook",
+    "myRecipes": "My Recipes",
+    "profile": "Profile"
+  },
+  "comingSoon": {
+    "badge": "PLANNED",
+    "discover": {
+      "eyebrow": "DISCOVER",
+      "title": "A wider table.",
+      "body": "Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now."
+    },
+    "aiCook": {
+      "eyebrow": "AI COOK",
+      "title": "A sous-chef, soon.",
+      "body": "Ask about substitutions, plan from what is in the pantry, and adapt recipes. Keys stay on the server, never in the app."
+    },
+    "profile": {
+      "eyebrow": "PROFILE",
+      "title": "Your corner.",
+      "body": "Preferences, published recipes, and account settings will live here. Sign-out and language stay on Home for now."
+    }
+  },
+  "recipes": {
+    "mealTypes": {
+      "unspecified": "Any time",
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snack": "Snack",
+      "dessert": "Dessert",
+      "drink": "Drink"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "library": {
+      "eyebrow": "YOUR KITCHEN",
+      "title": "My recipes",
+      "subtitle": "What you have written and what you have saved, in one place.",
+      "newRecipe": "New recipe",
+      "collections": "Collections",
+      "mine": "Mine",
+      "saved": "Saved",
+      "loading": "Opening your library…",
+      "loadError": "We couldn't load your recipes.",
+      "loadMoreError": "Couldn't load more recipes.",
+      "emptyOwnTitle": "Your first recipe starts here.",
+      "emptyOwnBody": "Write down a dish you already cook. Photos and steps can come as you go.",
+      "emptySavedTitle": "Nothing saved yet.",
+      "emptySavedBody": "Tap Save on any recipe and it lands here, ready for another night.",
+      "draft": "DRAFT",
+      "ai": "AI",
+      "minutes": "{count} min",
+      "seconds": "{count}s",
+      "servings": "Serves {count}",
+      "servingsOne": "Serves 1"
+    },
+    "detail": {
+      "by": "By {name}",
+      "ingredients": "Ingredients",
+      "method": "Method",
+      "media": "Photos & video",
+      "tags": "Tags",
+      "save": "Save recipe",
+      "saved": "Saved",
+      "savedMessage": "Saved to your library.",
+      "unsavedMessage": "Removed from your library.",
+      "noIngredients": "No ingredients listed yet.",
+      "noSteps": "No steps written yet.",
+      "aiNote": "Made with AI — read it through before you cook.",
+      "video": "Video",
+      "publishedBadge": "PUBLIC",
+      "edit": "Edit recipe",
+      "publish": "Publish recipe",
+      "unpublish": "Make private",
+      "delete": "Delete recipe",
+      "more": "Recipe actions",
+      "deleteTitle": "Delete this recipe?",
+      "deleteBody": "It leaves your library and any collections. This can't be undone.",
+      "loadError": "We couldn't load this recipe.",
+      "notFoundTitle": "This recipe isn't here.",
+      "notFoundBody": "It may have been deleted or kept private.",
+      "actionError": "That didn't work. Try again.",
+      "published": "Recipe published.",
+      "unpublished": "Recipe is private again."
+    },
+    "saveSheet": {
+      "title": "Save to a collection",
+      "favoritesBody": "Saving always adds the recipe to Favorites.",
+      "favorites": "Save to favorites",
+      "savedStatus": "Saved to your library.",
+      "unsave": "Remove",
+      "collections": "ADD TO A COLLECTION",
+      "collectionsError": "We couldn't load your collections.",
+      "noCollections": "No collections yet. Create one below.",
+      "newCollection": "New collection",
+      "createTitle": "Name the collection",
+      "nameLabel": "Collection name",
+      "nameHint": "Weeknight dinners, Sunday baking…",
+      "nameRequired": "Give the collection a name.",
+      "create": "Create",
+      "createError": "Could not create the collection. Try again.",
+      "saveError": "Could not save the recipe. Try again."
+    },
+    "collections": {
+      "eyebrow": "YOUR KITCHEN",
+      "title": "Collections",
+      "subtitle": "Group recipes for a weeknight, a season, or a table.",
+      "newCollection": "New collection",
+      "loadError": "We couldn't load your collections.",
+      "count": "{count} recipes",
+      "countOne": "1 recipe",
+      "favorites": "Favorites",
+      "emptyTitle": "No collections yet.",
+      "emptyBody": "Group recipes for a weeknight, a season, or a dinner party.",
+      "emptyCollection": "This collection is empty.",
+      "emptyCollectionBody": "Save a recipe to this collection from its page.",
+      "remove": "Remove",
+      "removeTitle": "Remove this recipe?",
+      "removeBody": "It stays in your saved library.",
+      "removeError": "Could not remove the recipe. Try again.",
+      "delete": "Delete collection",
+      "deleteTitle": "Delete this collection?",
+      "deleteBody": "The recipes stay in your library; only the collection goes away.",
+      "deleteError": "Could not delete the collection. Try again."
+    },
+    "editor": {
+      "newEyebrow": "A NEW DISH",
+      "newTitle": "Write it down.",
+      "newBody": "Seven short sections. Save a draft at any point — only the name is required.",
+      "editEyebrow": "EDITING",
+      "editTitle": "Refine the dish.",
+      "editBody": "Change what you like. Publication stays as it was unless you publish after saving.",
+      "save": "Save recipe",
+      "saving": "Saving…",
+      "saveAndPublish": "Save & publish",
+      "saveError": "Could not save the recipe. Try again.",
+      "loadError": "We couldn't load this recipe for editing.",
+      "basics": {
+        "eyebrow": "BASICS",
+        "title": "The basics",
+        "name": "Recipe name",
+        "nameHint": "Lemon and thyme roast chicken",
+        "nameRequired": "Give the recipe a name.",
+        "description": "Description",
+        "descriptionHint": "What it is, and why you make it."
+      },
+      "plate": {
+        "eyebrow": "THE PLATE",
+        "title": "How it eats",
+        "cuisine": "Cuisine",
+        "cuisineHint": "Italian, Thai, Levantine…",
+        "meal": "Meal"
+      },
+      "time": {
+        "eyebrow": "TIME",
+        "title": "Time at the stove",
+        "prep": "Prep (min)",
+        "cook": "Cook (min)",
+        "servings": "Servings",
+        "difficulty": "Difficulty",
+        "invalid": "Use whole minutes between 0 and 1440."
+      },
+      "photos": {
+        "eyebrow": "PHOTOS",
+        "title": "Show the dish",
+        "chooseCover": "Choose cover",
+        "changeCover": "Change cover",
+        "removeCover": "Remove cover",
+        "more": "More photos and video",
+        "addPhoto": "Add photo",
+        "addVideo": "Add video",
+        "uploading": "Uploading…",
+        "uploadError": "Upload failed. Try again.",
+        "tooLarge": "That file is too large. Photos max out at 10 MB, video at 24 MB.",
+        "tooMany": "A recipe can hold up to 20 photos and videos.",
+        "unsupported": "Choose a JPEG, PNG, WebP, GIF, MP4 or MOV file."
+      },
+      "ingredients": {
+        "eyebrow": "INGREDIENTS",
+        "title": "What goes in",
+        "quantity": "Qty",
+        "unit": "Unit",
+        "name": "Ingredient",
+        "note": "Note (optional)",
+        "add": "Add ingredient",
+        "remove": "Remove ingredient",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "nameRequired": "Name every ingredient you fill in.",
+        "quantityInvalid": "Quantities need to be zero or more."
+      },
+      "steps": {
+        "eyebrow": "METHOD",
+        "title": "How it cooks",
+        "instruction": "Step",
+        "tip": "Tip (optional)",
+        "timer": "Timer (min, optional)",
+        "add": "Add step",
+        "remove": "Remove step",
+        "instructionRequired": "Write every step you fill in.",
+        "timerInvalid": "Timers need whole minutes between 1 and 1440."
+      },
+      "tags": {
+        "eyebrow": "DETAILS",
+        "title": "A little more detail",
+        "body": "Tags help you find the recipe later. Dietary tags are shown to anyone who can see it.",
+        "tags": "Tags",
+        "tagsHint": "Weeknight, one-pan…",
+        "dietaryTags": "Dietary tags",
+        "dietaryHint": "Vegetarian, gluten-free…",
+        "add": "Add tag"
+      },
+      "publish": {
+        "label": "Publish after saving",
+        "body": "Published recipes can appear in Discover. You can make it private again at any time.",
+        "incomplete": "Add at least one ingredient and one step before publishing.",
+        "failed": "The recipe was saved, but publishing failed. Try again from the recipe page."
+      }
     }
   }
 }

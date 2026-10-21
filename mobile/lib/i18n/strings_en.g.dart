@@ -47,6 +47,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
 	late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
 	late final Translations$home$en home = Translations$home$en.internal(_root);
+	late final Translations$navigation$en navigation = Translations$navigation$en.internal(_root);
+	late final Translations$comingSoon$en comingSoon = Translations$comingSoon$en.internal(_root);
+	late final Translations$recipes$en recipes = Translations$recipes$en.internal(_root);
 }
 
 // Path: app
@@ -74,6 +77,15 @@ class Translations$common$en {
 
 	/// en: 'Back'
 	String get back => 'Back';
+
+	/// en: 'Cancel'
+	String get cancel => 'Cancel';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
+
+	/// en: 'Dismiss'
+	String get dismiss => 'Dismiss';
 
 	/// en: 'Try again'
 	String get tryAgain => 'Try again';
@@ -119,6 +131,12 @@ class Translations$errors$en {
 
 	/// en: 'That account already exists.'
 	String get emailTaken => 'That account already exists.';
+
+	/// en: 'Add at least one ingredient and one step before publishing.'
+	String get publishIncomplete => 'Add at least one ingredient and one step before publishing.';
+
+	/// en: 'You already have a collection with that name.'
+	String get collectionNameTaken => 'You already have a collection with that name.';
 }
 
 // Path: auth
@@ -177,7 +195,63 @@ class Translations$home$en {
 	String get whatCooking => 'What are we cooking today?';
 
 	late final Translations$home$taste$en taste = Translations$home$taste$en.internal(_root);
-	late final Translations$home$comingNext$en comingNext = Translations$home$comingNext$en.internal(_root);
+	late final Translations$home$library$en library = Translations$home$library$en.internal(_root);
+}
+
+// Path: navigation
+class Translations$navigation$en {
+	Translations$navigation$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Home'
+	String get home => 'Home';
+
+	/// en: 'Discover'
+	String get discover => 'Discover';
+
+	/// en: 'AI Cook'
+	String get aiCook => 'AI Cook';
+
+	/// en: 'My Recipes'
+	String get myRecipes => 'My Recipes';
+
+	/// en: 'Profile'
+	String get profile => 'Profile';
+}
+
+// Path: comingSoon
+class Translations$comingSoon$en {
+	Translations$comingSoon$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'PLANNED'
+	String get badge => 'PLANNED';
+
+	late final Translations$comingSoon$discover$en discover = Translations$comingSoon$discover$en.internal(_root);
+	late final Translations$comingSoon$aiCook$en aiCook = Translations$comingSoon$aiCook$en.internal(_root);
+	late final Translations$comingSoon$profile$en profile = Translations$comingSoon$profile$en.internal(_root);
+}
+
+// Path: recipes
+class Translations$recipes$en {
+	Translations$recipes$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$recipes$mealTypes$en mealTypes = Translations$recipes$mealTypes$en.internal(_root);
+	late final Translations$recipes$difficulty$en difficulty = Translations$recipes$difficulty$en.internal(_root);
+	late final Translations$recipes$library$en library = Translations$recipes$library$en.internal(_root);
+	late final Translations$recipes$detail$en detail = Translations$recipes$detail$en.internal(_root);
+	late final Translations$recipes$saveSheet$en saveSheet = Translations$recipes$saveSheet$en.internal(_root);
+	late final Translations$recipes$collections$en collections = Translations$recipes$collections$en.internal(_root);
+	late final Translations$recipes$editor$en editor = Translations$recipes$editor$en.internal(_root);
 }
 
 // Path: auth.login
@@ -254,8 +328,8 @@ class Translations$auth$register$en {
 	/// en: 'Password'
 	String get password => 'Password';
 
-	/// en: 'At least 8 characters.'
-	String get passwordHelper => 'At least 8 characters.';
+	/// en: '8+ characters with upper and lower case, a number, and a symbol.'
+	String get passwordHelper => '8+ characters with upper and lower case, a number, and a symbol.';
 
 	/// en: 'Create account'
 	String get submit => 'Create account';
@@ -271,6 +345,9 @@ class Translations$auth$register$en {
 
 	/// en: 'Use at least 8 characters.'
 	String get passwordTooShort => 'Use at least 8 characters.';
+
+	/// en: 'Add upper and lower case, a number, and a symbol.'
+	String get passwordTooWeak => 'Add upper and lower case, a number, and a symbol.';
 }
 
 // Path: auth.splash
@@ -576,22 +653,463 @@ class Translations$home$taste$en {
 	String dietMany({required Object leading, required Object last}) => 'Cooking around ${leading} and ${last}.';
 }
 
-// Path: home.comingNext
-class Translations$home$comingNext$en {
-	Translations$home$comingNext$en.internal(this._root);
+// Path: home.library
+class Translations$home$library$en {
+	Translations$home$library$en.internal(this._root);
 
 	final Translations _root; // ignore: unused_field
 
 	// Translations
 
-	/// en: 'COMING NEXT'
-	String get eyebrow => 'COMING NEXT';
+	/// en: 'YOUR RECIPES'
+	String get eyebrow => 'YOUR RECIPES';
 
 	/// en: 'Your recipe library.'
 	String get title => 'Your recipe library.';
 
-	/// en: 'Saved recipes, collections, and a cooking view are on the way.'
-	String get body => 'Saved recipes, collections, and a cooking view are on the way.';
+	/// en: 'Saved dishes, collections, and your own recipes are ready when you are.'
+	String get body => 'Saved dishes, collections, and your own recipes are ready when you are.';
+
+	/// en: 'Open my recipes'
+	String get action => 'Open my recipes';
+}
+
+// Path: comingSoon.discover
+class Translations$comingSoon$discover$en {
+	Translations$comingSoon$discover$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'DISCOVER'
+	String get eyebrow => 'DISCOVER';
+
+	/// en: 'A wider table.'
+	String get title => 'A wider table.';
+
+	/// en: 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.'
+	String get body => 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.';
+}
+
+// Path: comingSoon.aiCook
+class Translations$comingSoon$aiCook$en {
+	Translations$comingSoon$aiCook$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'AI COOK'
+	String get eyebrow => 'AI COOK';
+
+	/// en: 'A sous-chef, soon.'
+	String get title => 'A sous-chef, soon.';
+
+	/// en: 'Ask about substitutions, plan from what is in the pantry, and adapt recipes. Keys stay on the server, never in the app.'
+	String get body => 'Ask about substitutions, plan from what is in the pantry, and adapt recipes. Keys stay on the server, never in the app.';
+}
+
+// Path: comingSoon.profile
+class Translations$comingSoon$profile$en {
+	Translations$comingSoon$profile$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'PROFILE'
+	String get eyebrow => 'PROFILE';
+
+	/// en: 'Your corner.'
+	String get title => 'Your corner.';
+
+	/// en: 'Preferences, published recipes, and account settings will live here. Sign-out and language stay on Home for now.'
+	String get body => 'Preferences, published recipes, and account settings will live here. Sign-out and language stay on Home for now.';
+}
+
+// Path: recipes.mealTypes
+class Translations$recipes$mealTypes$en {
+	Translations$recipes$mealTypes$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Any time'
+	String get unspecified => 'Any time';
+
+	/// en: 'Breakfast'
+	String get breakfast => 'Breakfast';
+
+	/// en: 'Lunch'
+	String get lunch => 'Lunch';
+
+	/// en: 'Dinner'
+	String get dinner => 'Dinner';
+
+	/// en: 'Snack'
+	String get snack => 'Snack';
+
+	/// en: 'Dessert'
+	String get dessert => 'Dessert';
+
+	/// en: 'Drink'
+	String get drink => 'Drink';
+}
+
+// Path: recipes.difficulty
+class Translations$recipes$difficulty$en {
+	Translations$recipes$difficulty$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Easy'
+	String get easy => 'Easy';
+
+	/// en: 'Medium'
+	String get medium => 'Medium';
+
+	/// en: 'Hard'
+	String get hard => 'Hard';
+}
+
+// Path: recipes.library
+class Translations$recipes$library$en {
+	Translations$recipes$library$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'YOUR KITCHEN'
+	String get eyebrow => 'YOUR KITCHEN';
+
+	/// en: 'My recipes'
+	String get title => 'My recipes';
+
+	/// en: 'What you have written and what you have saved, in one place.'
+	String get subtitle => 'What you have written and what you have saved, in one place.';
+
+	/// en: 'New recipe'
+	String get newRecipe => 'New recipe';
+
+	/// en: 'Collections'
+	String get collections => 'Collections';
+
+	/// en: 'Mine'
+	String get mine => 'Mine';
+
+	/// en: 'Saved'
+	String get saved => 'Saved';
+
+	/// en: 'Opening your library…'
+	String get loading => 'Opening your library…';
+
+	/// en: 'We couldn't load your recipes.'
+	String get loadError => 'We couldn\'t load your recipes.';
+
+	/// en: 'Couldn't load more recipes.'
+	String get loadMoreError => 'Couldn\'t load more recipes.';
+
+	/// en: 'Your first recipe starts here.'
+	String get emptyOwnTitle => 'Your first recipe starts here.';
+
+	/// en: 'Write down a dish you already cook. Photos and steps can come as you go.'
+	String get emptyOwnBody => 'Write down a dish you already cook. Photos and steps can come as you go.';
+
+	/// en: 'Nothing saved yet.'
+	String get emptySavedTitle => 'Nothing saved yet.';
+
+	/// en: 'Tap Save on any recipe and it lands here, ready for another night.'
+	String get emptySavedBody => 'Tap Save on any recipe and it lands here, ready for another night.';
+
+	/// en: 'DRAFT'
+	String get draft => 'DRAFT';
+
+	/// en: 'AI'
+	String get ai => 'AI';
+
+	/// en: '{count} min'
+	String minutes({required Object count}) => '${count} min';
+
+	/// en: '{count}s'
+	String seconds({required Object count}) => '${count}s';
+
+	/// en: 'Serves {count}'
+	String servings({required Object count}) => 'Serves ${count}';
+
+	/// en: 'Serves 1'
+	String get servingsOne => 'Serves 1';
+}
+
+// Path: recipes.detail
+class Translations$recipes$detail$en {
+	Translations$recipes$detail$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'By {name}'
+	String by({required Object name}) => 'By ${name}';
+
+	/// en: 'Ingredients'
+	String get ingredients => 'Ingredients';
+
+	/// en: 'Method'
+	String get method => 'Method';
+
+	/// en: 'Photos & video'
+	String get media => 'Photos & video';
+
+	/// en: 'Tags'
+	String get tags => 'Tags';
+
+	/// en: 'Save recipe'
+	String get save => 'Save recipe';
+
+	/// en: 'Saved'
+	String get saved => 'Saved';
+
+	/// en: 'Saved to your library.'
+	String get savedMessage => 'Saved to your library.';
+
+	/// en: 'Removed from your library.'
+	String get unsavedMessage => 'Removed from your library.';
+
+	/// en: 'No ingredients listed yet.'
+	String get noIngredients => 'No ingredients listed yet.';
+
+	/// en: 'No steps written yet.'
+	String get noSteps => 'No steps written yet.';
+
+	/// en: 'Made with AI — read it through before you cook.'
+	String get aiNote => 'Made with AI — read it through before you cook.';
+
+	/// en: 'Video'
+	String get video => 'Video';
+
+	/// en: 'PUBLIC'
+	String get publishedBadge => 'PUBLIC';
+
+	/// en: 'Edit recipe'
+	String get edit => 'Edit recipe';
+
+	/// en: 'Publish recipe'
+	String get publish => 'Publish recipe';
+
+	/// en: 'Make private'
+	String get unpublish => 'Make private';
+
+	/// en: 'Delete recipe'
+	String get delete => 'Delete recipe';
+
+	/// en: 'Recipe actions'
+	String get more => 'Recipe actions';
+
+	/// en: 'Delete this recipe?'
+	String get deleteTitle => 'Delete this recipe?';
+
+	/// en: 'It leaves your library and any collections. This can't be undone.'
+	String get deleteBody => 'It leaves your library and any collections. This can\'t be undone.';
+
+	/// en: 'We couldn't load this recipe.'
+	String get loadError => 'We couldn\'t load this recipe.';
+
+	/// en: 'This recipe isn't here.'
+	String get notFoundTitle => 'This recipe isn\'t here.';
+
+	/// en: 'It may have been deleted or kept private.'
+	String get notFoundBody => 'It may have been deleted or kept private.';
+
+	/// en: 'That didn't work. Try again.'
+	String get actionError => 'That didn\'t work. Try again.';
+
+	/// en: 'Recipe published.'
+	String get published => 'Recipe published.';
+
+	/// en: 'Recipe is private again.'
+	String get unpublished => 'Recipe is private again.';
+}
+
+// Path: recipes.saveSheet
+class Translations$recipes$saveSheet$en {
+	Translations$recipes$saveSheet$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Save to a collection'
+	String get title => 'Save to a collection';
+
+	/// en: 'Saving always adds the recipe to Favorites.'
+	String get favoritesBody => 'Saving always adds the recipe to Favorites.';
+
+	/// en: 'Save to favorites'
+	String get favorites => 'Save to favorites';
+
+	/// en: 'Saved to your library.'
+	String get savedStatus => 'Saved to your library.';
+
+	/// en: 'Remove'
+	String get unsave => 'Remove';
+
+	/// en: 'ADD TO A COLLECTION'
+	String get collections => 'ADD TO A COLLECTION';
+
+	/// en: 'We couldn't load your collections.'
+	String get collectionsError => 'We couldn\'t load your collections.';
+
+	/// en: 'No collections yet. Create one below.'
+	String get noCollections => 'No collections yet. Create one below.';
+
+	/// en: 'New collection'
+	String get newCollection => 'New collection';
+
+	/// en: 'Name the collection'
+	String get createTitle => 'Name the collection';
+
+	/// en: 'Collection name'
+	String get nameLabel => 'Collection name';
+
+	/// en: 'Weeknight dinners, Sunday baking…'
+	String get nameHint => 'Weeknight dinners, Sunday baking…';
+
+	/// en: 'Give the collection a name.'
+	String get nameRequired => 'Give the collection a name.';
+
+	/// en: 'Create'
+	String get create => 'Create';
+
+	/// en: 'Could not create the collection. Try again.'
+	String get createError => 'Could not create the collection. Try again.';
+
+	/// en: 'Could not save the recipe. Try again.'
+	String get saveError => 'Could not save the recipe. Try again.';
+}
+
+// Path: recipes.collections
+class Translations$recipes$collections$en {
+	Translations$recipes$collections$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'YOUR KITCHEN'
+	String get eyebrow => 'YOUR KITCHEN';
+
+	/// en: 'Collections'
+	String get title => 'Collections';
+
+	/// en: 'Group recipes for a weeknight, a season, or a table.'
+	String get subtitle => 'Group recipes for a weeknight, a season, or a table.';
+
+	/// en: 'New collection'
+	String get newCollection => 'New collection';
+
+	/// en: 'We couldn't load your collections.'
+	String get loadError => 'We couldn\'t load your collections.';
+
+	/// en: '{count} recipes'
+	String count({required Object count}) => '${count} recipes';
+
+	/// en: '1 recipe'
+	String get countOne => '1 recipe';
+
+	/// en: 'Favorites'
+	String get favorites => 'Favorites';
+
+	/// en: 'No collections yet.'
+	String get emptyTitle => 'No collections yet.';
+
+	/// en: 'Group recipes for a weeknight, a season, or a dinner party.'
+	String get emptyBody => 'Group recipes for a weeknight, a season, or a dinner party.';
+
+	/// en: 'This collection is empty.'
+	String get emptyCollection => 'This collection is empty.';
+
+	/// en: 'Save a recipe to this collection from its page.'
+	String get emptyCollectionBody => 'Save a recipe to this collection from its page.';
+
+	/// en: 'Remove'
+	String get remove => 'Remove';
+
+	/// en: 'Remove this recipe?'
+	String get removeTitle => 'Remove this recipe?';
+
+	/// en: 'It stays in your saved library.'
+	String get removeBody => 'It stays in your saved library.';
+
+	/// en: 'Could not remove the recipe. Try again.'
+	String get removeError => 'Could not remove the recipe. Try again.';
+
+	/// en: 'Delete collection'
+	String get delete => 'Delete collection';
+
+	/// en: 'Delete this collection?'
+	String get deleteTitle => 'Delete this collection?';
+
+	/// en: 'The recipes stay in your library; only the collection goes away.'
+	String get deleteBody => 'The recipes stay in your library; only the collection goes away.';
+
+	/// en: 'Could not delete the collection. Try again.'
+	String get deleteError => 'Could not delete the collection. Try again.';
+}
+
+// Path: recipes.editor
+class Translations$recipes$editor$en {
+	Translations$recipes$editor$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'A NEW DISH'
+	String get newEyebrow => 'A NEW DISH';
+
+	/// en: 'Write it down.'
+	String get newTitle => 'Write it down.';
+
+	/// en: 'Seven short sections. Save a draft at any point — only the name is required.'
+	String get newBody => 'Seven short sections. Save a draft at any point — only the name is required.';
+
+	/// en: 'EDITING'
+	String get editEyebrow => 'EDITING';
+
+	/// en: 'Refine the dish.'
+	String get editTitle => 'Refine the dish.';
+
+	/// en: 'Change what you like. Publication stays as it was unless you publish after saving.'
+	String get editBody => 'Change what you like. Publication stays as it was unless you publish after saving.';
+
+	/// en: 'Save recipe'
+	String get save => 'Save recipe';
+
+	/// en: 'Saving…'
+	String get saving => 'Saving…';
+
+	/// en: 'Save & publish'
+	String get saveAndPublish => 'Save & publish';
+
+	/// en: 'Could not save the recipe. Try again.'
+	String get saveError => 'Could not save the recipe. Try again.';
+
+	/// en: 'We couldn't load this recipe for editing.'
+	String get loadError => 'We couldn\'t load this recipe for editing.';
+
+	late final Translations$recipes$editor$basics$en basics = Translations$recipes$editor$basics$en.internal(_root);
+	late final Translations$recipes$editor$plate$en plate = Translations$recipes$editor$plate$en.internal(_root);
+	late final Translations$recipes$editor$time$en time = Translations$recipes$editor$time$en.internal(_root);
+	late final Translations$recipes$editor$photos$en photos = Translations$recipes$editor$photos$en.internal(_root);
+	late final Translations$recipes$editor$ingredients$en ingredients = Translations$recipes$editor$ingredients$en.internal(_root);
+	late final Translations$recipes$editor$steps$en steps = Translations$recipes$editor$steps$en.internal(_root);
+	late final Translations$recipes$editor$tags$en tags = Translations$recipes$editor$tags$en.internal(_root);
+	late final Translations$recipes$editor$publish$en publish = Translations$recipes$editor$publish$en.internal(_root);
 }
 
 // Path: onboarding.skill.beginner
@@ -792,6 +1310,273 @@ class Translations$onboarding$options$interests$en {
 	String get spicesAndHeat => 'Spices & heat';
 }
 
+// Path: recipes.editor.basics
+class Translations$recipes$editor$basics$en {
+	Translations$recipes$editor$basics$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'BASICS'
+	String get eyebrow => 'BASICS';
+
+	/// en: 'The basics'
+	String get title => 'The basics';
+
+	/// en: 'Recipe name'
+	String get name => 'Recipe name';
+
+	/// en: 'Lemon and thyme roast chicken'
+	String get nameHint => 'Lemon and thyme roast chicken';
+
+	/// en: 'Give the recipe a name.'
+	String get nameRequired => 'Give the recipe a name.';
+
+	/// en: 'Description'
+	String get description => 'Description';
+
+	/// en: 'What it is, and why you make it.'
+	String get descriptionHint => 'What it is, and why you make it.';
+}
+
+// Path: recipes.editor.plate
+class Translations$recipes$editor$plate$en {
+	Translations$recipes$editor$plate$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'THE PLATE'
+	String get eyebrow => 'THE PLATE';
+
+	/// en: 'How it eats'
+	String get title => 'How it eats';
+
+	/// en: 'Cuisine'
+	String get cuisine => 'Cuisine';
+
+	/// en: 'Italian, Thai, Levantine…'
+	String get cuisineHint => 'Italian, Thai, Levantine…';
+
+	/// en: 'Meal'
+	String get meal => 'Meal';
+}
+
+// Path: recipes.editor.time
+class Translations$recipes$editor$time$en {
+	Translations$recipes$editor$time$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'TIME'
+	String get eyebrow => 'TIME';
+
+	/// en: 'Time at the stove'
+	String get title => 'Time at the stove';
+
+	/// en: 'Prep (min)'
+	String get prep => 'Prep (min)';
+
+	/// en: 'Cook (min)'
+	String get cook => 'Cook (min)';
+
+	/// en: 'Servings'
+	String get servings => 'Servings';
+
+	/// en: 'Difficulty'
+	String get difficulty => 'Difficulty';
+
+	/// en: 'Use whole minutes between 0 and 1440.'
+	String get invalid => 'Use whole minutes between 0 and 1440.';
+}
+
+// Path: recipes.editor.photos
+class Translations$recipes$editor$photos$en {
+	Translations$recipes$editor$photos$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'PHOTOS'
+	String get eyebrow => 'PHOTOS';
+
+	/// en: 'Show the dish'
+	String get title => 'Show the dish';
+
+	/// en: 'Choose cover'
+	String get chooseCover => 'Choose cover';
+
+	/// en: 'Change cover'
+	String get changeCover => 'Change cover';
+
+	/// en: 'Remove cover'
+	String get removeCover => 'Remove cover';
+
+	/// en: 'More photos and video'
+	String get more => 'More photos and video';
+
+	/// en: 'Add photo'
+	String get addPhoto => 'Add photo';
+
+	/// en: 'Add video'
+	String get addVideo => 'Add video';
+
+	/// en: 'Uploading…'
+	String get uploading => 'Uploading…';
+
+	/// en: 'Upload failed. Try again.'
+	String get uploadError => 'Upload failed. Try again.';
+
+	/// en: 'That file is too large. Photos max out at 10 MB, video at 24 MB.'
+	String get tooLarge => 'That file is too large. Photos max out at 10 MB, video at 24 MB.';
+
+	/// en: 'A recipe can hold up to 20 photos and videos.'
+	String get tooMany => 'A recipe can hold up to 20 photos and videos.';
+
+	/// en: 'Choose a JPEG, PNG, WebP, GIF, MP4 or MOV file.'
+	String get unsupported => 'Choose a JPEG, PNG, WebP, GIF, MP4 or MOV file.';
+}
+
+// Path: recipes.editor.ingredients
+class Translations$recipes$editor$ingredients$en {
+	Translations$recipes$editor$ingredients$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'INGREDIENTS'
+	String get eyebrow => 'INGREDIENTS';
+
+	/// en: 'What goes in'
+	String get title => 'What goes in';
+
+	/// en: 'Qty'
+	String get quantity => 'Qty';
+
+	/// en: 'Unit'
+	String get unit => 'Unit';
+
+	/// en: 'Ingredient'
+	String get name => 'Ingredient';
+
+	/// en: 'Note (optional)'
+	String get note => 'Note (optional)';
+
+	/// en: 'Add ingredient'
+	String get add => 'Add ingredient';
+
+	/// en: 'Remove ingredient'
+	String get remove => 'Remove ingredient';
+
+	/// en: 'Move up'
+	String get moveUp => 'Move up';
+
+	/// en: 'Move down'
+	String get moveDown => 'Move down';
+
+	/// en: 'Name every ingredient you fill in.'
+	String get nameRequired => 'Name every ingredient you fill in.';
+
+	/// en: 'Quantities need to be zero or more.'
+	String get quantityInvalid => 'Quantities need to be zero or more.';
+}
+
+// Path: recipes.editor.steps
+class Translations$recipes$editor$steps$en {
+	Translations$recipes$editor$steps$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'METHOD'
+	String get eyebrow => 'METHOD';
+
+	/// en: 'How it cooks'
+	String get title => 'How it cooks';
+
+	/// en: 'Step'
+	String get instruction => 'Step';
+
+	/// en: 'Tip (optional)'
+	String get tip => 'Tip (optional)';
+
+	/// en: 'Timer (min, optional)'
+	String get timer => 'Timer (min, optional)';
+
+	/// en: 'Add step'
+	String get add => 'Add step';
+
+	/// en: 'Remove step'
+	String get remove => 'Remove step';
+
+	/// en: 'Write every step you fill in.'
+	String get instructionRequired => 'Write every step you fill in.';
+
+	/// en: 'Timers need whole minutes between 1 and 1440.'
+	String get timerInvalid => 'Timers need whole minutes between 1 and 1440.';
+}
+
+// Path: recipes.editor.tags
+class Translations$recipes$editor$tags$en {
+	Translations$recipes$editor$tags$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'DETAILS'
+	String get eyebrow => 'DETAILS';
+
+	/// en: 'A little more detail'
+	String get title => 'A little more detail';
+
+	/// en: 'Tags help you find the recipe later. Dietary tags are shown to anyone who can see it.'
+	String get body => 'Tags help you find the recipe later. Dietary tags are shown to anyone who can see it.';
+
+	/// en: 'Tags'
+	String get tags => 'Tags';
+
+	/// en: 'Weeknight, one-pan…'
+	String get tagsHint => 'Weeknight, one-pan…';
+
+	/// en: 'Dietary tags'
+	String get dietaryTags => 'Dietary tags';
+
+	/// en: 'Vegetarian, gluten-free…'
+	String get dietaryHint => 'Vegetarian, gluten-free…';
+
+	/// en: 'Add tag'
+	String get add => 'Add tag';
+}
+
+// Path: recipes.editor.publish
+class Translations$recipes$editor$publish$en {
+	Translations$recipes$editor$publish$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Publish after saving'
+	String get label => 'Publish after saving';
+
+	/// en: 'Published recipes can appear in Discover. You can make it private again at any time.'
+	String get body => 'Published recipes can appear in Discover. You can make it private again at any time.';
+
+	/// en: 'Add at least one ingredient and one step before publishing.'
+	String get incomplete => 'Add at least one ingredient and one step before publishing.';
+
+	/// en: 'The recipe was saved, but publishing failed. Try again from the recipe page.'
+	String get failed => 'The recipe was saved, but publishing failed. Try again from the recipe page.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -803,6 +1588,9 @@ extension on Translations {
 			'app.tagline' => 'Cook with the season, keep what you love.',
 			'app.privacyNote' => 'Your recipes stay yours.',
 			'common.back' => 'Back',
+			'common.cancel' => 'Cancel',
+			'common.delete' => 'Delete',
+			'common.dismiss' => 'Dismiss',
 			'common.tryAgain' => 'Try again',
 			'common.showPassword' => 'Show password',
 			'common.hidePassword' => 'Hide password',
@@ -815,6 +1603,8 @@ extension on Translations {
 			'errors.server' => 'Something went wrong on our side. Try again.',
 			'errors.invalidCredentials' => 'Email or password is incorrect.',
 			'errors.emailTaken' => 'That account already exists.',
+			'errors.publishIncomplete' => 'Add at least one ingredient and one step before publishing.',
+			'errors.collectionNameTaken' => 'You already have a collection with that name.',
 			'auth.login.title' => 'Welcome back.',
 			'auth.login.subtitle' => 'Sign in and pick up where you left off in the kitchen.',
 			'auth.login.newHere' => 'New to SeasonPal?',
@@ -834,12 +1624,13 @@ extension on Translations {
 			'auth.register.nameTooLong' => 'Keep your name to 80 characters.',
 			'auth.register.email' => 'Email',
 			'auth.register.password' => 'Password',
-			'auth.register.passwordHelper' => 'At least 8 characters.',
+			'auth.register.passwordHelper' => '8+ characters with upper and lower case, a number, and a symbol.',
 			'auth.register.submit' => 'Create account',
 			'auth.register.emailRequired' => 'Enter your email.',
 			'auth.register.emailInvalid' => 'Enter a valid email address.',
 			'auth.register.passwordRequired' => 'Choose a password.',
 			'auth.register.passwordTooShort' => 'Use at least 8 characters.',
+			'auth.register.passwordTooWeak' => 'Add upper and lower case, a number, and a symbol.',
 			'auth.splash.restoreFailed' => 'Could not restore your session.',
 			'auth.splash.loading' => 'Setting the table…',
 			'onboarding.stepIndicator' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total}',
@@ -952,9 +1743,194 @@ extension on Translations {
 			'home.taste.noRestrictions' => 'No dietary restrictions saved.',
 			'home.taste.dietOne' => ({required Object restriction}) => 'Cooking around ${restriction}.',
 			'home.taste.dietMany' => ({required Object leading, required Object last}) => 'Cooking around ${leading} and ${last}.',
-			'home.comingNext.eyebrow' => 'COMING NEXT',
-			'home.comingNext.title' => 'Your recipe library.',
-			'home.comingNext.body' => 'Saved recipes, collections, and a cooking view are on the way.',
+			'home.library.eyebrow' => 'YOUR RECIPES',
+			'home.library.title' => 'Your recipe library.',
+			'home.library.body' => 'Saved dishes, collections, and your own recipes are ready when you are.',
+			'home.library.action' => 'Open my recipes',
+			'navigation.home' => 'Home',
+			'navigation.discover' => 'Discover',
+			'navigation.aiCook' => 'AI Cook',
+			'navigation.myRecipes' => 'My Recipes',
+			'navigation.profile' => 'Profile',
+			'comingSoon.badge' => 'PLANNED',
+			'comingSoon.discover.eyebrow' => 'DISCOVER',
+			'comingSoon.discover.title' => 'A wider table.',
+			'comingSoon.discover.body' => 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.',
+			'comingSoon.aiCook.eyebrow' => 'AI COOK',
+			'comingSoon.aiCook.title' => 'A sous-chef, soon.',
+			'comingSoon.aiCook.body' => 'Ask about substitutions, plan from what is in the pantry, and adapt recipes. Keys stay on the server, never in the app.',
+			'comingSoon.profile.eyebrow' => 'PROFILE',
+			'comingSoon.profile.title' => 'Your corner.',
+			'comingSoon.profile.body' => 'Preferences, published recipes, and account settings will live here. Sign-out and language stay on Home for now.',
+			'recipes.mealTypes.unspecified' => 'Any time',
+			'recipes.mealTypes.breakfast' => 'Breakfast',
+			'recipes.mealTypes.lunch' => 'Lunch',
+			'recipes.mealTypes.dinner' => 'Dinner',
+			'recipes.mealTypes.snack' => 'Snack',
+			'recipes.mealTypes.dessert' => 'Dessert',
+			'recipes.mealTypes.drink' => 'Drink',
+			'recipes.difficulty.easy' => 'Easy',
+			'recipes.difficulty.medium' => 'Medium',
+			'recipes.difficulty.hard' => 'Hard',
+			'recipes.library.eyebrow' => 'YOUR KITCHEN',
+			'recipes.library.title' => 'My recipes',
+			'recipes.library.subtitle' => 'What you have written and what you have saved, in one place.',
+			'recipes.library.newRecipe' => 'New recipe',
+			'recipes.library.collections' => 'Collections',
+			'recipes.library.mine' => 'Mine',
+			'recipes.library.saved' => 'Saved',
+			'recipes.library.loading' => 'Opening your library…',
+			'recipes.library.loadError' => 'We couldn\'t load your recipes.',
+			'recipes.library.loadMoreError' => 'Couldn\'t load more recipes.',
+			'recipes.library.emptyOwnTitle' => 'Your first recipe starts here.',
+			'recipes.library.emptyOwnBody' => 'Write down a dish you already cook. Photos and steps can come as you go.',
+			'recipes.library.emptySavedTitle' => 'Nothing saved yet.',
+			'recipes.library.emptySavedBody' => 'Tap Save on any recipe and it lands here, ready for another night.',
+			'recipes.library.draft' => 'DRAFT',
+			'recipes.library.ai' => 'AI',
+			'recipes.library.minutes' => ({required Object count}) => '${count} min',
+			'recipes.library.seconds' => ({required Object count}) => '${count}s',
+			'recipes.library.servings' => ({required Object count}) => 'Serves ${count}',
+			'recipes.library.servingsOne' => 'Serves 1',
+			'recipes.detail.by' => ({required Object name}) => 'By ${name}',
+			'recipes.detail.ingredients' => 'Ingredients',
+			'recipes.detail.method' => 'Method',
+			'recipes.detail.media' => 'Photos & video',
+			'recipes.detail.tags' => 'Tags',
+			'recipes.detail.save' => 'Save recipe',
+			'recipes.detail.saved' => 'Saved',
+			'recipes.detail.savedMessage' => 'Saved to your library.',
+			'recipes.detail.unsavedMessage' => 'Removed from your library.',
+			'recipes.detail.noIngredients' => 'No ingredients listed yet.',
+			'recipes.detail.noSteps' => 'No steps written yet.',
+			'recipes.detail.aiNote' => 'Made with AI — read it through before you cook.',
+			'recipes.detail.video' => 'Video',
+			'recipes.detail.publishedBadge' => 'PUBLIC',
+			'recipes.detail.edit' => 'Edit recipe',
+			'recipes.detail.publish' => 'Publish recipe',
+			'recipes.detail.unpublish' => 'Make private',
+			'recipes.detail.delete' => 'Delete recipe',
+			'recipes.detail.more' => 'Recipe actions',
+			'recipes.detail.deleteTitle' => 'Delete this recipe?',
+			'recipes.detail.deleteBody' => 'It leaves your library and any collections. This can\'t be undone.',
+			'recipes.detail.loadError' => 'We couldn\'t load this recipe.',
+			'recipes.detail.notFoundTitle' => 'This recipe isn\'t here.',
+			'recipes.detail.notFoundBody' => 'It may have been deleted or kept private.',
+			'recipes.detail.actionError' => 'That didn\'t work. Try again.',
+			'recipes.detail.published' => 'Recipe published.',
+			'recipes.detail.unpublished' => 'Recipe is private again.',
+			'recipes.saveSheet.title' => 'Save to a collection',
+			'recipes.saveSheet.favoritesBody' => 'Saving always adds the recipe to Favorites.',
+			'recipes.saveSheet.favorites' => 'Save to favorites',
+			'recipes.saveSheet.savedStatus' => 'Saved to your library.',
+			'recipes.saveSheet.unsave' => 'Remove',
+			'recipes.saveSheet.collections' => 'ADD TO A COLLECTION',
+			'recipes.saveSheet.collectionsError' => 'We couldn\'t load your collections.',
+			'recipes.saveSheet.noCollections' => 'No collections yet. Create one below.',
+			'recipes.saveSheet.newCollection' => 'New collection',
+			'recipes.saveSheet.createTitle' => 'Name the collection',
+			'recipes.saveSheet.nameLabel' => 'Collection name',
+			'recipes.saveSheet.nameHint' => 'Weeknight dinners, Sunday baking…',
+			'recipes.saveSheet.nameRequired' => 'Give the collection a name.',
+			'recipes.saveSheet.create' => 'Create',
+			'recipes.saveSheet.createError' => 'Could not create the collection. Try again.',
+			'recipes.saveSheet.saveError' => 'Could not save the recipe. Try again.',
+			'recipes.collections.eyebrow' => 'YOUR KITCHEN',
+			'recipes.collections.title' => 'Collections',
+			'recipes.collections.subtitle' => 'Group recipes for a weeknight, a season, or a table.',
+			'recipes.collections.newCollection' => 'New collection',
+			'recipes.collections.loadError' => 'We couldn\'t load your collections.',
+			'recipes.collections.count' => ({required Object count}) => '${count} recipes',
+			'recipes.collections.countOne' => '1 recipe',
+			'recipes.collections.favorites' => 'Favorites',
+			'recipes.collections.emptyTitle' => 'No collections yet.',
+			'recipes.collections.emptyBody' => 'Group recipes for a weeknight, a season, or a dinner party.',
+			'recipes.collections.emptyCollection' => 'This collection is empty.',
+			'recipes.collections.emptyCollectionBody' => 'Save a recipe to this collection from its page.',
+			'recipes.collections.remove' => 'Remove',
+			'recipes.collections.removeTitle' => 'Remove this recipe?',
+			'recipes.collections.removeBody' => 'It stays in your saved library.',
+			'recipes.collections.removeError' => 'Could not remove the recipe. Try again.',
+			'recipes.collections.delete' => 'Delete collection',
+			'recipes.collections.deleteTitle' => 'Delete this collection?',
+			'recipes.collections.deleteBody' => 'The recipes stay in your library; only the collection goes away.',
+			'recipes.collections.deleteError' => 'Could not delete the collection. Try again.',
+			'recipes.editor.newEyebrow' => 'A NEW DISH',
+			'recipes.editor.newTitle' => 'Write it down.',
+			'recipes.editor.newBody' => 'Seven short sections. Save a draft at any point — only the name is required.',
+			'recipes.editor.editEyebrow' => 'EDITING',
+			'recipes.editor.editTitle' => 'Refine the dish.',
+			'recipes.editor.editBody' => 'Change what you like. Publication stays as it was unless you publish after saving.',
+			'recipes.editor.save' => 'Save recipe',
+			'recipes.editor.saving' => 'Saving…',
+			'recipes.editor.saveAndPublish' => 'Save & publish',
+			'recipes.editor.saveError' => 'Could not save the recipe. Try again.',
+			'recipes.editor.loadError' => 'We couldn\'t load this recipe for editing.',
+			'recipes.editor.basics.eyebrow' => 'BASICS',
+			'recipes.editor.basics.title' => 'The basics',
+			'recipes.editor.basics.name' => 'Recipe name',
+			'recipes.editor.basics.nameHint' => 'Lemon and thyme roast chicken',
+			'recipes.editor.basics.nameRequired' => 'Give the recipe a name.',
+			'recipes.editor.basics.description' => 'Description',
+			'recipes.editor.basics.descriptionHint' => 'What it is, and why you make it.',
+			'recipes.editor.plate.eyebrow' => 'THE PLATE',
+			'recipes.editor.plate.title' => 'How it eats',
+			'recipes.editor.plate.cuisine' => 'Cuisine',
+			'recipes.editor.plate.cuisineHint' => 'Italian, Thai, Levantine…',
+			'recipes.editor.plate.meal' => 'Meal',
+			'recipes.editor.time.eyebrow' => 'TIME',
+			'recipes.editor.time.title' => 'Time at the stove',
+			'recipes.editor.time.prep' => 'Prep (min)',
+			'recipes.editor.time.cook' => 'Cook (min)',
+			'recipes.editor.time.servings' => 'Servings',
+			'recipes.editor.time.difficulty' => 'Difficulty',
+			'recipes.editor.time.invalid' => 'Use whole minutes between 0 and 1440.',
+			'recipes.editor.photos.eyebrow' => 'PHOTOS',
+			'recipes.editor.photos.title' => 'Show the dish',
+			'recipes.editor.photos.chooseCover' => 'Choose cover',
+			'recipes.editor.photos.changeCover' => 'Change cover',
+			'recipes.editor.photos.removeCover' => 'Remove cover',
+			'recipes.editor.photos.more' => 'More photos and video',
+			'recipes.editor.photos.addPhoto' => 'Add photo',
+			'recipes.editor.photos.addVideo' => 'Add video',
+			'recipes.editor.photos.uploading' => 'Uploading…',
+			'recipes.editor.photos.uploadError' => 'Upload failed. Try again.',
+			'recipes.editor.photos.tooLarge' => 'That file is too large. Photos max out at 10 MB, video at 24 MB.',
+			'recipes.editor.photos.tooMany' => 'A recipe can hold up to 20 photos and videos.',
+			'recipes.editor.photos.unsupported' => 'Choose a JPEG, PNG, WebP, GIF, MP4 or MOV file.',
+			'recipes.editor.ingredients.eyebrow' => 'INGREDIENTS',
+			'recipes.editor.ingredients.title' => 'What goes in',
+			'recipes.editor.ingredients.quantity' => 'Qty',
+			'recipes.editor.ingredients.unit' => 'Unit',
+			'recipes.editor.ingredients.name' => 'Ingredient',
+			'recipes.editor.ingredients.note' => 'Note (optional)',
+			'recipes.editor.ingredients.add' => 'Add ingredient',
+			'recipes.editor.ingredients.remove' => 'Remove ingredient',
+			'recipes.editor.ingredients.moveUp' => 'Move up',
+			'recipes.editor.ingredients.moveDown' => 'Move down',
+			'recipes.editor.ingredients.nameRequired' => 'Name every ingredient you fill in.',
+			'recipes.editor.ingredients.quantityInvalid' => 'Quantities need to be zero or more.',
+			'recipes.editor.steps.eyebrow' => 'METHOD',
+			'recipes.editor.steps.title' => 'How it cooks',
+			'recipes.editor.steps.instruction' => 'Step',
+			'recipes.editor.steps.tip' => 'Tip (optional)',
+			'recipes.editor.steps.timer' => 'Timer (min, optional)',
+			'recipes.editor.steps.add' => 'Add step',
+			'recipes.editor.steps.remove' => 'Remove step',
+			'recipes.editor.steps.instructionRequired' => 'Write every step you fill in.',
+			'recipes.editor.steps.timerInvalid' => 'Timers need whole minutes between 1 and 1440.',
+			'recipes.editor.tags.eyebrow' => 'DETAILS',
+			'recipes.editor.tags.title' => 'A little more detail',
+			'recipes.editor.tags.body' => 'Tags help you find the recipe later. Dietary tags are shown to anyone who can see it.',
+			'recipes.editor.tags.tags' => 'Tags',
+			'recipes.editor.tags.tagsHint' => 'Weeknight, one-pan…',
+			'recipes.editor.tags.dietaryTags' => 'Dietary tags',
+			'recipes.editor.tags.dietaryHint' => 'Vegetarian, gluten-free…',
+			'recipes.editor.tags.add' => 'Add tag',
+			'recipes.editor.publish.label' => 'Publish after saving',
+			'recipes.editor.publish.body' => 'Published recipes can appear in Discover. You can make it private again at any time.',
+			'recipes.editor.publish.incomplete' => 'Add at least one ingredient and one step before publishing.',
+			'recipes.editor.publish.failed' => 'The recipe was saved, but publishing failed. Try again from the recipe page.',
 			_ => null,
 		};
 	}

@@ -159,6 +159,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     return t.auth.register.passwordTooShort;
                   }
 
+                  // Mirror ASP.NET Identity's defaults so the form fails before
+                  // the API does; its registration error is deliberately generic.
+                  final hasUpper = RegExp(r'\p{Lu}', unicode: true).hasMatch(value);
+                  final hasLower = RegExp(r'\p{Ll}', unicode: true).hasMatch(value);
+                  final hasDigit = RegExp(r'\p{Nd}', unicode: true).hasMatch(value);
+                  final hasSymbol = RegExp(r'[^\p{L}\p{N}]', unicode: true).hasMatch(value);
+                  if (!hasUpper || !hasLower || !hasDigit || !hasSymbol) {
+                    return t.auth.register.passwordTooWeak;
+                  }
+
                   return null;
                 },
               ),

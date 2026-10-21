@@ -36,7 +36,8 @@ final class ApiAuthRepository implements AuthRepository {
     }
 
     try {
-      return _remember(await _api.refresh(refreshToken));
+      final refreshed = await _api.refresh(refreshToken);
+      return await _remember(refreshed);
     } on ApiException catch (error) {
       if (error.isUnauthorized) {
         await _tokens.clear();

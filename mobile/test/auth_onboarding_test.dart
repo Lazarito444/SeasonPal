@@ -46,6 +46,39 @@ void main() {
     expect(auth.loginCalls, 0);
   });
 
+  testWidgets('registering blocks a password that misses the server policy', (
+    tester,
+  ) async {
+    final auth = _FakeAuthRepository();
+
+    await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Create an account'));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(
+      find.byKey(const Key('register-name')),
+      'Ben Stone',
+    );
+    await tester.enterText(
+      find.byKey(const Key('register-email')),
+      'ben@seasonpal.test',
+    );
+    await tester.enterText(
+      find.byKey(const Key('register-password')),
+      'saffron123',
+    );
+    await _tapKey(tester, 'register-submit');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Add upper and lower case, a number, and a symbol.'),
+      findsOneWidget,
+    );
+    expect(auth.registerCalls, 0);
+  });
+
   testWidgets('signing in lands a new account on the onboarding wizard', (
     tester,
   ) async {
@@ -374,6 +407,7 @@ final class _FakeAuthRepository implements AuthRepository {
 
   int loginCalls = 0;
   int logoutCalls = 0;
+  int registerCalls = 0;
   int restoreCalls = 0;
   String? lastEmail;
 
@@ -408,7 +442,10 @@ final class _FakeAuthRepository implements AuthRepository {
     required String email,
     required String password,
     String? displayName,
-  }) async => loginResult!;
+  }) async {
+    registerCalls += 1;
+    return loginResult!;
+  }
 
   @override
   Future<AuthSession> refresh(AuthSession session) async => session;
