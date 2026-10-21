@@ -16,30 +16,49 @@ namespace SeasonPal.IntegrationTests;
 /// </summary>
 public class SeasonPalApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    /// <summary>
+    /// Optional externally supplied Postgres (for CI or hosts where container startup is
+    /// unavailable). When set, no Testcontainers instance is created.
+    /// </summary>
+    public const string ExternalDatabaseVariable = "SEASONPAL_TEST_DB";
+
     private readonly IReadOnlyDictionary<string, string?> _settings;
     private readonly string _mediaRoot = Path.Combine(
         Path.GetTempPath(),
         "seasonpal-media-tests",
         Guid.NewGuid().ToString("N"));
-    private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder("postgres:16-alpine")
-        .WithDatabase("seasonpal_test")
-        .WithUsername("seasonpal")
-        .WithPassword("seasonpal_test")
-        .Build();
+    private readonly PostgreSqlContainer? _dbContainer;
+    private readonly string? _externalConnectionString;
 
     public SeasonPalApiFactory() : this(null)
     {
     }
 
-    protected SeasonPalApiFactory(IReadOnlyDictionary<string, string?>? settings) =>
+    protected SeasonPalApiFactory(IReadOnlyDictionary<string, string?>? settings)
+    {
         _settings = settings ?? new Dictionary<string, string?>();
+        _externalConnectionString = Environment.GetEnvironmentVariable(ExternalDatabaseVariable);
+
+        if (string.IsNullOrWhiteSpace(_externalConnectionString))
+        {
+            _dbContainer = new PostgreSqlBuilder("postgres:16-alpine")
+                .WithDatabase("seasonpal_test")
+                .WithUsername("seasonpal")
+                .WithPassword("seasonpal_test")
+                .Build();
+        }
+    }
 
     /// <summary>Connection string for tests that touch the database outside the HTTP host.</summary>
-    public string DbConnectionString => _dbContainer.GetConnectionString();
+    public string DbConnectionString =>
+        _externalConnectionString ?? _dbContainer!.GetConnectionString();
 
     public async Task InitializeAsync()
     {
-        await _dbContainer.StartAsync();
+        if (_dbContainer is not null)
+        {
+            await _dbContainer.StartAsync();
+        }
 
         var options = new DbContextOptionsBuilder<SeasonPalDbContext>()
             .UseNpgsql(DbConnectionString)
@@ -79,7 +98,11 @@ public class SeasonPalApiFactory : WebApplicationFactory<Program>, IAsyncLifetim
     public new async Task DisposeAsync()
     {
         await base.DisposeAsync();
-        await _dbContainer.DisposeAsync();
+
+        if (_dbContainer is not null)
+        {
+            await _dbContainer.DisposeAsync();
+        }
 
         if (Directory.Exists(_mediaRoot))
         {

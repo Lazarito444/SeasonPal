@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using SeasonPal.Domain.Entities;
 using SeasonPal.Domain.Enums;
 
@@ -57,7 +58,63 @@ public sealed record RecipeSummaryDto(
     Guid AuthorId,
     string AuthorDisplayName,
     DateTimeOffset? SavedAt,
-    DateTimeOffset UpdatedAt);
+    DateTimeOffset UpdatedAt)
+{
+    /// <summary>In-memory mapping for rows that were materialized with their ingredients.</summary>
+    public static RecipeSummaryDto From(Recipe recipe, DateTimeOffset? savedAt = null) => new(
+        recipe.Id,
+        recipe.Title,
+        recipe.Description,
+        recipe.Cuisine,
+        recipe.CoverImageUrl,
+        recipe.MealType,
+        recipe.Servings,
+        recipe.PrepTimeMinutes,
+        recipe.CookTimeMinutes,
+        recipe.TotalTimeMinutes,
+        recipe.Difficulty,
+        recipe.Visibility,
+        recipe.Status,
+        recipe.IsAiGenerated,
+        recipe.Tags,
+        recipe.DietaryTags,
+        recipe.AuthorId,
+        recipe.Author?.DisplayName ?? string.Empty,
+        savedAt,
+        recipe.UpdatedAt);
+}
+
+/// <summary>
+/// The SQL-translatable summary projection shared by every recipe list, so discovery and the
+/// library cannot drift in field order or shape.
+/// </summary>
+public static class RecipeSummaryProjection
+{
+    public static readonly Expression<Func<Recipe, RecipeSummaryDto>> Expression = recipe =>
+        new RecipeSummaryDto(
+            recipe.Id,
+            recipe.Title,
+            recipe.Description,
+            recipe.Cuisine,
+            recipe.CoverImageUrl,
+            recipe.MealType,
+            recipe.Servings,
+            recipe.PrepTimeMinutes,
+            recipe.CookTimeMinutes,
+            recipe.PrepTimeMinutes == null && recipe.CookTimeMinutes == null
+                ? null
+                : (recipe.PrepTimeMinutes ?? 0) + (recipe.CookTimeMinutes ?? 0),
+            recipe.Difficulty,
+            recipe.Visibility,
+            recipe.Status,
+            recipe.IsAiGenerated,
+            recipe.Tags,
+            recipe.DietaryTags,
+            recipe.AuthorId,
+            recipe.Author.DisplayName,
+            null,
+            recipe.UpdatedAt);
+}
 
 public sealed record RecipeAuthorDto(Guid Id, string DisplayName);
 

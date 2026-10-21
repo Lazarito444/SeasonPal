@@ -36,29 +36,8 @@ public sealed class RecipeListSpecification : Specification<Recipe, RecipeSummar
             && (tag == null || recipe.Tags.Contains(tag!));
     }
 
-    public override Expression<Func<Recipe, RecipeSummaryDto>> Select => recipe => new RecipeSummaryDto(
-        recipe.Id,
-        recipe.Title,
-        recipe.Description,
-        recipe.Cuisine,
-        recipe.CoverImageUrl,
-        recipe.MealType,
-        recipe.Servings,
-        recipe.PrepTimeMinutes,
-        recipe.CookTimeMinutes,
-        recipe.PrepTimeMinutes == null && recipe.CookTimeMinutes == null
-            ? null
-            : (recipe.PrepTimeMinutes ?? 0) + (recipe.CookTimeMinutes ?? 0),
-        recipe.Difficulty,
-        recipe.Visibility,
-        recipe.Status,
-        recipe.IsAiGenerated,
-        recipe.Tags,
-        recipe.DietaryTags,
-        recipe.AuthorId,
-        recipe.Author.DisplayName,
-        null,
-        recipe.UpdatedAt);
+    public override Expression<Func<Recipe, RecipeSummaryDto>> Select =>
+        RecipeSummaryProjection.Expression;
 
     public override Expression<Func<Recipe, object?>> OrderBy => recipe => recipe.UpdatedAt;
 

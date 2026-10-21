@@ -6,6 +6,8 @@ import 'package:seasonpal/features/auth/presentation/auth_gate.dart';
 import 'package:seasonpal/features/auth/presentation/login_screen.dart';
 import 'package:seasonpal/features/auth/presentation/register_screen.dart';
 import 'package:seasonpal/features/auth/presentation/splash_screen.dart';
+import 'package:seasonpal/features/discovery/presentation/discovery_screen.dart';
+import 'package:seasonpal/features/discovery/presentation/pantry_screen.dart';
 import 'package:seasonpal/features/home/presentation/home_screen.dart';
 import 'package:seasonpal/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:seasonpal/features/recipes/presentation/collection_detail_screen.dart';
@@ -32,6 +34,8 @@ abstract final class AppRoutes {
   static const homeName = 'home';
   static const discover = '/discover';
   static const discoverName = 'discover';
+  static const pantry = '/pantry';
+  static const pantryName = 'pantry';
   static const aiCook = '/ai-cook';
   static const aiCookName = 'aiCook';
   static const library = '/library';
@@ -116,15 +120,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: AppRoutes.discover,
                 name: AppRoutes.discoverName,
-                builder: (context, state) {
-                  final t = Translations.of(context);
-                  return ComingSoonScreen(
-                    eyebrow: t.comingSoon.discover.eyebrow,
-                    title: t.comingSoon.discover.title,
-                    body: t.comingSoon.discover.body,
-                    icon: Icons.explore_rounded,
-                  );
-                },
+                builder: (context, state) => const DiscoveryScreen(),
               ),
             ],
           ),
@@ -172,6 +168,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.pantry,
+        name: AppRoutes.pantryName,
+        builder: (context, state) => const PantryScreen(),
       ),
       GoRoute(
         path: AppRoutes.recipeNew,

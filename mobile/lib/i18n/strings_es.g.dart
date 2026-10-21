@@ -44,6 +44,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$es errors = _Translations$errors$es._(_root);
 	@override late final _Translations$auth$es auth = _Translations$auth$es._(_root);
 	@override late final _Translations$onboarding$es onboarding = _Translations$onboarding$es._(_root);
+	@override late final _Translations$discovery$es discovery = _Translations$discovery$es._(_root);
 	@override late final _Translations$home$es home = _Translations$home$es._(_root);
 	@override late final _Translations$navigation$es navigation = _Translations$navigation$es._(_root);
 	@override late final _Translations$comingSoon$es comingSoon = _Translations$comingSoon$es._(_root);
@@ -129,6 +130,23 @@ class _Translations$onboarding$es extends Translations$onboarding$en {
 	@override late final _Translations$onboarding$options$es options = _Translations$onboarding$options$es._(_root);
 }
 
+// Path: discovery
+class _Translations$discovery$es extends Translations$discovery$en {
+	_Translations$discovery$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get eyebrow => 'DESCUBRIR';
+	@override String get title => 'Encuentra tu próxima mesa.';
+	@override String get subtitle => 'Busca recetas públicas y filtra por cocina, tiempo, comida y dieta.';
+	@override String get searchHint => 'Busca recetas, ingredientes o cocinas';
+	@override late final _Translations$discovery$filters$es filters = _Translations$discovery$filters$es._(_root);
+	@override late final _Translations$discovery$time$es time = _Translations$discovery$time$es._(_root);
+	@override late final _Translations$discovery$feed$es feed = _Translations$discovery$feed$es._(_root);
+	@override late final _Translations$discovery$pantry$es pantry = _Translations$discovery$pantry$es._(_root);
+}
+
 // Path: home
 class _Translations$home$es extends Translations$home$en {
 	_Translations$home$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -140,6 +158,8 @@ class _Translations$home$es extends Translations$home$en {
 	@override late final _Translations$home$language$es language = _Translations$home$language$es._(_root);
 	@override late final _Translations$home$greetings$es greetings = _Translations$home$greetings$es._(_root);
 	@override String get whatCooking => '¿Qué cocinamos hoy?';
+	@override late final _Translations$home$pantry$es pantry = _Translations$home$pantry$es._(_root);
+	@override late final _Translations$home$rails$es rails = _Translations$home$rails$es._(_root);
 	@override late final _Translations$home$taste$es taste = _Translations$home$taste$es._(_root);
 	@override late final _Translations$home$library$es library = _Translations$home$library$es._(_root);
 }
@@ -166,7 +186,6 @@ class _Translations$comingSoon$es extends Translations$comingSoon$en {
 
 	// Translations
 	@override String get badge => 'PRÓXIMAMENTE';
-	@override late final _Translations$comingSoon$discover$es discover = _Translations$comingSoon$discover$es._(_root);
 	@override late final _Translations$comingSoon$aiCook$es aiCook = _Translations$comingSoon$aiCook$es._(_root);
 	@override late final _Translations$comingSoon$profile$es profile = _Translations$comingSoon$profile$es._(_root);
 }
@@ -368,6 +387,84 @@ class _Translations$onboarding$options$es extends Translations$onboarding$option
 	@override late final _Translations$onboarding$options$interests$es interests = _Translations$onboarding$options$interests$es._(_root);
 }
 
+// Path: discovery.filters
+class _Translations$discovery$filters$es extends Translations$discovery$filters$en {
+	_Translations$discovery$filters$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get cuisine => 'Cocina';
+	@override String get meal => 'Comida';
+	@override String get time => 'Tiempo';
+	@override String get difficulty => 'Esfuerzo';
+	@override String get diet => 'Dieta';
+	@override String get any => 'Cualquiera';
+	@override String get clearAll => 'Limpiar todo';
+}
+
+// Path: discovery.time
+class _Translations$discovery$time$es extends Translations$discovery$time$en {
+	_Translations$discovery$time$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String under({required Object count}) => 'Menos de ${count} min';
+}
+
+// Path: discovery.feed
+class _Translations$discovery$feed$es extends Translations$discovery$feed$en {
+	_Translations$discovery$feed$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get loading => 'Preparando la mesa.';
+	@override String get loadError => 'No pudimos cargar el feed público.';
+	@override String results({required Object count}) => '${count} recetas';
+	@override String get resultsOne => '1 receta';
+	@override String get newestFirst => 'Más recientes primero';
+	@override String get bestMatch => 'Mejor coincidencia';
+	@override String get loadMoreError => 'No pudimos cargar más recetas.';
+	@override String get emptyTitle => 'Nada coincide con esa mesa.';
+	@override String get emptyBody => 'Prueba con más tiempo, otra cocina o una búsqueda más corta.';
+	@override String get emptyCommunityTitle => 'La mesa de la comunidad aún se está preparando.';
+	@override String get emptyCommunityBody => 'Publica una receta y podrá aparecer aquí para otros cocineros.';
+}
+
+// Path: discovery.pantry
+class _Translations$discovery$pantry$es extends Translations$discovery$pantry$en {
+	_Translations$discovery$pantry$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get eyebrow => 'LA DESPENSA';
+	@override String get title => 'Cocina con lo que tienes.';
+	@override String get subtitle => 'Añade los ingredientes de tu despensa. Ordenaremos las recetas públicas según cuánto de cada una ya tienes.';
+	@override String get body => 'Compara recetas públicas con tu despensa.';
+	@override String get inputHint => 'Añade un ingrediente, o varios separados por comas';
+	@override String get add => 'Añadir';
+	@override String get clear => 'Vaciar despensa';
+	@override String remove({required Object name}) => 'Quitar ${name}';
+	@override String get loading => 'Revisando la despensa.';
+	@override String get loadError => 'No pudimos comparar tu despensa.';
+	@override String get loadMoreError => 'No pudimos cargar más coincidencias.';
+	@override String get loadMore => 'Cargar más';
+	@override String results({required Object count}) => '${count} coincidencias';
+	@override String get resultsOne => '1 coincidencia';
+	@override String get emptyTitle => 'Aún no hay coincidencias.';
+	@override String get emptyBody => 'Prueba con menos ingredientes o más generales, como "tomate" en vez de "tomates cherry".';
+	@override String get emptyPromptTitle => 'Empieza con lo que tienes.';
+	@override String get emptyPromptBody => 'Añade algunos ingredientes arriba y buscaremos recetas públicas que necesiten menos compras.';
+	@override String get canCook => 'Puedes cocinar';
+	@override String match({required Object percent}) => '${percent}% de coincidencia';
+	@override String have({required Object names}) => 'Tienes: ${names}';
+	@override String missing({required Object names}) => 'Falta: ${names}';
+	@override String get allIngredients => 'Tienes todo.';
+}
+
 // Path: home.language
 class _Translations$home$language$es extends Translations$home$language$en {
 	_Translations$home$language$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -392,6 +489,41 @@ class _Translations$home$greetings$es extends Translations$home$greetings$en {
 	@override String get evening => 'Buenas noches';
 	@override String line({required Object greeting, required Object name}) => '${greeting}, ${name}.';
 	@override String get friend => 'chef';
+}
+
+// Path: home.pantry
+class _Translations$home$pantry$es extends Translations$home$pantry$en {
+	_Translations$home$pantry$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get eyebrow => 'DE TU DESPENSA';
+	@override String get title => '¿Qué puedo cocinar ahora?';
+	@override String get body => 'Escribe lo que tienes. Buscaremos recetas públicas que usen la mayor parte.';
+	@override String get hint => 'Limón, orzo, espinaca';
+	@override String get action => 'Buscar recetas';
+	@override String get empty => 'Añade al menos un ingrediente.';
+}
+
+// Path: home.rails
+class _Translations$home$rails$es extends Translations$home$rails$en {
+	_Translations$home$rails$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get loading => 'Buscando qué se cocina cerca.';
+	@override String get forYouEyebrow => 'PARA TU GUSTO';
+	@override String get forYouTitle => 'Hecho con tus cocinas y dietas.';
+	@override String get trendingEyebrow => 'TENDENCIA ESTA SEMANA';
+	@override String get trendingTitle => 'Lo que otros cocineros guardan.';
+	@override String get newestEyebrow => 'RECIÉN LLEGADO';
+	@override String get newestTitle => 'Las últimas recetas públicas.';
+	@override String get loadError => 'No pudimos cargar las recomendaciones de la comunidad.';
+	@override String get emptyTitle => 'La mesa de la comunidad aún se está preparando.';
+	@override String get emptyBody => 'Publica una receta y podrá aparecer aquí para otros cocineros.';
+	@override String get action => 'Explorar Descubrir';
 }
 
 // Path: home.taste
@@ -425,18 +557,6 @@ class _Translations$home$library$es extends Translations$home$library$en {
 	@override String get title => 'Tu recetario.';
 	@override String get body => 'Tus platos guardados, tus colecciones y tus propias recetas, listos cuando tú lo estés.';
 	@override String get action => 'Abrir mis recetas';
-}
-
-// Path: comingSoon.discover
-class _Translations$comingSoon$discover$es extends Translations$comingSoon$discover$en {
-	_Translations$comingSoon$discover$es._(TranslationsEs root) : this._root = root, super.internal(root);
-
-	final TranslationsEs _root; // ignore: unused_field
-
-	// Translations
-	@override String get eyebrow => 'DESCUBRIR';
-	@override String get title => 'Una mesa más amplia.';
-	@override String get body => 'La búsqueda, los filtros por cocina y las recetas de otras personas llegan en la próxima etapa. Tu recetario ya está listo.';
 }
 
 // Path: comingSoon.aiCook
@@ -1022,6 +1142,52 @@ extension on TranslationsEs {
 			'onboarding.options.interests.budgetCooking' => 'Cocina económica',
 			'onboarding.options.interests.cookingWithKids' => 'Cocinar con niños',
 			'onboarding.options.interests.spicesAndHeat' => 'Especias y picante',
+			'discovery.eyebrow' => 'DESCUBRIR',
+			'discovery.title' => 'Encuentra tu próxima mesa.',
+			'discovery.subtitle' => 'Busca recetas públicas y filtra por cocina, tiempo, comida y dieta.',
+			'discovery.searchHint' => 'Busca recetas, ingredientes o cocinas',
+			'discovery.filters.cuisine' => 'Cocina',
+			'discovery.filters.meal' => 'Comida',
+			'discovery.filters.time' => 'Tiempo',
+			'discovery.filters.difficulty' => 'Esfuerzo',
+			'discovery.filters.diet' => 'Dieta',
+			'discovery.filters.any' => 'Cualquiera',
+			'discovery.filters.clearAll' => 'Limpiar todo',
+			'discovery.time.under' => ({required Object count}) => 'Menos de ${count} min',
+			'discovery.feed.loading' => 'Preparando la mesa.',
+			'discovery.feed.loadError' => 'No pudimos cargar el feed público.',
+			'discovery.feed.results' => ({required Object count}) => '${count} recetas',
+			'discovery.feed.resultsOne' => '1 receta',
+			'discovery.feed.newestFirst' => 'Más recientes primero',
+			'discovery.feed.bestMatch' => 'Mejor coincidencia',
+			'discovery.feed.loadMoreError' => 'No pudimos cargar más recetas.',
+			'discovery.feed.emptyTitle' => 'Nada coincide con esa mesa.',
+			'discovery.feed.emptyBody' => 'Prueba con más tiempo, otra cocina o una búsqueda más corta.',
+			'discovery.feed.emptyCommunityTitle' => 'La mesa de la comunidad aún se está preparando.',
+			'discovery.feed.emptyCommunityBody' => 'Publica una receta y podrá aparecer aquí para otros cocineros.',
+			'discovery.pantry.eyebrow' => 'LA DESPENSA',
+			'discovery.pantry.title' => 'Cocina con lo que tienes.',
+			'discovery.pantry.subtitle' => 'Añade los ingredientes de tu despensa. Ordenaremos las recetas públicas según cuánto de cada una ya tienes.',
+			'discovery.pantry.body' => 'Compara recetas públicas con tu despensa.',
+			'discovery.pantry.inputHint' => 'Añade un ingrediente, o varios separados por comas',
+			'discovery.pantry.add' => 'Añadir',
+			'discovery.pantry.clear' => 'Vaciar despensa',
+			'discovery.pantry.remove' => ({required Object name}) => 'Quitar ${name}',
+			'discovery.pantry.loading' => 'Revisando la despensa.',
+			'discovery.pantry.loadError' => 'No pudimos comparar tu despensa.',
+			'discovery.pantry.loadMoreError' => 'No pudimos cargar más coincidencias.',
+			'discovery.pantry.loadMore' => 'Cargar más',
+			'discovery.pantry.results' => ({required Object count}) => '${count} coincidencias',
+			'discovery.pantry.resultsOne' => '1 coincidencia',
+			'discovery.pantry.emptyTitle' => 'Aún no hay coincidencias.',
+			'discovery.pantry.emptyBody' => 'Prueba con menos ingredientes o más generales, como "tomate" en vez de "tomates cherry".',
+			'discovery.pantry.emptyPromptTitle' => 'Empieza con lo que tienes.',
+			'discovery.pantry.emptyPromptBody' => 'Añade algunos ingredientes arriba y buscaremos recetas públicas que necesiten menos compras.',
+			'discovery.pantry.canCook' => 'Puedes cocinar',
+			'discovery.pantry.match' => ({required Object percent}) => '${percent}% de coincidencia',
+			'discovery.pantry.have' => ({required Object names}) => 'Tienes: ${names}',
+			'discovery.pantry.missing' => ({required Object names}) => 'Falta: ${names}',
+			'discovery.pantry.allIngredients' => 'Tienes todo.',
 			'home.signOut' => 'Cerrar sesión',
 			'home.language.tooltip' => 'Idioma',
 			'home.language.english' => 'English',
@@ -1032,6 +1198,23 @@ extension on TranslationsEs {
 			'home.greetings.line' => ({required Object greeting, required Object name}) => '${greeting}, ${name}.',
 			'home.greetings.friend' => 'chef',
 			'home.whatCooking' => '¿Qué cocinamos hoy?',
+			'home.pantry.eyebrow' => 'DE TU DESPENSA',
+			'home.pantry.title' => '¿Qué puedo cocinar ahora?',
+			'home.pantry.body' => 'Escribe lo que tienes. Buscaremos recetas públicas que usen la mayor parte.',
+			'home.pantry.hint' => 'Limón, orzo, espinaca',
+			'home.pantry.action' => 'Buscar recetas',
+			'home.pantry.empty' => 'Añade al menos un ingrediente.',
+			'home.rails.loading' => 'Buscando qué se cocina cerca.',
+			'home.rails.forYouEyebrow' => 'PARA TU GUSTO',
+			'home.rails.forYouTitle' => 'Hecho con tus cocinas y dietas.',
+			'home.rails.trendingEyebrow' => 'TENDENCIA ESTA SEMANA',
+			'home.rails.trendingTitle' => 'Lo que otros cocineros guardan.',
+			'home.rails.newestEyebrow' => 'RECIÉN LLEGADO',
+			'home.rails.newestTitle' => 'Las últimas recetas públicas.',
+			'home.rails.loadError' => 'No pudimos cargar las recomendaciones de la comunidad.',
+			'home.rails.emptyTitle' => 'La mesa de la comunidad aún se está preparando.',
+			'home.rails.emptyBody' => 'Publica una receta y podrá aparecer aquí para otros cocineros.',
+			'home.rails.action' => 'Explorar Descubrir',
 			'home.taste.eyebrow' => 'TU PALADAR',
 			'home.taste.loading' => 'Leyendo tu perfil de sabor…',
 			'home.taste.loadError' => 'No pudimos cargar tu perfil de sabor.',
@@ -1053,9 +1236,6 @@ extension on TranslationsEs {
 			'navigation.myRecipes' => 'Mis recetas',
 			'navigation.profile' => 'Perfil',
 			'comingSoon.badge' => 'PRÓXIMAMENTE',
-			'comingSoon.discover.eyebrow' => 'DESCUBRIR',
-			'comingSoon.discover.title' => 'Una mesa más amplia.',
-			'comingSoon.discover.body' => 'La búsqueda, los filtros por cocina y las recetas de otras personas llegan en la próxima etapa. Tu recetario ya está listo.',
 			'comingSoon.aiCook.eyebrow' => 'COCINA IA',
 			'comingSoon.aiCook.title' => 'Un sous-chef, pronto.',
 			'comingSoon.aiCook.body' => 'Pregunta por sustituciones, planifica con lo que hay en la despensa y adapta recetas. Las claves se quedan en el servidor, nunca en la app.',

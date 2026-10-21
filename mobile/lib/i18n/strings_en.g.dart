@@ -46,6 +46,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$errors$en errors = Translations$errors$en.internal(_root);
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
 	late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
+	late final Translations$discovery$en discovery = Translations$discovery$en.internal(_root);
 	late final Translations$home$en home = Translations$home$en.internal(_root);
 	late final Translations$navigation$en navigation = Translations$navigation$en.internal(_root);
 	late final Translations$comingSoon$en comingSoon = Translations$comingSoon$en.internal(_root);
@@ -177,6 +178,32 @@ class Translations$onboarding$en {
 	late final Translations$onboarding$options$en options = Translations$onboarding$options$en.internal(_root);
 }
 
+// Path: discovery
+class Translations$discovery$en {
+	Translations$discovery$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'DISCOVER'
+	String get eyebrow => 'DISCOVER';
+
+	/// en: 'Find your next table.'
+	String get title => 'Find your next table.';
+
+	/// en: 'Search public recipes, then narrow by cuisine, time, meal and diet.'
+	String get subtitle => 'Search public recipes, then narrow by cuisine, time, meal and diet.';
+
+	/// en: 'Search recipes, ingredients, cuisines'
+	String get searchHint => 'Search recipes, ingredients, cuisines';
+
+	late final Translations$discovery$filters$en filters = Translations$discovery$filters$en.internal(_root);
+	late final Translations$discovery$time$en time = Translations$discovery$time$en.internal(_root);
+	late final Translations$discovery$feed$en feed = Translations$discovery$feed$en.internal(_root);
+	late final Translations$discovery$pantry$en pantry = Translations$discovery$pantry$en.internal(_root);
+}
+
 // Path: home
 class Translations$home$en {
 	Translations$home$en.internal(this._root);
@@ -194,6 +221,8 @@ class Translations$home$en {
 	/// en: 'What are we cooking today?'
 	String get whatCooking => 'What are we cooking today?';
 
+	late final Translations$home$pantry$en pantry = Translations$home$pantry$en.internal(_root);
+	late final Translations$home$rails$en rails = Translations$home$rails$en.internal(_root);
 	late final Translations$home$taste$en taste = Translations$home$taste$en.internal(_root);
 	late final Translations$home$library$en library = Translations$home$library$en.internal(_root);
 }
@@ -233,7 +262,6 @@ class Translations$comingSoon$en {
 	/// en: 'PLANNED'
 	String get badge => 'PLANNED';
 
-	late final Translations$comingSoon$discover$en discover = Translations$comingSoon$discover$en.internal(_root);
 	late final Translations$comingSoon$aiCook$en aiCook = Translations$comingSoon$aiCook$en.internal(_root);
 	late final Translations$comingSoon$profile$en profile = Translations$comingSoon$profile$en.internal(_root);
 }
@@ -569,6 +597,168 @@ class Translations$onboarding$options$en {
 	late final Translations$onboarding$options$interests$en interests = Translations$onboarding$options$interests$en.internal(_root);
 }
 
+// Path: discovery.filters
+class Translations$discovery$filters$en {
+	Translations$discovery$filters$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Cuisine'
+	String get cuisine => 'Cuisine';
+
+	/// en: 'Meal'
+	String get meal => 'Meal';
+
+	/// en: 'Time'
+	String get time => 'Time';
+
+	/// en: 'Effort'
+	String get difficulty => 'Effort';
+
+	/// en: 'Diet'
+	String get diet => 'Diet';
+
+	/// en: 'Any'
+	String get any => 'Any';
+
+	/// en: 'Clear all'
+	String get clearAll => 'Clear all';
+}
+
+// Path: discovery.time
+class Translations$discovery$time$en {
+	Translations$discovery$time$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Under {count} min'
+	String under({required Object count}) => 'Under ${count} min';
+}
+
+// Path: discovery.feed
+class Translations$discovery$feed$en {
+	Translations$discovery$feed$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Setting the table.'
+	String get loading => 'Setting the table.';
+
+	/// en: 'We couldn't load the public feed.'
+	String get loadError => 'We couldn\'t load the public feed.';
+
+	/// en: '{count} recipes'
+	String results({required Object count}) => '${count} recipes';
+
+	/// en: '1 recipe'
+	String get resultsOne => '1 recipe';
+
+	/// en: 'Newest first'
+	String get newestFirst => 'Newest first';
+
+	/// en: 'Best match'
+	String get bestMatch => 'Best match';
+
+	/// en: 'Couldn't load more recipes.'
+	String get loadMoreError => 'Couldn\'t load more recipes.';
+
+	/// en: 'Nothing matches that table.'
+	String get emptyTitle => 'Nothing matches that table.';
+
+	/// en: 'Try a wider time, another cuisine, or a shorter search.'
+	String get emptyBody => 'Try a wider time, another cuisine, or a shorter search.';
+
+	/// en: 'The community table is still being set.'
+	String get emptyCommunityTitle => 'The community table is still being set.';
+
+	/// en: 'Publish a recipe and it can appear here for other cooks.'
+	String get emptyCommunityBody => 'Publish a recipe and it can appear here for other cooks.';
+}
+
+// Path: discovery.pantry
+class Translations$discovery$pantry$en {
+	Translations$discovery$pantry$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'THE PANTRY'
+	String get eyebrow => 'THE PANTRY';
+
+	/// en: 'Cook from what you have.'
+	String get title => 'Cook from what you have.';
+
+	/// en: 'Add the ingredients on your shelf. We'll rank public recipes by how much of each one you already cover.'
+	String get subtitle => 'Add the ingredients on your shelf. We\'ll rank public recipes by how much of each one you already cover.';
+
+	/// en: 'Match public recipes against your shelf.'
+	String get body => 'Match public recipes against your shelf.';
+
+	/// en: 'Add an ingredient, or a few with commas'
+	String get inputHint => 'Add an ingredient, or a few with commas';
+
+	/// en: 'Add'
+	String get add => 'Add';
+
+	/// en: 'Clear pantry'
+	String get clear => 'Clear pantry';
+
+	/// en: 'Remove {name}'
+	String remove({required Object name}) => 'Remove ${name}';
+
+	/// en: 'Looking through the pantry.'
+	String get loading => 'Looking through the pantry.';
+
+	/// en: 'We couldn't match your pantry.'
+	String get loadError => 'We couldn\'t match your pantry.';
+
+	/// en: 'Couldn't load more matches.'
+	String get loadMoreError => 'Couldn\'t load more matches.';
+
+	/// en: 'Load more'
+	String get loadMore => 'Load more';
+
+	/// en: '{count} matches'
+	String results({required Object count}) => '${count} matches';
+
+	/// en: '1 match'
+	String get resultsOne => '1 match';
+
+	/// en: 'No matches yet.'
+	String get emptyTitle => 'No matches yet.';
+
+	/// en: 'Try fewer or more general ingredients, like "tomato" instead of "cherry tomatoes".'
+	String get emptyBody => 'Try fewer or more general ingredients, like "tomato" instead of "cherry tomatoes".';
+
+	/// en: 'Start with what you have.'
+	String get emptyPromptTitle => 'Start with what you have.';
+
+	/// en: 'Add a few ingredients above and we'll find public recipes that need the least extra shopping.'
+	String get emptyPromptBody => 'Add a few ingredients above and we\'ll find public recipes that need the least extra shopping.';
+
+	/// en: 'Can cook'
+	String get canCook => 'Can cook';
+
+	/// en: '{percent}% match'
+	String match({required Object percent}) => '${percent}% match';
+
+	/// en: 'You have: {names}'
+	String have({required Object names}) => 'You have: ${names}';
+
+	/// en: 'Missing: {names}'
+	String missing({required Object names}) => 'Missing: ${names}';
+
+	/// en: 'You have everything.'
+	String get allIngredients => 'You have everything.';
+}
+
 // Path: home.language
 class Translations$home$language$en {
 	Translations$home$language$en.internal(this._root);
@@ -609,6 +799,75 @@ class Translations$home$greetings$en {
 
 	/// en: 'friend'
 	String get friend => 'friend';
+}
+
+// Path: home.pantry
+class Translations$home$pantry$en {
+	Translations$home$pantry$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'FROM YOUR PANTRY'
+	String get eyebrow => 'FROM YOUR PANTRY';
+
+	/// en: 'What can I cook right now?'
+	String get title => 'What can I cook right now?';
+
+	/// en: 'Type what you have. We'll find public recipes that use the most of it.'
+	String get body => 'Type what you have. We\'ll find public recipes that use the most of it.';
+
+	/// en: 'Lemon, orzo, spinach'
+	String get hint => 'Lemon, orzo, spinach';
+
+	/// en: 'Find recipes'
+	String get action => 'Find recipes';
+
+	/// en: 'Add at least one ingredient first.'
+	String get empty => 'Add at least one ingredient first.';
+}
+
+// Path: home.rails
+class Translations$home$rails$en {
+	Translations$home$rails$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Looking for what's cooking nearby.'
+	String get loading => 'Looking for what\'s cooking nearby.';
+
+	/// en: 'FOR YOUR TASTE'
+	String get forYouEyebrow => 'FOR YOUR TASTE';
+
+	/// en: 'Built from your cuisines and diets.'
+	String get forYouTitle => 'Built from your cuisines and diets.';
+
+	/// en: 'TRENDING THIS WEEK'
+	String get trendingEyebrow => 'TRENDING THIS WEEK';
+
+	/// en: 'What other cooks are saving.'
+	String get trendingTitle => 'What other cooks are saving.';
+
+	/// en: 'NEW FROM THE KITCHEN'
+	String get newestEyebrow => 'NEW FROM THE KITCHEN';
+
+	/// en: 'The latest public recipes.'
+	String get newestTitle => 'The latest public recipes.';
+
+	/// en: 'We couldn't load the community rails.'
+	String get loadError => 'We couldn\'t load the community rails.';
+
+	/// en: 'The community table is still being set.'
+	String get emptyTitle => 'The community table is still being set.';
+
+	/// en: 'Publish a recipe and it can appear here for other cooks.'
+	String get emptyBody => 'Publish a recipe and it can appear here for other cooks.';
+
+	/// en: 'Browse Discover'
+	String get action => 'Browse Discover';
 }
 
 // Path: home.taste
@@ -672,24 +931,6 @@ class Translations$home$library$en {
 
 	/// en: 'Open my recipes'
 	String get action => 'Open my recipes';
-}
-
-// Path: comingSoon.discover
-class Translations$comingSoon$discover$en {
-	Translations$comingSoon$discover$en.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'DISCOVER'
-	String get eyebrow => 'DISCOVER';
-
-	/// en: 'A wider table.'
-	String get title => 'A wider table.';
-
-	/// en: 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.'
-	String get body => 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.';
 }
 
 // Path: comingSoon.aiCook
@@ -1722,6 +1963,52 @@ extension on Translations {
 			'onboarding.options.interests.budgetCooking' => 'Budget cooking',
 			'onboarding.options.interests.cookingWithKids' => 'Cooking with kids',
 			'onboarding.options.interests.spicesAndHeat' => 'Spices & heat',
+			'discovery.eyebrow' => 'DISCOVER',
+			'discovery.title' => 'Find your next table.',
+			'discovery.subtitle' => 'Search public recipes, then narrow by cuisine, time, meal and diet.',
+			'discovery.searchHint' => 'Search recipes, ingredients, cuisines',
+			'discovery.filters.cuisine' => 'Cuisine',
+			'discovery.filters.meal' => 'Meal',
+			'discovery.filters.time' => 'Time',
+			'discovery.filters.difficulty' => 'Effort',
+			'discovery.filters.diet' => 'Diet',
+			'discovery.filters.any' => 'Any',
+			'discovery.filters.clearAll' => 'Clear all',
+			'discovery.time.under' => ({required Object count}) => 'Under ${count} min',
+			'discovery.feed.loading' => 'Setting the table.',
+			'discovery.feed.loadError' => 'We couldn\'t load the public feed.',
+			'discovery.feed.results' => ({required Object count}) => '${count} recipes',
+			'discovery.feed.resultsOne' => '1 recipe',
+			'discovery.feed.newestFirst' => 'Newest first',
+			'discovery.feed.bestMatch' => 'Best match',
+			'discovery.feed.loadMoreError' => 'Couldn\'t load more recipes.',
+			'discovery.feed.emptyTitle' => 'Nothing matches that table.',
+			'discovery.feed.emptyBody' => 'Try a wider time, another cuisine, or a shorter search.',
+			'discovery.feed.emptyCommunityTitle' => 'The community table is still being set.',
+			'discovery.feed.emptyCommunityBody' => 'Publish a recipe and it can appear here for other cooks.',
+			'discovery.pantry.eyebrow' => 'THE PANTRY',
+			'discovery.pantry.title' => 'Cook from what you have.',
+			'discovery.pantry.subtitle' => 'Add the ingredients on your shelf. We\'ll rank public recipes by how much of each one you already cover.',
+			'discovery.pantry.body' => 'Match public recipes against your shelf.',
+			'discovery.pantry.inputHint' => 'Add an ingredient, or a few with commas',
+			'discovery.pantry.add' => 'Add',
+			'discovery.pantry.clear' => 'Clear pantry',
+			'discovery.pantry.remove' => ({required Object name}) => 'Remove ${name}',
+			'discovery.pantry.loading' => 'Looking through the pantry.',
+			'discovery.pantry.loadError' => 'We couldn\'t match your pantry.',
+			'discovery.pantry.loadMoreError' => 'Couldn\'t load more matches.',
+			'discovery.pantry.loadMore' => 'Load more',
+			'discovery.pantry.results' => ({required Object count}) => '${count} matches',
+			'discovery.pantry.resultsOne' => '1 match',
+			'discovery.pantry.emptyTitle' => 'No matches yet.',
+			'discovery.pantry.emptyBody' => 'Try fewer or more general ingredients, like "tomato" instead of "cherry tomatoes".',
+			'discovery.pantry.emptyPromptTitle' => 'Start with what you have.',
+			'discovery.pantry.emptyPromptBody' => 'Add a few ingredients above and we\'ll find public recipes that need the least extra shopping.',
+			'discovery.pantry.canCook' => 'Can cook',
+			'discovery.pantry.match' => ({required Object percent}) => '${percent}% match',
+			'discovery.pantry.have' => ({required Object names}) => 'You have: ${names}',
+			'discovery.pantry.missing' => ({required Object names}) => 'Missing: ${names}',
+			'discovery.pantry.allIngredients' => 'You have everything.',
 			'home.signOut' => 'Sign out',
 			'home.language.tooltip' => 'Language',
 			'home.language.english' => 'English',
@@ -1732,6 +2019,23 @@ extension on Translations {
 			'home.greetings.line' => ({required Object greeting, required Object name}) => '${greeting}, ${name}.',
 			'home.greetings.friend' => 'friend',
 			'home.whatCooking' => 'What are we cooking today?',
+			'home.pantry.eyebrow' => 'FROM YOUR PANTRY',
+			'home.pantry.title' => 'What can I cook right now?',
+			'home.pantry.body' => 'Type what you have. We\'ll find public recipes that use the most of it.',
+			'home.pantry.hint' => 'Lemon, orzo, spinach',
+			'home.pantry.action' => 'Find recipes',
+			'home.pantry.empty' => 'Add at least one ingredient first.',
+			'home.rails.loading' => 'Looking for what\'s cooking nearby.',
+			'home.rails.forYouEyebrow' => 'FOR YOUR TASTE',
+			'home.rails.forYouTitle' => 'Built from your cuisines and diets.',
+			'home.rails.trendingEyebrow' => 'TRENDING THIS WEEK',
+			'home.rails.trendingTitle' => 'What other cooks are saving.',
+			'home.rails.newestEyebrow' => 'NEW FROM THE KITCHEN',
+			'home.rails.newestTitle' => 'The latest public recipes.',
+			'home.rails.loadError' => 'We couldn\'t load the community rails.',
+			'home.rails.emptyTitle' => 'The community table is still being set.',
+			'home.rails.emptyBody' => 'Publish a recipe and it can appear here for other cooks.',
+			'home.rails.action' => 'Browse Discover',
 			'home.taste.eyebrow' => 'YOUR TASTE',
 			'home.taste.loading' => 'Reading your taste profile…',
 			'home.taste.loadError' => 'We couldn\'t load your taste profile.',
@@ -1753,9 +2057,6 @@ extension on Translations {
 			'navigation.myRecipes' => 'My Recipes',
 			'navigation.profile' => 'Profile',
 			'comingSoon.badge' => 'PLANNED',
-			'comingSoon.discover.eyebrow' => 'DISCOVER',
-			'comingSoon.discover.title' => 'A wider table.',
-			'comingSoon.discover.body' => 'Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now.',
 			'comingSoon.aiCook.eyebrow' => 'AI COOK',
 			'comingSoon.aiCook.title' => 'A sous-chef, soon.',
 			'comingSoon.aiCook.body' => 'Ask about substitutions, plan from what is in the pantry, and adapt recipes. Keys stay on the server, never in the app.',

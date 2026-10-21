@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seasonpal/features/auth/domain/auth_session.dart';
+import 'package:seasonpal/features/discovery/domain/discovery_models.dart';
 import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
 import 'package:seasonpal/features/recipes/domain/recipe_models.dart';
 
@@ -142,4 +143,63 @@ void main() {
       expect(recipe.updatedAt, DateTime.utc(2026, 10, 20, 13));
     });
   });
+
+  group('discovery models', () {
+    test('parses the home rails and taste flag', () {
+      final home = DiscoveryHome.fromJson({
+        'trending': [_summaryJson('trend-1')],
+        'newest': [_summaryJson('new-1')],
+        'recommended': const [],
+        'hasTasteProfile': true,
+      });
+
+      expect(home.trending.single.id, 'trend-1');
+      expect(home.newest.single.title, 'Lemon orzo');
+      expect(home.recommended, isEmpty);
+      expect(home.hasTasteProfile, isTrue);
+      expect(home.isEmpty, isFalse);
+    });
+
+    test('parses a pantry match with its coverage', () {
+      final match = PantryMatch.fromJson({
+        'recipe': _summaryJson('pantry-1'),
+        'matchedCount': 2,
+        'missingCount': 1,
+        'matchedIngredients': ['lemon', 'orzo'],
+        'missingIngredients': ['spinach'],
+        'matchPercent': 67,
+        'canCook': false,
+      });
+
+      expect(match.recipe.id, 'pantry-1');
+      expect(match.matchedIngredients, ['lemon', 'orzo']);
+      expect(match.missingIngredients, ['spinach']);
+      expect(match.matchPercent, 67);
+      expect(match.consideredCount, 3);
+      expect(match.canCook, isFalse);
+    });
+  });
 }
+
+Map<String, dynamic> _summaryJson(String id) => {
+  'id': id,
+  'title': 'Lemon orzo',
+  'description': 'Bright and quick.',
+  'cuisine': 'Mediterranean',
+  'coverImageUrl': null,
+  'mealType': 3,
+  'servings': 2,
+  'prepTimeMinutes': 10,
+  'cookTimeMinutes': 15,
+  'totalTimeMinutes': 25,
+  'difficulty': 1,
+  'visibility': 1,
+  'status': 1,
+  'isAiGenerated': false,
+  'tags': ['weeknight'],
+  'dietaryTags': ['Vegetarian'],
+  'authorId': 'author-1',
+  'authorDisplayName': 'Ava Stone',
+  'savedAt': null,
+  'updatedAt': '2026-10-20T13:00:00Z',
+};

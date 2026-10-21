@@ -10,7 +10,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 - [x] Stage 2 — Auth, onboarding & preferences
 - [x] Stage 3 — Recipes API: CRUD, saving & collections
 - [x] Stage 4 — Flutter library: auth, collection & recipe editor screens
-- [ ] Stage 5 — Discovery: browse, search, filters, home feed
+- [x] Stage 5 - Discovery: browse, search, filters, home feed
 - [ ] Stage 6 — Seed content & demo data
 - [ ] Stage 7 — AI cooking companion v1
 - [ ] Stage 8 — Cooking mode & serving adjustment
@@ -83,15 +83,19 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 **Delivered:** five-tab shell; Mine/Saved library with paginated cards and loading/empty/error states; seven-section create/edit form with ingredient and step reordering, photo/video uploads, title-only drafts, and publish-on-save; recipe detail with owner edit, publish/unpublish, delete, and save-to-collection; collections list/detail with creation and removal; forest/cream/sage tokens and a shared recipe card. The acceptance flow was exercised end to end on a Pixel 9a emulator against the live API: create → cover upload → publish → close → reopen → edit. 23 Flutter tests (18 widget, 5 model parsing) green.
 
-**Known gaps:** Discover, AI Cook, and Profile remain explicit "coming next" placeholders until Stages 5, 7, and 10; collection rename exists in the API but has no UI yet; HEIC photos are rejected (JPEG/PNG/WebP/GIF and MP4/MOV only); iOS was not exercised (no macOS host).
+**Known gaps:** AI Cook and Profile remain explicit "coming next" placeholders until Stages 7 and 10; collection rename exists in the API but has no UI yet; HEIC photos are rejected (JPEG/PNG/WebP/GIF and MP4/MOV only); iOS was not exercised (no macOS host).
 
 ## Stage 5 — Discovery: browse, search, filters
 
 - `DiscoveryEndpoints.cs`: trending (saves + interests weighted, time-windowed), recommendations v0 (same-as-taste heuristic: cuisines + diet from preferences), search by text (ILIKE, name/ingredients/desc), filter chips (time, difficulty, diet, cuisine, meal type), paginated feed.
 - Includes ingredient-to-recipe matching endpoint ("what can I cook with what I have" scored subset) — real DB math, not AI, so it works pre-AI-config.
-- Mobile: Discover section (search + chips + feed), Home section skeleton (trending rail + newest rail + "pantry" shortcut that pre-seeds AI screen input).
+- Mobile: Discover section (search + chips + feed), Home section skeleton (trending rail + newest rail + "pantry" shortcut that pre-seeds the pantry matcher and the shared provider reserved for the Stage 7 AI screen).
 
 **Acceptance:** feed respects `visibility=public` + published only; search relevance tests fixture-based; mobile discover filters compose (multiple picks at once).
+
+**Delivered:** authenticated `GET /discovery/feed`, `/discovery/home`, `/discovery/pantry` that only read published public recipes; a provider-agnostic `DiscoveryFeedSpecification` with case-insensitive search over title/description/ingredients (title 3 / description 2 / ingredient 1 relevance, newest-first without a query) and combinable cuisine/diet/meal/difficulty/max-time filters; time-windowed trending (30-day saves ×3 + 7-day saves ×2 + favorite-cuisine match, self-saves excluded) and v0 recommendations from cuisines/diet; deterministic pantry coverage scoring that ignores staples and returns matched/missing names, percent and `CanCook`; Flutter Discover with debounced search, five bottom-sheet filters, pantry callout and a paginated grid; Home rails for taste/trending/newest plus a forest pantry card that seeds the shared `pantryIngredientsProvider`; Pantry screen with ingredient chips and match bars. 102 backend tests green (74 unit, 28 integration) and 31 Flutter tests green (23 widget, 8 unit).
+
+**Known gaps:** discovery reads only published public recipes (friends-only visibility waits for Stage 10); search is case-insensitive substring matching, not full-text/trigram; recommendations v0 have no fallback fill and use only cuisines/diet; trending is bounded to a 200-recipe candidate pool and 10-item rails; pantry matching is substring-based, scores the 200 newest matching recipes, has no quantity/unit math until Stage 8, and caps at 30 terms; the pantry shortcut seeds the pantry screen and the shared provider reserved for the Stage 7 AI screen, which remains a placeholder; iOS was not exercised. On this Windows host Smart App Control blocks locally built assemblies, so integration tests run in a Linux .NET SDK container against an external Postgres.
 
 ## Stage 6 — Seed content & demo data
 

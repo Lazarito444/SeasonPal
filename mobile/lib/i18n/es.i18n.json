@@ -182,6 +182,62 @@
       }
     }
   },
+  "discovery": {
+    "eyebrow": "DESCUBRIR",
+    "title": "Encuentra tu próxima mesa.",
+    "subtitle": "Busca recetas públicas y filtra por cocina, tiempo, comida y dieta.",
+    "searchHint": "Busca recetas, ingredientes o cocinas",
+    "filters": {
+      "cuisine": "Cocina",
+      "meal": "Comida",
+      "time": "Tiempo",
+      "difficulty": "Esfuerzo",
+      "diet": "Dieta",
+      "any": "Cualquiera",
+      "clearAll": "Limpiar todo"
+    },
+    "time": {
+      "under": "Menos de {count} min"
+    },
+    "feed": {
+      "loading": "Preparando la mesa.",
+      "loadError": "No pudimos cargar el feed público.",
+      "results": "{count} recetas",
+      "resultsOne": "1 receta",
+      "newestFirst": "Más recientes primero",
+      "bestMatch": "Mejor coincidencia",
+      "loadMoreError": "No pudimos cargar más recetas.",
+      "emptyTitle": "Nada coincide con esa mesa.",
+      "emptyBody": "Prueba con más tiempo, otra cocina o una búsqueda más corta.",
+      "emptyCommunityTitle": "La mesa de la comunidad aún se está preparando.",
+      "emptyCommunityBody": "Publica una receta y podrá aparecer aquí para otros cocineros."
+    },
+    "pantry": {
+      "eyebrow": "LA DESPENSA",
+      "title": "Cocina con lo que tienes.",
+      "subtitle": "Añade los ingredientes de tu despensa. Ordenaremos las recetas públicas según cuánto de cada una ya tienes.",
+      "body": "Compara recetas públicas con tu despensa.",
+      "inputHint": "Añade un ingrediente, o varios separados por comas",
+      "add": "Añadir",
+      "clear": "Vaciar despensa",
+      "remove": "Quitar {name}",
+      "loading": "Revisando la despensa.",
+      "loadError": "No pudimos comparar tu despensa.",
+      "loadMoreError": "No pudimos cargar más coincidencias.",
+      "loadMore": "Cargar más",
+      "results": "{count} coincidencias",
+      "resultsOne": "1 coincidencia",
+      "emptyTitle": "Aún no hay coincidencias.",
+      "emptyBody": "Prueba con menos ingredientes o más generales, como \"tomate\" en vez de \"tomates cherry\".",
+      "emptyPromptTitle": "Empieza con lo que tienes.",
+      "emptyPromptBody": "Añade algunos ingredientes arriba y buscaremos recetas públicas que necesiten menos compras.",
+      "canCook": "Puedes cocinar",
+      "match": "{percent}% de coincidencia",
+      "have": "Tienes: {names}",
+      "missing": "Falta: {names}",
+      "allIngredients": "Tienes todo."
+    }
+  },
   "home": {
     "signOut": "Cerrar sesión",
     "language": {
@@ -197,6 +253,27 @@
       "friend": "chef"
     },
     "whatCooking": "¿Qué cocinamos hoy?",
+    "pantry": {
+      "eyebrow": "DE TU DESPENSA",
+      "title": "¿Qué puedo cocinar ahora?",
+      "body": "Escribe lo que tienes. Buscaremos recetas públicas que usen la mayor parte.",
+      "hint": "Limón, orzo, espinaca",
+      "action": "Buscar recetas",
+      "empty": "Añade al menos un ingrediente."
+    },
+    "rails": {
+      "loading": "Buscando qué se cocina cerca.",
+      "forYouEyebrow": "PARA TU GUSTO",
+      "forYouTitle": "Hecho con tus cocinas y dietas.",
+      "trendingEyebrow": "TENDENCIA ESTA SEMANA",
+      "trendingTitle": "Lo que otros cocineros guardan.",
+      "newestEyebrow": "RECIÉN LLEGADO",
+      "newestTitle": "Las últimas recetas públicas.",
+      "loadError": "No pudimos cargar las recomendaciones de la comunidad.",
+      "emptyTitle": "La mesa de la comunidad aún se está preparando.",
+      "emptyBody": "Publica una receta y podrá aparecer aquí para otros cocineros.",
+      "action": "Explorar Descubrir"
+    },
     "taste": {
       "eyebrow": "TU PALADAR",
       "loading": "Leyendo tu perfil de sabor…",
@@ -226,11 +303,6 @@
   },
   "comingSoon": {
     "badge": "PRÓXIMAMENTE",
-    "discover": {
-      "eyebrow": "DESCUBRIR",
-      "title": "Una mesa más amplia.",
-      "body": "La búsqueda, los filtros por cocina y las recetas de otras personas llegan en la próxima etapa. Tu recetario ya está listo."
-    },
     "aiCook": {
       "eyebrow": "COCINA IA",
       "title": "Un sous-chef, pronto.",

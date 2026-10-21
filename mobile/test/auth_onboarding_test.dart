@@ -6,10 +6,15 @@ import 'package:seasonpal/core/l10n/locale_store.dart';
 import 'package:seasonpal/core/network/api_exception.dart';
 import 'package:seasonpal/features/auth/data/auth_repository.dart';
 import 'package:seasonpal/features/auth/domain/auth_session.dart';
+import 'package:seasonpal/features/discovery/data/discovery_repository.dart';
+import 'package:seasonpal/features/discovery/domain/discovery_models.dart';
 import 'package:seasonpal/features/onboarding/data/preferences_repository.dart';
 import 'package:seasonpal/features/onboarding/domain/user_preferences.dart';
 import 'package:seasonpal/i18n/strings.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'support/fake_discovery_repository.dart';
+import 'support/fake_recipe_repository.dart';
 
 void main() {
   setUp(() {
@@ -306,6 +311,62 @@ void main() {
     expect(auth.logoutCalls, 1);
   });
 
+  testWidgets('home shows community rails and seeds the pantry from its shortcut', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    final auth = _FakeAuthRepository(
+      restored: _session(onboardingCompleted: true),
+    );
+    final preferences = _FakePreferences(
+      current: const UserPreferences(
+        favoriteCuisines: ['Italian'],
+        dietaryRestrictions: ['Vegetarian'],
+        skillLevel: SkillLevel.intermediate,
+        usualCookTimeMinutes: 30,
+        onboardingCompleted: true,
+      ),
+    );
+    final discovery = FakeDiscoveryRepository(
+      homeResult: DiscoveryHome(
+        trending: [fakeRecipeSummary(id: 'trend-1', title: 'Lemon orzo')],
+        newest: [fakeRecipeSummary(id: 'new-1', title: 'Roast chicken')],
+        recommended: [fakeRecipeSummary(id: 'rec-1', title: 'White bean stew')],
+        hasTasteProfile: true,
+      ),
+      pantryItems: [
+        fakePantryMatch(
+          recipe: fakeRecipeSummary(id: 'pantry-1', title: 'Pantry pasta'),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      _app(auth: auth, preferences: preferences, discovery: discovery),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('home-rail-for-you')), findsOneWidget);
+    expect(find.byKey(const Key('home-rail-trending')), findsOneWidget);
+    expect(find.text('Lemon orzo'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const Key('home-pantry-input')),
+      'lemon, orzo',
+    );
+    await tester.ensureVisible(find.byKey(const Key('home-pantry-action')));
+    await tester.tap(find.byKey(const Key('home-pantry-action')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('pantry-input')), findsOneWidget);
+    expect(discovery.lastPantryIngredients, ['lemon', 'orzo']);
+    expect(find.text('Pantry pasta'), findsOneWidget);
+    expect(find.text('CAN COOK'), findsOneWidget);
+  });
+
   testWidgets('the language menu switches the app to Spanish and back', (
     tester,
   ) async {
@@ -355,11 +416,15 @@ void main() {
 Widget _app({
   required _FakeAuthRepository auth,
   required _FakePreferences preferences,
+  DiscoveryRepository? discovery,
 }) {
   return ProviderScope(
     overrides: [
       authRepositoryProvider.overrideWithValue(auth),
       preferencesRepositoryProvider.overrideWithValue(preferences),
+      discoveryRepositoryProvider.overrideWithValue(
+        discovery ?? FakeDiscoveryRepository(),
+      ),
     ],
     child: const SeasonPalApp(),
   );

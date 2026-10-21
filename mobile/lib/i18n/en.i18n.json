@@ -182,6 +182,62 @@
       }
     }
   },
+  "discovery": {
+    "eyebrow": "DISCOVER",
+    "title": "Find your next table.",
+    "subtitle": "Search public recipes, then narrow by cuisine, time, meal and diet.",
+    "searchHint": "Search recipes, ingredients, cuisines",
+    "filters": {
+      "cuisine": "Cuisine",
+      "meal": "Meal",
+      "time": "Time",
+      "difficulty": "Effort",
+      "diet": "Diet",
+      "any": "Any",
+      "clearAll": "Clear all"
+    },
+    "time": {
+      "under": "Under {count} min"
+    },
+    "feed": {
+      "loading": "Setting the table.",
+      "loadError": "We couldn't load the public feed.",
+      "results": "{count} recipes",
+      "resultsOne": "1 recipe",
+      "newestFirst": "Newest first",
+      "bestMatch": "Best match",
+      "loadMoreError": "Couldn't load more recipes.",
+      "emptyTitle": "Nothing matches that table.",
+      "emptyBody": "Try a wider time, another cuisine, or a shorter search.",
+      "emptyCommunityTitle": "The community table is still being set.",
+      "emptyCommunityBody": "Publish a recipe and it can appear here for other cooks."
+    },
+    "pantry": {
+      "eyebrow": "THE PANTRY",
+      "title": "Cook from what you have.",
+      "subtitle": "Add the ingredients on your shelf. We'll rank public recipes by how much of each one you already cover.",
+      "body": "Match public recipes against your shelf.",
+      "inputHint": "Add an ingredient, or a few with commas",
+      "add": "Add",
+      "clear": "Clear pantry",
+      "remove": "Remove {name}",
+      "loading": "Looking through the pantry.",
+      "loadError": "We couldn't match your pantry.",
+      "loadMoreError": "Couldn't load more matches.",
+      "loadMore": "Load more",
+      "results": "{count} matches",
+      "resultsOne": "1 match",
+      "emptyTitle": "No matches yet.",
+      "emptyBody": "Try fewer or more general ingredients, like \"tomato\" instead of \"cherry tomatoes\".",
+      "emptyPromptTitle": "Start with what you have.",
+      "emptyPromptBody": "Add a few ingredients above and we'll find public recipes that need the least extra shopping.",
+      "canCook": "Can cook",
+      "match": "{percent}% match",
+      "have": "You have: {names}",
+      "missing": "Missing: {names}",
+      "allIngredients": "You have everything."
+    }
+  },
   "home": {
     "signOut": "Sign out",
     "language": {
@@ -197,6 +253,27 @@
       "friend": "friend"
     },
     "whatCooking": "What are we cooking today?",
+    "pantry": {
+      "eyebrow": "FROM YOUR PANTRY",
+      "title": "What can I cook right now?",
+      "body": "Type what you have. We'll find public recipes that use the most of it.",
+      "hint": "Lemon, orzo, spinach",
+      "action": "Find recipes",
+      "empty": "Add at least one ingredient first."
+    },
+    "rails": {
+      "loading": "Looking for what's cooking nearby.",
+      "forYouEyebrow": "FOR YOUR TASTE",
+      "forYouTitle": "Built from your cuisines and diets.",
+      "trendingEyebrow": "TRENDING THIS WEEK",
+      "trendingTitle": "What other cooks are saving.",
+      "newestEyebrow": "NEW FROM THE KITCHEN",
+      "newestTitle": "The latest public recipes.",
+      "loadError": "We couldn't load the community rails.",
+      "emptyTitle": "The community table is still being set.",
+      "emptyBody": "Publish a recipe and it can appear here for other cooks.",
+      "action": "Browse Discover"
+    },
     "taste": {
       "eyebrow": "YOUR TASTE",
       "loading": "Reading your taste profile…",
@@ -226,11 +303,6 @@
   },
   "comingSoon": {
     "badge": "PLANNED",
-    "discover": {
-      "eyebrow": "DISCOVER",
-      "title": "A wider table.",
-      "body": "Search, cuisine filters, and recipes from other cooks arrive in the next stage. Your own library is ready now."
-    },
     "aiCook": {
       "eyebrow": "AI COOK",
       "title": "A sous-chef, soon.",
