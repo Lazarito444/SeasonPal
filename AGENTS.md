@@ -31,7 +31,7 @@ SeasonPal/
 ## Commands
 
 ```bash
-docker compose -f docker-compose.dev.yml up -d        # local Postgres
+docker compose -f docker-compose.dev.yml up -d        # local Postgres + pgAdmin (reads .env)
 dotnet build backend/SeasonPal.slnx
 dotnet watch --project backend/src/SeasonPal.Api
 dotnet ef migrations add <Name> -p backend/src/SeasonPal.Infrastructure -s backend/src/SeasonPal.Api
@@ -41,7 +41,11 @@ flutter test (mobile/); dart format mobile/lib
 dart run slang                                       # mobile/; regenerate translations
 ```
 
+Copy `.env.example` to `.env` (git-ignored) and fill in the Postgres/pgAdmin credentials before the first `docker compose` run. Keep the `POSTGRES_*` values in sync with the API Development connection string.
+
 Flutter API base URL comes from `--dart-define-from-file` pointing at a per-environment JSON (e.g. `config/api_dev.json`), default targeting the dev backend. The dev config uses `http://localhost:5209`, so run `adb reverse tcp:5209 tcp:5209` before launching on an Android emulator or USB-connected device.
+
+pgAdmin runs at `http://localhost:5050` in desktop mode. Register the dev server with host `db`, port `5432`, and the database/user/password from `.env`.
 
 ## Backend rules
 
