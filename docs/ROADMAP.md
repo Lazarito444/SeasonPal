@@ -15,7 +15,7 @@ Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 - [ ] Stage 7 — AI cooking companion v1
 - [ ] Stage 8 — Cooking mode & serving adjustment
 - [ ] Stage 9 — Personalization & recommendations
-- [ ] Stage 10 — Community: profiles, publishing, likes, comments, follows
+- [ ] Stage 10 - Community: profiles, publishing, likes, comments, follows, direct messages
 - [ ] Stage 11 — Polish: states, accessibility, performance, release prep
 
 Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 10, v2 web = after stage 11.
@@ -135,9 +135,12 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 - Publish flow (draft → public), public profiles (display name, bio, interests, avatar), follows, likes, comments, recipe-adaptation publishing that credits `sourceRecipeId` author automatically.
 - Discover expands to people; profile shows published recipes + followers.
+- Direct messages: `Conversation` aggregate (participants, last-message summary, per-participant read marker) owning `Message` children (text and optional photo attachment); a `ConversationRepository` in Application. Endpoints: `GET /conversations` (paginated, newest activity first), `GET /conversations/{id}/messages` (paginated, cursor on sent time), `POST /conversations` (idempotent per participant pair), `POST /conversations/{id}/messages`, `POST /conversations/{id}/read`. Only participants can read or write; a non-participant gets 404. Rate-limit message sends. Mobile: thread screen (bubbles, timestamps, read ticks, photo attachment, composer), conversation list, and a message action on public profiles.
 - Notifications: in-app inbox for like/comment/follow/adapted-your-recipe events (push deferred, noted limitation).
 
-**Acceptance:** end-to-end three-user flow: A publishes → B follows A → B saves/likes/comments → B adapts with credit → notifications appear for all parties.
+**Known gaps:** messaging is poll-based with no real-time transport (no SignalR/websockets, no typing indicator) and no presence; attachments reuse the existing media rules; message content is not moderated; blocking/reporting is not included.
+
+**Acceptance:** end-to-end three-user flow: A publishes → B follows A → B saves/likes/comments → B adapts with credit → notifications appear for all parties; plus C messages A, A replies, both read states and the conversation summary update, and C cannot read A's thread with B.
 
 ## Stage 11 — Polish & release prep
 

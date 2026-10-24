@@ -79,6 +79,7 @@ Community features should include:
 - Sharing cooking results and variations of existing recipes.
 - Discovering recipes from friends and other community members.
 - Giving credit to the original recipe creator when adapting or reposting a recipe.
+- Private direct messages between cooks, with photo attachments and read state, for kitchen questions that don't belong in a public comment thread.
 
 The community should encourage creativity, learning, and authentic interaction instead of focusing exclusively on follower counts.
 
@@ -195,6 +196,7 @@ Plan the data model around entities such as:
 - Saved recipes
 - Recipe ratings and comments
 - Follows
+- Conversations and messages
 - Recipe adaptations
 - Cooking history
 - AI conversations
@@ -229,6 +231,7 @@ Do not attempt to build every feature simultaneously. Start with a polished, fun
 - Following creators.
 - Likes, comments, and social discovery.
 - Recipe variations and community interactions.
+- Direct messages between cooks.
 
 Prioritize a coherent, delightful experience over a large number of incomplete features.
 
