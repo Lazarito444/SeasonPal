@@ -147,8 +147,10 @@ class Translations$auth$en {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+	late final Translations$auth$social$en social = Translations$auth$social$en.internal(_root);
 	late final Translations$auth$login$en login = Translations$auth$login$en.internal(_root);
 	late final Translations$auth$register$en register = Translations$auth$register$en.internal(_root);
+	late final Translations$auth$forgot$en forgot = Translations$auth$forgot$en.internal(_root);
 	late final Translations$auth$splash$en splash = Translations$auth$splash$en.internal(_root);
 }
 
@@ -291,6 +293,27 @@ class Translations$recipes$en {
 	late final Translations$recipes$editor$en editor = Translations$recipes$editor$en.internal(_root);
 }
 
+// Path: auth.social
+class Translations$auth$social$en {
+	Translations$auth$social$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Or continue with'
+	String get continueWith => 'Or continue with';
+
+	/// en: 'Apple'
+	String get apple => 'Apple';
+
+	/// en: 'Google'
+	String get google => 'Google';
+
+	/// en: 'Social sign-in is planned for a later release.'
+	String get planned => 'Social sign-in is planned for a later release.';
+}
+
 // Path: auth.login
 class Translations$auth$login$en {
 	Translations$auth$login$en.internal(this._root);
@@ -299,11 +322,14 @@ class Translations$auth$login$en {
 
 	// Translations
 
-	/// en: 'Welcome back.'
-	String get title => 'Welcome back.';
+	/// en: 'Welcome'
+	String get title => 'Welcome';
 
-	/// en: 'Sign in and pick up where you left off in the kitchen.'
-	String get subtitle => 'Sign in and pick up where you left off in the kitchen.';
+	/// en: 'back.'
+	String get titleAccent => 'back.';
+
+	/// en: 'Access your saved recipes, kitchen notes, and the smart pantry.'
+	String get subtitle => 'Access your saved recipes, kitchen notes, and the smart pantry.';
 
 	/// en: 'New to SeasonPal?'
 	String get newHere => 'New to SeasonPal?';
@@ -314,8 +340,17 @@ class Translations$auth$login$en {
 	/// en: 'Email'
 	String get email => 'Email';
 
+	/// en: 'chef@seasonpal.com'
+	String get emailHint => 'chef@seasonpal.com';
+
 	/// en: 'Password'
 	String get password => 'Password';
+
+	/// en: 'Forgot your password?'
+	String get forgot => 'Forgot your password?';
+
+	/// en: 'Keep me signed in'
+	String get remember => 'Keep me signed in';
 
 	/// en: 'Sign in'
 	String get submit => 'Sign in';
@@ -338,11 +373,14 @@ class Translations$auth$register$en {
 
 	// Translations
 
-	/// en: 'Pull up a chair.'
-	String get title => 'Pull up a chair.';
+	/// en: 'Start your'
+	String get title => 'Start your';
 
-	/// en: 'Create your account, then tell us how you like to cook so the suggestions fit.'
-	String get subtitle => 'Create your account, then tell us how you like to cook so the suggestions fit.';
+	/// en: 'culinary journey.'
+	String get titleAccent => 'culinary journey.';
+
+	/// en: 'Join a community of curious cooks exploring food with the seasons.'
+	String get subtitle => 'Join a community of curious cooks exploring food with the seasons.';
 
 	/// en: 'Already cooking with us?'
 	String get alreadyHere => 'Already cooking with us?';
@@ -350,11 +388,11 @@ class Translations$auth$register$en {
 	/// en: 'Sign in'
 	String get signIn => 'Sign in';
 
-	/// en: 'Name'
-	String get name => 'Name';
+	/// en: 'Full name'
+	String get name => 'Full name';
 
-	/// en: 'Optional — what should we call you?'
-	String get nameHelper => 'Optional — what should we call you?';
+	/// en: 'Elena Rostova'
+	String get nameHint => 'Elena Rostova';
 
 	/// en: 'Keep your name to 80 characters.'
 	String get nameTooLong => 'Keep your name to 80 characters.';
@@ -362,14 +400,47 @@ class Translations$auth$register$en {
 	/// en: 'Email'
 	String get email => 'Email';
 
+	/// en: 'elena@seasonpal.com'
+	String get emailHint => 'elena@seasonpal.com';
+
 	/// en: 'Password'
 	String get password => 'Password';
 
-	/// en: '8+ characters with upper and lower case, a number, and a symbol.'
-	String get passwordHelper => '8+ characters with upper and lower case, a number, and a symbol.';
+	/// en: 'Required'
+	String get required => 'Required';
 
-	/// en: 'Create account'
-	String get submit => 'Create account';
+	/// en: 'Optional'
+	String get optional => 'Optional';
+
+	/// en: 'Min. 8 characters'
+	String get passwordHint => 'Min. 8 characters';
+
+	/// en: 'Password strength'
+	String get strengthLabel => 'Password strength';
+
+	/// en: 'Use 8+ characters with upper and lower case, a number, and a symbol.'
+	String get strengthEmpty => 'Use 8+ characters with upper and lower case, a number, and a symbol.';
+
+	/// en: 'Weak'
+	String get strengthWeak => 'Weak';
+
+	/// en: 'Fair'
+	String get strengthFair => 'Fair';
+
+	/// en: 'Good'
+	String get strengthGood => 'Good';
+
+	/// en: 'Strong'
+	String get strengthStrong => 'Strong';
+
+	/// en: 'I agree to the Terms of Use and Privacy Policy.'
+	String get terms => 'I agree to the Terms of Use and Privacy Policy.';
+
+	/// en: 'Accept the terms to create your account.'
+	String get termsRequired => 'Accept the terms to create your account.';
+
+	/// en: 'Create my SeasonPal account'
+	String get submit => 'Create my SeasonPal account';
 
 	/// en: 'Enter your email.'
 	String get emailRequired => 'Enter your email.';
@@ -385,6 +456,60 @@ class Translations$auth$register$en {
 
 	/// en: 'Add upper and lower case, a number, and a symbol.'
 	String get passwordTooWeak => 'Add upper and lower case, a number, and a symbol.';
+}
+
+// Path: auth.forgot
+class Translations$auth$forgot$en {
+	Translations$auth$forgot$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Forgot your password?'
+	String get title => 'Forgot your password?';
+
+	/// en: 'Enter the email tied to your SeasonPal account. We'll send a secure link to get you back to your seasonal recipes.'
+	String get body => 'Enter the email tied to your SeasonPal account. We\'ll send a secure link to get you back to your seasonal recipes.';
+
+	/// en: 'Email'
+	String get email => 'Email';
+
+	/// en: 'example@seasonpal.com'
+	String get emailHint => 'example@seasonpal.com';
+
+	/// en: 'Make sure you can open this inbox.'
+	String get inboxHint => 'Make sure you can open this inbox.';
+
+	/// en: 'Send reset link'
+	String get submit => 'Send reset link';
+
+	/// en: 'Request received.'
+	String get successTitle => 'Request received.';
+
+	/// en: 'If {email} belongs to a SeasonPal account, a reset link will be sent there. Email delivery isn't connected yet, so nothing will arrive in this build.'
+	String successBody({required Object email}) => 'If ${email} belongs to a SeasonPal account, a reset link will be sent there. Email delivery isn\'t connected yet, so nothing will arrive in this build.';
+
+	/// en: 'SeasonPal data protection'
+	String get dataTitle => 'SeasonPal data protection';
+
+	/// en: 'Once email delivery is live, reset links will expire after 15 minutes and can be used once.'
+	String get dataBody => 'Once email delivery is live, reset links will expire after 15 minutes and can be used once.';
+
+	/// en: 'Remembered your password?'
+	String get remembered => 'Remembered your password?';
+
+	/// en: 'Sign in'
+	String get signIn => 'Sign in';
+
+	/// en: 'Back to sign in'
+	String get backToSignIn => 'Back to sign in';
+
+	/// en: 'Enter your email.'
+	String get emailRequired => 'Enter your email.';
+
+	/// en: 'Enter a valid email address.'
+	String get emailInvalid => 'Enter a valid email address.';
 }
 
 // Path: auth.splash
@@ -2431,32 +2556,67 @@ extension on Translations {
 			'errors.emailTaken' => 'That account already exists.',
 			'errors.publishIncomplete' => 'Add at least one ingredient and one step before publishing.',
 			'errors.collectionNameTaken' => 'You already have a collection with that name.',
-			'auth.login.title' => 'Welcome back.',
-			'auth.login.subtitle' => 'Sign in and pick up where you left off in the kitchen.',
+			'auth.social.continueWith' => 'Or continue with',
+			'auth.social.apple' => 'Apple',
+			'auth.social.google' => 'Google',
+			'auth.social.planned' => 'Social sign-in is planned for a later release.',
+			'auth.login.title' => 'Welcome',
+			'auth.login.titleAccent' => 'back.',
+			'auth.login.subtitle' => 'Access your saved recipes, kitchen notes, and the smart pantry.',
 			'auth.login.newHere' => 'New to SeasonPal?',
 			'auth.login.createAccount' => 'Create an account',
 			'auth.login.email' => 'Email',
+			'auth.login.emailHint' => 'chef@seasonpal.com',
 			'auth.login.password' => 'Password',
+			'auth.login.forgot' => 'Forgot your password?',
+			'auth.login.remember' => 'Keep me signed in',
 			'auth.login.submit' => 'Sign in',
 			'auth.login.emailRequired' => 'Enter your email.',
 			'auth.login.emailInvalid' => 'Enter a valid email address.',
 			'auth.login.passwordRequired' => 'Enter your password.',
-			'auth.register.title' => 'Pull up a chair.',
-			'auth.register.subtitle' => 'Create your account, then tell us how you like to cook so the suggestions fit.',
+			'auth.register.title' => 'Start your',
+			'auth.register.titleAccent' => 'culinary journey.',
+			'auth.register.subtitle' => 'Join a community of curious cooks exploring food with the seasons.',
 			'auth.register.alreadyHere' => 'Already cooking with us?',
 			'auth.register.signIn' => 'Sign in',
-			'auth.register.name' => 'Name',
-			'auth.register.nameHelper' => 'Optional — what should we call you?',
+			'auth.register.name' => 'Full name',
+			'auth.register.nameHint' => 'Elena Rostova',
 			'auth.register.nameTooLong' => 'Keep your name to 80 characters.',
 			'auth.register.email' => 'Email',
+			'auth.register.emailHint' => 'elena@seasonpal.com',
 			'auth.register.password' => 'Password',
-			'auth.register.passwordHelper' => '8+ characters with upper and lower case, a number, and a symbol.',
-			'auth.register.submit' => 'Create account',
+			'auth.register.required' => 'Required',
+			'auth.register.optional' => 'Optional',
+			'auth.register.passwordHint' => 'Min. 8 characters',
+			'auth.register.strengthLabel' => 'Password strength',
+			'auth.register.strengthEmpty' => 'Use 8+ characters with upper and lower case, a number, and a symbol.',
+			'auth.register.strengthWeak' => 'Weak',
+			'auth.register.strengthFair' => 'Fair',
+			'auth.register.strengthGood' => 'Good',
+			'auth.register.strengthStrong' => 'Strong',
+			'auth.register.terms' => 'I agree to the Terms of Use and Privacy Policy.',
+			'auth.register.termsRequired' => 'Accept the terms to create your account.',
+			'auth.register.submit' => 'Create my SeasonPal account',
 			'auth.register.emailRequired' => 'Enter your email.',
 			'auth.register.emailInvalid' => 'Enter a valid email address.',
 			'auth.register.passwordRequired' => 'Choose a password.',
 			'auth.register.passwordTooShort' => 'Use at least 8 characters.',
 			'auth.register.passwordTooWeak' => 'Add upper and lower case, a number, and a symbol.',
+			'auth.forgot.title' => 'Forgot your password?',
+			'auth.forgot.body' => 'Enter the email tied to your SeasonPal account. We\'ll send a secure link to get you back to your seasonal recipes.',
+			'auth.forgot.email' => 'Email',
+			'auth.forgot.emailHint' => 'example@seasonpal.com',
+			'auth.forgot.inboxHint' => 'Make sure you can open this inbox.',
+			'auth.forgot.submit' => 'Send reset link',
+			'auth.forgot.successTitle' => 'Request received.',
+			'auth.forgot.successBody' => ({required Object email}) => 'If ${email} belongs to a SeasonPal account, a reset link will be sent there. Email delivery isn\'t connected yet, so nothing will arrive in this build.',
+			'auth.forgot.dataTitle' => 'SeasonPal data protection',
+			'auth.forgot.dataBody' => 'Once email delivery is live, reset links will expire after 15 minutes and can be used once.',
+			'auth.forgot.remembered' => 'Remembered your password?',
+			'auth.forgot.signIn' => 'Sign in',
+			'auth.forgot.backToSignIn' => 'Back to sign in',
+			'auth.forgot.emailRequired' => 'Enter your email.',
+			'auth.forgot.emailInvalid' => 'Enter a valid email address.',
 			'auth.splash.restoreFailed' => 'Could not restore your session.',
 			'auth.splash.loading' => 'Setting the table…',
 			'onboarding.stepIndicator' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total}',
@@ -2888,6 +3048,8 @@ extension on Translations {
 			'recipes.editor.tags.body' => 'Tags help you find the recipe later. Dietary tags are shown to anyone who can see it.',
 			'recipes.editor.tags.tags' => 'Tags',
 			'recipes.editor.tags.tagsHint' => 'Weeknight, one-pan…',
+			_ => null,
+		} ?? switch (path) {
 			'recipes.editor.tags.dietaryTags' => 'Dietary tags',
 			'recipes.editor.tags.dietaryHint' => 'Vegetarian, gluten-free…',
 			'recipes.editor.tags.add' => 'Add tag',

@@ -61,6 +61,10 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 **Acceptance:** integration tests cover register→login→refresh→me; invalid login yields ProblemDetails with rate limiting applied; Flutter wizard persists preferences and lands on a placeholder home that already greets by preference data.
 
+**Delivered:** the auth set rebuilt to `docs/design/auth/{login,register,forgot-password}`: an editorial headline whose second half is real Playfair italic, a white form card over the cream page, sage-tinted fields that lift to white with a forest focus ring, a label-row "Forgot your password?" link, a working "Keep me signed in" (the refresh token is stored only when checked, and a refresh never starts persisting an unremembered session), a four-segment password meter that mirrors the server policy, a terms gate before registration, and a reset screen wired to `POST /auth/password/forgot` with an honest success state and a data-protection card. Social sign-in (Apple/Google) renders disabled with a caption saying it is planned. 43 Flutter tests green (35 widget, 8 unit), including remember-me persistence, the reset request and its 429 path, and the strength meter.
+
+**Known gaps:** password reset answers 202 without sending mail until SMTP exists (the success copy says so); auth rate limiting is per client IP; refresh rotation has no optimistic concurrency; the three-cuisine gate, recap pencils and "skip for now" path are client-side behaviours (the API only stores `onboardingCompleted` plus the answer lists); onboarding option cards use Material glyphs rather than bespoke illustrations; the Terms of Use / Privacy Policy documents do not exist yet, so the consent row is plain text rather than a link.
+
 ## Stage 3 — Recipes API: CRUD, saving & collections
 
 - `RecipeEndpoints.cs`: create (draft), read (own + any published public recipe; friends-only visibility waits for the follow model at Stage 10), update, delete, publish/unpublish (enabled at Stage 10 but implemented now), list own by page with filters (cuisine, time, difficulty, diet, tag).

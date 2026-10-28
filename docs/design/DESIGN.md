@@ -139,9 +139,9 @@ spacing:
 
 > Implementation: the Flutter tokens live in `mobile/lib/core/theme/app_colors.dart`
 > (palette), `app_theme.dart` (type scale, radii, shadows, component themes) and
-> `mobile/assets/fonts/` (Playfair Display and Plus Jakarta Sans, self-hosted variable
-> TTFs). The hex values above are the shipped ones; keep this file and those tokens in
-> step when either changes.
+> `mobile/assets/fonts/` (Playfair Display roman + italic and Plus Jakarta Sans,
+> self-hosted variable TTFs). The hex values above are the shipped ones; keep this file
+> and those tokens in step when either changes.
 
 ## Brand & Style
 

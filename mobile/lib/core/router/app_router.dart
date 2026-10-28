@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:seasonpal/features/auth/presentation/auth_gate.dart';
+import 'package:seasonpal/features/auth/presentation/forgot_password_screen.dart';
 import 'package:seasonpal/features/auth/presentation/login_screen.dart';
 import 'package:seasonpal/features/auth/presentation/register_screen.dart';
 import 'package:seasonpal/features/auth/presentation/splash_screen.dart';
@@ -28,6 +29,8 @@ abstract final class AppRoutes {
   static const loginName = 'login';
   static const register = '/register';
   static const registerName = 'register';
+  static const forgotPassword = '/forgot-password';
+  static const forgotPasswordName = 'forgotPassword';
   static const onboarding = '/onboarding';
   static const onboardingName = 'onboarding';
   static const home = '/home';
@@ -69,13 +72,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         case AuthGate.error:
           return location == AppRoutes.splash ? null : AppRoutes.splash;
         case AuthGate.signedOut:
-          return location == AppRoutes.login || location == AppRoutes.register ? null : AppRoutes.login;
+          return location == AppRoutes.login || location == AppRoutes.register || location == AppRoutes.forgotPassword ? null : AppRoutes.login;
         case AuthGate.onboarding:
           return location == AppRoutes.onboarding ? null : AppRoutes.onboarding;
         case AuthGate.ready:
           // Any auth or splash route after sign-in lands home; app routes
           // (library, recipes, collections) stay reachable.
-          if (location == AppRoutes.splash || location == AppRoutes.login || location == AppRoutes.register || location == AppRoutes.onboarding) {
+          if (location == AppRoutes.splash || location == AppRoutes.login || location == AppRoutes.register || location == AppRoutes.forgotPassword || location == AppRoutes.onboarding) {
             return AppRoutes.home;
           }
 
@@ -97,6 +100,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.register,
         name: AppRoutes.registerName,
         builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.forgotPassword,
+        name: AppRoutes.forgotPasswordName,
+        builder: (context, state) => const ForgotPasswordScreen(),
       ),
       GoRoute(
         path: AppRoutes.onboarding,

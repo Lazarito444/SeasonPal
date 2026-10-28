@@ -105,8 +105,10 @@ class _Translations$auth$es extends Translations$auth$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
+	@override late final _Translations$auth$social$es social = _Translations$auth$social$es._(_root);
 	@override late final _Translations$auth$login$es login = _Translations$auth$login$es._(_root);
 	@override late final _Translations$auth$register$es register = _Translations$auth$register$es._(_root);
+	@override late final _Translations$auth$forgot$es forgot = _Translations$auth$forgot$es._(_root);
 	@override late final _Translations$auth$splash$es splash = _Translations$auth$splash$es._(_root);
 }
 
@@ -209,6 +211,19 @@ class _Translations$recipes$es extends Translations$recipes$en {
 	@override late final _Translations$recipes$editor$es editor = _Translations$recipes$editor$es._(_root);
 }
 
+// Path: auth.social
+class _Translations$auth$social$es extends Translations$auth$social$en {
+	_Translations$auth$social$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get continueWith => 'O continúa con';
+	@override String get apple => 'Apple';
+	@override String get google => 'Google';
+	@override String get planned => 'El acceso con redes sociales llegará más adelante.';
+}
+
 // Path: auth.login
 class _Translations$auth$login$es extends Translations$auth$login$en {
 	_Translations$auth$login$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -216,12 +231,16 @@ class _Translations$auth$login$es extends Translations$auth$login$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Qué bueno verte.';
-	@override String get subtitle => 'Inicia sesión y retoma la cocina donde la dejaste.';
+	@override String get title => 'Qué bueno';
+	@override String get titleAccent => 'verte.';
+	@override String get subtitle => 'Tus recetas guardadas, tus notas de cocina y tu despensa inteligente te esperan.';
 	@override String get newHere => '¿Es tu primera vez en SeasonPal?';
 	@override String get createAccount => 'Crear una cuenta';
 	@override String get email => 'Correo electrónico';
+	@override String get emailHint => 'chef@seasonpal.com';
 	@override String get password => 'Contraseña';
+	@override String get forgot => '¿Olvidaste tu contraseña?';
+	@override String get remember => 'Mantener sesión iniciada';
 	@override String get submit => 'Iniciar sesión';
 	@override String get emailRequired => 'Escribe tu correo.';
 	@override String get emailInvalid => 'Escribe un correo válido.';
@@ -235,22 +254,58 @@ class _Translations$auth$register$es extends Translations$auth$register$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Toma asiento.';
-	@override String get subtitle => 'Crea tu cuenta y cuéntanos cómo te gusta cocinar para que las sugerencias encajen contigo.';
+	@override String get title => 'Comienza tu';
+	@override String get titleAccent => 'viaje culinario.';
+	@override String get subtitle => 'Únete a una comunidad de cocineros curiosos que exploran la cocina de temporada.';
 	@override String get alreadyHere => '¿Ya cocinas con nosotros?';
 	@override String get signIn => 'Iniciar sesión';
-	@override String get name => 'Nombre';
-	@override String get nameHelper => 'Opcional: ¿cómo quieres que te llamemos?';
+	@override String get name => 'Nombre completo';
+	@override String get nameHint => 'Elena Rostova';
 	@override String get nameTooLong => 'Mantén tu nombre en 80 caracteres.';
 	@override String get email => 'Correo electrónico';
+	@override String get emailHint => 'elena@seasonpal.com';
 	@override String get password => 'Contraseña';
-	@override String get passwordHelper => '8+ caracteres con mayúsculas, minúsculas, un número y un símbolo.';
-	@override String get submit => 'Crear cuenta';
+	@override String get required => 'Obligatorio';
+	@override String get optional => 'Opcional';
+	@override String get passwordHint => 'Mín. 8 caracteres';
+	@override String get strengthLabel => 'Nivel de seguridad';
+	@override String get strengthEmpty => 'Usa 8+ caracteres con mayúsculas, minúsculas, un número y un símbolo.';
+	@override String get strengthWeak => 'Débil';
+	@override String get strengthFair => 'Aceptable';
+	@override String get strengthGood => 'Buena';
+	@override String get strengthStrong => 'Fuerte';
+	@override String get terms => 'Acepto las Condiciones de uso y la Política de privacidad.';
+	@override String get termsRequired => 'Acepta las condiciones para crear tu cuenta.';
+	@override String get submit => 'Crear mi cuenta SeasonPal';
 	@override String get emailRequired => 'Escribe tu correo.';
 	@override String get emailInvalid => 'Escribe un correo válido.';
 	@override String get passwordRequired => 'Elige una contraseña.';
 	@override String get passwordTooShort => 'Usa al menos 8 caracteres.';
 	@override String get passwordTooWeak => 'Añade mayúsculas, minúsculas, un número y un símbolo.';
+}
+
+// Path: auth.forgot
+class _Translations$auth$forgot$es extends Translations$auth$forgot$en {
+	_Translations$auth$forgot$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '¿Olvidaste tu contraseña?';
+	@override String get body => 'Escribe el correo asociado a tu cuenta de SeasonPal. Te enviaremos un enlace seguro para volver a tus recetas de temporada.';
+	@override String get email => 'Correo electrónico';
+	@override String get emailHint => 'ejemplo@seasonpal.com';
+	@override String get inboxHint => 'Asegúrate de poder abrir esta bandeja de entrada.';
+	@override String get submit => 'Enviar enlace de recuperación';
+	@override String get successTitle => 'Solicitud recibida.';
+	@override String successBody({required Object email}) => 'Si ${email} pertenece a una cuenta de SeasonPal, enviaremos allí un enlace de recuperación. El envío de correos aún no está conectado, así que no llegará nada en esta versión.';
+	@override String get dataTitle => 'Protección de datos SeasonPal';
+	@override String get dataBody => 'Cuando el envío de correos esté activo, los enlaces caducarán a los 15 minutos y solo podrán usarse una vez.';
+	@override String get remembered => '¿Recordaste tu contraseña?';
+	@override String get signIn => 'Iniciar sesión';
+	@override String get backToSignIn => 'Volver a iniciar sesión';
+	@override String get emailRequired => 'Escribe tu correo.';
+	@override String get emailInvalid => 'Escribe un correo válido.';
 }
 
 // Path: auth.splash
@@ -1453,32 +1508,67 @@ extension on TranslationsEs {
 			'errors.emailTaken' => 'Ya existe una cuenta con ese correo.',
 			'errors.publishIncomplete' => 'Añade al menos un ingrediente y un paso antes de publicar.',
 			'errors.collectionNameTaken' => 'Ya tienes una colección con ese nombre.',
-			'auth.login.title' => 'Qué bueno verte.',
-			'auth.login.subtitle' => 'Inicia sesión y retoma la cocina donde la dejaste.',
+			'auth.social.continueWith' => 'O continúa con',
+			'auth.social.apple' => 'Apple',
+			'auth.social.google' => 'Google',
+			'auth.social.planned' => 'El acceso con redes sociales llegará más adelante.',
+			'auth.login.title' => 'Qué bueno',
+			'auth.login.titleAccent' => 'verte.',
+			'auth.login.subtitle' => 'Tus recetas guardadas, tus notas de cocina y tu despensa inteligente te esperan.',
 			'auth.login.newHere' => '¿Es tu primera vez en SeasonPal?',
 			'auth.login.createAccount' => 'Crear una cuenta',
 			'auth.login.email' => 'Correo electrónico',
+			'auth.login.emailHint' => 'chef@seasonpal.com',
 			'auth.login.password' => 'Contraseña',
+			'auth.login.forgot' => '¿Olvidaste tu contraseña?',
+			'auth.login.remember' => 'Mantener sesión iniciada',
 			'auth.login.submit' => 'Iniciar sesión',
 			'auth.login.emailRequired' => 'Escribe tu correo.',
 			'auth.login.emailInvalid' => 'Escribe un correo válido.',
 			'auth.login.passwordRequired' => 'Escribe tu contraseña.',
-			'auth.register.title' => 'Toma asiento.',
-			'auth.register.subtitle' => 'Crea tu cuenta y cuéntanos cómo te gusta cocinar para que las sugerencias encajen contigo.',
+			'auth.register.title' => 'Comienza tu',
+			'auth.register.titleAccent' => 'viaje culinario.',
+			'auth.register.subtitle' => 'Únete a una comunidad de cocineros curiosos que exploran la cocina de temporada.',
 			'auth.register.alreadyHere' => '¿Ya cocinas con nosotros?',
 			'auth.register.signIn' => 'Iniciar sesión',
-			'auth.register.name' => 'Nombre',
-			'auth.register.nameHelper' => 'Opcional: ¿cómo quieres que te llamemos?',
+			'auth.register.name' => 'Nombre completo',
+			'auth.register.nameHint' => 'Elena Rostova',
 			'auth.register.nameTooLong' => 'Mantén tu nombre en 80 caracteres.',
 			'auth.register.email' => 'Correo electrónico',
+			'auth.register.emailHint' => 'elena@seasonpal.com',
 			'auth.register.password' => 'Contraseña',
-			'auth.register.passwordHelper' => '8+ caracteres con mayúsculas, minúsculas, un número y un símbolo.',
-			'auth.register.submit' => 'Crear cuenta',
+			'auth.register.required' => 'Obligatorio',
+			'auth.register.optional' => 'Opcional',
+			'auth.register.passwordHint' => 'Mín. 8 caracteres',
+			'auth.register.strengthLabel' => 'Nivel de seguridad',
+			'auth.register.strengthEmpty' => 'Usa 8+ caracteres con mayúsculas, minúsculas, un número y un símbolo.',
+			'auth.register.strengthWeak' => 'Débil',
+			'auth.register.strengthFair' => 'Aceptable',
+			'auth.register.strengthGood' => 'Buena',
+			'auth.register.strengthStrong' => 'Fuerte',
+			'auth.register.terms' => 'Acepto las Condiciones de uso y la Política de privacidad.',
+			'auth.register.termsRequired' => 'Acepta las condiciones para crear tu cuenta.',
+			'auth.register.submit' => 'Crear mi cuenta SeasonPal',
 			'auth.register.emailRequired' => 'Escribe tu correo.',
 			'auth.register.emailInvalid' => 'Escribe un correo válido.',
 			'auth.register.passwordRequired' => 'Elige una contraseña.',
 			'auth.register.passwordTooShort' => 'Usa al menos 8 caracteres.',
 			'auth.register.passwordTooWeak' => 'Añade mayúsculas, minúsculas, un número y un símbolo.',
+			'auth.forgot.title' => '¿Olvidaste tu contraseña?',
+			'auth.forgot.body' => 'Escribe el correo asociado a tu cuenta de SeasonPal. Te enviaremos un enlace seguro para volver a tus recetas de temporada.',
+			'auth.forgot.email' => 'Correo electrónico',
+			'auth.forgot.emailHint' => 'ejemplo@seasonpal.com',
+			'auth.forgot.inboxHint' => 'Asegúrate de poder abrir esta bandeja de entrada.',
+			'auth.forgot.submit' => 'Enviar enlace de recuperación',
+			'auth.forgot.successTitle' => 'Solicitud recibida.',
+			'auth.forgot.successBody' => ({required Object email}) => 'Si ${email} pertenece a una cuenta de SeasonPal, enviaremos allí un enlace de recuperación. El envío de correos aún no está conectado, así que no llegará nada en esta versión.',
+			'auth.forgot.dataTitle' => 'Protección de datos SeasonPal',
+			'auth.forgot.dataBody' => 'Cuando el envío de correos esté activo, los enlaces caducarán a los 15 minutos y solo podrán usarse una vez.',
+			'auth.forgot.remembered' => '¿Recordaste tu contraseña?',
+			'auth.forgot.signIn' => 'Iniciar sesión',
+			'auth.forgot.backToSignIn' => 'Volver a iniciar sesión',
+			'auth.forgot.emailRequired' => 'Escribe tu correo.',
+			'auth.forgot.emailInvalid' => 'Escribe un correo válido.',
 			'auth.splash.restoreFailed' => 'No pudimos restaurar tu sesión.',
 			'auth.splash.loading' => 'Poniendo la mesa…',
 			'onboarding.stepIndicator' => ({required Object current, required Object total}) => 'PASO ${current} DE ${total}',
@@ -1910,6 +2000,8 @@ extension on TranslationsEs {
 			'recipes.editor.tags.body' => 'Las etiquetas te ayudan a encontrar la receta después. Las dietéticas las ve cualquiera que pueda verla.',
 			'recipes.editor.tags.tags' => 'Etiquetas',
 			'recipes.editor.tags.tagsHint' => 'Entre semana, una sartén…',
+			_ => null,
+		} ?? switch (path) {
 			'recipes.editor.tags.dietaryTags' => 'Etiquetas dietéticas',
 			'recipes.editor.tags.dietaryHint' => 'Vegetariano, sin gluten…',
 			'recipes.editor.tags.add' => 'Añadir etiqueta',

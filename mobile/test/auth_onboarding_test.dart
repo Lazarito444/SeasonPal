@@ -43,7 +43,7 @@ void main() {
     await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const Key('login-submit')));
+    await _tapKey(tester, 'login-submit');
     await tester.pumpAndSettle();
 
     expect(find.text('Enter your email.'), findsOneWidget);
@@ -59,7 +59,7 @@ void main() {
     await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Create an account'));
+    await _tapKey(tester, 'login-create-account');
     await tester.pumpAndSettle();
 
     await tester.enterText(
@@ -94,7 +94,7 @@ void main() {
     await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
     await tester.pumpAndSettle();
 
-    expect(find.text('Welcome back.'), findsOneWidget);
+    expect(find.text('Welcome back.', findRichText: true), findsOneWidget);
 
     await tester.enterText(
       find.byKey(const Key('login-email')),
@@ -104,7 +104,7 @@ void main() {
       find.byKey(const Key('login-password')),
       'Saffron123!',
     );
-    await tester.tap(find.byKey(const Key('login-submit')));
+    await _tapKey(tester, 'login-submit');
     await tester.pumpAndSettle();
 
     expect(find.text('Cook to the season.'), findsOneWidget);
@@ -132,11 +132,128 @@ void main() {
       find.byKey(const Key('login-password')),
       'wrong-password',
     );
-    await tester.tap(find.byKey(const Key('login-submit')));
+    await _tapKey(tester, 'login-submit');
     await tester.pumpAndSettle();
 
     expect(find.text('Email or password is incorrect.'), findsOneWidget);
-    expect(find.text('Welcome back.'), findsOneWidget);
+    expect(find.text('Welcome back.', findRichText: true), findsOneWidget);
+  });
+
+  testWidgets('the remember-me choice reaches the auth repository', (
+    tester,
+  ) async {
+    final auth = _FakeAuthRepository(
+      loginResult: _session(onboardingCompleted: false),
+    );
+
+    await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
+    await tester.pumpAndSettle();
+
+    // On by default; one tap turns it off before signing in.
+    await _tapKey(tester, 'login-remember');
+    await tester.enterText(
+      find.byKey(const Key('login-email')),
+      'ava@seasonpal.test',
+    );
+    await tester.enterText(
+      find.byKey(const Key('login-password')),
+      'Saffron123!',
+    );
+    await _tapKey(tester, 'login-submit');
+
+    expect(auth.lastRemember, isFalse);
+  });
+
+  testWidgets('a reset request is sent and the caveat is shown', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    final auth = _FakeAuthRepository();
+
+    await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
+    await tester.pumpAndSettle();
+
+    await _tapKey(tester, 'login-forgot');
+    expect(
+      find.text('Forgot your password?', findRichText: true),
+      findsOneWidget,
+    );
+
+    await tester.enterText(
+      find.byKey(const Key('forgot-email')),
+      'ava@seasonpal.test',
+    );
+    await _tapKey(tester, 'forgot-submit');
+
+    expect(auth.forgotEmails, ['ava@seasonpal.test']);
+    expect(find.text('Request received.', findRichText: true), findsOneWidget);
+    expect(
+      find.textContaining(
+        "Email delivery isn't connected yet",
+        findRichText: true,
+      ),
+      findsOneWidget,
+    );
+
+    await _tapKey(tester, 'forgot-back-to-sign-in');
+    expect(find.text('Welcome back.', findRichText: true), findsOneWidget);
+  });
+
+  testWidgets('a rate-limited reset request keeps the form and explains', (
+    tester,
+  ) async {
+    final auth = _FakeAuthRepository(
+      forgotError: const ApiException(
+        message: 'Too many attempts. Wait a moment and try again.',
+        statusCode: 429,
+      ),
+    );
+
+    await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
+    await tester.pumpAndSettle();
+
+    await _tapKey(tester, 'login-forgot');
+    await tester.enterText(
+      find.byKey(const Key('forgot-email')),
+      'ava@seasonpal.test',
+    );
+    await _tapKey(tester, 'forgot-submit');
+
+    expect(
+      find.text('Too many attempts. Wait a moment and try again.'),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('forgot-submit')), findsOneWidget);
+    expect(auth.forgotEmails, isEmpty);
+  });
+
+  testWidgets('the password meter follows the strength rules', (
+    tester,
+  ) async {
+    final auth = _FakeAuthRepository();
+
+    await tester.pumpWidget(_app(auth: auth, preferences: _FakePreferences()));
+    await tester.pumpAndSettle();
+
+    await _tapKey(tester, 'login-create-account');
+
+    await tester.enterText(
+      find.byKey(const Key('register-password')),
+      'saffron123',
+    );
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Fair'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const Key('register-password')),
+      'Saffron123!',
+    );
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Strong'), findsOneWidget);
+    expect(find.textContaining('Use 8+ characters'), findsNothing);
   });
 
   testWidgets('the wizard saves preferences and lands on the home greeting', (
@@ -325,9 +442,9 @@ void main() {
 
     await tester.tap(find.byKey(const Key('home-sign-out')));
     await tester.pumpAndSettle();
-    expect(find.text('Welcome back.'), findsOneWidget);
+    expect(find.text('Welcome back.', findRichText: true), findsOneWidget);
 
-    await tester.tap(find.text('Create an account'));
+    await _tapKey(tester, 'login-create-account');
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byKey(const Key('register-name')), 'Ben Stone');
@@ -339,6 +456,7 @@ void main() {
       find.byKey(const Key('register-password')),
       'Saffron123!',
     );
+    await _tapKey(tester, 'register-terms');
     await _tapKey(tester, 'register-submit');
     await tester.pumpAndSettle();
 
@@ -375,7 +493,7 @@ void main() {
     await tester.tap(find.byKey(const Key('home-sign-out')));
     await tester.pumpAndSettle();
 
-    expect(find.text('Welcome back.'), findsOneWidget);
+    expect(find.text('Welcome back.', findRichText: true), findsOneWidget);
     expect(auth.logoutCalls, 1);
   });
 
@@ -530,12 +648,14 @@ final class _FakeAuthRepository implements AuthRepository {
     this.restored,
     this.loginResult,
     this.loginError,
+    this.forgotError,
     this.restoreFailures = 0,
   });
 
   final AuthSession? restored;
   final AuthSession? loginResult;
   final Object? loginError;
+  final Object? forgotError;
   final int restoreFailures;
 
   int loginCalls = 0;
@@ -543,6 +663,8 @@ final class _FakeAuthRepository implements AuthRepository {
   int registerCalls = 0;
   int restoreCalls = 0;
   String? lastEmail;
+  bool? lastRemember;
+  final List<String> forgotEmails = [];
 
   @override
   Future<AuthSession?> restore() async {
@@ -560,9 +682,11 @@ final class _FakeAuthRepository implements AuthRepository {
   Future<AuthSession> login({
     required String email,
     required String password,
+    bool remember = true,
   }) async {
     loginCalls += 1;
     lastEmail = email;
+    lastRemember = remember;
     if (loginError != null) {
       throw loginError!;
     }
@@ -582,6 +706,15 @@ final class _FakeAuthRepository implements AuthRepository {
 
   @override
   Future<AuthSession> refresh(AuthSession session) async => session;
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    if (forgotError != null) {
+      throw forgotError!;
+    }
+
+    forgotEmails.add(email);
+  }
 
   @override
   Future<void> logout(AuthSession session) async {

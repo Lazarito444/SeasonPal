@@ -16,8 +16,12 @@ final class AuthController extends AsyncNotifier<AuthSession?> {
   @override
   Future<AuthSession?> build() => ref.watch(authRepositoryProvider).restore();
 
-  Future<void> login({required String email, required String password}) async {
-    final session = await ref.read(authRepositoryProvider).login(email: email, password: password);
+  Future<void> login({
+    required String email,
+    required String password,
+    bool remember = true,
+  }) async {
+    final session = await ref.read(authRepositoryProvider).login(email: email, password: password, remember: remember);
     state = AsyncData(session);
   }
 

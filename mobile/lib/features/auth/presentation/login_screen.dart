@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:seasonpal/core/l10n/api_error_messages.dart';
 import 'package:seasonpal/core/network/api_exception.dart';
 import 'package:seasonpal/core/router/app_router.dart';
 import 'package:seasonpal/core/widgets/error_banner.dart';
 import 'package:seasonpal/features/auth/presentation/auth_controller.dart';
+import 'package:seasonpal/features/auth/presentation/widgets/auth_controls.dart';
+import 'package:seasonpal/features/auth/presentation/widgets/auth_field.dart';
+import 'package:seasonpal/features/auth/presentation/widgets/auth_form_card.dart';
 import 'package:seasonpal/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:seasonpal/i18n/strings.g.dart';
 
@@ -22,6 +26,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _password = TextEditingController();
 
   bool _obscurePassword = true;
+  bool _remember = true;
   bool _submitting = false;
   String? _error;
 
@@ -45,7 +50,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _submitting = true);
 
     try {
-      await ref.read(authControllerProvider.notifier).login(email: _email.text.trim(), password: _password.text);
+      await ref
+          .read(authControllerProvider.notifier)
+          .login(
+            email: _email.text.trim(),
+            password: _password.text,
+            remember: _remember,
+          );
     } on ApiException catch (error) {
       if (!mounted) {
         return;
@@ -68,85 +79,96 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
   }
 
+  void _openForgotPassword() {
+    if (_submitting) {
+      return;
+    }
+
+    context.pushNamed(AppRoutes.forgotPasswordName);
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
 
     return AuthScaffold(
       title: t.auth.login.title,
+      titleAccent: t.auth.login.titleAccent,
       subtitle: t.auth.login.subtitle,
-      footer: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Flexible(
-            child: Text(
-              t.auth.login.newHere,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          TextButton(
-            onPressed: _submitting ? null : () => context.goNamed(AppRoutes.registerName),
-            child: Text(t.auth.login.createAccount),
-          ),
-        ],
+      footer: AuthFooterLink(
+        prompt: t.auth.login.newHere,
+        action: t.auth.login.createAccount,
+        showArrow: true,
+        actionKey: const Key('login-create-account'),
+        onPressed: _submitting ? null : () => context.goNamed(AppRoutes.registerName),
       ),
       children: [
-        Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                key: const Key('login-email'),
-                controller: _email,
-                enabled: !_submitting,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                autofillHints: const [AutofillHints.email],
-                autocorrect: false,
-                decoration: InputDecoration(labelText: t.auth.login.email),
-                validator: (value) => _validateEmail(t, value),
-              ),
-              const SizedBox(height: 14),
-              TextFormField(
-                key: const Key('login-password'),
-                controller: _password,
-                enabled: !_submitting,
-                obscureText: _obscurePassword,
-                textInputAction: TextInputAction.done,
-                autofillHints: const [AutofillHints.password],
-                onFieldSubmitted: (_) => _submit(),
-                decoration: InputDecoration(
-                  labelText: t.auth.login.password,
-                  suffixIcon: IconButton(
-                    tooltip: _obscurePassword ? t.common.showPassword : t.common.hidePassword,
-                    onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
-                    icon: Icon(
-                      _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                      size: 20,
-                    ),
+        AuthFormCard(
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AuthField(
+                    label: t.auth.login.email,
+                    fieldKey: const Key('login-email'),
+                    controller: _email,
+                    icon: Icons.mail_outline_rounded,
+                    hintText: t.auth.login.emailHint,
+                    enabled: !_submitting,
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.email],
+                    autocorrect: false,
+                    validator: (value) => _validateEmail(t, value),
                   ),
-                ),
-                validator: (value) => (value == null || value.isEmpty) ? t.auth.login.passwordRequired : null,
+                  const SizedBox(height: 14),
+                  AuthField(
+                    label: t.auth.login.password,
+                    fieldKey: const Key('login-password'),
+                    controller: _password,
+                    icon: Icons.lock_outline_rounded,
+                    hintText: '••••••••••••',
+                    labelAction: t.auth.login.forgot,
+                    labelActionKey: const Key('login-forgot'),
+                    onLabelAction: _openForgotPassword,
+                    enabled: !_submitting,
+                    obscureText: _obscurePassword,
+                    onToggleObscure: () => setState(() => _obscurePassword = !_obscurePassword),
+                    textInputAction: TextInputAction.done,
+                    autofillHints: const [AutofillHints.password],
+                    onFieldSubmitted: (_) => _submit(),
+                    validator: (value) => (value == null || value.isEmpty) ? t.auth.login.passwordRequired : null,
+                  ),
+                  const SizedBox(height: 12),
+                  AuthCheckboxRow(
+                    value: _remember,
+                    onChanged: _submitting ? (_) {} : (value) => setState(() => _remember = value),
+                    label: t.auth.login.remember,
+                    checkKey: const Key('login-remember'),
+                  ),
+                  if (_error != null) ...[
+                    const SizedBox(height: 14),
+                    ErrorBanner(message: _error!),
+                  ],
+                  const SizedBox(height: 18),
+                  AuthSubmitButton(
+                    buttonKey: const Key('login-submit'),
+                    label: t.auth.login.submit,
+                    trailingIcon: Icons.arrow_forward_rounded,
+                    busy: _submitting,
+                    onPressed: _submit,
+                  ),
+                ],
               ),
-              if (_error != null) ...[
-                const SizedBox(height: 18),
-                ErrorBanner(message: _error!),
-              ],
-              const SizedBox(height: 22),
-              FilledButton(
-                key: const Key('login-submit'),
-                onPressed: _submitting ? null : _submit,
-                child: _submitting
-                    ? const SizedBox.square(
-                        dimension: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Text(t.auth.login.submit),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+        const SizedBox(height: 24),
+        AuthDivider(label: t.auth.social.continueWith),
+        const SizedBox(height: 16),
+        const AuthSocialButtons(),
       ],
     );
   }

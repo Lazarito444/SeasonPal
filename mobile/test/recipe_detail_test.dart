@@ -192,6 +192,7 @@ final class _FakeAuthRepository implements AuthRepository {
   Future<AuthSession> login({
     required String email,
     required String password,
+    bool remember = true,
   }) async => session;
 
   @override
@@ -203,6 +204,9 @@ final class _FakeAuthRepository implements AuthRepository {
 
   @override
   Future<AuthSession> refresh(AuthSession session) async => session;
+
+  @override
+  Future<void> forgotPassword(String email) async {}
 
   @override
   Future<void> logout(AuthSession session) async {}

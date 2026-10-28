@@ -15,11 +15,19 @@ abstract interface class AuthRepository {
     String? displayName,
   });
 
-  Future<AuthSession> login({required String email, required String password});
+  Future<AuthSession> login({
+    required String email,
+    required String password,
+    bool remember = true,
+  });
 
   Future<AuthSession> refresh(AuthSession session);
 
   Future<void> logout(AuthSession session);
+
+  /// Requests a reset link. The API always accepts, so the screen can show the
+  /// same success state for known and unknown addresses.
+  Future<void> forgotPassword(String email);
 }
 
 final class ApiAuthRepository implements AuthRepository {
@@ -65,10 +73,23 @@ final class ApiAuthRepository implements AuthRepository {
   Future<AuthSession> login({
     required String email,
     required String password,
-  }) async => _remember(await _api.login(email: email, password: password));
+    bool remember = true,
+  }) async => _remember(
+    await _api.login(email: email, password: password),
+    persist: remember,
+  );
 
   @override
-  Future<AuthSession> refresh(AuthSession session) async => _remember(await _api.refresh(session.refreshToken));
+  Future<AuthSession> refresh(AuthSession session) async {
+    final refreshed = await _api.refresh(session.refreshToken);
+    // Rotate only a token that is actually stored. Without "remember me" the
+    // session lives in memory, so a 401 refresh must not start persisting it.
+    final persist = (await _tokens.readRefreshToken()) != null;
+    return _remember(refreshed, persist: persist);
+  }
+
+  @override
+  Future<void> forgotPassword(String email) => _api.forgotPassword(email);
 
   @override
   Future<void> logout(AuthSession session) async {
@@ -81,8 +102,16 @@ final class ApiAuthRepository implements AuthRepository {
     }
   }
 
-  Future<AuthSession> _remember(AuthSession session) async {
-    await _tokens.writeRefreshToken(session.refreshToken);
+  Future<AuthSession> _remember(
+    AuthSession session, {
+    bool persist = true,
+  }) async {
+    if (persist) {
+      await _tokens.writeRefreshToken(session.refreshToken);
+    } else {
+      await _tokens.clear();
+    }
+
     return session;
   }
 }

@@ -20,6 +20,9 @@ abstract interface class AuthApi {
   Future<AuthSession> refresh(String refreshToken);
 
   Future<void> logout(String refreshToken);
+
+  /// Always answers 202, whether or not the address has an account.
+  Future<void> forgotPassword(String email);
 }
 
 final class DioAuthApi implements AuthApi {
@@ -46,6 +49,15 @@ final class DioAuthApi implements AuthApi {
 
   @override
   Future<AuthSession> refresh(String refreshToken) => _postSession('/auth/refresh', {'refreshToken': refreshToken});
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      await _dio.post<void>('/auth/password/forgot', data: {'email': email});
+    } on DioException catch (error) {
+      throw ApiException.fromDio(error);
+    }
+  }
 
   @override
   Future<void> logout(String refreshToken) async {
