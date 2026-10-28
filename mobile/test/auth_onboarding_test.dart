@@ -107,7 +107,7 @@ void main() {
     await tester.tap(find.byKey(const Key('login-submit')));
     await tester.pumpAndSettle();
 
-    expect(find.text("Let's set the table."), findsOneWidget);
+    expect(find.text('Cook to the season.'), findsOneWidget);
     expect(auth.lastEmail, 'ava@seasonpal.test');
   });
 
@@ -156,49 +156,119 @@ void main() {
     await tester.pumpWidget(_app(auth: auth, preferences: preferences));
     await tester.pumpAndSettle();
 
-    expect(find.text("Let's set the table."), findsOneWidget);
+    expect(find.text('Cook to the season.'), findsOneWidget);
 
     await _tapKey(tester, 'onboarding-primary');
-    expect(find.text('What do you crave?'), findsOneWidget);
+    expect(find.text('Pick your favourite kitchens.'), findsOneWidget);
 
+    // The first question holds the wizard until three cuisines are chosen.
     await _tapKey(tester, 'cuisine-Italian');
     await _tapKey(tester, 'cuisine-Middle Eastern');
+    expect(find.text('Choose 1 more'), findsOneWidget);
+    await _tapKey(tester, 'onboarding-primary');
+    expect(find.text('Pick your favourite kitchens.'), findsOneWidget);
+
+    await _tapKey(tester, 'cuisine-Mediterranean');
+    expect(find.text('All set'), findsOneWidget);
     await _tapKey(tester, 'onboarding-primary');
 
-    expect(find.text('Anything off the menu?'), findsOneWidget);
+    expect(find.text('Your pantry, your rules.'), findsOneWidget);
 
     await _tapKey(tester, 'diet-Vegetarian');
     await _tapKey(tester, 'interest-Weeknight dinners');
     await _tapKey(tester, 'onboarding-primary');
 
-    expect(find.text('How do you like to cook?'), findsOneWidget);
+    expect(find.text('How do you cook?'), findsOneWidget);
 
     await _tapKey(tester, 'skill-intermediate');
-    await _tapKey(tester, 'time-30');
+    await _tapKey(tester, 'time-balanced');
     await _tapKey(tester, 'onboarding-primary');
 
-    expect(find.text('Your kitchen is ready.'), findsOneWidget);
-    expect(find.text('Italian, Middle Eastern'), findsOneWidget);
+    expect(find.text('The stove is warm.'), findsOneWidget);
+    expect(find.text('Rustic Italian & pasta'), findsOneWidget);
+    expect(find.text('Classic Mediterranean'), findsOneWidget);
+    expect(find.text('Levantine & Middle Eastern'), findsOneWidget);
     expect(find.text('Vegetarian'), findsOneWidget);
-    expect(find.text('30 min'), findsOneWidget);
+    expect(find.text('30–45 min'), findsOneWidget);
+    expect(find.text('Confident home cook'), findsOneWidget);
 
     await _tapKey(tester, 'onboarding-primary');
 
     final saved = preferences.lastSaved;
     expect(saved, isNotNull);
     expect(saved!.onboardingCompleted, isTrue);
-    expect(saved.favoriteCuisines, ['Italian', 'Middle Eastern']);
+    expect(saved.favoriteCuisines, [
+      'Italian',
+      'Middle Eastern',
+      'Mediterranean',
+    ]);
     expect(saved.dietaryRestrictions, ['Vegetarian']);
     expect(saved.skillLevel, SkillLevel.intermediate);
-    expect(saved.usualCookTimeMinutes, 30);
+    expect(saved.usualCookTimeMinutes, 45);
     expect(saved.interests, ['Weeknight dinners']);
 
     expect(find.byKey(const Key('home-greeting')), findsOneWidget);
     expect(find.textContaining('Ava'), findsWidgets);
-    expect(
-      find.text('Your kitchen leans Italian and Middle Eastern.'),
-      findsOneWidget,
+    expect(find.textContaining('Your kitchen leans Italian'), findsOneWidget);
+  });
+
+  testWidgets('the recap pencil returns to the answer it edits', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(
+      _app(
+        auth: _FakeAuthRepository(
+          restored: _session(onboardingCompleted: false),
+        ),
+        preferences: _FakePreferences(),
+      ),
     );
+    await tester.pumpAndSettle();
+
+    await _tapKey(tester, 'onboarding-primary');
+    expect(find.text('Pick your favourite kitchens.'), findsOneWidget);
+
+    await _tapKey(tester, 'cuisine-Italian');
+    await _tapKey(tester, 'cuisine-Mexican');
+    await _tapKey(tester, 'cuisine-Thai');
+    await _tapKey(tester, 'onboarding-primary');
+    await _tapKey(tester, 'onboarding-primary');
+    await _tapKey(tester, 'onboarding-primary');
+
+    expect(find.text('The stove is warm.'), findsOneWidget);
+
+    await _tapKey(tester, 'recap-edit-cuisines');
+    expect(find.text('Pick your favourite kitchens.'), findsOneWidget);
+    expect(find.text('All set'), findsOneWidget);
+  });
+
+  testWidgets('skipping the wizard lands on home without preferences', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    final preferences = _FakePreferences();
+
+    await tester.pumpWidget(
+      _app(
+        auth: _FakeAuthRepository(
+          restored: _session(onboardingCompleted: false),
+        ),
+        preferences: preferences,
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await _tapKey(tester, 'onboarding-skip');
+
+    expect(preferences.lastSaved, isNotNull);
+    expect(preferences.lastSaved!.favoriteCuisines, isEmpty);
+    expect(preferences.lastSaved!.onboardingCompleted, isTrue);
+    expect(find.byKey(const Key('home-greeting')), findsOneWidget);
   });
 
   testWidgets('a failed session restore explains itself and can be retried', (
@@ -248,10 +318,8 @@ void main() {
     await tester.pumpWidget(_app(auth: auth, preferences: preferences));
     await tester.pumpAndSettle();
 
-    // Finish the wizard with defaults: Begin + three Continues + Finish.
-    for (var step = 0; step < 5; step++) {
-      await _tapKey(tester, 'onboarding-primary');
-    }
+    // Finish the wizard by skipping: a fresh account can also bypass it.
+    await _tapKey(tester, 'onboarding-skip');
 
     expect(find.byKey(const Key('home-greeting')), findsOneWidget);
 
@@ -274,8 +342,8 @@ void main() {
     await _tapKey(tester, 'register-submit');
     await tester.pumpAndSettle();
 
-    expect(find.text("Let's set the table."), findsOneWidget);
-    expect(find.text('Your kitchen is ready.'), findsNothing);
+    expect(find.text('Cook to the season.'), findsOneWidget);
+    expect(find.text('The stove is warm.'), findsNothing);
   });
 
   testWidgets('a restored session goes straight home, then can sign out', (
@@ -395,10 +463,10 @@ void main() {
 
     expect(find.text('¿Qué cocinamos hoy?'), findsOneWidget);
     expect(
-      find.text('Tu cocina se inclina por la italiana y la mediterránea.'),
+      find.text('Tu cocina tira a Italiana y Mediterránea.'),
       findsOneWidget,
     );
-    expect(find.text('Cocinando con una dieta vegetariana.'), findsOneWidget);
+    expect(find.text('Dieta Vegetariana.'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('home-language')));
     await tester.pumpAndSettle();

@@ -597,7 +597,7 @@ class _TasteDetails extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final cuisine in preferences.favoriteCuisines.take(4)) _TastePill(label: cuisineLabel(t, cuisine)),
+            for (final cuisine in preferences.favoriteCuisines.take(4)) _TastePill(label: cuisineShortLabel(t, cuisine)),
             _TastePill(label: preferences.skillLevel.label(t)),
             _TastePill(label: time),
           ],
@@ -741,14 +741,14 @@ String _tasteLine(Translations t, UserPreferences preferences) {
   final cuisines = preferences.favoriteCuisines;
   return switch (cuisines.length) {
     0 => t.home.taste.empty,
-    1 => t.home.taste.one(cuisine: cuisineLabel(t, cuisines.first)),
+    1 => t.home.taste.one(cuisine: cuisineShortLabel(t, cuisines.first)),
     2 => t.home.taste.two(
-      first: cuisineLabel(t, cuisines[0]),
-      second: cuisineLabel(t, cuisines[1]),
+      first: cuisineShortLabel(t, cuisines[0]),
+      second: cuisineShortLabel(t, cuisines[1]),
     ),
     _ => t.home.taste.many(
-      first: cuisineLabel(t, cuisines[0]),
-      second: cuisineLabel(t, cuisines[1]),
+      first: cuisineShortLabel(t, cuisines[0]),
+      second: cuisineShortLabel(t, cuisines[1]),
     ),
   };
 }
@@ -760,12 +760,10 @@ String _dietLine(Translations t, UserPreferences preferences) {
   }
 
   if (restrictions.length == 1) {
-    return t.home.taste.dietOne(
-      restriction: dietLabel(t, restrictions.first).toLowerCase(),
-    );
+    return t.home.taste.dietOne(restriction: dietLabel(t, restrictions.first));
   }
 
-  final last = dietLabel(t, restrictions.last).toLowerCase();
-  final leading = restrictions.take(restrictions.length - 1).map((item) => dietLabel(t, item).toLowerCase()).join(', ');
+  final last = dietLabel(t, restrictions.last);
+  final leading = restrictions.take(restrictions.length - 1).map((item) => dietLabel(t, item)).join(', ');
   return t.home.taste.dietMany(leading: leading, last: last);
 }

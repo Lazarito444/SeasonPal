@@ -63,119 +63,267 @@
   },
   "onboarding": {
     "stepIndicator": "PASO {current} DE {total}",
+    "eyebrowCuisines": "PASO {current} DE {total} · PERSONALIZACIÓN",
+    "eyebrowDiet": "PASO {current} DE {total} · PREFERENCIAS",
+    "eyebrowRhythm": "PASO {current} DE {total} · TU RITMO",
     "welcome": {
-      "eyebrow": "UN POCO DE TI",
-      "title": "Vamos a poner la mesa.",
-      "body": "Unas preguntas para que SeasonPal sugiera platos que encajen con tu cocina, no con la de otra persona.",
-      "cuisineTitle": "Cocinas que te gustan",
-      "cuisineBody": "Los sabores que buscas en una semana normal.",
-      "dietTitle": "Lo que evitas",
-      "dietBody": "Alergias y dietas que siempre respetaremos.",
-      "timeTitle": "El tiempo que tienes",
-      "timeBody": "Una cena de martes no es lo mismo que un proyecto de domingo.",
-      "duration": "Alrededor de un minuto, de principio a fin."
+      "title": "Cocina al compás de la temporada.",
+      "body": "Solo tomará un minuto afinar tu experiencia culinaria a la cocina que de verdad usas.",
+      "itineraryTitle": "TU ITINERARIO CULINARIO",
+      "cuisineTitle": "Tus cocinas favoritas",
+      "cuisineBody": "Mediterránea, levantina, huerto andino o brasa nórdica. Define tus paladares de estación.",
+      "dietTitle": "Dieta e intereses botánicos",
+      "dietBody": "Preferencias vegetales, alimentos sin gluten, especias frescas y afinidades digestivas.",
+      "rhythmTitle": "Tu ritmo en los fogones",
+      "rhythmBody": "Cenas rápidas de 20 minutos o rituales pausados de fin de semana en cazuela de barro.",
+      "start": "Comenzar personalización (1 min)",
+      "skip": "Omitir por ahora"
     },
     "cuisines": {
-      "eyebrow": "Tu paladar",
-      "title": "¿Qué te apetece?",
-      "body": "Elige las cocinas que más te llaman. Puedes escoger todas las que quieras."
+      "title": "Elige tus cocinas favoritas.",
+      "body": "Selecciona al menos tres para que tu primer feed no sea monótono.",
+      "sectionTitle": "Curaduría de estación",
+      "sectionBody": "Inspiración botánica y recetarios con huella de origen.",
+      "counterNone": "Aún no hay cocinas seleccionadas",
+      "counterOne": "1 cocina seleccionada",
+      "counterOther": "{count} cocinas seleccionadas",
+      "remainingOne": "Selecciona 1 más",
+      "remainingOther": "Selecciona {count} más",
+      "ready": "¡Todo listo!",
+      "next": "Continuar a Dietas"
     },
     "diet": {
-      "eyebrow": "Tu mesa",
-      "title": "¿Algo fuera del menú?",
-      "body": "Alergias, dietas o ingredientes que prefieres evitar. Elige todo lo que aplique.",
-      "interestsTitle": "¿Qué te interesa?",
-      "interestsBody": "Opcional: nos ayuda a afinar las sugerencias."
+      "title": "Tu despensa, tus reglas.",
+      "body": "Adaptamos las recetas a lo que necesitas y a lo que te da curiosidad.",
+      "restrictionsTitle": "Restricciones dietarias",
+      "restrictionsBody": "No te sugeriremos ingredientes que contengan estas restricciones.",
+      "interestsTitle": "Intereses botánicos",
+      "interestsBody": "Opcional: los temas que queremos priorizar.",
+      "next": "Continuar a Tu Ritmo"
     },
     "rhythm": {
-      "eyebrow": "Tu ritmo",
-      "title": "¿Cómo te gusta cocinar?",
-      "body": "Lo usamos para elegir técnicas y recetas que encajen contigo.",
-      "timeTitle": "Tiempo en una noche normal",
-      "timeBody": "Déjalo sin elegir si cambia de un día a otro."
+      "title": "¿Cómo vives tu cocina?",
+      "body": "Alineamos la complejidad de las técnicas y el tiempo de preparación a tus hábitos reales.",
+      "skillTitle": "Nivel de destreza culinaria",
+      "skillHint": "Elige uno",
+      "timeTitle": "Tiempo habitual para cocinar",
+      "timeHint": "Elige tu ritmo preferido",
+      "next": "Revisar resumen"
     },
     "done": {
-      "title": "Tu cocina está lista.",
-      "body": "Esto es lo que usaremos para cocinar. Puedes cambiarlo más adelante.",
-      "openToAnything": "Abierto a todo",
-      "noRestrictions": "Sin restricciones",
+      "title": "¡Todo listo para encender los fogones!",
+      "body": "Hemos diseñado un recetario inteligente a tu medida. Confirma tus selecciones antes de sincronizar tu despensa.",
+      "cuisinesTitle": "Cocinas seleccionadas ({count})",
+      "dietTitle": "Restricciones y pasiones",
+      "rhythmTitle": "Ritmo culinario",
+      "dietLabel": "DIETA",
+      "interestsLabel": "INTERESES",
+      "editSection": "Editar",
+      "emptyCuisines": "Abierto a todo",
+      "emptyDiet": "Sin restricciones",
+      "emptyInterests": "Ninguno todavía",
       "noTime": "Sin tiempo fijo",
-      "summaryCuisines": "Cocinas",
-      "summaryDiet": "Dieta",
-      "summarySkill": "Nivel",
-      "summaryTime": "Tiempo habitual",
-      "alsoInto": "También te gusta"
+      "footnote": "Puedes modificar tus preferencias en cualquier momento desde Ajustes.",
+      "finish": "Continuar a SeasonPal"
     },
     "footer": {
-      "begin": "Empezar",
+      "begin": "Comenzar",
       "next": "Continuar",
-      "finish": "Terminar",
+      "finish": "Continuar",
       "saving": "Guardando…"
     },
     "saveError": "No pudimos guardar tus preferencias. Inténtalo de nuevo.",
     "time": {
       "hour": "1 hora",
-      "minSuffix": "min"
+      "minSuffix": "min",
+      "buckets": {
+        "quick": {
+          "label": "15–20 min",
+          "description": "Express entre semana"
+        },
+        "balanced": {
+          "label": "30–45 min",
+          "description": "Equilibrio para elaborar"
+        },
+        "long": {
+          "label": "60+ min",
+          "description": "Estofados y rituales de fin de semana"
+        },
+        "variable": {
+          "label": "Variable",
+          "description": "Me adapto según el día"
+        }
+      }
     },
     "skill": {
       "beginner": {
-        "label": "Principiante",
-        "description": "Recetas sencillas y técnicas conocidas."
+        "label": "Principiante entusiasta",
+        "description": "Técnicas sencillas, paso a paso detallado e ingredientes accesibles."
       },
       "intermediate": {
-        "label": "Intermedio",
-        "description": "Con ganas de probar métodos nuevos."
+        "label": "Cocinero casero frecuente",
+        "description": "Confianza en cortes básicos, salsas y manejo del fuego."
       },
       "advanced": {
-        "label": "Avanzado",
-        "description": "Un buen desafío por delante."
+        "label": "Artesano / avanzado",
+        "description": "Fermentación, horneado complejo y emplatado de autor."
       }
     },
     "options": {
       "cuisines": {
-        "italian": "italiana",
-        "mediterranean": "mediterránea",
-        "middleEastern": "medioriental",
-        "mexican": "mexicana",
-        "indian": "india",
-        "japanese": "japonesa",
-        "korean": "coreana",
-        "thai": "tailandesa",
-        "chinese": "china",
-        "french": "francesa",
-        "spanish": "española",
-        "greek": "griega",
-        "turkish": "turca",
-        "vietnamese": "vietnamita",
-        "american": "estadounidense",
-        "northAfrican": "norteafricana",
-        "latinAmerican": "latinoamericana",
-        "nordic": "nórdica",
-        "caribbean": "caribeña",
-        "african": "africana"
+        "italian": {
+          "label": "Italiana rústica y pasta",
+          "description": "Trigo antiguo, ragú, quesos curados",
+          "short": "Italiana"
+        },
+        "mediterranean": {
+          "label": "Mediterránea clásica",
+          "description": "Aceites vivos, hierbas, pescado de mar",
+          "short": "Mediterránea"
+        },
+        "middleEastern": {
+          "label": "Levantina y Oriente Medio",
+          "description": "Za'atar, tahini, granadas",
+          "short": "De Oriente Medio"
+        },
+        "mexican": {
+          "label": "Oaxaqueña y tradicional",
+          "description": "Moles negros, maíz criollo",
+          "short": "Mexicana"
+        },
+        "indian": {
+          "label": "India especiada",
+          "description": "Masalas tostados, legumbres, ghee",
+          "short": "India"
+        },
+        "japanese": {
+          "label": "Japonesa y ramen artesanal",
+          "description": "Caldos dashi, umami, fermentos",
+          "short": "Japonesa"
+        },
+        "korean": {
+          "label": "Coreana y kimchi",
+          "description": "Gochujang, banchan, marinados",
+          "short": "Coreana"
+        },
+        "thai": {
+          "label": "Tailandesa aromática",
+          "description": "Hierba limón, lima kaffir, coco",
+          "short": "Tailandesa"
+        },
+        "chinese": {
+          "label": "Wok y dim sum",
+          "description": "Fuego alto, vapor, soja y vinagre",
+          "short": "China"
+        },
+        "french": {
+          "label": "Francesa bistró",
+          "description": "Mantequilla avellanada, fondos, vino",
+          "short": "Francesa"
+        },
+        "spanish": {
+          "label": "Ibérica y tapas",
+          "description": "Pimentón, dehesa, conservas",
+          "short": "Española"
+        },
+        "greek": {
+          "label": "Griega del Egeo",
+          "description": "Feta de pastura, orégano salvaje",
+          "short": "Griega"
+        },
+        "turkish": {
+          "label": "Anatolia y brasa",
+          "description": "Bulgur, berenjena ahumada, yogur",
+          "short": "Turca"
+        },
+        "vietnamese": {
+          "label": "Vietnamita fresca",
+          "description": "Cilantro fino, rollos, phở",
+          "short": "Vietnamita"
+        },
+        "american": {
+          "label": "Californiana farm-to-table",
+          "description": "Cosecha local, platos limpios",
+          "short": "Estadounidense"
+        },
+        "northAfrican": {
+          "label": "Marroquí y tagines",
+          "description": "Ras el hanout, limón confitado",
+          "short": "Del norte de África"
+        },
+        "latinAmerican": {
+          "label": "Peruana y nikkei",
+          "description": "Ajíes nativos, ceviches, rocoto",
+          "short": "Latinoamericana"
+        },
+        "nordic": {
+          "label": "Nórdica y fermentos",
+          "description": "Encurtidos, centeno, ahumados",
+          "short": "Nórdica"
+        },
+        "caribbean": {
+          "label": "Caribeña de islas",
+          "description": "Pimientos, coco, cítricos",
+          "short": "Caribeña"
+        },
+        "african": {
+          "label": "África de fuego lento",
+          "description": "Guisos de una olla, tubérculos, especias",
+          "short": "Africana"
+        }
       },
       "diets": {
-        "vegetarian": "vegetariana",
-        "vegan": "vegana",
-        "glutenFree": "sin gluten",
-        "dairyFree": "sin lactosa",
-        "nutFree": "sin frutos secos",
-        "halal": "halal",
-        "kosher": "kosher",
-        "pescatarian": "pescetariana",
-        "lowCarb": "baja en carbohidratos",
-        "lowSodium": "baja en sodio"
+        "vegetarian": {
+          "label": "Vegetariana",
+          "description": "Sin carnes ni pescados"
+        },
+        "vegan": {
+          "label": "Vegana",
+          "description": "100% de origen vegetal"
+        },
+        "glutenFree": {
+          "label": "Sin gluten",
+          "description": "Libre de trigo, cebada y centeno"
+        },
+        "dairyFree": {
+          "label": "Sin lácteos",
+          "description": "Sin leche, mantequilla ni queso"
+        },
+        "nutFree": {
+          "label": "Sin frutos secos",
+          "description": "Sin nueces ni almendras"
+        },
+        "halal": {
+          "label": "Halal",
+          "description": "Certificación y normas islámicas"
+        },
+        "kosher": {
+          "label": "Kosher",
+          "description": "Conforme a preceptos cashrut"
+        },
+        "pescatarian": {
+          "label": "Pescatariana",
+          "description": "Pescados, mariscos y vegetales"
+        },
+        "lowCarb": {
+          "label": "Baja en carbohidratos",
+          "description": "Menos hidratos, más proteína"
+        },
+        "lowSodium": {
+          "label": "Baja en sodio",
+          "description": "Para control cardiovascular"
+        }
       },
       "interests": {
-        "weeknightDinners": "Cenas entre semana",
-        "mealPrep": "Preparar comidas",
+        "weeknightDinners": "Cenas de entre semana",
+        "mealPrep": "Meal prep",
         "baking": "Repostería",
-        "grilling": "A la parrilla",
+        "grilling": "Parrilla",
         "slowCooking": "Cocción lenta",
         "fermentation": "Fermentación",
         "plantForward": "Cocina vegetal",
         "comfortFood": "Comida reconfortante",
-        "entertaining": "Recibir invitados",
+        "entertaining": "Recibir en casa",
         "budgetCooking": "Cocina económica",
         "cookingWithKids": "Cocinar con niños",
         "spicesAndHeat": "Especias y picante"
@@ -280,12 +428,12 @@
       "loadError": "No pudimos cargar tu perfil de sabor.",
       "noTime": "Sin tiempo fijo",
       "empty": "Tu cocina está abierta a todo.",
-      "one": "Tu cocina se inclina por la {cuisine}.",
-      "two": "Tu cocina se inclina por la {first} y la {second}.",
-      "many": "Tu cocina se inclina por la {first}, la {second} y más.",
+      "one": "Tu cocina tira a {cuisine}.",
+      "two": "Tu cocina tira a {first} y {second}.",
+      "many": "Tu cocina tira a {first}, {second} y más.",
       "noRestrictions": "No hay restricciones dietéticas guardadas.",
-      "dietOne": "Cocinando con una dieta {restriction}.",
-      "dietMany": "Cocinando con una dieta {leading} y {last}."
+      "dietOne": "Dieta {restriction}.",
+      "dietMany": "Dieta {leading} y {last}."
     },
     "library": {
       "eyebrow": "TUS RECETAS",

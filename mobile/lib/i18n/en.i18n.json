@@ -63,108 +63,256 @@
   },
   "onboarding": {
     "stepIndicator": "STEP {current} OF {total}",
+    "eyebrowCuisines": "STEP {current} OF {total} · PERSONALIZATION",
+    "eyebrowDiet": "STEP {current} OF {total} · PREFERENCES",
+    "eyebrowRhythm": "STEP {current} OF {total} · YOUR RHYTHM",
     "welcome": {
-      "eyebrow": "A QUICK TASTE OF YOU",
-      "title": "Let's set the table.",
-      "body": "A few questions so SeasonPal can suggest dishes that fit your kitchen — not someone else's.",
-      "cuisineTitle": "Cuisines you love",
-      "cuisineBody": "The flavours you reach for on a normal week.",
-      "dietTitle": "Anything you avoid",
-      "dietBody": "Allergies and diets we should always respect.",
-      "timeTitle": "The time you have",
-      "timeBody": "Tuesday dinner looks different from a Sunday project.",
-      "duration": "About a minute, start to finish."
+      "title": "Cook to the season.",
+      "body": "One minute now, and every suggestion fits the kitchen you actually cook in.",
+      "itineraryTitle": "YOUR COOKING ITINERARY",
+      "cuisineTitle": "The cuisines you love",
+      "cuisineBody": "Mediterranean, Levantine, Andean garden or Nordic smoke. Where your palate lives.",
+      "dietTitle": "Diet and botanical interests",
+      "dietBody": "Plant preferences, gluten-free staples, fresh spice and what you cook for pleasure.",
+      "rhythmTitle": "Your pace at the stove",
+      "rhythmBody": "Twenty-minute weeknights, or slow weekend braises in clay.",
+      "start": "Start personalizing (1 min)",
+      "skip": "Skip for now"
     },
     "cuisines": {
-      "eyebrow": "Your taste",
-      "title": "What do you crave?",
-      "body": "Pick the cuisines you reach for most. Choose as many as you like."
+      "title": "Pick your favourite kitchens.",
+      "body": "Choose at least three so your first feed is never one note.",
+      "sectionTitle": "Seasonal curation",
+      "sectionBody": "Botanical inspiration and recipes with a sense of origin.",
+      "counterNone": "No cuisines selected yet",
+      "counterOne": "1 cuisine selected",
+      "counterOther": "{count} cuisines selected",
+      "remainingOne": "Choose 1 more",
+      "remainingOther": "Choose {count} more",
+      "ready": "All set",
+      "next": "Continue to diet"
     },
     "diet": {
-      "eyebrow": "Your table",
-      "title": "Anything off the menu?",
-      "body": "Allergies, diets, or ingredients you'd rather skip. Pick everything that applies.",
-      "interestsTitle": "What are you into?",
-      "interestsBody": "Optional — it helps us tune the suggestions."
+      "title": "Your pantry, your rules.",
+      "body": "We shape recipes around what you need and what you are curious about.",
+      "restrictionsTitle": "Dietary restrictions",
+      "restrictionsBody": "We never suggest an ingredient that breaks these.",
+      "interestsTitle": "Botanical interests",
+      "interestsBody": "Optional — the themes we should lean into.",
+      "next": "Continue to your rhythm"
     },
     "rhythm": {
-      "eyebrow": "Your rhythm",
-      "title": "How do you like to cook?",
-      "body": "We use this to choose techniques and recipes that feel right for you.",
-      "timeTitle": "Time on a usual night",
-      "timeBody": "Leave it unset if it changes day to day."
+      "title": "How do you cook?",
+      "body": "We match technique and prep time to the habits you actually keep.",
+      "skillTitle": "Culinary skill level",
+      "skillHint": "Choose one",
+      "timeTitle": "Time you usually cook",
+      "timeHint": "Pick your pace",
+      "next": "Review summary"
     },
     "done": {
-      "title": "Your kitchen is ready.",
-      "body": "Here's what we'll cook with. You can change any of it later.",
-      "openToAnything": "Open to anything",
-      "noRestrictions": "No restrictions",
+      "title": "The stove is warm.",
+      "body": "Your recipe box is shaped around this. Check it before we sync your pantry.",
+      "cuisinesTitle": "Selected cuisines ({count})",
+      "dietTitle": "Restrictions and passions",
+      "rhythmTitle": "Cooking rhythm",
+      "dietLabel": "DIET",
+      "interestsLabel": "INTERESTS",
+      "editSection": "Edit",
+      "emptyCuisines": "Open to anything",
+      "emptyDiet": "No restrictions",
+      "emptyInterests": "None yet",
       "noTime": "No set time",
-      "summaryCuisines": "Cuisines",
-      "summaryDiet": "Diet",
-      "summarySkill": "Skill",
-      "summaryTime": "Usual time",
-      "alsoInto": "Also into"
+      "footnote": "You can change any of this later in Settings.",
+      "finish": "Continue to SeasonPal"
     },
     "footer": {
       "begin": "Begin",
       "next": "Continue",
-      "finish": "Finish setup",
-      "saving": "Saving…"
+      "finish": "Continue",
+      "saving": "Saving..."
     },
     "saveError": "Could not save your preferences. Try again.",
     "time": {
       "hour": "1 hour",
-      "minSuffix": "min"
+      "minSuffix": "min",
+      "buckets": {
+        "quick": {
+          "label": "15–20 min",
+          "description": "An express weeknight"
+        },
+        "balanced": {
+          "label": "30–45 min",
+          "description": "Room to build a proper plate"
+        },
+        "long": {
+          "label": "60+ min",
+          "description": "Braises and weekend rituals"
+        },
+        "variable": {
+          "label": "It varies",
+          "description": "I fit it to the day"
+        }
+      }
     },
     "skill": {
       "beginner": {
-        "label": "Beginner",
-        "description": "Simple recipes and familiar techniques."
+        "label": "Enthusiastic beginner",
+        "description": "Simple techniques, detailed steps, ingredients to hand."
       },
       "intermediate": {
-        "label": "Intermediate",
-        "description": "Comfortable trying new methods."
+        "label": "Confident home cook",
+        "description": "Knife basics, pan sauces and heat control."
       },
       "advanced": {
-        "label": "Advanced",
-        "description": "Ready for a proper challenge."
+        "label": "Artisan cook",
+        "description": "Fermentation, layered baking, plated cooking."
       }
     },
     "options": {
       "cuisines": {
-        "italian": "Italian",
-        "mediterranean": "Mediterranean",
-        "middleEastern": "Middle Eastern",
-        "mexican": "Mexican",
-        "indian": "Indian",
-        "japanese": "Japanese",
-        "korean": "Korean",
-        "thai": "Thai",
-        "chinese": "Chinese",
-        "french": "French",
-        "spanish": "Spanish",
-        "greek": "Greek",
-        "turkish": "Turkish",
-        "vietnamese": "Vietnamese",
-        "american": "American",
-        "northAfrican": "North African",
-        "latinAmerican": "Latin American",
-        "nordic": "Nordic",
-        "caribbean": "Caribbean",
-        "african": "African"
+        "italian": {
+          "label": "Rustic Italian & pasta",
+          "description": "Ancient wheat, ragu, aged cheese",
+          "short": "Italian"
+        },
+        "mediterranean": {
+          "label": "Classic Mediterranean",
+          "description": "Live oils, herbs, fish from the sea",
+          "short": "Mediterranean"
+        },
+        "middleEastern": {
+          "label": "Levantine & Middle Eastern",
+          "description": "Za'atar, tahini, pomegranate",
+          "short": "Middle Eastern"
+        },
+        "mexican": {
+          "label": "Oaxacan & traditional",
+          "description": "Black mole, native corn",
+          "short": "Mexican"
+        },
+        "indian": {
+          "label": "Spiced Indian",
+          "description": "Toasted masalas, pulses, ghee",
+          "short": "Indian"
+        },
+        "japanese": {
+          "label": "Japanese & craft ramen",
+          "description": "Dashi broths, umami, ferments",
+          "short": "Japanese"
+        },
+        "korean": {
+          "label": "Korean & kimchi",
+          "description": "Gochujang, banchan, marinades",
+          "short": "Korean"
+        },
+        "thai": {
+          "label": "Aromatic Thai",
+          "description": "Lemongrass, kaffir lime, coconut",
+          "short": "Thai"
+        },
+        "chinese": {
+          "label": "Wok & dim sum",
+          "description": "High heat, steam, soy and vinegar",
+          "short": "Chinese"
+        },
+        "french": {
+          "label": "French bistro",
+          "description": "Brown butter, long stocks, wine",
+          "short": "French"
+        },
+        "spanish": {
+          "label": "Iberian & tapas",
+          "description": "Paprika, acorn-fed pork, tinned fish",
+          "short": "Spanish"
+        },
+        "greek": {
+          "label": "Aegean Greek",
+          "description": "Pastured feta, wild oregano",
+          "short": "Greek"
+        },
+        "turkish": {
+          "label": "Anatolian & charcoal",
+          "description": "Bulgur, smoked aubergine, yoghurt",
+          "short": "Turkish"
+        },
+        "vietnamese": {
+          "label": "Fresh Vietnamese",
+          "description": "Fine herbs, rice rolls, pho",
+          "short": "Vietnamese"
+        },
+        "american": {
+          "label": "Californian farm-to-table",
+          "description": "Local harvest, clean plates",
+          "short": "American"
+        },
+        "northAfrican": {
+          "label": "Moroccan & tagines",
+          "description": "Ras el hanout, preserved lemon",
+          "short": "North African"
+        },
+        "latinAmerican": {
+          "label": "Peruvian & Nikkei",
+          "description": "Native chillies, ceviche, rocoto",
+          "short": "Latin American"
+        },
+        "nordic": {
+          "label": "Nordic ferments",
+          "description": "Pickles, rye, smoke",
+          "short": "Nordic"
+        },
+        "caribbean": {
+          "label": "Caribbean islands",
+          "description": "Peppers, coconut, citrus",
+          "short": "Caribbean"
+        },
+        "african": {
+          "label": "Slow-fire African",
+          "description": "One-pot stews, roots, spice",
+          "short": "African"
+        }
       },
       "diets": {
-        "vegetarian": "Vegetarian",
-        "vegan": "Vegan",
-        "glutenFree": "Gluten-free",
-        "dairyFree": "Dairy-free",
-        "nutFree": "Nut-free",
-        "halal": "Halal",
-        "kosher": "Kosher",
-        "pescatarian": "Pescatarian",
-        "lowCarb": "Low-carb",
-        "lowSodium": "Low-sodium"
+        "vegetarian": {
+          "label": "Vegetarian",
+          "description": "No meat, no fish"
+        },
+        "vegan": {
+          "label": "Vegan",
+          "description": "100% plant-based"
+        },
+        "glutenFree": {
+          "label": "Gluten-free",
+          "description": "No wheat, barley or rye"
+        },
+        "dairyFree": {
+          "label": "Dairy-free",
+          "description": "No milk, butter or cheese"
+        },
+        "nutFree": {
+          "label": "Nut-free",
+          "description": "No tree nuts or almonds"
+        },
+        "halal": {
+          "label": "Halal",
+          "description": "Certification and Islamic rules"
+        },
+        "kosher": {
+          "label": "Kosher",
+          "description": "Follows kosher precepts"
+        },
+        "pescatarian": {
+          "label": "Pescatarian",
+          "description": "Fish, seafood and vegetables"
+        },
+        "lowCarb": {
+          "label": "Low-carb",
+          "description": "Fewer carbs, more protein"
+        },
+        "lowSodium": {
+          "label": "Low-sodium",
+          "description": "Gentle on the heart"
+        }
       },
       "interests": {
         "weeknightDinners": "Weeknight dinners",

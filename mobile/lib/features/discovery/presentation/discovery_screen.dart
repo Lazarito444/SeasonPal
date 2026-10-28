@@ -244,7 +244,7 @@ class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
       title: t.discovery.filters.cuisine,
       selected: filters.cuisine,
       options: [
-        for (final cuisine in OnboardingOptions.cuisines) (value: cuisine, label: cuisineLabel(t, cuisine)),
+        for (final cuisine in OnboardingOptions.cuisines) (value: cuisine.value, label: cuisineShortLabel(t, cuisine.value)),
       ],
       onSelected: (value) => ref.read(discoveryFiltersProvider.notifier).setCuisine(value),
     );
@@ -301,7 +301,7 @@ class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
       title: t.discovery.filters.diet,
       selected: filters.diet,
       options: [
-        for (final diet in OnboardingOptions.dietaryRestrictions) (value: diet, label: dietLabel(t, diet)),
+        for (final diet in OnboardingOptions.dietaryRestrictions) (value: diet.value, label: dietLabel(t, diet.value)),
       ],
       onSelected: (value) => ref.read(discoveryFiltersProvider.notifier).setDiet(value),
     );
@@ -418,7 +418,7 @@ class _Header extends StatelessWidget {
               _FilterStamp(
                 key: const Key('filter-cuisine'),
                 icon: Icons.public_rounded,
-                label: filters.cuisine == null ? t.discovery.filters.cuisine : cuisineLabel(t, filters.cuisine!),
+                label: filters.cuisine == null ? t.discovery.filters.cuisine : cuisineShortLabel(t, filters.cuisine!),
                 active: filters.cuisine != null,
                 onTap: onPickCuisine,
               ),

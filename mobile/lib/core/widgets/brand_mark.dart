@@ -36,13 +36,13 @@ class BrandLockup extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const BrandMark(size: 38),
-        const SizedBox(width: 12),
+        const Icon(Icons.eco_rounded, size: 21, color: AppColors.forest),
+        const SizedBox(width: 8),
         Text(
           'SeasonPal',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontSize: 20,
-            letterSpacing: -0.4,
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            fontSize: 22,
+            letterSpacing: -0.3,
             color: AppColors.forest,
           ),
         ),

@@ -2,9 +2,40 @@ import 'package:flutter/material.dart';
 
 import 'package:seasonpal/core/theme/app_colors.dart';
 
-/// App-wide theme. Stage 0 keeps this intentionally small — type scale, color
-/// scheme, and button shape — and Stage 4 extends it into the full design
-/// system (recipe cards, chips, detail layouts).
+/// Corner radii from the design system. Screens pick a step; nothing invents
+/// its own radius.
+abstract final class AppRadii {
+  static const sm = 6.0;
+  static const md = 12.0;
+  static const lg = 16.0;
+  static const xl = 24.0;
+  static const pill = 999.0;
+}
+
+/// The two warm ambient elevations used across the app.
+abstract final class AppShadows {
+  static const card = <BoxShadow>[
+    BoxShadow(
+      color: AppColors.shadowSoft,
+      blurRadius: 20,
+      spreadRadius: -2,
+      offset: Offset(0, 4),
+    ),
+  ];
+
+  static const lifted = <BoxShadow>[
+    BoxShadow(
+      color: AppColors.shadowLifted,
+      blurRadius: 30,
+      spreadRadius: -4,
+      offset: Offset(0, 8),
+    ),
+  ];
+}
+
+/// App-wide theme: the editorial type pairing from `docs/design/DESIGN.md`
+/// (Playfair Display for recipe identity, Plus Jakarta Sans for everything
+/// operational), the cream/forest palette, and pill-shaped actions.
 ThemeData buildAppTheme() {
   final scheme =
       ColorScheme.fromSeed(
@@ -23,72 +54,164 @@ ThemeData buildAppTheme() {
 
   final base = ThemeData.light(useMaterial3: true).textTheme;
 
+  // Line heights are expressed as multipliers because that is what Flutter's
+  // `TextStyle.height` expects; the ratios come from the design's px pairs.
+  TextStyle serif({
+    required double size,
+    required double lineHeight,
+    required FontWeight weight,
+    double letterSpacing = 0,
+    Color color = AppColors.forest,
+  }) {
+    return TextStyle(
+      fontFamily: 'PlayfairDisplay',
+      fontSize: size,
+      height: lineHeight / size,
+      fontWeight: weight,
+      letterSpacing: letterSpacing,
+      color: color,
+    );
+  }
+
+  TextStyle sans({
+    required double size,
+    required double lineHeight,
+    required FontWeight weight,
+    double letterSpacing = 0,
+    Color color = AppColors.charcoal,
+  }) {
+    return TextStyle(
+      fontFamily: 'PlusJakartaSans',
+      fontSize: size,
+      height: lineHeight / size,
+      fontWeight: weight,
+      letterSpacing: letterSpacing,
+      color: color,
+    );
+  }
+
   return ThemeData(
     useMaterial3: true,
     colorScheme: scheme,
     scaffoldBackgroundColor: AppColors.cream,
+    fontFamily: 'PlusJakartaSans',
     textTheme: base.copyWith(
-      displayMedium: base.displayMedium?.copyWith(
-        fontSize: 44,
-        height: 1.0,
-        fontWeight: FontWeight.w600,
-        letterSpacing: -1.4,
-        color: AppColors.forest,
+      displayLarge: serif(
+        size: 40,
+        lineHeight: 48,
+        weight: FontWeight.w600,
+        letterSpacing: -0.8,
       ),
-      headlineLarge: base.headlineLarge?.copyWith(
-        fontSize: 36,
-        height: 1.08,
-        fontWeight: FontWeight.w600,
-        letterSpacing: -1.1,
-        color: AppColors.forest,
-      ),
-      headlineMedium: base.headlineMedium?.copyWith(
-        fontSize: 28,
-        height: 1.15,
-        fontWeight: FontWeight.w600,
+      displayMedium: serif(
+        size: 32,
+        lineHeight: 40,
+        weight: FontWeight.w600,
         letterSpacing: -0.6,
-        color: AppColors.forest,
       ),
-      titleLarge: base.titleLarge?.copyWith(
-        fontSize: 22,
-        height: 1.2,
-        fontWeight: FontWeight.w600,
+      headlineLarge: serif(
+        size: 28,
+        lineHeight: 36,
+        weight: FontWeight.w600,
+        letterSpacing: -0.4,
+      ),
+      headlineMedium: serif(
+        size: 24,
+        lineHeight: 32,
+        weight: FontWeight.w500,
         letterSpacing: -0.3,
-        color: AppColors.charcoal,
       ),
-      bodyLarge: base.bodyLarge?.copyWith(
-        fontSize: 17,
-        height: 1.5,
+      headlineSmall: serif(
+        size: 20,
+        lineHeight: 28,
+        weight: FontWeight.w600,
+        letterSpacing: -0.2,
+      ),
+      titleLarge: sans(
+        size: 18,
+        lineHeight: 26,
+        weight: FontWeight.w700,
+        letterSpacing: -0.1,
+      ),
+      titleMedium: sans(size: 16, lineHeight: 24, weight: FontWeight.w600),
+      titleSmall: sans(size: 14, lineHeight: 20, weight: FontWeight.w600),
+      bodyLarge: sans(
+        size: 16,
+        lineHeight: 24,
+        weight: FontWeight.w400,
         color: AppColors.charcoalMuted,
       ),
-      bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: 15,
-        height: 1.45,
+      bodyMedium: sans(
+        size: 14,
+        lineHeight: 22,
+        weight: FontWeight.w400,
         color: AppColors.charcoalMuted,
       ),
-      labelSmall: base.labelSmall?.copyWith(
-        fontSize: 11,
-        height: 1.2,
-        fontWeight: FontWeight.w700,
-        letterSpacing: 1.6,
+      bodySmall: sans(
+        size: 13,
+        lineHeight: 18,
+        weight: FontWeight.w400,
         color: AppColors.charcoalMuted,
       ),
+      labelLarge: sans(size: 14, lineHeight: 20, weight: FontWeight.w600),
+      labelMedium: sans(
+        size: 12,
+        lineHeight: 16,
+        weight: FontWeight.w600,
+        letterSpacing: 0.24,
+        color: AppColors.charcoalMuted,
+      ),
+      labelSmall: sans(
+        size: 11,
+        lineHeight: 14,
+        weight: FontWeight.w700,
+        letterSpacing: 0.44,
+        color: AppColors.charcoalMuted,
+      ),
+    ),
+    dividerTheme: const DividerThemeData(color: AppColors.line, space: 1),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColors.forest,
+      linearTrackColor: AppColors.line,
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         backgroundColor: AppColors.forest,
         foregroundColor: AppColors.creamRaised,
         disabledBackgroundColor: AppColors.sageMist,
-        disabledForegroundColor: AppColors.charcoalMuted,
-        minimumSize: const Size.fromHeight(52),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        disabledForegroundColor: AppColors.charcoalMuted.withValues(alpha: 0.7),
+        minimumSize: const Size.fromHeight(54),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(
+          fontFamily: 'PlusJakartaSans',
+          fontSize: 15,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.forest,
+        minimumSize: const Size(0, 48),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        side: const BorderSide(color: AppColors.line),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(
+          fontFamily: 'PlusJakartaSans',
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.forest,
-        textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(
+          fontFamily: 'PlusJakartaSans',
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     ),
     navigationBarTheme: NavigationBarThemeData(
@@ -100,6 +223,7 @@ ThemeData buildAppTheme() {
       labelTextStyle: WidgetStateProperty.resolveWith((states) {
         final selected = states.contains(WidgetState.selected);
         return TextStyle(
+          fontFamily: 'PlusJakartaSans',
           fontSize: 11,
           fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
           color: selected ? AppColors.forest : AppColors.charcoalMuted,
@@ -115,36 +239,36 @@ ThemeData buildAppTheme() {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.creamRaised,
+      fillColor: AppColors.surfaceCard,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-      labelStyle: const TextStyle(fontSize: 15, color: AppColors.charcoalMuted),
+      labelStyle: const TextStyle(fontSize: 14, color: AppColors.charcoalMuted),
       floatingLabelStyle: const TextStyle(
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: FontWeight.w600,
         color: AppColors.forest,
       ),
       hintStyle: TextStyle(
-        fontSize: 15,
+        fontSize: 14,
         color: AppColors.charcoalMuted.withValues(alpha: 0.75),
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
         borderSide: const BorderSide(color: AppColors.line),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
         borderSide: const BorderSide(color: AppColors.line),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
         borderSide: const BorderSide(color: AppColors.forest, width: 1.6),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
         borderSide: const BorderSide(color: AppColors.offline),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
         borderSide: const BorderSide(color: AppColors.offline, width: 1.6),
       ),
       errorStyle: const TextStyle(fontSize: 12.5, color: AppColors.offline),

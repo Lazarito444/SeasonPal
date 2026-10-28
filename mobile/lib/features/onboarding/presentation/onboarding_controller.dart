@@ -18,7 +18,7 @@ final class OnboardingController extends Notifier<OnboardingState> {
   OnboardingState build() => const OnboardingState();
 
   void next() {
-    if (state.isLastStep) {
+    if (state.isLastStep || !state.canContinue) {
       return;
     }
 
@@ -31,6 +31,15 @@ final class OnboardingController extends Notifier<OnboardingState> {
     }
 
     state = state.copyWith(step: state.step - 1, clearError: true);
+  }
+
+  /// Used by the recap's pencils: revisiting an answer keeps the rest intact.
+  void jumpTo(int step) {
+    if (step < 0 || step >= OnboardingState.stepCount) {
+      return;
+    }
+
+    state = state.copyWith(step: step, clearError: true);
   }
 
   void toggleCuisine(String value) {
@@ -58,27 +67,34 @@ final class OnboardingController extends Notifier<OnboardingState> {
     state = state.copyWith(skillLevel: value, clearError: true);
   }
 
-  void toggleCookTime(int minutes) {
-    state = state.cookTimeMinutes == minutes ? state.copyWith(clearCookTime: true, clearError: true) : state.copyWith(cookTimeMinutes: minutes, clearError: true);
+  /// Tapping the chosen pace again clears it, so "no answer" stays reachable.
+  void toggleCookTimeBucket(String bucketId) {
+    state = state.cookTimeBucketId == bucketId ? state.copyWith(clearCookTime: true, clearError: true) : state.copyWith(cookTimeBucketId: bucketId, clearError: true);
   }
 
   /// Persists the answers and flips the session flag; the router then lands on
   /// home with the preference-derived greeting.
-  Future<void> finish() async {
+  Future<void> finish() => _persist(_answered());
+
+  /// "Skip for now" completes onboarding without answers, so the home feed
+  /// falls back to its editorial defaults.
+  Future<void> skip() => _persist(const UserPreferences(onboardingCompleted: true));
+
+  UserPreferences _answered() => UserPreferences(
+    favoriteCuisines: state.cuisines.toList(growable: false),
+    dietaryRestrictions: state.dietaryRestrictions.toList(growable: false),
+    skillLevel: state.skillLevel,
+    usualCookTimeMinutes: state.cookTimeMinutes,
+    interests: state.interests.toList(growable: false),
+    onboardingCompleted: true,
+  );
+
+  Future<void> _persist(UserPreferences preferences) async {
     if (state.isSaving) {
       return;
     }
 
     state = state.copyWith(isSaving: true, clearError: true);
-
-    final preferences = UserPreferences(
-      favoriteCuisines: state.cuisines.toList(growable: false),
-      dietaryRestrictions: state.dietaryRestrictions.toList(growable: false),
-      skillLevel: state.skillLevel,
-      usualCookTimeMinutes: state.cookTimeMinutes,
-      interests: state.interests.toList(growable: false),
-      onboardingCompleted: true,
-    );
 
     try {
       await ref.read(preferencesRepositoryProvider).save(preferences);

@@ -118,6 +118,9 @@ class _Translations$onboarding$es extends Translations$onboarding$en {
 
 	// Translations
 	@override String stepIndicator({required Object current, required Object total}) => 'PASO ${current} DE ${total}';
+	@override String eyebrowCuisines({required Object current, required Object total}) => 'PASO ${current} DE ${total} · PERSONALIZACIÓN';
+	@override String eyebrowDiet({required Object current, required Object total}) => 'PASO ${current} DE ${total} · PREFERENCIAS';
+	@override String eyebrowRhythm({required Object current, required Object total}) => 'PASO ${current} DE ${total} · TU RITMO';
 	@override late final _Translations$onboarding$welcome$es welcome = _Translations$onboarding$welcome$es._(_root);
 	@override late final _Translations$onboarding$cuisines$es cuisines = _Translations$onboarding$cuisines$es._(_root);
 	@override late final _Translations$onboarding$diet$es diet = _Translations$onboarding$diet$es._(_root);
@@ -268,16 +271,17 @@ class _Translations$onboarding$welcome$es extends Translations$onboarding$welcom
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get eyebrow => 'UN POCO DE TI';
-	@override String get title => 'Vamos a poner la mesa.';
-	@override String get body => 'Unas preguntas para que SeasonPal sugiera platos que encajen con tu cocina, no con la de otra persona.';
-	@override String get cuisineTitle => 'Cocinas que te gustan';
-	@override String get cuisineBody => 'Los sabores que buscas en una semana normal.';
-	@override String get dietTitle => 'Lo que evitas';
-	@override String get dietBody => 'Alergias y dietas que siempre respetaremos.';
-	@override String get timeTitle => 'El tiempo que tienes';
-	@override String get timeBody => 'Una cena de martes no es lo mismo que un proyecto de domingo.';
-	@override String get duration => 'Alrededor de un minuto, de principio a fin.';
+	@override String get title => 'Cocina al compás de la temporada.';
+	@override String get body => 'Solo tomará un minuto afinar tu experiencia culinaria a la cocina que de verdad usas.';
+	@override String get itineraryTitle => 'TU ITINERARIO CULINARIO';
+	@override String get cuisineTitle => 'Tus cocinas favoritas';
+	@override String get cuisineBody => 'Mediterránea, levantina, huerto andino o brasa nórdica. Define tus paladares de estación.';
+	@override String get dietTitle => 'Dieta e intereses botánicos';
+	@override String get dietBody => 'Preferencias vegetales, alimentos sin gluten, especias frescas y afinidades digestivas.';
+	@override String get rhythmTitle => 'Tu ritmo en los fogones';
+	@override String get rhythmBody => 'Cenas rápidas de 20 minutos o rituales pausados de fin de semana en cazuela de barro.';
+	@override String get start => 'Comenzar personalización (1 min)';
+	@override String get skip => 'Omitir por ahora';
 }
 
 // Path: onboarding.cuisines
@@ -287,9 +291,17 @@ class _Translations$onboarding$cuisines$es extends Translations$onboarding$cuisi
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get eyebrow => 'Tu paladar';
-	@override String get title => '¿Qué te apetece?';
-	@override String get body => 'Elige las cocinas que más te llaman. Puedes escoger todas las que quieras.';
+	@override String get title => 'Elige tus cocinas favoritas.';
+	@override String get body => 'Selecciona al menos tres para que tu primer feed no sea monótono.';
+	@override String get sectionTitle => 'Curaduría de estación';
+	@override String get sectionBody => 'Inspiración botánica y recetarios con huella de origen.';
+	@override String get counterNone => 'Aún no hay cocinas seleccionadas';
+	@override String get counterOne => '1 cocina seleccionada';
+	@override String counterOther({required Object count}) => '${count} cocinas seleccionadas';
+	@override String get remainingOne => 'Selecciona 1 más';
+	@override String remainingOther({required Object count}) => 'Selecciona ${count} más';
+	@override String get ready => '¡Todo listo!';
+	@override String get next => 'Continuar a Dietas';
 }
 
 // Path: onboarding.diet
@@ -299,11 +311,13 @@ class _Translations$onboarding$diet$es extends Translations$onboarding$diet$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get eyebrow => 'Tu mesa';
-	@override String get title => '¿Algo fuera del menú?';
-	@override String get body => 'Alergias, dietas o ingredientes que prefieres evitar. Elige todo lo que aplique.';
-	@override String get interestsTitle => '¿Qué te interesa?';
-	@override String get interestsBody => 'Opcional: nos ayuda a afinar las sugerencias.';
+	@override String get title => 'Tu despensa, tus reglas.';
+	@override String get body => 'Adaptamos las recetas a lo que necesitas y a lo que te da curiosidad.';
+	@override String get restrictionsTitle => 'Restricciones dietarias';
+	@override String get restrictionsBody => 'No te sugeriremos ingredientes que contengan estas restricciones.';
+	@override String get interestsTitle => 'Intereses botánicos';
+	@override String get interestsBody => 'Opcional: los temas que queremos priorizar.';
+	@override String get next => 'Continuar a Tu Ritmo';
 }
 
 // Path: onboarding.rhythm
@@ -313,11 +327,13 @@ class _Translations$onboarding$rhythm$es extends Translations$onboarding$rhythm$
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get eyebrow => 'Tu ritmo';
-	@override String get title => '¿Cómo te gusta cocinar?';
-	@override String get body => 'Lo usamos para elegir técnicas y recetas que encajen contigo.';
-	@override String get timeTitle => 'Tiempo en una noche normal';
-	@override String get timeBody => 'Déjalo sin elegir si cambia de un día a otro.';
+	@override String get title => '¿Cómo vives tu cocina?';
+	@override String get body => 'Alineamos la complejidad de las técnicas y el tiempo de preparación a tus hábitos reales.';
+	@override String get skillTitle => 'Nivel de destreza culinaria';
+	@override String get skillHint => 'Elige uno';
+	@override String get timeTitle => 'Tiempo habitual para cocinar';
+	@override String get timeHint => 'Elige tu ritmo preferido';
+	@override String get next => 'Revisar resumen';
 }
 
 // Path: onboarding.done
@@ -327,16 +343,20 @@ class _Translations$onboarding$done$es extends Translations$onboarding$done$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Tu cocina está lista.';
-	@override String get body => 'Esto es lo que usaremos para cocinar. Puedes cambiarlo más adelante.';
-	@override String get openToAnything => 'Abierto a todo';
-	@override String get noRestrictions => 'Sin restricciones';
+	@override String get title => '¡Todo listo para encender los fogones!';
+	@override String get body => 'Hemos diseñado un recetario inteligente a tu medida. Confirma tus selecciones antes de sincronizar tu despensa.';
+	@override String cuisinesTitle({required Object count}) => 'Cocinas seleccionadas (${count})';
+	@override String get dietTitle => 'Restricciones y pasiones';
+	@override String get rhythmTitle => 'Ritmo culinario';
+	@override String get dietLabel => 'DIETA';
+	@override String get interestsLabel => 'INTERESES';
+	@override String get editSection => 'Editar';
+	@override String get emptyCuisines => 'Abierto a todo';
+	@override String get emptyDiet => 'Sin restricciones';
+	@override String get emptyInterests => 'Ninguno todavía';
 	@override String get noTime => 'Sin tiempo fijo';
-	@override String get summaryCuisines => 'Cocinas';
-	@override String get summaryDiet => 'Dieta';
-	@override String get summarySkill => 'Nivel';
-	@override String get summaryTime => 'Tiempo habitual';
-	@override String get alsoInto => 'También te gusta';
+	@override String get footnote => 'Puedes modificar tus preferencias en cualquier momento desde Ajustes.';
+	@override String get finish => 'Continuar a SeasonPal';
 }
 
 // Path: onboarding.footer
@@ -346,9 +366,9 @@ class _Translations$onboarding$footer$es extends Translations$onboarding$footer$
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get begin => 'Empezar';
+	@override String get begin => 'Comenzar';
 	@override String get next => 'Continuar';
-	@override String get finish => 'Terminar';
+	@override String get finish => 'Continuar';
 	@override String get saving => 'Guardando…';
 }
 
@@ -361,6 +381,7 @@ class _Translations$onboarding$time$es extends Translations$onboarding$time$en {
 	// Translations
 	@override String get hour => '1 hora';
 	@override String get minSuffix => 'min';
+	@override late final _Translations$onboarding$time$buckets$es buckets = _Translations$onboarding$time$buckets$es._(_root);
 }
 
 // Path: onboarding.skill
@@ -538,12 +559,12 @@ class _Translations$home$taste$es extends Translations$home$taste$en {
 	@override String get loadError => 'No pudimos cargar tu perfil de sabor.';
 	@override String get noTime => 'Sin tiempo fijo';
 	@override String get empty => 'Tu cocina está abierta a todo.';
-	@override String one({required Object cuisine}) => 'Tu cocina se inclina por la ${cuisine}.';
-	@override String two({required Object first, required Object second}) => 'Tu cocina se inclina por la ${first} y la ${second}.';
-	@override String many({required Object first, required Object second}) => 'Tu cocina se inclina por la ${first}, la ${second} y más.';
+	@override String one({required Object cuisine}) => 'Tu cocina tira a ${cuisine}.';
+	@override String two({required Object first, required Object second}) => 'Tu cocina tira a ${first} y ${second}.';
+	@override String many({required Object first, required Object second}) => 'Tu cocina tira a ${first}, ${second} y más.';
 	@override String get noRestrictions => 'No hay restricciones dietéticas guardadas.';
-	@override String dietOne({required Object restriction}) => 'Cocinando con una dieta ${restriction}.';
-	@override String dietMany({required Object leading, required Object last}) => 'Cocinando con una dieta ${leading} y ${last}.';
+	@override String dietOne({required Object restriction}) => 'Dieta ${restriction}.';
+	@override String dietMany({required Object leading, required Object last}) => 'Dieta ${leading} y ${last}.';
 }
 
 // Path: home.library
@@ -758,6 +779,19 @@ class _Translations$recipes$editor$es extends Translations$recipes$editor$en {
 	@override late final _Translations$recipes$editor$publish$es publish = _Translations$recipes$editor$publish$es._(_root);
 }
 
+// Path: onboarding.time.buckets
+class _Translations$onboarding$time$buckets$es extends Translations$onboarding$time$buckets$en {
+	_Translations$onboarding$time$buckets$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$onboarding$time$buckets$quick$es quick = _Translations$onboarding$time$buckets$quick$es._(_root);
+	@override late final _Translations$onboarding$time$buckets$balanced$es balanced = _Translations$onboarding$time$buckets$balanced$es._(_root);
+	@override late final _Translations$onboarding$time$buckets$long$es long = _Translations$onboarding$time$buckets$long$es._(_root);
+	@override late final _Translations$onboarding$time$buckets$variable$es variable = _Translations$onboarding$time$buckets$variable$es._(_root);
+}
+
 // Path: onboarding.skill.beginner
 class _Translations$onboarding$skill$beginner$es extends Translations$onboarding$skill$beginner$en {
 	_Translations$onboarding$skill$beginner$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -765,8 +799,8 @@ class _Translations$onboarding$skill$beginner$es extends Translations$onboarding
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get label => 'Principiante';
-	@override String get description => 'Recetas sencillas y técnicas conocidas.';
+	@override String get label => 'Principiante entusiasta';
+	@override String get description => 'Técnicas sencillas, paso a paso detallado e ingredientes accesibles.';
 }
 
 // Path: onboarding.skill.intermediate
@@ -776,8 +810,8 @@ class _Translations$onboarding$skill$intermediate$es extends Translations$onboar
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get label => 'Intermedio';
-	@override String get description => 'Con ganas de probar métodos nuevos.';
+	@override String get label => 'Cocinero casero frecuente';
+	@override String get description => 'Confianza en cortes básicos, salsas y manejo del fuego.';
 }
 
 // Path: onboarding.skill.advanced
@@ -787,8 +821,8 @@ class _Translations$onboarding$skill$advanced$es extends Translations$onboarding
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get label => 'Avanzado';
-	@override String get description => 'Un buen desafío por delante.';
+	@override String get label => 'Artesano / avanzado';
+	@override String get description => 'Fermentación, horneado complejo y emplatado de autor.';
 }
 
 // Path: onboarding.options.cuisines
@@ -798,26 +832,26 @@ class _Translations$onboarding$options$cuisines$es extends Translations$onboardi
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get italian => 'italiana';
-	@override String get mediterranean => 'mediterránea';
-	@override String get middleEastern => 'medioriental';
-	@override String get mexican => 'mexicana';
-	@override String get indian => 'india';
-	@override String get japanese => 'japonesa';
-	@override String get korean => 'coreana';
-	@override String get thai => 'tailandesa';
-	@override String get chinese => 'china';
-	@override String get french => 'francesa';
-	@override String get spanish => 'española';
-	@override String get greek => 'griega';
-	@override String get turkish => 'turca';
-	@override String get vietnamese => 'vietnamita';
-	@override String get american => 'estadounidense';
-	@override String get northAfrican => 'norteafricana';
-	@override String get latinAmerican => 'latinoamericana';
-	@override String get nordic => 'nórdica';
-	@override String get caribbean => 'caribeña';
-	@override String get african => 'africana';
+	@override late final _Translations$onboarding$options$cuisines$italian$es italian = _Translations$onboarding$options$cuisines$italian$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$mediterranean$es mediterranean = _Translations$onboarding$options$cuisines$mediterranean$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$middleEastern$es middleEastern = _Translations$onboarding$options$cuisines$middleEastern$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$mexican$es mexican = _Translations$onboarding$options$cuisines$mexican$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$indian$es indian = _Translations$onboarding$options$cuisines$indian$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$japanese$es japanese = _Translations$onboarding$options$cuisines$japanese$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$korean$es korean = _Translations$onboarding$options$cuisines$korean$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$thai$es thai = _Translations$onboarding$options$cuisines$thai$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$chinese$es chinese = _Translations$onboarding$options$cuisines$chinese$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$french$es french = _Translations$onboarding$options$cuisines$french$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$spanish$es spanish = _Translations$onboarding$options$cuisines$spanish$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$greek$es greek = _Translations$onboarding$options$cuisines$greek$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$turkish$es turkish = _Translations$onboarding$options$cuisines$turkish$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$vietnamese$es vietnamese = _Translations$onboarding$options$cuisines$vietnamese$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$american$es american = _Translations$onboarding$options$cuisines$american$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$northAfrican$es northAfrican = _Translations$onboarding$options$cuisines$northAfrican$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$latinAmerican$es latinAmerican = _Translations$onboarding$options$cuisines$latinAmerican$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$nordic$es nordic = _Translations$onboarding$options$cuisines$nordic$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$caribbean$es caribbean = _Translations$onboarding$options$cuisines$caribbean$es._(_root);
+	@override late final _Translations$onboarding$options$cuisines$african$es african = _Translations$onboarding$options$cuisines$african$es._(_root);
 }
 
 // Path: onboarding.options.diets
@@ -827,16 +861,16 @@ class _Translations$onboarding$options$diets$es extends Translations$onboarding$
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get vegetarian => 'vegetariana';
-	@override String get vegan => 'vegana';
-	@override String get glutenFree => 'sin gluten';
-	@override String get dairyFree => 'sin lactosa';
-	@override String get nutFree => 'sin frutos secos';
-	@override String get halal => 'halal';
-	@override String get kosher => 'kosher';
-	@override String get pescatarian => 'pescetariana';
-	@override String get lowCarb => 'baja en carbohidratos';
-	@override String get lowSodium => 'baja en sodio';
+	@override late final _Translations$onboarding$options$diets$vegetarian$es vegetarian = _Translations$onboarding$options$diets$vegetarian$es._(_root);
+	@override late final _Translations$onboarding$options$diets$vegan$es vegan = _Translations$onboarding$options$diets$vegan$es._(_root);
+	@override late final _Translations$onboarding$options$diets$glutenFree$es glutenFree = _Translations$onboarding$options$diets$glutenFree$es._(_root);
+	@override late final _Translations$onboarding$options$diets$dairyFree$es dairyFree = _Translations$onboarding$options$diets$dairyFree$es._(_root);
+	@override late final _Translations$onboarding$options$diets$nutFree$es nutFree = _Translations$onboarding$options$diets$nutFree$es._(_root);
+	@override late final _Translations$onboarding$options$diets$halal$es halal = _Translations$onboarding$options$diets$halal$es._(_root);
+	@override late final _Translations$onboarding$options$diets$kosher$es kosher = _Translations$onboarding$options$diets$kosher$es._(_root);
+	@override late final _Translations$onboarding$options$diets$pescatarian$es pescatarian = _Translations$onboarding$options$diets$pescatarian$es._(_root);
+	@override late final _Translations$onboarding$options$diets$lowCarb$es lowCarb = _Translations$onboarding$options$diets$lowCarb$es._(_root);
+	@override late final _Translations$onboarding$options$diets$lowSodium$es lowSodium = _Translations$onboarding$options$diets$lowSodium$es._(_root);
 }
 
 // Path: onboarding.options.interests
@@ -846,15 +880,15 @@ class _Translations$onboarding$options$interests$es extends Translations$onboard
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get weeknightDinners => 'Cenas entre semana';
-	@override String get mealPrep => 'Preparar comidas';
+	@override String get weeknightDinners => 'Cenas de entre semana';
+	@override String get mealPrep => 'Meal prep';
 	@override String get baking => 'Repostería';
-	@override String get grilling => 'A la parrilla';
+	@override String get grilling => 'Parrilla';
 	@override String get slowCooking => 'Cocción lenta';
 	@override String get fermentation => 'Fermentación';
 	@override String get plantForward => 'Cocina vegetal';
 	@override String get comfortFood => 'Comida reconfortante';
-	@override String get entertaining => 'Recibir invitados';
+	@override String get entertaining => 'Recibir en casa';
 	@override String get budgetCooking => 'Cocina económica';
 	@override String get cookingWithKids => 'Cocinar con niños';
 	@override String get spicesAndHeat => 'Especias y picante';
@@ -997,6 +1031,400 @@ class _Translations$recipes$editor$publish$es extends Translations$recipes$edito
 	@override String get failed => 'La receta se guardó, pero no se pudo publicar. Inténtalo desde la página de la receta.';
 }
 
+// Path: onboarding.time.buckets.quick
+class _Translations$onboarding$time$buckets$quick$es extends Translations$onboarding$time$buckets$quick$en {
+	_Translations$onboarding$time$buckets$quick$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => '15–20 min';
+	@override String get description => 'Express entre semana';
+}
+
+// Path: onboarding.time.buckets.balanced
+class _Translations$onboarding$time$buckets$balanced$es extends Translations$onboarding$time$buckets$balanced$en {
+	_Translations$onboarding$time$buckets$balanced$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => '30–45 min';
+	@override String get description => 'Equilibrio para elaborar';
+}
+
+// Path: onboarding.time.buckets.long
+class _Translations$onboarding$time$buckets$long$es extends Translations$onboarding$time$buckets$long$en {
+	_Translations$onboarding$time$buckets$long$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => '60+ min';
+	@override String get description => 'Estofados y rituales de fin de semana';
+}
+
+// Path: onboarding.time.buckets.variable
+class _Translations$onboarding$time$buckets$variable$es extends Translations$onboarding$time$buckets$variable$en {
+	_Translations$onboarding$time$buckets$variable$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Variable';
+	@override String get description => 'Me adapto según el día';
+}
+
+// Path: onboarding.options.cuisines.italian
+class _Translations$onboarding$options$cuisines$italian$es extends Translations$onboarding$options$cuisines$italian$en {
+	_Translations$onboarding$options$cuisines$italian$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Italiana rústica y pasta';
+	@override String get description => 'Trigo antiguo, ragú, quesos curados';
+	@override String get short => 'Italiana';
+}
+
+// Path: onboarding.options.cuisines.mediterranean
+class _Translations$onboarding$options$cuisines$mediterranean$es extends Translations$onboarding$options$cuisines$mediterranean$en {
+	_Translations$onboarding$options$cuisines$mediterranean$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Mediterránea clásica';
+	@override String get description => 'Aceites vivos, hierbas, pescado de mar';
+	@override String get short => 'Mediterránea';
+}
+
+// Path: onboarding.options.cuisines.middleEastern
+class _Translations$onboarding$options$cuisines$middleEastern$es extends Translations$onboarding$options$cuisines$middleEastern$en {
+	_Translations$onboarding$options$cuisines$middleEastern$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Levantina y Oriente Medio';
+	@override String get description => 'Za\'atar, tahini, granadas';
+	@override String get short => 'De Oriente Medio';
+}
+
+// Path: onboarding.options.cuisines.mexican
+class _Translations$onboarding$options$cuisines$mexican$es extends Translations$onboarding$options$cuisines$mexican$en {
+	_Translations$onboarding$options$cuisines$mexican$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Oaxaqueña y tradicional';
+	@override String get description => 'Moles negros, maíz criollo';
+	@override String get short => 'Mexicana';
+}
+
+// Path: onboarding.options.cuisines.indian
+class _Translations$onboarding$options$cuisines$indian$es extends Translations$onboarding$options$cuisines$indian$en {
+	_Translations$onboarding$options$cuisines$indian$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'India especiada';
+	@override String get description => 'Masalas tostados, legumbres, ghee';
+	@override String get short => 'India';
+}
+
+// Path: onboarding.options.cuisines.japanese
+class _Translations$onboarding$options$cuisines$japanese$es extends Translations$onboarding$options$cuisines$japanese$en {
+	_Translations$onboarding$options$cuisines$japanese$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Japonesa y ramen artesanal';
+	@override String get description => 'Caldos dashi, umami, fermentos';
+	@override String get short => 'Japonesa';
+}
+
+// Path: onboarding.options.cuisines.korean
+class _Translations$onboarding$options$cuisines$korean$es extends Translations$onboarding$options$cuisines$korean$en {
+	_Translations$onboarding$options$cuisines$korean$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Coreana y kimchi';
+	@override String get description => 'Gochujang, banchan, marinados';
+	@override String get short => 'Coreana';
+}
+
+// Path: onboarding.options.cuisines.thai
+class _Translations$onboarding$options$cuisines$thai$es extends Translations$onboarding$options$cuisines$thai$en {
+	_Translations$onboarding$options$cuisines$thai$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Tailandesa aromática';
+	@override String get description => 'Hierba limón, lima kaffir, coco';
+	@override String get short => 'Tailandesa';
+}
+
+// Path: onboarding.options.cuisines.chinese
+class _Translations$onboarding$options$cuisines$chinese$es extends Translations$onboarding$options$cuisines$chinese$en {
+	_Translations$onboarding$options$cuisines$chinese$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Wok y dim sum';
+	@override String get description => 'Fuego alto, vapor, soja y vinagre';
+	@override String get short => 'China';
+}
+
+// Path: onboarding.options.cuisines.french
+class _Translations$onboarding$options$cuisines$french$es extends Translations$onboarding$options$cuisines$french$en {
+	_Translations$onboarding$options$cuisines$french$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Francesa bistró';
+	@override String get description => 'Mantequilla avellanada, fondos, vino';
+	@override String get short => 'Francesa';
+}
+
+// Path: onboarding.options.cuisines.spanish
+class _Translations$onboarding$options$cuisines$spanish$es extends Translations$onboarding$options$cuisines$spanish$en {
+	_Translations$onboarding$options$cuisines$spanish$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Ibérica y tapas';
+	@override String get description => 'Pimentón, dehesa, conservas';
+	@override String get short => 'Española';
+}
+
+// Path: onboarding.options.cuisines.greek
+class _Translations$onboarding$options$cuisines$greek$es extends Translations$onboarding$options$cuisines$greek$en {
+	_Translations$onboarding$options$cuisines$greek$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Griega del Egeo';
+	@override String get description => 'Feta de pastura, orégano salvaje';
+	@override String get short => 'Griega';
+}
+
+// Path: onboarding.options.cuisines.turkish
+class _Translations$onboarding$options$cuisines$turkish$es extends Translations$onboarding$options$cuisines$turkish$en {
+	_Translations$onboarding$options$cuisines$turkish$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Anatolia y brasa';
+	@override String get description => 'Bulgur, berenjena ahumada, yogur';
+	@override String get short => 'Turca';
+}
+
+// Path: onboarding.options.cuisines.vietnamese
+class _Translations$onboarding$options$cuisines$vietnamese$es extends Translations$onboarding$options$cuisines$vietnamese$en {
+	_Translations$onboarding$options$cuisines$vietnamese$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Vietnamita fresca';
+	@override String get description => 'Cilantro fino, rollos, phở';
+	@override String get short => 'Vietnamita';
+}
+
+// Path: onboarding.options.cuisines.american
+class _Translations$onboarding$options$cuisines$american$es extends Translations$onboarding$options$cuisines$american$en {
+	_Translations$onboarding$options$cuisines$american$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Californiana farm-to-table';
+	@override String get description => 'Cosecha local, platos limpios';
+	@override String get short => 'Estadounidense';
+}
+
+// Path: onboarding.options.cuisines.northAfrican
+class _Translations$onboarding$options$cuisines$northAfrican$es extends Translations$onboarding$options$cuisines$northAfrican$en {
+	_Translations$onboarding$options$cuisines$northAfrican$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Marroquí y tagines';
+	@override String get description => 'Ras el hanout, limón confitado';
+	@override String get short => 'Del norte de África';
+}
+
+// Path: onboarding.options.cuisines.latinAmerican
+class _Translations$onboarding$options$cuisines$latinAmerican$es extends Translations$onboarding$options$cuisines$latinAmerican$en {
+	_Translations$onboarding$options$cuisines$latinAmerican$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Peruana y nikkei';
+	@override String get description => 'Ajíes nativos, ceviches, rocoto';
+	@override String get short => 'Latinoamericana';
+}
+
+// Path: onboarding.options.cuisines.nordic
+class _Translations$onboarding$options$cuisines$nordic$es extends Translations$onboarding$options$cuisines$nordic$en {
+	_Translations$onboarding$options$cuisines$nordic$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Nórdica y fermentos';
+	@override String get description => 'Encurtidos, centeno, ahumados';
+	@override String get short => 'Nórdica';
+}
+
+// Path: onboarding.options.cuisines.caribbean
+class _Translations$onboarding$options$cuisines$caribbean$es extends Translations$onboarding$options$cuisines$caribbean$en {
+	_Translations$onboarding$options$cuisines$caribbean$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Caribeña de islas';
+	@override String get description => 'Pimientos, coco, cítricos';
+	@override String get short => 'Caribeña';
+}
+
+// Path: onboarding.options.cuisines.african
+class _Translations$onboarding$options$cuisines$african$es extends Translations$onboarding$options$cuisines$african$en {
+	_Translations$onboarding$options$cuisines$african$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'África de fuego lento';
+	@override String get description => 'Guisos de una olla, tubérculos, especias';
+	@override String get short => 'Africana';
+}
+
+// Path: onboarding.options.diets.vegetarian
+class _Translations$onboarding$options$diets$vegetarian$es extends Translations$onboarding$options$diets$vegetarian$en {
+	_Translations$onboarding$options$diets$vegetarian$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Vegetariana';
+	@override String get description => 'Sin carnes ni pescados';
+}
+
+// Path: onboarding.options.diets.vegan
+class _Translations$onboarding$options$diets$vegan$es extends Translations$onboarding$options$diets$vegan$en {
+	_Translations$onboarding$options$diets$vegan$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Vegana';
+	@override String get description => '100% de origen vegetal';
+}
+
+// Path: onboarding.options.diets.glutenFree
+class _Translations$onboarding$options$diets$glutenFree$es extends Translations$onboarding$options$diets$glutenFree$en {
+	_Translations$onboarding$options$diets$glutenFree$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Sin gluten';
+	@override String get description => 'Libre de trigo, cebada y centeno';
+}
+
+// Path: onboarding.options.diets.dairyFree
+class _Translations$onboarding$options$diets$dairyFree$es extends Translations$onboarding$options$diets$dairyFree$en {
+	_Translations$onboarding$options$diets$dairyFree$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Sin lácteos';
+	@override String get description => 'Sin leche, mantequilla ni queso';
+}
+
+// Path: onboarding.options.diets.nutFree
+class _Translations$onboarding$options$diets$nutFree$es extends Translations$onboarding$options$diets$nutFree$en {
+	_Translations$onboarding$options$diets$nutFree$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Sin frutos secos';
+	@override String get description => 'Sin nueces ni almendras';
+}
+
+// Path: onboarding.options.diets.halal
+class _Translations$onboarding$options$diets$halal$es extends Translations$onboarding$options$diets$halal$en {
+	_Translations$onboarding$options$diets$halal$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Halal';
+	@override String get description => 'Certificación y normas islámicas';
+}
+
+// Path: onboarding.options.diets.kosher
+class _Translations$onboarding$options$diets$kosher$es extends Translations$onboarding$options$diets$kosher$en {
+	_Translations$onboarding$options$diets$kosher$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Kosher';
+	@override String get description => 'Conforme a preceptos cashrut';
+}
+
+// Path: onboarding.options.diets.pescatarian
+class _Translations$onboarding$options$diets$pescatarian$es extends Translations$onboarding$options$diets$pescatarian$en {
+	_Translations$onboarding$options$diets$pescatarian$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Pescatariana';
+	@override String get description => 'Pescados, mariscos y vegetales';
+}
+
+// Path: onboarding.options.diets.lowCarb
+class _Translations$onboarding$options$diets$lowCarb$es extends Translations$onboarding$options$diets$lowCarb$en {
+	_Translations$onboarding$options$diets$lowCarb$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Baja en carbohidratos';
+	@override String get description => 'Menos hidratos, más proteína';
+}
+
+// Path: onboarding.options.diets.lowSodium
+class _Translations$onboarding$options$diets$lowSodium$es extends Translations$onboarding$options$diets$lowSodium$en {
+	_Translations$onboarding$options$diets$lowSodium$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Baja en sodio';
+	@override String get description => 'Para control cardiovascular';
+}
+
 /// The flat map containing all translations for locale <es>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1054,91 +1482,169 @@ extension on TranslationsEs {
 			'auth.splash.restoreFailed' => 'No pudimos restaurar tu sesión.',
 			'auth.splash.loading' => 'Poniendo la mesa…',
 			'onboarding.stepIndicator' => ({required Object current, required Object total}) => 'PASO ${current} DE ${total}',
-			'onboarding.welcome.eyebrow' => 'UN POCO DE TI',
-			'onboarding.welcome.title' => 'Vamos a poner la mesa.',
-			'onboarding.welcome.body' => 'Unas preguntas para que SeasonPal sugiera platos que encajen con tu cocina, no con la de otra persona.',
-			'onboarding.welcome.cuisineTitle' => 'Cocinas que te gustan',
-			'onboarding.welcome.cuisineBody' => 'Los sabores que buscas en una semana normal.',
-			'onboarding.welcome.dietTitle' => 'Lo que evitas',
-			'onboarding.welcome.dietBody' => 'Alergias y dietas que siempre respetaremos.',
-			'onboarding.welcome.timeTitle' => 'El tiempo que tienes',
-			'onboarding.welcome.timeBody' => 'Una cena de martes no es lo mismo que un proyecto de domingo.',
-			'onboarding.welcome.duration' => 'Alrededor de un minuto, de principio a fin.',
-			'onboarding.cuisines.eyebrow' => 'Tu paladar',
-			'onboarding.cuisines.title' => '¿Qué te apetece?',
-			'onboarding.cuisines.body' => 'Elige las cocinas que más te llaman. Puedes escoger todas las que quieras.',
-			'onboarding.diet.eyebrow' => 'Tu mesa',
-			'onboarding.diet.title' => '¿Algo fuera del menú?',
-			'onboarding.diet.body' => 'Alergias, dietas o ingredientes que prefieres evitar. Elige todo lo que aplique.',
-			'onboarding.diet.interestsTitle' => '¿Qué te interesa?',
-			'onboarding.diet.interestsBody' => 'Opcional: nos ayuda a afinar las sugerencias.',
-			'onboarding.rhythm.eyebrow' => 'Tu ritmo',
-			'onboarding.rhythm.title' => '¿Cómo te gusta cocinar?',
-			'onboarding.rhythm.body' => 'Lo usamos para elegir técnicas y recetas que encajen contigo.',
-			'onboarding.rhythm.timeTitle' => 'Tiempo en una noche normal',
-			'onboarding.rhythm.timeBody' => 'Déjalo sin elegir si cambia de un día a otro.',
-			'onboarding.done.title' => 'Tu cocina está lista.',
-			'onboarding.done.body' => 'Esto es lo que usaremos para cocinar. Puedes cambiarlo más adelante.',
-			'onboarding.done.openToAnything' => 'Abierto a todo',
-			'onboarding.done.noRestrictions' => 'Sin restricciones',
+			'onboarding.eyebrowCuisines' => ({required Object current, required Object total}) => 'PASO ${current} DE ${total} · PERSONALIZACIÓN',
+			'onboarding.eyebrowDiet' => ({required Object current, required Object total}) => 'PASO ${current} DE ${total} · PREFERENCIAS',
+			'onboarding.eyebrowRhythm' => ({required Object current, required Object total}) => 'PASO ${current} DE ${total} · TU RITMO',
+			'onboarding.welcome.title' => 'Cocina al compás de la temporada.',
+			'onboarding.welcome.body' => 'Solo tomará un minuto afinar tu experiencia culinaria a la cocina que de verdad usas.',
+			'onboarding.welcome.itineraryTitle' => 'TU ITINERARIO CULINARIO',
+			'onboarding.welcome.cuisineTitle' => 'Tus cocinas favoritas',
+			'onboarding.welcome.cuisineBody' => 'Mediterránea, levantina, huerto andino o brasa nórdica. Define tus paladares de estación.',
+			'onboarding.welcome.dietTitle' => 'Dieta e intereses botánicos',
+			'onboarding.welcome.dietBody' => 'Preferencias vegetales, alimentos sin gluten, especias frescas y afinidades digestivas.',
+			'onboarding.welcome.rhythmTitle' => 'Tu ritmo en los fogones',
+			'onboarding.welcome.rhythmBody' => 'Cenas rápidas de 20 minutos o rituales pausados de fin de semana en cazuela de barro.',
+			'onboarding.welcome.start' => 'Comenzar personalización (1 min)',
+			'onboarding.welcome.skip' => 'Omitir por ahora',
+			'onboarding.cuisines.title' => 'Elige tus cocinas favoritas.',
+			'onboarding.cuisines.body' => 'Selecciona al menos tres para que tu primer feed no sea monótono.',
+			'onboarding.cuisines.sectionTitle' => 'Curaduría de estación',
+			'onboarding.cuisines.sectionBody' => 'Inspiración botánica y recetarios con huella de origen.',
+			'onboarding.cuisines.counterNone' => 'Aún no hay cocinas seleccionadas',
+			'onboarding.cuisines.counterOne' => '1 cocina seleccionada',
+			'onboarding.cuisines.counterOther' => ({required Object count}) => '${count} cocinas seleccionadas',
+			'onboarding.cuisines.remainingOne' => 'Selecciona 1 más',
+			'onboarding.cuisines.remainingOther' => ({required Object count}) => 'Selecciona ${count} más',
+			'onboarding.cuisines.ready' => '¡Todo listo!',
+			'onboarding.cuisines.next' => 'Continuar a Dietas',
+			'onboarding.diet.title' => 'Tu despensa, tus reglas.',
+			'onboarding.diet.body' => 'Adaptamos las recetas a lo que necesitas y a lo que te da curiosidad.',
+			'onboarding.diet.restrictionsTitle' => 'Restricciones dietarias',
+			'onboarding.diet.restrictionsBody' => 'No te sugeriremos ingredientes que contengan estas restricciones.',
+			'onboarding.diet.interestsTitle' => 'Intereses botánicos',
+			'onboarding.diet.interestsBody' => 'Opcional: los temas que queremos priorizar.',
+			'onboarding.diet.next' => 'Continuar a Tu Ritmo',
+			'onboarding.rhythm.title' => '¿Cómo vives tu cocina?',
+			'onboarding.rhythm.body' => 'Alineamos la complejidad de las técnicas y el tiempo de preparación a tus hábitos reales.',
+			'onboarding.rhythm.skillTitle' => 'Nivel de destreza culinaria',
+			'onboarding.rhythm.skillHint' => 'Elige uno',
+			'onboarding.rhythm.timeTitle' => 'Tiempo habitual para cocinar',
+			'onboarding.rhythm.timeHint' => 'Elige tu ritmo preferido',
+			'onboarding.rhythm.next' => 'Revisar resumen',
+			'onboarding.done.title' => '¡Todo listo para encender los fogones!',
+			'onboarding.done.body' => 'Hemos diseñado un recetario inteligente a tu medida. Confirma tus selecciones antes de sincronizar tu despensa.',
+			'onboarding.done.cuisinesTitle' => ({required Object count}) => 'Cocinas seleccionadas (${count})',
+			'onboarding.done.dietTitle' => 'Restricciones y pasiones',
+			'onboarding.done.rhythmTitle' => 'Ritmo culinario',
+			'onboarding.done.dietLabel' => 'DIETA',
+			'onboarding.done.interestsLabel' => 'INTERESES',
+			'onboarding.done.editSection' => 'Editar',
+			'onboarding.done.emptyCuisines' => 'Abierto a todo',
+			'onboarding.done.emptyDiet' => 'Sin restricciones',
+			'onboarding.done.emptyInterests' => 'Ninguno todavía',
 			'onboarding.done.noTime' => 'Sin tiempo fijo',
-			'onboarding.done.summaryCuisines' => 'Cocinas',
-			'onboarding.done.summaryDiet' => 'Dieta',
-			'onboarding.done.summarySkill' => 'Nivel',
-			'onboarding.done.summaryTime' => 'Tiempo habitual',
-			'onboarding.done.alsoInto' => 'También te gusta',
-			'onboarding.footer.begin' => 'Empezar',
+			'onboarding.done.footnote' => 'Puedes modificar tus preferencias en cualquier momento desde Ajustes.',
+			'onboarding.done.finish' => 'Continuar a SeasonPal',
+			'onboarding.footer.begin' => 'Comenzar',
 			'onboarding.footer.next' => 'Continuar',
-			'onboarding.footer.finish' => 'Terminar',
+			'onboarding.footer.finish' => 'Continuar',
 			'onboarding.footer.saving' => 'Guardando…',
 			'onboarding.saveError' => 'No pudimos guardar tus preferencias. Inténtalo de nuevo.',
 			'onboarding.time.hour' => '1 hora',
 			'onboarding.time.minSuffix' => 'min',
-			'onboarding.skill.beginner.label' => 'Principiante',
-			'onboarding.skill.beginner.description' => 'Recetas sencillas y técnicas conocidas.',
-			'onboarding.skill.intermediate.label' => 'Intermedio',
-			'onboarding.skill.intermediate.description' => 'Con ganas de probar métodos nuevos.',
-			'onboarding.skill.advanced.label' => 'Avanzado',
-			'onboarding.skill.advanced.description' => 'Un buen desafío por delante.',
-			'onboarding.options.cuisines.italian' => 'italiana',
-			'onboarding.options.cuisines.mediterranean' => 'mediterránea',
-			'onboarding.options.cuisines.middleEastern' => 'medioriental',
-			'onboarding.options.cuisines.mexican' => 'mexicana',
-			'onboarding.options.cuisines.indian' => 'india',
-			'onboarding.options.cuisines.japanese' => 'japonesa',
-			'onboarding.options.cuisines.korean' => 'coreana',
-			'onboarding.options.cuisines.thai' => 'tailandesa',
-			'onboarding.options.cuisines.chinese' => 'china',
-			'onboarding.options.cuisines.french' => 'francesa',
-			'onboarding.options.cuisines.spanish' => 'española',
-			'onboarding.options.cuisines.greek' => 'griega',
-			'onboarding.options.cuisines.turkish' => 'turca',
-			'onboarding.options.cuisines.vietnamese' => 'vietnamita',
-			'onboarding.options.cuisines.american' => 'estadounidense',
-			'onboarding.options.cuisines.northAfrican' => 'norteafricana',
-			'onboarding.options.cuisines.latinAmerican' => 'latinoamericana',
-			'onboarding.options.cuisines.nordic' => 'nórdica',
-			'onboarding.options.cuisines.caribbean' => 'caribeña',
-			'onboarding.options.cuisines.african' => 'africana',
-			'onboarding.options.diets.vegetarian' => 'vegetariana',
-			'onboarding.options.diets.vegan' => 'vegana',
-			'onboarding.options.diets.glutenFree' => 'sin gluten',
-			'onboarding.options.diets.dairyFree' => 'sin lactosa',
-			'onboarding.options.diets.nutFree' => 'sin frutos secos',
-			'onboarding.options.diets.halal' => 'halal',
-			'onboarding.options.diets.kosher' => 'kosher',
-			'onboarding.options.diets.pescatarian' => 'pescetariana',
-			'onboarding.options.diets.lowCarb' => 'baja en carbohidratos',
-			'onboarding.options.diets.lowSodium' => 'baja en sodio',
-			'onboarding.options.interests.weeknightDinners' => 'Cenas entre semana',
-			'onboarding.options.interests.mealPrep' => 'Preparar comidas',
+			'onboarding.time.buckets.quick.label' => '15–20 min',
+			'onboarding.time.buckets.quick.description' => 'Express entre semana',
+			'onboarding.time.buckets.balanced.label' => '30–45 min',
+			'onboarding.time.buckets.balanced.description' => 'Equilibrio para elaborar',
+			'onboarding.time.buckets.long.label' => '60+ min',
+			'onboarding.time.buckets.long.description' => 'Estofados y rituales de fin de semana',
+			'onboarding.time.buckets.variable.label' => 'Variable',
+			'onboarding.time.buckets.variable.description' => 'Me adapto según el día',
+			'onboarding.skill.beginner.label' => 'Principiante entusiasta',
+			'onboarding.skill.beginner.description' => 'Técnicas sencillas, paso a paso detallado e ingredientes accesibles.',
+			'onboarding.skill.intermediate.label' => 'Cocinero casero frecuente',
+			'onboarding.skill.intermediate.description' => 'Confianza en cortes básicos, salsas y manejo del fuego.',
+			'onboarding.skill.advanced.label' => 'Artesano / avanzado',
+			'onboarding.skill.advanced.description' => 'Fermentación, horneado complejo y emplatado de autor.',
+			'onboarding.options.cuisines.italian.label' => 'Italiana rústica y pasta',
+			'onboarding.options.cuisines.italian.description' => 'Trigo antiguo, ragú, quesos curados',
+			'onboarding.options.cuisines.italian.short' => 'Italiana',
+			'onboarding.options.cuisines.mediterranean.label' => 'Mediterránea clásica',
+			'onboarding.options.cuisines.mediterranean.description' => 'Aceites vivos, hierbas, pescado de mar',
+			'onboarding.options.cuisines.mediterranean.short' => 'Mediterránea',
+			'onboarding.options.cuisines.middleEastern.label' => 'Levantina y Oriente Medio',
+			'onboarding.options.cuisines.middleEastern.description' => 'Za\'atar, tahini, granadas',
+			'onboarding.options.cuisines.middleEastern.short' => 'De Oriente Medio',
+			'onboarding.options.cuisines.mexican.label' => 'Oaxaqueña y tradicional',
+			'onboarding.options.cuisines.mexican.description' => 'Moles negros, maíz criollo',
+			'onboarding.options.cuisines.mexican.short' => 'Mexicana',
+			'onboarding.options.cuisines.indian.label' => 'India especiada',
+			'onboarding.options.cuisines.indian.description' => 'Masalas tostados, legumbres, ghee',
+			'onboarding.options.cuisines.indian.short' => 'India',
+			'onboarding.options.cuisines.japanese.label' => 'Japonesa y ramen artesanal',
+			'onboarding.options.cuisines.japanese.description' => 'Caldos dashi, umami, fermentos',
+			'onboarding.options.cuisines.japanese.short' => 'Japonesa',
+			'onboarding.options.cuisines.korean.label' => 'Coreana y kimchi',
+			'onboarding.options.cuisines.korean.description' => 'Gochujang, banchan, marinados',
+			'onboarding.options.cuisines.korean.short' => 'Coreana',
+			'onboarding.options.cuisines.thai.label' => 'Tailandesa aromática',
+			'onboarding.options.cuisines.thai.description' => 'Hierba limón, lima kaffir, coco',
+			'onboarding.options.cuisines.thai.short' => 'Tailandesa',
+			'onboarding.options.cuisines.chinese.label' => 'Wok y dim sum',
+			'onboarding.options.cuisines.chinese.description' => 'Fuego alto, vapor, soja y vinagre',
+			'onboarding.options.cuisines.chinese.short' => 'China',
+			'onboarding.options.cuisines.french.label' => 'Francesa bistró',
+			'onboarding.options.cuisines.french.description' => 'Mantequilla avellanada, fondos, vino',
+			'onboarding.options.cuisines.french.short' => 'Francesa',
+			'onboarding.options.cuisines.spanish.label' => 'Ibérica y tapas',
+			'onboarding.options.cuisines.spanish.description' => 'Pimentón, dehesa, conservas',
+			'onboarding.options.cuisines.spanish.short' => 'Española',
+			'onboarding.options.cuisines.greek.label' => 'Griega del Egeo',
+			'onboarding.options.cuisines.greek.description' => 'Feta de pastura, orégano salvaje',
+			'onboarding.options.cuisines.greek.short' => 'Griega',
+			'onboarding.options.cuisines.turkish.label' => 'Anatolia y brasa',
+			'onboarding.options.cuisines.turkish.description' => 'Bulgur, berenjena ahumada, yogur',
+			'onboarding.options.cuisines.turkish.short' => 'Turca',
+			'onboarding.options.cuisines.vietnamese.label' => 'Vietnamita fresca',
+			'onboarding.options.cuisines.vietnamese.description' => 'Cilantro fino, rollos, phở',
+			'onboarding.options.cuisines.vietnamese.short' => 'Vietnamita',
+			'onboarding.options.cuisines.american.label' => 'Californiana farm-to-table',
+			'onboarding.options.cuisines.american.description' => 'Cosecha local, platos limpios',
+			'onboarding.options.cuisines.american.short' => 'Estadounidense',
+			'onboarding.options.cuisines.northAfrican.label' => 'Marroquí y tagines',
+			'onboarding.options.cuisines.northAfrican.description' => 'Ras el hanout, limón confitado',
+			'onboarding.options.cuisines.northAfrican.short' => 'Del norte de África',
+			'onboarding.options.cuisines.latinAmerican.label' => 'Peruana y nikkei',
+			'onboarding.options.cuisines.latinAmerican.description' => 'Ajíes nativos, ceviches, rocoto',
+			'onboarding.options.cuisines.latinAmerican.short' => 'Latinoamericana',
+			'onboarding.options.cuisines.nordic.label' => 'Nórdica y fermentos',
+			'onboarding.options.cuisines.nordic.description' => 'Encurtidos, centeno, ahumados',
+			'onboarding.options.cuisines.nordic.short' => 'Nórdica',
+			'onboarding.options.cuisines.caribbean.label' => 'Caribeña de islas',
+			'onboarding.options.cuisines.caribbean.description' => 'Pimientos, coco, cítricos',
+			'onboarding.options.cuisines.caribbean.short' => 'Caribeña',
+			'onboarding.options.cuisines.african.label' => 'África de fuego lento',
+			'onboarding.options.cuisines.african.description' => 'Guisos de una olla, tubérculos, especias',
+			'onboarding.options.cuisines.african.short' => 'Africana',
+			'onboarding.options.diets.vegetarian.label' => 'Vegetariana',
+			'onboarding.options.diets.vegetarian.description' => 'Sin carnes ni pescados',
+			'onboarding.options.diets.vegan.label' => 'Vegana',
+			'onboarding.options.diets.vegan.description' => '100% de origen vegetal',
+			'onboarding.options.diets.glutenFree.label' => 'Sin gluten',
+			'onboarding.options.diets.glutenFree.description' => 'Libre de trigo, cebada y centeno',
+			'onboarding.options.diets.dairyFree.label' => 'Sin lácteos',
+			'onboarding.options.diets.dairyFree.description' => 'Sin leche, mantequilla ni queso',
+			'onboarding.options.diets.nutFree.label' => 'Sin frutos secos',
+			'onboarding.options.diets.nutFree.description' => 'Sin nueces ni almendras',
+			'onboarding.options.diets.halal.label' => 'Halal',
+			'onboarding.options.diets.halal.description' => 'Certificación y normas islámicas',
+			'onboarding.options.diets.kosher.label' => 'Kosher',
+			'onboarding.options.diets.kosher.description' => 'Conforme a preceptos cashrut',
+			'onboarding.options.diets.pescatarian.label' => 'Pescatariana',
+			'onboarding.options.diets.pescatarian.description' => 'Pescados, mariscos y vegetales',
+			'onboarding.options.diets.lowCarb.label' => 'Baja en carbohidratos',
+			'onboarding.options.diets.lowCarb.description' => 'Menos hidratos, más proteína',
+			'onboarding.options.diets.lowSodium.label' => 'Baja en sodio',
+			'onboarding.options.diets.lowSodium.description' => 'Para control cardiovascular',
+			'onboarding.options.interests.weeknightDinners' => 'Cenas de entre semana',
+			'onboarding.options.interests.mealPrep' => 'Meal prep',
 			'onboarding.options.interests.baking' => 'Repostería',
-			'onboarding.options.interests.grilling' => 'A la parrilla',
+			'onboarding.options.interests.grilling' => 'Parrilla',
 			'onboarding.options.interests.slowCooking' => 'Cocción lenta',
 			'onboarding.options.interests.fermentation' => 'Fermentación',
 			'onboarding.options.interests.plantForward' => 'Cocina vegetal',
 			'onboarding.options.interests.comfortFood' => 'Comida reconfortante',
-			'onboarding.options.interests.entertaining' => 'Recibir invitados',
+			'onboarding.options.interests.entertaining' => 'Recibir en casa',
 			'onboarding.options.interests.budgetCooking' => 'Cocina económica',
 			'onboarding.options.interests.cookingWithKids' => 'Cocinar con niños',
 			'onboarding.options.interests.spicesAndHeat' => 'Especias y picante',
@@ -1220,12 +1726,12 @@ extension on TranslationsEs {
 			'home.taste.loadError' => 'No pudimos cargar tu perfil de sabor.',
 			'home.taste.noTime' => 'Sin tiempo fijo',
 			'home.taste.empty' => 'Tu cocina está abierta a todo.',
-			'home.taste.one' => ({required Object cuisine}) => 'Tu cocina se inclina por la ${cuisine}.',
-			'home.taste.two' => ({required Object first, required Object second}) => 'Tu cocina se inclina por la ${first} y la ${second}.',
-			'home.taste.many' => ({required Object first, required Object second}) => 'Tu cocina se inclina por la ${first}, la ${second} y más.',
+			'home.taste.one' => ({required Object cuisine}) => 'Tu cocina tira a ${cuisine}.',
+			'home.taste.two' => ({required Object first, required Object second}) => 'Tu cocina tira a ${first} y ${second}.',
+			'home.taste.many' => ({required Object first, required Object second}) => 'Tu cocina tira a ${first}, ${second} y más.',
 			'home.taste.noRestrictions' => 'No hay restricciones dietéticas guardadas.',
-			'home.taste.dietOne' => ({required Object restriction}) => 'Cocinando con una dieta ${restriction}.',
-			'home.taste.dietMany' => ({required Object leading, required Object last}) => 'Cocinando con una dieta ${leading} y ${last}.',
+			'home.taste.dietOne' => ({required Object restriction}) => 'Dieta ${restriction}.',
+			'home.taste.dietMany' => ({required Object leading, required Object last}) => 'Dieta ${leading} y ${last}.',
 			'home.library.eyebrow' => 'TUS RECETAS',
 			'home.library.title' => 'Tu recetario.',
 			'home.library.body' => 'Tus platos guardados, tus colecciones y tus propias recetas, listos cuando tú lo estés.',

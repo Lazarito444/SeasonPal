@@ -14,6 +14,16 @@ abstract final class AppColors {
   static const spice = Color(0xFFB45A36);
   static const line = Color(0xFFDED3BD);
 
+  /// Elevated surfaces. Recipe and option cards sit on pure white over the
+  /// cream canvas; [surfaceSunken] is the sage-tinted inset behind an icon.
+  static const surfaceCard = Color(0xFFFFFFFF);
+  static const surfaceSunken = Color(0xFFEDF1E4);
+
+  /// Warm ambient shadows. Both are low-opacity slate, never neutral grey, so
+  /// stacked cards read as parchment rather than UI plates.
+  static const shadowSoft = Color(0x0F26261F);
+  static const shadowLifted = Color(0x1F1E3A2A);
+
   /// Connection states; deliberately not the primary palette so the accent
   /// stays scarce.
   static const online = Color(0xFF427A54);

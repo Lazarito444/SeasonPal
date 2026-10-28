@@ -163,6 +163,15 @@ class Translations$onboarding$en {
 	/// en: 'STEP {current} OF {total}'
 	String stepIndicator({required Object current, required Object total}) => 'STEP ${current} OF ${total}';
 
+	/// en: 'STEP {current} OF {total} · PERSONALIZATION'
+	String eyebrowCuisines({required Object current, required Object total}) => 'STEP ${current} OF ${total} · PERSONALIZATION';
+
+	/// en: 'STEP {current} OF {total} · PREFERENCES'
+	String eyebrowDiet({required Object current, required Object total}) => 'STEP ${current} OF ${total} · PREFERENCES';
+
+	/// en: 'STEP {current} OF {total} · YOUR RHYTHM'
+	String eyebrowRhythm({required Object current, required Object total}) => 'STEP ${current} OF ${total} · YOUR RHYTHM';
+
 	late final Translations$onboarding$welcome$en welcome = Translations$onboarding$welcome$en.internal(_root);
 	late final Translations$onboarding$cuisines$en cuisines = Translations$onboarding$cuisines$en.internal(_root);
 	late final Translations$onboarding$diet$en diet = Translations$onboarding$diet$en.internal(_root);
@@ -401,35 +410,38 @@ class Translations$onboarding$welcome$en {
 
 	// Translations
 
-	/// en: 'A QUICK TASTE OF YOU'
-	String get eyebrow => 'A QUICK TASTE OF YOU';
+	/// en: 'Cook to the season.'
+	String get title => 'Cook to the season.';
 
-	/// en: 'Let's set the table.'
-	String get title => 'Let\'s set the table.';
+	/// en: 'One minute now, and every suggestion fits the kitchen you actually cook in.'
+	String get body => 'One minute now, and every suggestion fits the kitchen you actually cook in.';
 
-	/// en: 'A few questions so SeasonPal can suggest dishes that fit your kitchen — not someone else's.'
-	String get body => 'A few questions so SeasonPal can suggest dishes that fit your kitchen — not someone else\'s.';
+	/// en: 'YOUR COOKING ITINERARY'
+	String get itineraryTitle => 'YOUR COOKING ITINERARY';
 
-	/// en: 'Cuisines you love'
-	String get cuisineTitle => 'Cuisines you love';
+	/// en: 'The cuisines you love'
+	String get cuisineTitle => 'The cuisines you love';
 
-	/// en: 'The flavours you reach for on a normal week.'
-	String get cuisineBody => 'The flavours you reach for on a normal week.';
+	/// en: 'Mediterranean, Levantine, Andean garden or Nordic smoke. Where your palate lives.'
+	String get cuisineBody => 'Mediterranean, Levantine, Andean garden or Nordic smoke. Where your palate lives.';
 
-	/// en: 'Anything you avoid'
-	String get dietTitle => 'Anything you avoid';
+	/// en: 'Diet and botanical interests'
+	String get dietTitle => 'Diet and botanical interests';
 
-	/// en: 'Allergies and diets we should always respect.'
-	String get dietBody => 'Allergies and diets we should always respect.';
+	/// en: 'Plant preferences, gluten-free staples, fresh spice and what you cook for pleasure.'
+	String get dietBody => 'Plant preferences, gluten-free staples, fresh spice and what you cook for pleasure.';
 
-	/// en: 'The time you have'
-	String get timeTitle => 'The time you have';
+	/// en: 'Your pace at the stove'
+	String get rhythmTitle => 'Your pace at the stove';
 
-	/// en: 'Tuesday dinner looks different from a Sunday project.'
-	String get timeBody => 'Tuesday dinner looks different from a Sunday project.';
+	/// en: 'Twenty-minute weeknights, or slow weekend braises in clay.'
+	String get rhythmBody => 'Twenty-minute weeknights, or slow weekend braises in clay.';
 
-	/// en: 'About a minute, start to finish.'
-	String get duration => 'About a minute, start to finish.';
+	/// en: 'Start personalizing (1 min)'
+	String get start => 'Start personalizing (1 min)';
+
+	/// en: 'Skip for now'
+	String get skip => 'Skip for now';
 }
 
 // Path: onboarding.cuisines
@@ -440,14 +452,38 @@ class Translations$onboarding$cuisines$en {
 
 	// Translations
 
-	/// en: 'Your taste'
-	String get eyebrow => 'Your taste';
+	/// en: 'Pick your favourite kitchens.'
+	String get title => 'Pick your favourite kitchens.';
 
-	/// en: 'What do you crave?'
-	String get title => 'What do you crave?';
+	/// en: 'Choose at least three so your first feed is never one note.'
+	String get body => 'Choose at least three so your first feed is never one note.';
 
-	/// en: 'Pick the cuisines you reach for most. Choose as many as you like.'
-	String get body => 'Pick the cuisines you reach for most. Choose as many as you like.';
+	/// en: 'Seasonal curation'
+	String get sectionTitle => 'Seasonal curation';
+
+	/// en: 'Botanical inspiration and recipes with a sense of origin.'
+	String get sectionBody => 'Botanical inspiration and recipes with a sense of origin.';
+
+	/// en: 'No cuisines selected yet'
+	String get counterNone => 'No cuisines selected yet';
+
+	/// en: '1 cuisine selected'
+	String get counterOne => '1 cuisine selected';
+
+	/// en: '{count} cuisines selected'
+	String counterOther({required Object count}) => '${count} cuisines selected';
+
+	/// en: 'Choose 1 more'
+	String get remainingOne => 'Choose 1 more';
+
+	/// en: 'Choose {count} more'
+	String remainingOther({required Object count}) => 'Choose ${count} more';
+
+	/// en: 'All set'
+	String get ready => 'All set';
+
+	/// en: 'Continue to diet'
+	String get next => 'Continue to diet';
 }
 
 // Path: onboarding.diet
@@ -458,20 +494,26 @@ class Translations$onboarding$diet$en {
 
 	// Translations
 
-	/// en: 'Your table'
-	String get eyebrow => 'Your table';
+	/// en: 'Your pantry, your rules.'
+	String get title => 'Your pantry, your rules.';
 
-	/// en: 'Anything off the menu?'
-	String get title => 'Anything off the menu?';
+	/// en: 'We shape recipes around what you need and what you are curious about.'
+	String get body => 'We shape recipes around what you need and what you are curious about.';
 
-	/// en: 'Allergies, diets, or ingredients you'd rather skip. Pick everything that applies.'
-	String get body => 'Allergies, diets, or ingredients you\'d rather skip. Pick everything that applies.';
+	/// en: 'Dietary restrictions'
+	String get restrictionsTitle => 'Dietary restrictions';
 
-	/// en: 'What are you into?'
-	String get interestsTitle => 'What are you into?';
+	/// en: 'We never suggest an ingredient that breaks these.'
+	String get restrictionsBody => 'We never suggest an ingredient that breaks these.';
 
-	/// en: 'Optional — it helps us tune the suggestions.'
-	String get interestsBody => 'Optional — it helps us tune the suggestions.';
+	/// en: 'Botanical interests'
+	String get interestsTitle => 'Botanical interests';
+
+	/// en: 'Optional — the themes we should lean into.'
+	String get interestsBody => 'Optional — the themes we should lean into.';
+
+	/// en: 'Continue to your rhythm'
+	String get next => 'Continue to your rhythm';
 }
 
 // Path: onboarding.rhythm
@@ -482,20 +524,26 @@ class Translations$onboarding$rhythm$en {
 
 	// Translations
 
-	/// en: 'Your rhythm'
-	String get eyebrow => 'Your rhythm';
+	/// en: 'How do you cook?'
+	String get title => 'How do you cook?';
 
-	/// en: 'How do you like to cook?'
-	String get title => 'How do you like to cook?';
+	/// en: 'We match technique and prep time to the habits you actually keep.'
+	String get body => 'We match technique and prep time to the habits you actually keep.';
 
-	/// en: 'We use this to choose techniques and recipes that feel right for you.'
-	String get body => 'We use this to choose techniques and recipes that feel right for you.';
+	/// en: 'Culinary skill level'
+	String get skillTitle => 'Culinary skill level';
 
-	/// en: 'Time on a usual night'
-	String get timeTitle => 'Time on a usual night';
+	/// en: 'Choose one'
+	String get skillHint => 'Choose one';
 
-	/// en: 'Leave it unset if it changes day to day.'
-	String get timeBody => 'Leave it unset if it changes day to day.';
+	/// en: 'Time you usually cook'
+	String get timeTitle => 'Time you usually cook';
+
+	/// en: 'Pick your pace'
+	String get timeHint => 'Pick your pace';
+
+	/// en: 'Review summary'
+	String get next => 'Review summary';
 }
 
 // Path: onboarding.done
@@ -506,35 +554,47 @@ class Translations$onboarding$done$en {
 
 	// Translations
 
-	/// en: 'Your kitchen is ready.'
-	String get title => 'Your kitchen is ready.';
+	/// en: 'The stove is warm.'
+	String get title => 'The stove is warm.';
 
-	/// en: 'Here's what we'll cook with. You can change any of it later.'
-	String get body => 'Here\'s what we\'ll cook with. You can change any of it later.';
+	/// en: 'Your recipe box is shaped around this. Check it before we sync your pantry.'
+	String get body => 'Your recipe box is shaped around this. Check it before we sync your pantry.';
+
+	/// en: 'Selected cuisines ({count})'
+	String cuisinesTitle({required Object count}) => 'Selected cuisines (${count})';
+
+	/// en: 'Restrictions and passions'
+	String get dietTitle => 'Restrictions and passions';
+
+	/// en: 'Cooking rhythm'
+	String get rhythmTitle => 'Cooking rhythm';
+
+	/// en: 'DIET'
+	String get dietLabel => 'DIET';
+
+	/// en: 'INTERESTS'
+	String get interestsLabel => 'INTERESTS';
+
+	/// en: 'Edit'
+	String get editSection => 'Edit';
 
 	/// en: 'Open to anything'
-	String get openToAnything => 'Open to anything';
+	String get emptyCuisines => 'Open to anything';
 
 	/// en: 'No restrictions'
-	String get noRestrictions => 'No restrictions';
+	String get emptyDiet => 'No restrictions';
+
+	/// en: 'None yet'
+	String get emptyInterests => 'None yet';
 
 	/// en: 'No set time'
 	String get noTime => 'No set time';
 
-	/// en: 'Cuisines'
-	String get summaryCuisines => 'Cuisines';
+	/// en: 'You can change any of this later in Settings.'
+	String get footnote => 'You can change any of this later in Settings.';
 
-	/// en: 'Diet'
-	String get summaryDiet => 'Diet';
-
-	/// en: 'Skill'
-	String get summarySkill => 'Skill';
-
-	/// en: 'Usual time'
-	String get summaryTime => 'Usual time';
-
-	/// en: 'Also into'
-	String get alsoInto => 'Also into';
+	/// en: 'Continue to SeasonPal'
+	String get finish => 'Continue to SeasonPal';
 }
 
 // Path: onboarding.footer
@@ -551,11 +611,11 @@ class Translations$onboarding$footer$en {
 	/// en: 'Continue'
 	String get next => 'Continue';
 
-	/// en: 'Finish setup'
-	String get finish => 'Finish setup';
+	/// en: 'Continue'
+	String get finish => 'Continue';
 
-	/// en: 'Saving…'
-	String get saving => 'Saving…';
+	/// en: 'Saving...'
+	String get saving => 'Saving...';
 }
 
 // Path: onboarding.time
@@ -571,6 +631,8 @@ class Translations$onboarding$time$en {
 
 	/// en: 'min'
 	String get minSuffix => 'min';
+
+	late final Translations$onboarding$time$buckets$en buckets = Translations$onboarding$time$buckets$en.internal(_root);
 }
 
 // Path: onboarding.skill
@@ -1353,6 +1415,19 @@ class Translations$recipes$editor$en {
 	late final Translations$recipes$editor$publish$en publish = Translations$recipes$editor$publish$en.internal(_root);
 }
 
+// Path: onboarding.time.buckets
+class Translations$onboarding$time$buckets$en {
+	Translations$onboarding$time$buckets$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$onboarding$time$buckets$quick$en quick = Translations$onboarding$time$buckets$quick$en.internal(_root);
+	late final Translations$onboarding$time$buckets$balanced$en balanced = Translations$onboarding$time$buckets$balanced$en.internal(_root);
+	late final Translations$onboarding$time$buckets$long$en long = Translations$onboarding$time$buckets$long$en.internal(_root);
+	late final Translations$onboarding$time$buckets$variable$en variable = Translations$onboarding$time$buckets$variable$en.internal(_root);
+}
+
 // Path: onboarding.skill.beginner
 class Translations$onboarding$skill$beginner$en {
 	Translations$onboarding$skill$beginner$en.internal(this._root);
@@ -1361,11 +1436,11 @@ class Translations$onboarding$skill$beginner$en {
 
 	// Translations
 
-	/// en: 'Beginner'
-	String get label => 'Beginner';
+	/// en: 'Enthusiastic beginner'
+	String get label => 'Enthusiastic beginner';
 
-	/// en: 'Simple recipes and familiar techniques.'
-	String get description => 'Simple recipes and familiar techniques.';
+	/// en: 'Simple techniques, detailed steps, ingredients to hand.'
+	String get description => 'Simple techniques, detailed steps, ingredients to hand.';
 }
 
 // Path: onboarding.skill.intermediate
@@ -1376,11 +1451,11 @@ class Translations$onboarding$skill$intermediate$en {
 
 	// Translations
 
-	/// en: 'Intermediate'
-	String get label => 'Intermediate';
+	/// en: 'Confident home cook'
+	String get label => 'Confident home cook';
 
-	/// en: 'Comfortable trying new methods.'
-	String get description => 'Comfortable trying new methods.';
+	/// en: 'Knife basics, pan sauces and heat control.'
+	String get description => 'Knife basics, pan sauces and heat control.';
 }
 
 // Path: onboarding.skill.advanced
@@ -1391,11 +1466,11 @@ class Translations$onboarding$skill$advanced$en {
 
 	// Translations
 
-	/// en: 'Advanced'
-	String get label => 'Advanced';
+	/// en: 'Artisan cook'
+	String get label => 'Artisan cook';
 
-	/// en: 'Ready for a proper challenge.'
-	String get description => 'Ready for a proper challenge.';
+	/// en: 'Fermentation, layered baking, plated cooking.'
+	String get description => 'Fermentation, layered baking, plated cooking.';
 }
 
 // Path: onboarding.options.cuisines
@@ -1405,66 +1480,26 @@ class Translations$onboarding$options$cuisines$en {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-
-	/// en: 'Italian'
-	String get italian => 'Italian';
-
-	/// en: 'Mediterranean'
-	String get mediterranean => 'Mediterranean';
-
-	/// en: 'Middle Eastern'
-	String get middleEastern => 'Middle Eastern';
-
-	/// en: 'Mexican'
-	String get mexican => 'Mexican';
-
-	/// en: 'Indian'
-	String get indian => 'Indian';
-
-	/// en: 'Japanese'
-	String get japanese => 'Japanese';
-
-	/// en: 'Korean'
-	String get korean => 'Korean';
-
-	/// en: 'Thai'
-	String get thai => 'Thai';
-
-	/// en: 'Chinese'
-	String get chinese => 'Chinese';
-
-	/// en: 'French'
-	String get french => 'French';
-
-	/// en: 'Spanish'
-	String get spanish => 'Spanish';
-
-	/// en: 'Greek'
-	String get greek => 'Greek';
-
-	/// en: 'Turkish'
-	String get turkish => 'Turkish';
-
-	/// en: 'Vietnamese'
-	String get vietnamese => 'Vietnamese';
-
-	/// en: 'American'
-	String get american => 'American';
-
-	/// en: 'North African'
-	String get northAfrican => 'North African';
-
-	/// en: 'Latin American'
-	String get latinAmerican => 'Latin American';
-
-	/// en: 'Nordic'
-	String get nordic => 'Nordic';
-
-	/// en: 'Caribbean'
-	String get caribbean => 'Caribbean';
-
-	/// en: 'African'
-	String get african => 'African';
+	late final Translations$onboarding$options$cuisines$italian$en italian = Translations$onboarding$options$cuisines$italian$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$mediterranean$en mediterranean = Translations$onboarding$options$cuisines$mediterranean$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$middleEastern$en middleEastern = Translations$onboarding$options$cuisines$middleEastern$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$mexican$en mexican = Translations$onboarding$options$cuisines$mexican$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$indian$en indian = Translations$onboarding$options$cuisines$indian$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$japanese$en japanese = Translations$onboarding$options$cuisines$japanese$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$korean$en korean = Translations$onboarding$options$cuisines$korean$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$thai$en thai = Translations$onboarding$options$cuisines$thai$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$chinese$en chinese = Translations$onboarding$options$cuisines$chinese$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$french$en french = Translations$onboarding$options$cuisines$french$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$spanish$en spanish = Translations$onboarding$options$cuisines$spanish$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$greek$en greek = Translations$onboarding$options$cuisines$greek$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$turkish$en turkish = Translations$onboarding$options$cuisines$turkish$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$vietnamese$en vietnamese = Translations$onboarding$options$cuisines$vietnamese$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$american$en american = Translations$onboarding$options$cuisines$american$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$northAfrican$en northAfrican = Translations$onboarding$options$cuisines$northAfrican$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$latinAmerican$en latinAmerican = Translations$onboarding$options$cuisines$latinAmerican$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$nordic$en nordic = Translations$onboarding$options$cuisines$nordic$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$caribbean$en caribbean = Translations$onboarding$options$cuisines$caribbean$en.internal(_root);
+	late final Translations$onboarding$options$cuisines$african$en african = Translations$onboarding$options$cuisines$african$en.internal(_root);
 }
 
 // Path: onboarding.options.diets
@@ -1474,36 +1509,16 @@ class Translations$onboarding$options$diets$en {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-
-	/// en: 'Vegetarian'
-	String get vegetarian => 'Vegetarian';
-
-	/// en: 'Vegan'
-	String get vegan => 'Vegan';
-
-	/// en: 'Gluten-free'
-	String get glutenFree => 'Gluten-free';
-
-	/// en: 'Dairy-free'
-	String get dairyFree => 'Dairy-free';
-
-	/// en: 'Nut-free'
-	String get nutFree => 'Nut-free';
-
-	/// en: 'Halal'
-	String get halal => 'Halal';
-
-	/// en: 'Kosher'
-	String get kosher => 'Kosher';
-
-	/// en: 'Pescatarian'
-	String get pescatarian => 'Pescatarian';
-
-	/// en: 'Low-carb'
-	String get lowCarb => 'Low-carb';
-
-	/// en: 'Low-sodium'
-	String get lowSodium => 'Low-sodium';
+	late final Translations$onboarding$options$diets$vegetarian$en vegetarian = Translations$onboarding$options$diets$vegetarian$en.internal(_root);
+	late final Translations$onboarding$options$diets$vegan$en vegan = Translations$onboarding$options$diets$vegan$en.internal(_root);
+	late final Translations$onboarding$options$diets$glutenFree$en glutenFree = Translations$onboarding$options$diets$glutenFree$en.internal(_root);
+	late final Translations$onboarding$options$diets$dairyFree$en dairyFree = Translations$onboarding$options$diets$dairyFree$en.internal(_root);
+	late final Translations$onboarding$options$diets$nutFree$en nutFree = Translations$onboarding$options$diets$nutFree$en.internal(_root);
+	late final Translations$onboarding$options$diets$halal$en halal = Translations$onboarding$options$diets$halal$en.internal(_root);
+	late final Translations$onboarding$options$diets$kosher$en kosher = Translations$onboarding$options$diets$kosher$en.internal(_root);
+	late final Translations$onboarding$options$diets$pescatarian$en pescatarian = Translations$onboarding$options$diets$pescatarian$en.internal(_root);
+	late final Translations$onboarding$options$diets$lowCarb$en lowCarb = Translations$onboarding$options$diets$lowCarb$en.internal(_root);
+	late final Translations$onboarding$options$diets$lowSodium$en lowSodium = Translations$onboarding$options$diets$lowSodium$en.internal(_root);
 }
 
 // Path: onboarding.options.interests
@@ -1818,6 +1833,576 @@ class Translations$recipes$editor$publish$en {
 	String get failed => 'The recipe was saved, but publishing failed. Try again from the recipe page.';
 }
 
+// Path: onboarding.time.buckets.quick
+class Translations$onboarding$time$buckets$quick$en {
+	Translations$onboarding$time$buckets$quick$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: '15–20 min'
+	String get label => '15–20 min';
+
+	/// en: 'An express weeknight'
+	String get description => 'An express weeknight';
+}
+
+// Path: onboarding.time.buckets.balanced
+class Translations$onboarding$time$buckets$balanced$en {
+	Translations$onboarding$time$buckets$balanced$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: '30–45 min'
+	String get label => '30–45 min';
+
+	/// en: 'Room to build a proper plate'
+	String get description => 'Room to build a proper plate';
+}
+
+// Path: onboarding.time.buckets.long
+class Translations$onboarding$time$buckets$long$en {
+	Translations$onboarding$time$buckets$long$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: '60+ min'
+	String get label => '60+ min';
+
+	/// en: 'Braises and weekend rituals'
+	String get description => 'Braises and weekend rituals';
+}
+
+// Path: onboarding.time.buckets.variable
+class Translations$onboarding$time$buckets$variable$en {
+	Translations$onboarding$time$buckets$variable$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'It varies'
+	String get label => 'It varies';
+
+	/// en: 'I fit it to the day'
+	String get description => 'I fit it to the day';
+}
+
+// Path: onboarding.options.cuisines.italian
+class Translations$onboarding$options$cuisines$italian$en {
+	Translations$onboarding$options$cuisines$italian$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Rustic Italian & pasta'
+	String get label => 'Rustic Italian & pasta';
+
+	/// en: 'Ancient wheat, ragu, aged cheese'
+	String get description => 'Ancient wheat, ragu, aged cheese';
+
+	/// en: 'Italian'
+	String get short => 'Italian';
+}
+
+// Path: onboarding.options.cuisines.mediterranean
+class Translations$onboarding$options$cuisines$mediterranean$en {
+	Translations$onboarding$options$cuisines$mediterranean$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Classic Mediterranean'
+	String get label => 'Classic Mediterranean';
+
+	/// en: 'Live oils, herbs, fish from the sea'
+	String get description => 'Live oils, herbs, fish from the sea';
+
+	/// en: 'Mediterranean'
+	String get short => 'Mediterranean';
+}
+
+// Path: onboarding.options.cuisines.middleEastern
+class Translations$onboarding$options$cuisines$middleEastern$en {
+	Translations$onboarding$options$cuisines$middleEastern$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Levantine & Middle Eastern'
+	String get label => 'Levantine & Middle Eastern';
+
+	/// en: 'Za'atar, tahini, pomegranate'
+	String get description => 'Za\'atar, tahini, pomegranate';
+
+	/// en: 'Middle Eastern'
+	String get short => 'Middle Eastern';
+}
+
+// Path: onboarding.options.cuisines.mexican
+class Translations$onboarding$options$cuisines$mexican$en {
+	Translations$onboarding$options$cuisines$mexican$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Oaxacan & traditional'
+	String get label => 'Oaxacan & traditional';
+
+	/// en: 'Black mole, native corn'
+	String get description => 'Black mole, native corn';
+
+	/// en: 'Mexican'
+	String get short => 'Mexican';
+}
+
+// Path: onboarding.options.cuisines.indian
+class Translations$onboarding$options$cuisines$indian$en {
+	Translations$onboarding$options$cuisines$indian$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Spiced Indian'
+	String get label => 'Spiced Indian';
+
+	/// en: 'Toasted masalas, pulses, ghee'
+	String get description => 'Toasted masalas, pulses, ghee';
+
+	/// en: 'Indian'
+	String get short => 'Indian';
+}
+
+// Path: onboarding.options.cuisines.japanese
+class Translations$onboarding$options$cuisines$japanese$en {
+	Translations$onboarding$options$cuisines$japanese$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Japanese & craft ramen'
+	String get label => 'Japanese & craft ramen';
+
+	/// en: 'Dashi broths, umami, ferments'
+	String get description => 'Dashi broths, umami, ferments';
+
+	/// en: 'Japanese'
+	String get short => 'Japanese';
+}
+
+// Path: onboarding.options.cuisines.korean
+class Translations$onboarding$options$cuisines$korean$en {
+	Translations$onboarding$options$cuisines$korean$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Korean & kimchi'
+	String get label => 'Korean & kimchi';
+
+	/// en: 'Gochujang, banchan, marinades'
+	String get description => 'Gochujang, banchan, marinades';
+
+	/// en: 'Korean'
+	String get short => 'Korean';
+}
+
+// Path: onboarding.options.cuisines.thai
+class Translations$onboarding$options$cuisines$thai$en {
+	Translations$onboarding$options$cuisines$thai$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Aromatic Thai'
+	String get label => 'Aromatic Thai';
+
+	/// en: 'Lemongrass, kaffir lime, coconut'
+	String get description => 'Lemongrass, kaffir lime, coconut';
+
+	/// en: 'Thai'
+	String get short => 'Thai';
+}
+
+// Path: onboarding.options.cuisines.chinese
+class Translations$onboarding$options$cuisines$chinese$en {
+	Translations$onboarding$options$cuisines$chinese$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Wok & dim sum'
+	String get label => 'Wok & dim sum';
+
+	/// en: 'High heat, steam, soy and vinegar'
+	String get description => 'High heat, steam, soy and vinegar';
+
+	/// en: 'Chinese'
+	String get short => 'Chinese';
+}
+
+// Path: onboarding.options.cuisines.french
+class Translations$onboarding$options$cuisines$french$en {
+	Translations$onboarding$options$cuisines$french$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'French bistro'
+	String get label => 'French bistro';
+
+	/// en: 'Brown butter, long stocks, wine'
+	String get description => 'Brown butter, long stocks, wine';
+
+	/// en: 'French'
+	String get short => 'French';
+}
+
+// Path: onboarding.options.cuisines.spanish
+class Translations$onboarding$options$cuisines$spanish$en {
+	Translations$onboarding$options$cuisines$spanish$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Iberian & tapas'
+	String get label => 'Iberian & tapas';
+
+	/// en: 'Paprika, acorn-fed pork, tinned fish'
+	String get description => 'Paprika, acorn-fed pork, tinned fish';
+
+	/// en: 'Spanish'
+	String get short => 'Spanish';
+}
+
+// Path: onboarding.options.cuisines.greek
+class Translations$onboarding$options$cuisines$greek$en {
+	Translations$onboarding$options$cuisines$greek$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Aegean Greek'
+	String get label => 'Aegean Greek';
+
+	/// en: 'Pastured feta, wild oregano'
+	String get description => 'Pastured feta, wild oregano';
+
+	/// en: 'Greek'
+	String get short => 'Greek';
+}
+
+// Path: onboarding.options.cuisines.turkish
+class Translations$onboarding$options$cuisines$turkish$en {
+	Translations$onboarding$options$cuisines$turkish$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Anatolian & charcoal'
+	String get label => 'Anatolian & charcoal';
+
+	/// en: 'Bulgur, smoked aubergine, yoghurt'
+	String get description => 'Bulgur, smoked aubergine, yoghurt';
+
+	/// en: 'Turkish'
+	String get short => 'Turkish';
+}
+
+// Path: onboarding.options.cuisines.vietnamese
+class Translations$onboarding$options$cuisines$vietnamese$en {
+	Translations$onboarding$options$cuisines$vietnamese$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Fresh Vietnamese'
+	String get label => 'Fresh Vietnamese';
+
+	/// en: 'Fine herbs, rice rolls, pho'
+	String get description => 'Fine herbs, rice rolls, pho';
+
+	/// en: 'Vietnamese'
+	String get short => 'Vietnamese';
+}
+
+// Path: onboarding.options.cuisines.american
+class Translations$onboarding$options$cuisines$american$en {
+	Translations$onboarding$options$cuisines$american$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Californian farm-to-table'
+	String get label => 'Californian farm-to-table';
+
+	/// en: 'Local harvest, clean plates'
+	String get description => 'Local harvest, clean plates';
+
+	/// en: 'American'
+	String get short => 'American';
+}
+
+// Path: onboarding.options.cuisines.northAfrican
+class Translations$onboarding$options$cuisines$northAfrican$en {
+	Translations$onboarding$options$cuisines$northAfrican$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Moroccan & tagines'
+	String get label => 'Moroccan & tagines';
+
+	/// en: 'Ras el hanout, preserved lemon'
+	String get description => 'Ras el hanout, preserved lemon';
+
+	/// en: 'North African'
+	String get short => 'North African';
+}
+
+// Path: onboarding.options.cuisines.latinAmerican
+class Translations$onboarding$options$cuisines$latinAmerican$en {
+	Translations$onboarding$options$cuisines$latinAmerican$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Peruvian & Nikkei'
+	String get label => 'Peruvian & Nikkei';
+
+	/// en: 'Native chillies, ceviche, rocoto'
+	String get description => 'Native chillies, ceviche, rocoto';
+
+	/// en: 'Latin American'
+	String get short => 'Latin American';
+}
+
+// Path: onboarding.options.cuisines.nordic
+class Translations$onboarding$options$cuisines$nordic$en {
+	Translations$onboarding$options$cuisines$nordic$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Nordic ferments'
+	String get label => 'Nordic ferments';
+
+	/// en: 'Pickles, rye, smoke'
+	String get description => 'Pickles, rye, smoke';
+
+	/// en: 'Nordic'
+	String get short => 'Nordic';
+}
+
+// Path: onboarding.options.cuisines.caribbean
+class Translations$onboarding$options$cuisines$caribbean$en {
+	Translations$onboarding$options$cuisines$caribbean$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Caribbean islands'
+	String get label => 'Caribbean islands';
+
+	/// en: 'Peppers, coconut, citrus'
+	String get description => 'Peppers, coconut, citrus';
+
+	/// en: 'Caribbean'
+	String get short => 'Caribbean';
+}
+
+// Path: onboarding.options.cuisines.african
+class Translations$onboarding$options$cuisines$african$en {
+	Translations$onboarding$options$cuisines$african$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Slow-fire African'
+	String get label => 'Slow-fire African';
+
+	/// en: 'One-pot stews, roots, spice'
+	String get description => 'One-pot stews, roots, spice';
+
+	/// en: 'African'
+	String get short => 'African';
+}
+
+// Path: onboarding.options.diets.vegetarian
+class Translations$onboarding$options$diets$vegetarian$en {
+	Translations$onboarding$options$diets$vegetarian$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Vegetarian'
+	String get label => 'Vegetarian';
+
+	/// en: 'No meat, no fish'
+	String get description => 'No meat, no fish';
+}
+
+// Path: onboarding.options.diets.vegan
+class Translations$onboarding$options$diets$vegan$en {
+	Translations$onboarding$options$diets$vegan$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Vegan'
+	String get label => 'Vegan';
+
+	/// en: '100% plant-based'
+	String get description => '100% plant-based';
+}
+
+// Path: onboarding.options.diets.glutenFree
+class Translations$onboarding$options$diets$glutenFree$en {
+	Translations$onboarding$options$diets$glutenFree$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Gluten-free'
+	String get label => 'Gluten-free';
+
+	/// en: 'No wheat, barley or rye'
+	String get description => 'No wheat, barley or rye';
+}
+
+// Path: onboarding.options.diets.dairyFree
+class Translations$onboarding$options$diets$dairyFree$en {
+	Translations$onboarding$options$diets$dairyFree$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Dairy-free'
+	String get label => 'Dairy-free';
+
+	/// en: 'No milk, butter or cheese'
+	String get description => 'No milk, butter or cheese';
+}
+
+// Path: onboarding.options.diets.nutFree
+class Translations$onboarding$options$diets$nutFree$en {
+	Translations$onboarding$options$diets$nutFree$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Nut-free'
+	String get label => 'Nut-free';
+
+	/// en: 'No tree nuts or almonds'
+	String get description => 'No tree nuts or almonds';
+}
+
+// Path: onboarding.options.diets.halal
+class Translations$onboarding$options$diets$halal$en {
+	Translations$onboarding$options$diets$halal$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Halal'
+	String get label => 'Halal';
+
+	/// en: 'Certification and Islamic rules'
+	String get description => 'Certification and Islamic rules';
+}
+
+// Path: onboarding.options.diets.kosher
+class Translations$onboarding$options$diets$kosher$en {
+	Translations$onboarding$options$diets$kosher$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Kosher'
+	String get label => 'Kosher';
+
+	/// en: 'Follows kosher precepts'
+	String get description => 'Follows kosher precepts';
+}
+
+// Path: onboarding.options.diets.pescatarian
+class Translations$onboarding$options$diets$pescatarian$en {
+	Translations$onboarding$options$diets$pescatarian$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Pescatarian'
+	String get label => 'Pescatarian';
+
+	/// en: 'Fish, seafood and vegetables'
+	String get description => 'Fish, seafood and vegetables';
+}
+
+// Path: onboarding.options.diets.lowCarb
+class Translations$onboarding$options$diets$lowCarb$en {
+	Translations$onboarding$options$diets$lowCarb$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Low-carb'
+	String get label => 'Low-carb';
+
+	/// en: 'Fewer carbs, more protein'
+	String get description => 'Fewer carbs, more protein';
+}
+
+// Path: onboarding.options.diets.lowSodium
+class Translations$onboarding$options$diets$lowSodium$en {
+	Translations$onboarding$options$diets$lowSodium$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Low-sodium'
+	String get label => 'Low-sodium';
+
+	/// en: 'Gentle on the heart'
+	String get description => 'Gentle on the heart';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1875,82 +2460,160 @@ extension on Translations {
 			'auth.splash.restoreFailed' => 'Could not restore your session.',
 			'auth.splash.loading' => 'Setting the table…',
 			'onboarding.stepIndicator' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total}',
-			'onboarding.welcome.eyebrow' => 'A QUICK TASTE OF YOU',
-			'onboarding.welcome.title' => 'Let\'s set the table.',
-			'onboarding.welcome.body' => 'A few questions so SeasonPal can suggest dishes that fit your kitchen — not someone else\'s.',
-			'onboarding.welcome.cuisineTitle' => 'Cuisines you love',
-			'onboarding.welcome.cuisineBody' => 'The flavours you reach for on a normal week.',
-			'onboarding.welcome.dietTitle' => 'Anything you avoid',
-			'onboarding.welcome.dietBody' => 'Allergies and diets we should always respect.',
-			'onboarding.welcome.timeTitle' => 'The time you have',
-			'onboarding.welcome.timeBody' => 'Tuesday dinner looks different from a Sunday project.',
-			'onboarding.welcome.duration' => 'About a minute, start to finish.',
-			'onboarding.cuisines.eyebrow' => 'Your taste',
-			'onboarding.cuisines.title' => 'What do you crave?',
-			'onboarding.cuisines.body' => 'Pick the cuisines you reach for most. Choose as many as you like.',
-			'onboarding.diet.eyebrow' => 'Your table',
-			'onboarding.diet.title' => 'Anything off the menu?',
-			'onboarding.diet.body' => 'Allergies, diets, or ingredients you\'d rather skip. Pick everything that applies.',
-			'onboarding.diet.interestsTitle' => 'What are you into?',
-			'onboarding.diet.interestsBody' => 'Optional — it helps us tune the suggestions.',
-			'onboarding.rhythm.eyebrow' => 'Your rhythm',
-			'onboarding.rhythm.title' => 'How do you like to cook?',
-			'onboarding.rhythm.body' => 'We use this to choose techniques and recipes that feel right for you.',
-			'onboarding.rhythm.timeTitle' => 'Time on a usual night',
-			'onboarding.rhythm.timeBody' => 'Leave it unset if it changes day to day.',
-			'onboarding.done.title' => 'Your kitchen is ready.',
-			'onboarding.done.body' => 'Here\'s what we\'ll cook with. You can change any of it later.',
-			'onboarding.done.openToAnything' => 'Open to anything',
-			'onboarding.done.noRestrictions' => 'No restrictions',
+			'onboarding.eyebrowCuisines' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total} · PERSONALIZATION',
+			'onboarding.eyebrowDiet' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total} · PREFERENCES',
+			'onboarding.eyebrowRhythm' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total} · YOUR RHYTHM',
+			'onboarding.welcome.title' => 'Cook to the season.',
+			'onboarding.welcome.body' => 'One minute now, and every suggestion fits the kitchen you actually cook in.',
+			'onboarding.welcome.itineraryTitle' => 'YOUR COOKING ITINERARY',
+			'onboarding.welcome.cuisineTitle' => 'The cuisines you love',
+			'onboarding.welcome.cuisineBody' => 'Mediterranean, Levantine, Andean garden or Nordic smoke. Where your palate lives.',
+			'onboarding.welcome.dietTitle' => 'Diet and botanical interests',
+			'onboarding.welcome.dietBody' => 'Plant preferences, gluten-free staples, fresh spice and what you cook for pleasure.',
+			'onboarding.welcome.rhythmTitle' => 'Your pace at the stove',
+			'onboarding.welcome.rhythmBody' => 'Twenty-minute weeknights, or slow weekend braises in clay.',
+			'onboarding.welcome.start' => 'Start personalizing (1 min)',
+			'onboarding.welcome.skip' => 'Skip for now',
+			'onboarding.cuisines.title' => 'Pick your favourite kitchens.',
+			'onboarding.cuisines.body' => 'Choose at least three so your first feed is never one note.',
+			'onboarding.cuisines.sectionTitle' => 'Seasonal curation',
+			'onboarding.cuisines.sectionBody' => 'Botanical inspiration and recipes with a sense of origin.',
+			'onboarding.cuisines.counterNone' => 'No cuisines selected yet',
+			'onboarding.cuisines.counterOne' => '1 cuisine selected',
+			'onboarding.cuisines.counterOther' => ({required Object count}) => '${count} cuisines selected',
+			'onboarding.cuisines.remainingOne' => 'Choose 1 more',
+			'onboarding.cuisines.remainingOther' => ({required Object count}) => 'Choose ${count} more',
+			'onboarding.cuisines.ready' => 'All set',
+			'onboarding.cuisines.next' => 'Continue to diet',
+			'onboarding.diet.title' => 'Your pantry, your rules.',
+			'onboarding.diet.body' => 'We shape recipes around what you need and what you are curious about.',
+			'onboarding.diet.restrictionsTitle' => 'Dietary restrictions',
+			'onboarding.diet.restrictionsBody' => 'We never suggest an ingredient that breaks these.',
+			'onboarding.diet.interestsTitle' => 'Botanical interests',
+			'onboarding.diet.interestsBody' => 'Optional — the themes we should lean into.',
+			'onboarding.diet.next' => 'Continue to your rhythm',
+			'onboarding.rhythm.title' => 'How do you cook?',
+			'onboarding.rhythm.body' => 'We match technique and prep time to the habits you actually keep.',
+			'onboarding.rhythm.skillTitle' => 'Culinary skill level',
+			'onboarding.rhythm.skillHint' => 'Choose one',
+			'onboarding.rhythm.timeTitle' => 'Time you usually cook',
+			'onboarding.rhythm.timeHint' => 'Pick your pace',
+			'onboarding.rhythm.next' => 'Review summary',
+			'onboarding.done.title' => 'The stove is warm.',
+			'onboarding.done.body' => 'Your recipe box is shaped around this. Check it before we sync your pantry.',
+			'onboarding.done.cuisinesTitle' => ({required Object count}) => 'Selected cuisines (${count})',
+			'onboarding.done.dietTitle' => 'Restrictions and passions',
+			'onboarding.done.rhythmTitle' => 'Cooking rhythm',
+			'onboarding.done.dietLabel' => 'DIET',
+			'onboarding.done.interestsLabel' => 'INTERESTS',
+			'onboarding.done.editSection' => 'Edit',
+			'onboarding.done.emptyCuisines' => 'Open to anything',
+			'onboarding.done.emptyDiet' => 'No restrictions',
+			'onboarding.done.emptyInterests' => 'None yet',
 			'onboarding.done.noTime' => 'No set time',
-			'onboarding.done.summaryCuisines' => 'Cuisines',
-			'onboarding.done.summaryDiet' => 'Diet',
-			'onboarding.done.summarySkill' => 'Skill',
-			'onboarding.done.summaryTime' => 'Usual time',
-			'onboarding.done.alsoInto' => 'Also into',
+			'onboarding.done.footnote' => 'You can change any of this later in Settings.',
+			'onboarding.done.finish' => 'Continue to SeasonPal',
 			'onboarding.footer.begin' => 'Begin',
 			'onboarding.footer.next' => 'Continue',
-			'onboarding.footer.finish' => 'Finish setup',
-			'onboarding.footer.saving' => 'Saving…',
+			'onboarding.footer.finish' => 'Continue',
+			'onboarding.footer.saving' => 'Saving...',
 			'onboarding.saveError' => 'Could not save your preferences. Try again.',
 			'onboarding.time.hour' => '1 hour',
 			'onboarding.time.minSuffix' => 'min',
-			'onboarding.skill.beginner.label' => 'Beginner',
-			'onboarding.skill.beginner.description' => 'Simple recipes and familiar techniques.',
-			'onboarding.skill.intermediate.label' => 'Intermediate',
-			'onboarding.skill.intermediate.description' => 'Comfortable trying new methods.',
-			'onboarding.skill.advanced.label' => 'Advanced',
-			'onboarding.skill.advanced.description' => 'Ready for a proper challenge.',
-			'onboarding.options.cuisines.italian' => 'Italian',
-			'onboarding.options.cuisines.mediterranean' => 'Mediterranean',
-			'onboarding.options.cuisines.middleEastern' => 'Middle Eastern',
-			'onboarding.options.cuisines.mexican' => 'Mexican',
-			'onboarding.options.cuisines.indian' => 'Indian',
-			'onboarding.options.cuisines.japanese' => 'Japanese',
-			'onboarding.options.cuisines.korean' => 'Korean',
-			'onboarding.options.cuisines.thai' => 'Thai',
-			'onboarding.options.cuisines.chinese' => 'Chinese',
-			'onboarding.options.cuisines.french' => 'French',
-			'onboarding.options.cuisines.spanish' => 'Spanish',
-			'onboarding.options.cuisines.greek' => 'Greek',
-			'onboarding.options.cuisines.turkish' => 'Turkish',
-			'onboarding.options.cuisines.vietnamese' => 'Vietnamese',
-			'onboarding.options.cuisines.american' => 'American',
-			'onboarding.options.cuisines.northAfrican' => 'North African',
-			'onboarding.options.cuisines.latinAmerican' => 'Latin American',
-			'onboarding.options.cuisines.nordic' => 'Nordic',
-			'onboarding.options.cuisines.caribbean' => 'Caribbean',
-			'onboarding.options.cuisines.african' => 'African',
-			'onboarding.options.diets.vegetarian' => 'Vegetarian',
-			'onboarding.options.diets.vegan' => 'Vegan',
-			'onboarding.options.diets.glutenFree' => 'Gluten-free',
-			'onboarding.options.diets.dairyFree' => 'Dairy-free',
-			'onboarding.options.diets.nutFree' => 'Nut-free',
-			'onboarding.options.diets.halal' => 'Halal',
-			'onboarding.options.diets.kosher' => 'Kosher',
-			'onboarding.options.diets.pescatarian' => 'Pescatarian',
-			'onboarding.options.diets.lowCarb' => 'Low-carb',
-			'onboarding.options.diets.lowSodium' => 'Low-sodium',
+			'onboarding.time.buckets.quick.label' => '15–20 min',
+			'onboarding.time.buckets.quick.description' => 'An express weeknight',
+			'onboarding.time.buckets.balanced.label' => '30–45 min',
+			'onboarding.time.buckets.balanced.description' => 'Room to build a proper plate',
+			'onboarding.time.buckets.long.label' => '60+ min',
+			'onboarding.time.buckets.long.description' => 'Braises and weekend rituals',
+			'onboarding.time.buckets.variable.label' => 'It varies',
+			'onboarding.time.buckets.variable.description' => 'I fit it to the day',
+			'onboarding.skill.beginner.label' => 'Enthusiastic beginner',
+			'onboarding.skill.beginner.description' => 'Simple techniques, detailed steps, ingredients to hand.',
+			'onboarding.skill.intermediate.label' => 'Confident home cook',
+			'onboarding.skill.intermediate.description' => 'Knife basics, pan sauces and heat control.',
+			'onboarding.skill.advanced.label' => 'Artisan cook',
+			'onboarding.skill.advanced.description' => 'Fermentation, layered baking, plated cooking.',
+			'onboarding.options.cuisines.italian.label' => 'Rustic Italian & pasta',
+			'onboarding.options.cuisines.italian.description' => 'Ancient wheat, ragu, aged cheese',
+			'onboarding.options.cuisines.italian.short' => 'Italian',
+			'onboarding.options.cuisines.mediterranean.label' => 'Classic Mediterranean',
+			'onboarding.options.cuisines.mediterranean.description' => 'Live oils, herbs, fish from the sea',
+			'onboarding.options.cuisines.mediterranean.short' => 'Mediterranean',
+			'onboarding.options.cuisines.middleEastern.label' => 'Levantine & Middle Eastern',
+			'onboarding.options.cuisines.middleEastern.description' => 'Za\'atar, tahini, pomegranate',
+			'onboarding.options.cuisines.middleEastern.short' => 'Middle Eastern',
+			'onboarding.options.cuisines.mexican.label' => 'Oaxacan & traditional',
+			'onboarding.options.cuisines.mexican.description' => 'Black mole, native corn',
+			'onboarding.options.cuisines.mexican.short' => 'Mexican',
+			'onboarding.options.cuisines.indian.label' => 'Spiced Indian',
+			'onboarding.options.cuisines.indian.description' => 'Toasted masalas, pulses, ghee',
+			'onboarding.options.cuisines.indian.short' => 'Indian',
+			'onboarding.options.cuisines.japanese.label' => 'Japanese & craft ramen',
+			'onboarding.options.cuisines.japanese.description' => 'Dashi broths, umami, ferments',
+			'onboarding.options.cuisines.japanese.short' => 'Japanese',
+			'onboarding.options.cuisines.korean.label' => 'Korean & kimchi',
+			'onboarding.options.cuisines.korean.description' => 'Gochujang, banchan, marinades',
+			'onboarding.options.cuisines.korean.short' => 'Korean',
+			'onboarding.options.cuisines.thai.label' => 'Aromatic Thai',
+			'onboarding.options.cuisines.thai.description' => 'Lemongrass, kaffir lime, coconut',
+			'onboarding.options.cuisines.thai.short' => 'Thai',
+			'onboarding.options.cuisines.chinese.label' => 'Wok & dim sum',
+			'onboarding.options.cuisines.chinese.description' => 'High heat, steam, soy and vinegar',
+			'onboarding.options.cuisines.chinese.short' => 'Chinese',
+			'onboarding.options.cuisines.french.label' => 'French bistro',
+			'onboarding.options.cuisines.french.description' => 'Brown butter, long stocks, wine',
+			'onboarding.options.cuisines.french.short' => 'French',
+			'onboarding.options.cuisines.spanish.label' => 'Iberian & tapas',
+			'onboarding.options.cuisines.spanish.description' => 'Paprika, acorn-fed pork, tinned fish',
+			'onboarding.options.cuisines.spanish.short' => 'Spanish',
+			'onboarding.options.cuisines.greek.label' => 'Aegean Greek',
+			'onboarding.options.cuisines.greek.description' => 'Pastured feta, wild oregano',
+			'onboarding.options.cuisines.greek.short' => 'Greek',
+			'onboarding.options.cuisines.turkish.label' => 'Anatolian & charcoal',
+			'onboarding.options.cuisines.turkish.description' => 'Bulgur, smoked aubergine, yoghurt',
+			'onboarding.options.cuisines.turkish.short' => 'Turkish',
+			'onboarding.options.cuisines.vietnamese.label' => 'Fresh Vietnamese',
+			'onboarding.options.cuisines.vietnamese.description' => 'Fine herbs, rice rolls, pho',
+			'onboarding.options.cuisines.vietnamese.short' => 'Vietnamese',
+			'onboarding.options.cuisines.american.label' => 'Californian farm-to-table',
+			'onboarding.options.cuisines.american.description' => 'Local harvest, clean plates',
+			'onboarding.options.cuisines.american.short' => 'American',
+			'onboarding.options.cuisines.northAfrican.label' => 'Moroccan & tagines',
+			'onboarding.options.cuisines.northAfrican.description' => 'Ras el hanout, preserved lemon',
+			'onboarding.options.cuisines.northAfrican.short' => 'North African',
+			'onboarding.options.cuisines.latinAmerican.label' => 'Peruvian & Nikkei',
+			'onboarding.options.cuisines.latinAmerican.description' => 'Native chillies, ceviche, rocoto',
+			'onboarding.options.cuisines.latinAmerican.short' => 'Latin American',
+			'onboarding.options.cuisines.nordic.label' => 'Nordic ferments',
+			'onboarding.options.cuisines.nordic.description' => 'Pickles, rye, smoke',
+			'onboarding.options.cuisines.nordic.short' => 'Nordic',
+			'onboarding.options.cuisines.caribbean.label' => 'Caribbean islands',
+			'onboarding.options.cuisines.caribbean.description' => 'Peppers, coconut, citrus',
+			'onboarding.options.cuisines.caribbean.short' => 'Caribbean',
+			'onboarding.options.cuisines.african.label' => 'Slow-fire African',
+			'onboarding.options.cuisines.african.description' => 'One-pot stews, roots, spice',
+			'onboarding.options.cuisines.african.short' => 'African',
+			'onboarding.options.diets.vegetarian.label' => 'Vegetarian',
+			'onboarding.options.diets.vegetarian.description' => 'No meat, no fish',
+			'onboarding.options.diets.vegan.label' => 'Vegan',
+			'onboarding.options.diets.vegan.description' => '100% plant-based',
+			'onboarding.options.diets.glutenFree.label' => 'Gluten-free',
+			'onboarding.options.diets.glutenFree.description' => 'No wheat, barley or rye',
+			'onboarding.options.diets.dairyFree.label' => 'Dairy-free',
+			'onboarding.options.diets.dairyFree.description' => 'No milk, butter or cheese',
+			'onboarding.options.diets.nutFree.label' => 'Nut-free',
+			'onboarding.options.diets.nutFree.description' => 'No tree nuts or almonds',
+			'onboarding.options.diets.halal.label' => 'Halal',
+			'onboarding.options.diets.halal.description' => 'Certification and Islamic rules',
+			'onboarding.options.diets.kosher.label' => 'Kosher',
+			'onboarding.options.diets.kosher.description' => 'Follows kosher precepts',
+			'onboarding.options.diets.pescatarian.label' => 'Pescatarian',
+			'onboarding.options.diets.pescatarian.description' => 'Fish, seafood and vegetables',
+			'onboarding.options.diets.lowCarb.label' => 'Low-carb',
+			'onboarding.options.diets.lowCarb.description' => 'Fewer carbs, more protein',
+			'onboarding.options.diets.lowSodium.label' => 'Low-sodium',
+			'onboarding.options.diets.lowSodium.description' => 'Gentle on the heart',
 			'onboarding.options.interests.weeknightDinners' => 'Weeknight dinners',
 			'onboarding.options.interests.mealPrep' => 'Meal prep',
 			'onboarding.options.interests.baking' => 'Baking',

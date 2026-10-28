@@ -57,7 +57,7 @@ Phases map as: Phase 1 = stages 0–7, Phase 2 = stages 8–9, Phase 3 = stage 1
 
 **API endpoints** (`AuthEndpoints.cs`, `OnboardingEndpoints.cs`): register, login (JWT access 15min + rotating refresh, httpOnly-free mobile flow: token response in body), refresh, logout, `GET/PUT /me/preferences`, password reset stub returning a dev-only flow after SMTP exists.
 
-**Mobile:** login / register screens, onboarding wizard (welcome → cuisines → diet → skill + time → done), preference chips reused later on Profile.
+**Mobile:** login / register screens, onboarding wizard (welcome → cuisines → diet → skill + time → recap), rebuilt to `docs/design/onboarding/1–5`: shared option-card / step-header / recap-card widgets, self-hosted Playfair Display and Plus Jakarta Sans, a three-cuisine gate with a running counter, a recap step whose pencils jump back to their question, and a "skip for now" path that completes onboarding with empty preferences (home falls back to editorial defaults).
 
 **Acceptance:** integration tests cover register→login→refresh→me; invalid login yields ProblemDetails with rate limiting applied; Flutter wizard persists preferences and lands on a placeholder home that already greets by preference data.
 
