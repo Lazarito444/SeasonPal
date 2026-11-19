@@ -10,7 +10,7 @@ Cooking companion: personal recipe library, AI cooking assistant, discovery feed
 
 | Layer | Tech |
 | --- | --- |
-| API | ASP.NET Core (.NET 10, minimal APIs), EF Core 10, FluentValidation, Serilog |
+| API | ASP.NET Core (.NET 11, minimal APIs), EF Core 11, FluentValidation, Serilog |
 | Database | PostgreSQL 16 (Docker Compose, port **5433** on the host) |
 | Mobile | Flutter 3.4x, Riverpod, go_router, Dio, slang (en/es) |
 

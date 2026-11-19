@@ -1,6 +1,6 @@
 # SeasonPal — Development Roadmap
 
-Backend: ASP.NET Core (.NET 10, minimal APIs) · Mobile: Flutter · DB: PostgreSQL 16 · Web client (v2): Angular.
+Backend: ASP.NET Core (.NET 11, minimal APIs) · Mobile: Flutter · DB: PostgreSQL 16 · Web client (v2): Angular.
 Related docs: `docs/PRODUCT.md` (product spec), `AGENTS.md` (conventions).
 
 ## Steps checklist

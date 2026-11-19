@@ -1,0 +1,31 @@
+# Normalize text to LF in the repo.
+* text=auto
+
+# C# sources: CRLF in the working tree, matching backend/.editorconfig (end_of_line = crlf)
+*.cs text eol=crlf
+
+# LF-pinned files (shell, containers, Flutter tooling)
+*.sh            text eol=lf
+*.bash          text eol=lf
+*.dart          text eol=lf
+Dockerfile      text eol=lf
+
+# --- Binary (never diff, never normalize) ---
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.ico       binary
+*.pdf       binary
+*.mp4       binary
+*.mov       binary
+*.zip       binary
+*.nupkg     binary
+*.ttf       binary
+*.otf       binary
+*.woff      binary
+*.woff2     binary
+
+# --- Linguist ---
+docs/**     linguist-documentation
