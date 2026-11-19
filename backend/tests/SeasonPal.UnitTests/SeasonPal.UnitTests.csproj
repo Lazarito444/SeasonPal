@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- Domain types resolve transitively through Application. -->
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\SeasonPal.Application\SeasonPal.Application.csproj" />
   </ItemGroup>

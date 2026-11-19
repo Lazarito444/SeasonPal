@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" />
     <ProjectReference Include="..\SeasonPal.Domain\SeasonPal.Domain.csproj" />
   </ItemGroup>
 

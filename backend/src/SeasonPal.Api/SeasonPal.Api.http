@@ -1,12 +1,11 @@
-@host = http://localhost:5209
+@SeasonPal.Api_HostAddress = http://localhost:5209
 
-### Liveness — always answers unless the process is dead
-GET {{host}}/health/live
+GET {{SeasonPal.Api_HostAddress}}/openapi/v1.json
+Accept: application/json
 
-### Readiness — healthy only when Postgres answers
-GET {{host}}/health/ready
+###
 
-### OpenAPI document (dev)
-GET {{host}}/openapi/v1.json
+GET {{SeasonPal.Api_HostAddress}}/weatherforecast/
+Accept: application/json
 
-### Scalar UI (dev): {{host}}/scalar
+###

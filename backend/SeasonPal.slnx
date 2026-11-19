@@ -1,6 +1,11 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
   <Folder Name="/src/">
-    <Project Path="src/SeasonPal.Api/SeasonPal.Api.csproj" />
+    <Project Path="src/SeasonPal.Api/SeasonPal.Api.csproj" Id="aa7e1936-d901-4dde-9339-5ff2934a1045" />
     <Project Path="src/SeasonPal.Application/SeasonPal.Application.csproj" />
     <Project Path="src/SeasonPal.Domain/SeasonPal.Domain.csproj" />
     <Project Path="src/SeasonPal.Infrastructure/SeasonPal.Infrastructure.csproj" />

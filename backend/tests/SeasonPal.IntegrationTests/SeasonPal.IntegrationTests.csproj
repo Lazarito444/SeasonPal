@@ -1,14 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Npgsql" />
-    <PackageReference Include="Testcontainers.PostgreSql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\SeasonPal.Api\SeasonPal.Api.csproj" />
     <ProjectReference Include="..\..\src\SeasonPal.Infrastructure\SeasonPal.Infrastructure.csproj" />
   </ItemGroup>
 
