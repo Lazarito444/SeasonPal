@@ -2,17 +2,13 @@
 
 Cooking companion: personal recipe library, AI cooking assistant, discovery feed, and a cooking community. Flutter client, ASP.NET Core API, PostgreSQL.
 
-- Product spec: [docs/PRODUCT.md](docs/PRODUCT.md)
-- Roadmap and current stage: [docs/ROADMAP.md](docs/ROADMAP.md)
-- Conventions for contributors and agents: [AGENTS.md](AGENTS.md)
-
 ## Stack
 
 | Layer | Tech |
 | --- | --- |
-| API | ASP.NET Core (.NET 11, minimal APIs), EF Core 11, FluentValidation, Serilog |
-| Database | PostgreSQL 16 (Docker Compose, port **5433** on the host) |
-| Mobile | Flutter 3.4x, Riverpod, go_router, Dio, slang (en/es) |
+| API | ASP.NET Core, EF Core, FluentValidation, Serilog |
+| Database | PostgreSQL |
+| Mobile | Flutter, Riverpod, go_router, Dio, slang (en/es) |
 
 ## Quick start
 
