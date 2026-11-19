@@ -16,9 +16,6 @@ services:
       timeout: 3s
       retries: 20
 
-  # Browse the dev database at http://localhost:5050.
-  # Register the server with host "db", port 5432, and the credentials from .env.
-  # Desktop mode skips the login screen.
   pgadmin:
     image: dpage/pgadmin4:9
     container_name: seasonpal-pgadmin
