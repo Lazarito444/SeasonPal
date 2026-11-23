@@ -1,7 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\SeasonPal.Application\SeasonPal.Application.csproj" />
-  </ItemGroup>
-
-</Project>
