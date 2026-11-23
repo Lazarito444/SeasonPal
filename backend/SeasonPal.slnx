@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/" />
+  <Folder Name="/src/">
+    <Project Path="SeasonPal.Api/SeasonPal.Api.csproj" />
+    <Project Path="SeasonPal.Application/SeasonPal.Application.csproj" />
+    <Project Path="SeasonPal.Core/SeasonPal.Core.csproj" />
+    <Project Path="SeasonPal.Data/SeasonPal.Data.csproj" />
+  </Folder>
+</Solution>
