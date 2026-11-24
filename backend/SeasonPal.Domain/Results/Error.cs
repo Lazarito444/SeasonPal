@@ -1,4 +1,4 @@
-namespace SeasonPal.Core.Results;
+namespace SeasonPal.Domain.Results;
 
 /// <summary>
 /// An expected business failure produced by an operation instead of throwing.

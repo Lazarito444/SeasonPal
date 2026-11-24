@@ -1,4 +1,4 @@
-namespace SeasonPal.Core.Results;
+namespace SeasonPal.Domain.Results;
 
 /// <summary>
 /// Outcome of an operation that produces no payload. Expected business failures travel as

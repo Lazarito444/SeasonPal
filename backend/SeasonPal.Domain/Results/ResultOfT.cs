@@ -1,4 +1,4 @@
-namespace SeasonPal.Core.Results;
+namespace SeasonPal.Domain.Results;
 
 /// <summary>
 /// Outcome of an operation producing <typeparamref name="T"/>. Expected business failures
