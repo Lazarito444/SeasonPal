@@ -1,16 +1,12 @@
-using Scalar.AspNetCore;
+using SeasonPal.Api.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
+builder.Services.AddSeasonPalServices();
 
 WebApplication app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+app.MapSeasonPalDocumentation();
 
 app.UseHttpsRedirection();
 
